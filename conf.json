@@ -1,0 +1,38 @@
+{
+  "tags": {
+    "allowUnknownTags" : true
+  },
+  "plugins": [
+    "node_modules/grunt-jsdoc/node_modules/jsdoc/plugins/markdown",
+    "plugins/pluginTag",
+    "plugins/utilTag"
+  ],
+  "templates": {
+    "cleverLinks": true,
+    "monospaceLinks": true,
+    "default": {
+      "outputSourceFiles" : true
+    },
+    "applicationName": "Handsontable",
+    "disqus": "",
+    "googleAnalytics": "",
+    "openGraph": {
+      "title": "",
+      "type": "website",
+      "image": "",
+      "site_name": "",
+      "url": ""
+    },
+    "meta": {
+      "title": "Handsontable",
+      "description": "",
+      "keyword": ""
+    },
+    "linenums": false
+  },
+  "markdown": {
+    "parser": "gfm",
+    "hardwrap": true,
+    "tags": ["examples", "description"]
+  }
+}
