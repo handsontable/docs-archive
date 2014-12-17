@@ -47,11 +47,7 @@ module.exports = function (grunt) {
           template: './',
           tutorials: 'tutorials',
           'private': false,
-          query: (function() {
-            var hotPackage = grunt.file.readJSON(HOT_SRC_PATH + '/package.json');
-
-            return querystring.stringify(hotPackage);
-          }())
+          query: ''
         }
       }
     },
@@ -100,7 +96,26 @@ module.exports = function (grunt) {
     }
   });
 
-  grunt.registerTask('default', 'Create documentation for Handsontable', ['less', 'clean', 'copy', 'exec:updateSrc', 'jsdoc']);
+  grunt.registerTask('default', 'Create documentation for Handsontable', function() {
+    var
+      hotPackage,
+      timer;
+
+    grunt.task.run('exec:updateSrc');
+
+    timer = setInterval(function() {
+      if ( !grunt.file.isFile(HOT_SRC_PATH + '/package.json') ) {
+        return;
+      }
+      clearInterval(timer);
+      grunt.task.run('less', 'clean', 'copy');
+
+      hotPackage = grunt.file.readJSON(HOT_SRC_PATH + '/package.json');
+      grunt.config.set('jsdoc.docs.options.query', querystring.stringify(hotPackage));
+
+      grunt.task.run('jsdoc');
+    }, 50);
+  });
 
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
