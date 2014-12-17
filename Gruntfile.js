@@ -18,7 +18,7 @@ module.exports = function (grunt) {
   var
       DOCS_PATH = 'generated',
       HOT_SRC_PATH = 'src/handsontable',
-      HOT_BRANCH = 'feature/issue-1972',
+      HOT_BRANCH = 'master', // to test after merge -> feature/issue-1972
       HOT_REPO = 'https://github.com/handsontable/handsontable.git',
       querystring = require('querystring');
 
