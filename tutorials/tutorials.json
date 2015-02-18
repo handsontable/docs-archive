@@ -1,0 +1,29 @@
+{
+  "index": {
+    "title": "",
+    "children": {
+      "getting-started": {
+        "title": "Getting Started",
+        "children": {
+          "installation": {
+            "title": "Installation"
+          },
+          "migrate-from-previous-versions": {
+            "title": "Migrate from Previous Versions"
+          },
+          "building-your-first-few-tables": {
+            "title": "Building Your First Few Tables"
+          }
+        }
+      },
+      "demos": {
+        "title": "Demos",
+        "children": {
+          "demo-cell-renderer": {
+            "title": "Cell renderer"
+          }
+        }
+      }
+    }
+  }
+}

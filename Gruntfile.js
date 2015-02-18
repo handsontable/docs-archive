@@ -14,11 +14,14 @@
  *
  * See http://gruntjs.com/getting-started for more information about Grunt
  */
+
+var fs = require('fs');
+
 module.exports = function (grunt) {
   var
       DOCS_PATH = 'generated',
       HOT_SRC_PATH = 'src/handsontable',
-      HOT_BRANCH = 'master', // use 'feature/issue-1972' before issue-1972 will be merged to master
+      HOT_BRANCH = 'feature/issue-1972', // use 'feature/issue-1972' before issue-1972 will be merged to master
       HOT_REPO = 'https://github.com/handsontable/handsontable.git',
       querystring = require('querystring');
 
@@ -71,26 +74,23 @@ module.exports = function (grunt) {
       }
     },
 
-    exec: {
-      updateSrc: {
-        cmd: function() {
-          var
-            cmd = '([ -d {src} ] && echo || mkdir -p {src}) && [ -f {src}/README.md ] && (cd {src}/ && git pull && cd ..) || (git clone -b {branch} {repo} {src}/ && cd ..)',
-            params = {
-              src: HOT_SRC_PATH,
-              branch: HOT_BRANCH,
-              repo: HOT_REPO
-            };
+    gitclone: {
+      handsontable: {
+        options: {
+          branch: HOT_BRANCH,
+          repository: HOT_REPO,
+          directory: HOT_SRC_PATH,
+          verbose: true
+        }
+      }
+    },
 
-          cmd = cmd.replace(/\\?\{([^{}]+)\}/g, function(match, name) {
-            if ( params[name] ) {
-              return params[name];
-            }
-
-            throw new Error('Undefined param in exec:updateSrc');
-          });
-
-          return cmd;
+    gitpull: {
+      handsontable: {
+        options: {
+          branch: HOT_BRANCH,
+          cwd: HOT_SRC_PATH,
+          verbose: true
         }
       }
     }
@@ -101,17 +101,23 @@ module.exports = function (grunt) {
       hotPackage,
       timer;
 
-    grunt.task.run('exec:updateSrc');
+    if (fs.existsSync(HOT_SRC_PATH)) {
+      grunt.task.run('gitpull');
+    } else {
+      grunt.task.run('gitclone');
+    }
 
     timer = setInterval(function() {
-      if ( !grunt.file.isFile(HOT_SRC_PATH + '/package.json') ) {
+      if (!grunt.file.isFile(HOT_SRC_PATH + '/package.json')) {
         return;
       }
       clearInterval(timer);
       grunt.task.run('less', 'clean', 'copy');
 
       hotPackage = grunt.file.readJSON(HOT_SRC_PATH + '/package.json');
-      grunt.config.set('jsdoc.docs.options.query', querystring.stringify(hotPackage));
+      grunt.config.set('jsdoc.docs.options.query', querystring.stringify({
+        version: hotPackage.version
+      }));
 
       grunt.task.run('jsdoc');
     }, 50);
@@ -121,5 +127,6 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-exec');
+  grunt.loadNpmTasks('grunt-git');
   grunt.loadNpmTasks('grunt-jsdoc');
 };

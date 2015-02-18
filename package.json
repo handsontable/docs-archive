@@ -5,6 +5,10 @@
   "bugs": {
     "url": "https://github.com/handsontable/docs/issues"
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/handsontable/docs.git"
+  },
   "author": "Marcin Warpechowski <hello@handsontable.com>",
   "version": "1.0.0",
   "devDependencies": {
@@ -12,8 +16,9 @@
     "grunt-contrib-clean": "~0.4.1",
     "grunt-contrib-copy": "~0.5.0",
     "grunt-contrib-less": "~0.9.0",
-    "grunt-jsdoc": "~0.5.1",
-    "grunt-exec": "~0.4.6"
+    "grunt-exec": "~0.4.6",
+    "grunt-git": "^0.3.4",
+    "grunt-jsdoc": "~0.5.8"
   },
   "scripts": {
     "test": ""
