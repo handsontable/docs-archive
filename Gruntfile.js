@@ -21,7 +21,7 @@ module.exports = function (grunt) {
   var
       DOCS_PATH = 'generated',
       HOT_SRC_PATH = 'src/handsontable',
-      HOT_BRANCH = 'feature/issue-1972', // use 'feature/issue-1972' before issue-1972 will be merged to master
+      HOT_BRANCH = 'master',
       HOT_REPO = 'https://github.com/handsontable/handsontable.git',
       querystring = require('querystring');
 
@@ -57,20 +57,57 @@ module.exports = function (grunt) {
 
     less: {
       dist: {
-        src: 'less/**/jaguar.less',
-        dest: 'static/styles/jaguar.css'
+        src: 'less/hot/**/docs.less',
+        dest: 'static/styles/docs.css'
       }
     },
-
     copy: {
-      css: {
-        src: 'static/styles/jaguar.css',
-        dest: DOCS_PATH + '/styles/jaguar.css'
+      dist: {
+        files: [{
+          expand: true,
+          cwd: 'src',
+          dest: 'generated',
+          src: [
+            'static/**'
+          ]
+        }]
+      }
+    },
+    bowercopy: {
+      options: {
+        srcPrefix: 'bower_components'
       },
-
-      js: {
-        src: 'static/scripts/main.js',
-        dest: DOCS_PATH + '/scripts/main.js'
+      scripts: {
+        options: {
+          destPrefix: 'generated/bower_components'
+        },
+        files: {
+          'jquery/jquery.min.js': 'jquery/dist/jquery.min.js',
+          'fastclick': 'fastclick',
+          'jquery.cookie': 'jquery.cookie',
+          'jquery-placeholder': 'jquery-placeholder',
+          'modernizr': 'modernizr',
+          'handsontable': 'handsontable',
+          'zeroclipboard': 'zeroclipboard',
+          'pikaday': 'pikaday',
+          "moment": "moment",
+          "backbone": "backbone",
+          "backbone.relational": "backbone.relational",
+          "highlightjs": "highlightjs",
+          "chroma-js": "chroma-js",
+          "raphael": "raphael",
+          "bootstrap": "bootstrap",
+          "numeraljs": "numeraljs",
+          "font-awesome": "font-awesome",
+          "lodash": "lodash"
+        }
+      }
+    },
+    watch: {
+      files: ['tutorials/**', 'less/**', 'static/**', 'tmpl/**'],
+      tasks: ['default'],
+        options: {
+        debounceDelay: 250
       }
     },
 
@@ -112,7 +149,7 @@ module.exports = function (grunt) {
         return;
       }
       clearInterval(timer);
-      grunt.task.run('less', 'clean', 'copy');
+      grunt.task.run('less', 'clean', 'copy', 'bowercopy');
 
       hotPackage = grunt.file.readJSON(HOT_SRC_PATH + '/package.json');
       grunt.config.set('jsdoc.docs.options.query', querystring.stringify({
@@ -124,9 +161,11 @@ module.exports = function (grunt) {
   });
 
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-exec');
   grunt.loadNpmTasks('grunt-git');
   grunt.loadNpmTasks('grunt-jsdoc');
+  grunt.loadNpmTasks('grunt-bowercopy');
 };

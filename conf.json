@@ -15,18 +15,18 @@
     },
     "applicationName": "Handsontable",
     "disqus": "",
-    "googleAnalytics": "",
+    "googleAnalytics": "UA-33932793-1",
     "openGraph": {
-      "title": "",
+      "title": "Handsontable Documentation",
       "type": "website",
       "image": "",
-      "site_name": "",
-      "url": ""
+      "site_name": "Handsontable",
+      "url": "http://docs.handsontable.com"
     },
     "meta": {
       "title": "Handsontable",
-      "description": "",
-      "keyword": ""
+      "description": "JavaScript data grid editor. Excel-like grid editing with HTML & JavaScript",
+      "keyword": "data grid"
     },
     "linenums": false
   },

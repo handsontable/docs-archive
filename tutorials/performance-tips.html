@@ -1,0 +1,79 @@
+<div class="static-content">
+  <div class="example-container">
+    <a href="https://github.com/handsontable/docs/edit/feature/master/tutorials/performance-tips.html" class="edit-doc" target="_blank">
+      Edit on GitHub
+    </a>
+    <p>This page contains list of performance tips important from the perspective of building a DOM-heavy grid editor.</p>
+    <h2 id="javascript">JavaScript</h2>
+    <h3 id="converting-numbers-always-use-parseint-num-10-">Converting numbers: always use <code>parseInt(num, 10)</code>
+    </h3>
+    <p>Convert <code>&quot;16&quot;</code> to number: <a href="http://jsperf.com/number-vs-parseint-vs-plus/26">http://jsperf.com/number-vs-parseint-vs-plus/26</a><br>Convert
+      <code>&quot;16px&quot;</code> to number: <a href="http://jsperf.com/number-vs-parseint-vs-plus/25">http://jsperf.com/number-vs-parseint-vs-plus/25</a>
+    </p>
+
+    <h3 id="cascading-configuration-options-use-prototype-rather-than-extend-">Cascading configuration options: use <code>prototype</code>
+      rather than <code>$.extend</code></h3>
+    <p>This technique cannot be applied everywhere, but is a great candidate for Handsontable cascading settings pattern
+      (Constructor <code>options</code> -&gt; <code>columns</code> -&gt; <code>cells</code> -&gt;
+      <code>cellProperties</code>).</p>
+    <p>See: <a href="http://jsperf.com/extending-settings">http://jsperf.com/extending-settings</a></p>
+    <h3 id="custom-functions-can-be-faster-than-native-for-example-foreach-">Custom functions can be faster than native (for
+      example <code>forEach</code>)</h3>
+    <p>According to tests ran at JSPerf, MDN shim of <code>forEach</code> can be up to 5 times faster than the native
+      implementation.</p>
+    <p>See: <a href="http://jsperf.com/native-vs-implmented-0/5">http://jsperf.com/native-vs-implmented-0/5</a></p>
+    <h3 id="-foreach-and-filter-are-much-slower-than-for-"><code>forEach</code> and <code>filter</code> are MUCH slower than
+      <code>for</code></h3>
+    <p><code>for</code> can be 10 times faster than a <code>forEach</code>.</p>
+    <p>See: <a href="http://jsperf.com/for-vs-foreach/49">http://jsperf.com/for-vs-foreach/49</a></p>
+    <h3 id="-call-is-faster-than-apply-"><code>call</code> is faster than <code>apply</code></h3>
+    <p>See <a href="http://jsperf.com/function-calls-direct-vs-apply-vs-call-vs-bind/33">http://jsperf.com/function-calls-direct-vs-apply-vs-call-vs-bind/33</a>
+    </p>
+    <h2 id="dom">DOM</h2>
+    <h3 id="emptying-nodes-always-prefer-removenode-over-innerhtml-">Emptying nodes: always prefer <code>removeNode()</code>
+      over <code>innerHTML = &#39;&#39;</code></h3>
+    <p>See: <a href="http://jsperf.com/jquery-html-vs-empty-vs-innerhtml/9">http://jsperf.com/jquery-html-vs-empty-vs-innerhtml/9</a>
+    </p>
+
+    <h3 id="search-for-id-or-by-tag-prefer-getelementbyid-or-getelementsbytagname-">Search for ID or by tag: prefer <code>getElementById</code>
+      or <code>getElementsByTagName</code></h3>
+    <p>See: <a href="http://jsperf.com/id-vs-getelementbyid/3">http://jsperf.com/id-vs-getelementbyid/3</a></p>
+
+    <h3 id="get-first-element-using-dom-getelementsbytagname-span-0-or-firstchild-">Get first element using DOM (<code>getElementsByTagName(&#39;span&#39;)[0]</code>
+      or <code>firstChild</code>)</h3>
+    <p>See: <a href="http://jsperf.com/jquery-first-vs-first2/10">http://jsperf.com/jquery-first-vs-first2/10</a></p>
+
+    <h3 id="create-text-elements-createtextnode-can-be-many-times-faster-than-innerhtml-">Create text elements: <code>createTextNode</code>
+      can be many times faster than <code>innerHTML</code></h3>
+    <p>See: <a href="http://jsperf.com/creating-text-node/3">http://jsperf.com/creating-text-node/3</a></p>
+    <p>Problem is that <code>createTextNode</code> does not allow HTML entities, so you have to escape them to <a
+      href="https://developer.mozilla.org/en/docs/JavaScript/Guide/Values,_variables,_and_literals#Unicode_escape_sequences">Unicode
+      escape sequences</a>. More info on <a
+      href="http://stackoverflow.com/questions/513112/setting-nodevalue-of-text-node-in-javascript-when-string-contains-html-entities">Stack
+      Overflow</a>. For escape sequences cheatsheet, refer to <a
+      href="https://code.google.com/p/jslibs/wiki/JavascriptTips">JavaScript language advanced Tips &amp; Tricks</a></p>
+
+    <h3 id="check-if-element-has-child-nodes-if-div-firstchild-">Check if element has child nodes: <code>if
+      (DIV.firstChild)</code></h3>
+    <p>See: <a href="http://jsperf.com/empty-node-if-needed">http://jsperf.com/empty-node-if-needed</a></p>
+
+    <h2 id="css">CSS</h2>
+    <h3 id="change-style-by-caching-var-style-element-style-">Change style by caching <code>var style = element.style</code>:
+    </h3>
+    <p>See: <a href="http://jsperf.com/change-css-in-many-ways">http://jsperf.com/change-css-in-many-ways</a></p>
+
+    <h2 id="sources">Sources</h2>
+    <ul>
+      <li><a href="http://jankfree.com/">Let&#39;s make the web jank-free</a></li>
+      <li><a href="http://blog.korynunn.com/javascript/the-dom-isnt-slow-you-are/">The DOM isn’t slow, you are</a></li>
+      <li><a href="http://www.html5rocks.com/en/tutorials/speed/scrolling/">Scrolling Performance</a></li>
+      <li><a href="http://updates.html5rocks.com/2013/02/Profiling-Long-Paint-Times-with-DevTools-Continuous-Painting-Mode">Profiling
+        Long Paint Times with DevTools&#39; Continuous Painting Mode</a></li>
+      <li><a href="http://superherojs.com/">SuperheroJS</a></li>
+      <li><a href="http://www.smashingmagazine.com/2013/06/10/pinterest-paint-performance-case-study/">Gone In 60 Frames Per
+        Second: A Pinterest Paint Performance Case Study</a></li>
+      <li><a href="http://www.html5rocks.com/en/tutorials/memory/effectivemanagement/">Effectively Managing Memory at Gmail
+        scale</a></li>
+    </ul>
+  </div>
+</div>

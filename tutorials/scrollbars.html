@@ -1,0 +1,84 @@
+<div class="static-content">
+  <!-- Loading Handsontable -->
+  <script src="bower_components/handsontable/dist/handsontable.full.min.js" data-jsfiddle="common"></script>
+
+  <!-- Loading demo dependencies -->
+  <script src="scripts/samples.js"></script>
+
+  <!-- Loading highlight.js -->
+  <script src="bower_components/highlightjs/highlight.pack.js"></script>
+  <link rel="stylesheet" href="bower_components/highlightjs/styles/github.css">
+
+  <div class="example-container">
+    <a href="https://github.com/handsontable/docs/edit/feature/master/tutorials/scrollbars.html" class="edit-doc" target="_blank">
+      Edit on GitHub
+    </a>
+    <p>If you want scrollbars, just set container width, height and <code>overflow: scroll</code> in CSS.
+      This demo shows table of <strong>1000</strong> rows and columns. Only visible part is rendered. Native div scrollbar is used to
+      scroll through the table.</p>
+    <p><button class="maximize intext-btn">Maximize table</button></p>
+
+    <div data-jsfiddle="example1" class="scroll-container">
+      <div id="example1" class="hot"></div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example1">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example1" data-instance="hot"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example1">
+        var
+          example = document.getElementById('example1'),
+          maximize = document.querySelector('.maximize'),
+          maxed = false,
+          resizeTimeout,
+          availableWidth,
+          availableHeight,
+          hot1;
+
+        hot1 = new Handsontable(example,{
+          data: Handsontable.helper.createSpreadsheetData(1000, 1000),
+          colWidths: 47,
+          rowHeaders: true,
+          colHeaders: true
+        });
+
+        function calculateSize() {
+          var offset;
+
+          if (maxed) {
+            offset = Handsontable.Dom.offset(example);
+            availableWidth = Handsontable.Dom.innerWidth(document.body) - offset.left + window.scrollX;
+            availableHeight = Handsontable.Dom.innerHeight(document.body) - offset.top + window.scrollY;
+
+            example.style.width = availableWidth + 'px';
+            example.style.height = availableHeight + 'px';
+          }
+        }
+
+        Handsontable.Dom.addEvent(window, 'resize', calculateSize);
+        Handsontable.Dom.addEvent(maximize, 'click', function() {
+          maxed = !maxed;
+
+          if (maxed) {
+            calculateSize();
+          }
+          else {
+            example.style.width = 400 + 'px';
+            example.style.height = 400 + 'px';
+          }
+          hot1.render();
+        });
+      </script>
+    </div>
+  </div>
+</div>
+

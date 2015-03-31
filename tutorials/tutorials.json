@@ -3,24 +3,272 @@
     "title": "",
     "children": {
       "getting-started": {
-        "title": "Getting Started",
+        "title": "Getting started",
         "children": {
-          "installation": {
-            "title": "Installation"
+          "introduction": {
+            "title": "Introduction"
           },
-          "migrate-from-previous-versions": {
-            "title": "Migrate from Previous Versions"
+          "quick-start": {
+            "title": "Quick start"
           },
-          "building-your-first-few-tables": {
-            "title": "Building Your First Few Tables"
+          "features": {
+            "title": "Features"
+          },
+          "compatibility": {
+            "title": "Compatibility"
+          },
+          "seven-principles": {
+            "title": "Seven principles"
           }
         }
       },
-      "demos": {
-        "title": "Demos",
+      "developer-guide": {
+        "title": "Developer guide",
         "children": {
-          "demo-cell-renderer": {
-            "title": "Cell renderer"
+          "overview": {
+            "title": "Overview"
+          },
+          "data-binding": {
+            "title": "Data binding"
+          },
+          "data-sources": {
+            "title": "Data sources"
+          },
+          "load-and-save": {
+            "title": "Load and save"
+          },
+          "styling": {
+            "title": "Styling"
+          },
+          "cell-editor": {
+            "title": "Cell editor"
+          },
+          "cell-function": {
+            "title": "Cell function"
+          },
+          "keyboard-shortcuts": {
+            "title": "Keyboard shortcuts"
+          },
+          "performance-tips": {
+            "title": "Performance tips"
+          },
+          "testing": {
+            "title": "Testing"
+          }
+        }
+      },
+      "subprojects": {
+        "title": "Subprojects",
+        "children": {
+          "ngHandsontable": {
+            "title": "ngHandsontable"
+          },
+          "hot-table": {
+            "title": "hot-table"
+          },
+          "rulejs": {
+            "title": "RuleJS"
+          }
+        }
+      },
+      "resources": {
+        "title": "Resources",
+        "children": {
+          "change-log": {
+            "title": "Change log"
+          },
+          "roadmap": {
+            "title": "Roadmap"
+          },
+          "milestones": {
+            "title": "Milestones"
+          },
+          "releasing": {
+            "title": "Releasing"
+          },
+          "licensing": {
+            "title": "Licensing"
+          },
+          "contributing": {
+            "title": "Contributing"
+          },
+          "google-group": {
+            "title": "Google Group"
+          },
+          "github": {
+            "title": "GitHub"
+          },
+          "stackoverflow": {
+            "title": "StackOverflow"
+          }
+        }
+      },
+      "demos-1": {
+        "title": "Demos: cell features",
+        "children": {
+          "drag-down": {
+            "title": "Drag down"
+          },
+          "merge-cells": {
+            "title": "Merge cells"
+          },
+          "alignment": {
+            "title": "Alignment"
+          },
+          "read-only": {
+            "title": "Read only"
+          }
+        }
+      },
+      "demos-2": {
+        "title": "Demos: cell renderers",
+        "children": {
+          "custom-renderers": {
+            "title": "Custom renderers"
+          },
+          "numeric": {
+            "title": "Numeric"
+          },
+          "date": {
+            "title": "Date"
+          },
+          "checkbox": {
+            "title": "Checkbox"
+          },
+          "select": {
+            "title": "Select"
+          },
+          "dropdown": {
+            "title": "Dropdown"
+          },
+          "autocomplete": {
+            "title": "Autocomplete"
+          },
+          "password": {
+            "title": "Password"
+          },
+          "handsontable": {
+            "title": "Handsontable"
+          }
+        }
+      },
+      "demos-3": {
+        "title": "Demos: rows and columns",
+        "children": {
+          "fixed-rows-and-columns": {
+            "title": "Fixed rows and columns"
+          },
+          "scrollbars": {
+            "title": "Scrollbars"
+          },
+          "highlighting-current": {
+            "title": "Highlighting current"
+          },
+          "stretching": {
+            "title": "Stretching"
+          },
+          "grouping-and-ungrouping": {
+            "title": "Grouping and ungrouping"
+          },
+          "resizing": {
+            "title": "Resizing"
+          },
+          "freezing": {
+            "title": "Freezing"
+          },
+          "moving": {
+            "title": "Moving"
+          },
+          "pre-populating-new-rows": {
+            "title": "Pre-populating new rows"
+          }
+        }
+      },
+      "demos-4": {
+        "title": "Demos: data validation",
+        "children": {
+          "data-validation": {
+            "title": "Data validation"
+          }
+        }
+      },
+      "demos-5": {
+        "title": "Demos: navigation",
+        "children": {
+          "pagination": {
+            "title": "Pagination"
+          },
+          "search-of-values": {
+            "title": "Search of values"
+          }
+        }
+      },
+      "demos-6": {
+        "title": "Demos: sorting data",
+        "children": {
+          "sorting-data": {
+            "title": "Sorting data"
+          }
+        }
+      },
+      "demos-7": {
+        "title": "Demos: appearance",
+        "children": {
+          "conditional-formatting": {
+            "title": "Conditional formatting"
+          },
+          "custom-borders": {
+            "title": "Custom borders"
+          }
+        }
+      },
+      "demos-8": {
+        "title": "Demos: formula support",
+        "children": {
+          "formula-support": {
+            "title": "Formula support"
+          }
+        }
+      },
+      "demos-9": {
+        "title": "Demos: mobiles and tablets",
+        "children": {
+          "mobiles-and-tablets": {
+            "title": "Mobiles and tablets"
+          }
+        }
+      },
+      "demos-10": {
+        "title": "Demos: utilities",
+        "children": {
+          "context-menu": {
+            "title": "Context menu"
+          },
+          "custom-buttons": {
+            "title": "Custom buttons"
+          },
+          "comments": {
+            "title": "Comments"
+          }
+        }
+      },
+      "demos-11": {
+        "title": "Demos: integrations",
+        "children": {
+          "jquery": {
+            "title": "jQuery"
+          },
+          "graphael-charts": {
+            "title": "gRaphaël charts"
+          },
+          "chromajs": {
+            "title": "ChromaJS"
+          },
+          "bootstrap": {
+            "title": "Bootstrap"
+          },
+          "backbonejs": {
+            "title": "Backbone.js"
           }
         }
       }

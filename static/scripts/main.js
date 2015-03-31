@@ -59,10 +59,10 @@ $(function () {
 
   // Auto resizing on navigation
   var _onResize = function () {
-    var height = $(window).height(),
+    var height = $(window).height() - 118,
       $el = $('.navigation');
 
-    $el.height(height).find('.list').height(height - 133);
+    $el.height(height).find('.list').height(height - 62);
   };
 
   $(window).on('resize', _onResize);

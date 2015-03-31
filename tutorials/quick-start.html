@@ -1,0 +1,97 @@
+<div class="static-content">
+  <!-- Loading dependencies -->
+  <script src="scripts/samples.js"></script>
+
+  <!-- Loading highlight.js -->
+  <script src="bower_components/highlightjs/highlight.pack.js"></script>
+  <link rel="stylesheet" href="bower_components/highlightjs/styles/github.css">
+
+  <div class="example-container">
+    <a href="https://github.com/handsontable/docs/edit/feature/master/tutorials/quick-start.html" class="edit-doc" target="_blank">
+      Edit on GitHub
+    </a>
+
+
+    <h1 id="building-your-own-handsontable">Building your own Handsontable</h1>
+
+    <p>The build process is done using <strong><a href="http://gruntjs.com/">Grunt</a></strong> tool and bunch of Grunt
+      tasks that are defined in <a href="https://github.com/handsontable/handsontable/blob/master/package.json">package.json</a>.
+    </p>
+
+    <p>During the build process, the source files located in directory <code>src/*</code> are transformed into output
+      files:</p>
+    <ul>
+      <li><code>./dist/handsontable.js</code></li>
+      <li><code>./dist/handsontable.css</code></li>
+      <li><code>./dist/handsontable.full.js</code></li>
+      <li><code>./dist/handsontable.full.css</code> (more info about dist packages <a
+        href="https://github.com/handsontable/handsontable/tree/master/dist">here</a>)
+      </li>
+    </ul>
+    <p>It is advised that you never modify the above files but rather make changes in the <code>src/</code> directory
+      and then run a proper build. This is especially important if you want to contribute your changes back to
+      Handsontable using a pull request.</p>
+
+    <h2 id="grunt-tasks">Grunt tasks</h2>
+
+    <p>Currently, the following tasks are available for building Handsontable:</p>
+    <ul>
+      <li><code>grunt</code> - runs a single build</li>
+      <li><code>grunt watch</code> - watches for changes in source directory and runs a build when a change is observed
+      </li>
+      <li><code>grunt --force default watch</code> - runs a single build and then watches for changes</li>
+      <li><code>grunt test</code> - runs a single build followed by Jasmine test suite executed in PhantomJS. Note that
+        there is a known issue when running PhantomJS on Node.js 0.10.0. If you experience this problem, try to
+        downgrade to Node.js 0.8.22, delete &quot;node_modules&quot; directory and call &quot;npm install&quot; again.
+      </li>
+    </ul>
+    <p>You can create your own tasks by editing <code>Gruntfile.js</code></p>
+
+    <h2 id="running-your-first-build">Running your first build</h2>
+
+    <p>To run your own build, follow the below steps:</p>
+    <ol>
+      <li>Install Node.js (available for Windows, Mac and Linux). This will also install NPM (Node Package Manager) that
+        handles all the dependencies. Handsontable was tested with Node.js 0.8.20
+      </li>
+      <li>Clone Handsontable repository on your local disk and go to the directory where you cloned it</li>
+      <li>Install Grunt CLI as a global NPM module (<code>npm install -g grunt-cli</code>). More about that on <a
+        href="http://gruntjs.com/getting-started">Grunt - Getting Started</a></li>
+      <li>Run <code>npm install</code> to download all the dependencies defined in <code>package.json</code>. The
+        dependencies will be downloaded into a new directory <code>node_modules</code>, that is ignored by Git
+      </li>
+      <li>Run <code>grunt</code> to make your first build!</li>
+    </ol>
+    <p>If it works correctly, you should see something like:</p>
+
+    <p><img src="https://dl.dropbox.com/u/313942/grunt.png" alt="Grunt output screenshot"></p>
+
+
+
+    <p>HOW TO:</p>
+    <p>BOWER or manually</p>
+    <p>ADD: https://github.com/handsontable/handsontable/wiki/Building</p>
+    <p>Download (direct link), links to download subprojects (Web Components, ngHandsontable (AngularJS directive)</p>
+    <p>Dependencies not included into a package</p>
+    <p>Difference between minified and full package</p>
+    <p>To enable the merge cells feature, set the <code>mergeCells</code> option to be <code>true</code> or an
+      array. To initialize Handsontable with predefined merged cells, provide merged cells details in form of an
+      array: <code>mergeCells: [{row: 1, col: 1, rowspan: 2, colspan: 2}]</code></p>
+  </div>
+
+  <div class="codeLayout">
+    <script>
+      var data = [
+        [1,2,3,4],
+        [5,6,7,8]
+      ];
+      var container = document.getElementById('hot');
+      var hot = new Handsontable(container,
+        {
+          data: data,
+          colHeaders: true,
+          rowHeaders: true
+        });
+    </script>
+  </div>
+</div>

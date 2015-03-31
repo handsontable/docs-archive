@@ -1,0 +1,243 @@
+<div class="static-content">
+  <!-- Loading Handsontable -->
+  <script src="bower_components/handsontable/dist/handsontable.full.min.js" data-jsfiddle="common"></script>
+
+  <!-- Loading demo dependencies -->
+  <script src="scripts/samples.js"></script>
+
+  <!-- Loading highlight.js -->
+  <script src="bower_components/highlightjs/highlight.pack.js"></script>
+  <link rel="stylesheet" href="bower_components/highlightjs/styles/github.css">
+
+  <div class="index-list">
+    <p>See <a href="https://github.com/handsontable/handsontable/wiki/Search-plugin" target="_blank">wiki</a>
+      for an in-depth documentation.</p>
+    <ul>
+      <li><a href="#simplest-use-case">Simplest use case</a></li>
+      <li><a href="#custom-search-result-class">Custom search result class</a></li>
+      <li><a href="#custom-query-method">Custom query method</a></li>
+      <li><a href="#custom-callback">Custom callback</a></li>
+    </ul>
+  </div>
+
+  <div class="example-container" name="simplest-use-case">
+    <a href="https://github.com/handsontable/docs/edit/feature/master/tutorials/search-of-values.html" class="edit-doc" target="_blank">
+      Edit on GitHub
+    </a>
+    <h3>Simplest use case</h3>
+
+    <div data-jsfiddle="example1">
+      <input id='search_field' type="search" placeholder="Search" />
+      <div id="example1" class="hot"></div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example1">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example1" data-instance="hot1"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example1">
+        var
+          data = [
+            ['Nissan', 2012, 'black', 'black'],
+            ['Nissan', 2013, 'blue', 'blue'],
+            ['Chrysler', 2014, 'yellow', 'black'],
+            ['Volvo', 2015, 'yellow', 'gray']
+          ],
+          example = document.getElementById('example1'),
+          searchFiled = document.getElementById('search_field'),
+          hot;
+
+        hot = new Handsontable(example, {
+          data: data,
+          colHeaders: true,
+          search: true
+        });
+
+        function onlyExactMatch(queryStr, value) {
+          return queryStr.toString() === value.toString();
+        }
+
+        Handsontable.Dom.addEvent(searchFiled, 'keyup', function (event) {
+          var queryResult = hot.search.query(this.value);
+
+          console.log(queryResult);
+          hot.render();
+        });
+
+      </script>
+    </div>
+  </div>
+
+  <div class="example-container head-gap" name="custom-search-result-class">
+    <h3>Custom search result class</h3>
+    <div data-jsfiddle="example2">
+      <input id='search_field2' type="search" placeholder="Search" />
+      <div id="example2" class="hot"></div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example2">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example2" data-instance="hot2"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example2">
+        var data = [
+            ["Nissan", 2012, "black", "black"],
+            ["Nissan", 2013, "blue", "blue"],
+            ["Chrysler", 2014, "yellow", "black"],
+            ["Volvo", 2015, "white", "gray"]
+          ]
+          , example2 = document.getElementById("example2");
+
+        var hot2 = new Handsontable(example2,{
+          data: data,
+          colHeaders: true,
+          search: {
+            searchResultClass: 'customClass'
+          }
+        });
+
+        var searchFiled2 = document.getElementById('search_field2');
+        Handsontable.Dom.addEvent(searchFiled2,'keyup', function (event) {
+          var queryResult = hot2.search.query(this.value);
+          console.log(queryResult);
+          hot2.render();
+        });
+
+      </script>
+    </div>
+  </div>
+
+  <div class="example-container head-gap" name="custom-query-method">
+    <h3>Custom query method</h3>
+
+    <div data-jsfiddle="example3">
+      <input id='search_field3' type="search" placeholder="Search" />
+      <div id="example3" class="hot"></div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example3">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example3" data-instance="hot3"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example3">
+        var data = [
+            ["Nissan", 2012, "black", "black"],
+            ["Nissan", 2013, "blue", "blue"],
+            ["Chrysler", 2014, "yellow", "black"],
+            ["Volvo", 2015, "white", "gray"]
+          ]
+          , example3 = document.getElementById("example3");
+
+        var onlyExactMatch = function (queryStr, value) {
+          return queryStr.toString() === value.toString();
+        };
+
+        var hot3 = new Handsontable(example3,{
+          data: data,
+          colHeaders: true,
+          search: {
+            queryMethod: onlyExactMatch
+          }
+        });
+
+        var searchFiled3 = document.getElementById('search_field3');
+        Handsontable.Dom.addEvent(searchFiled3,'keyup', function (event) {
+
+          var queryResult = hot3.search.query(this.value);
+
+          console.log(queryResult);
+
+          hot3.render();
+        });
+
+      </script>
+    </div>
+  </div>
+  <div class="example-container head-gap" name="custom-callback">
+    <h3>Custom callback</h3>
+
+    <div data-jsfiddle="example4">
+      <input id='search_field4' type="search" placeholder="Search" />
+      <p><span id="resultCount">0</span> results</p>
+      <div id="example4" class="hot"></div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example4">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example4" data-instance="hot4"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example4">
+        var data = [
+            ["Nissan", 2012, "black", "black"],
+            ["Nissan", 2013, "blue", "blue"],
+            ["Chrysler", 2014, "yellow", "black"],
+            ["Volvo", 2015, "white", "gray"]
+          ]
+          , example4 = document.getElementById("example4");
+
+        var searchResultCount = 0;
+
+        var searchResultCounter = function (instance, row, col, value, result) {
+
+          Handsontable.Search.DEFAULT_CALLBACK.apply(this, arguments);
+
+          if (result) {
+            searchResultCount++;
+          }
+        };
+
+        var hot4 = new Handsontable(example4,{
+          data: data,
+          colHeaders: true,
+          search: {
+            callback: searchResultCounter
+          }
+        });
+
+        var searchFiled4 = document.getElementById('search_field4');
+        var resultCount = document.getElementById('resultCount');
+
+        Handsontable.Dom.addEvent(searchFiled4, 'keyup', function (event) {
+          searchResultCount = 0;
+          var queryResult = hot4.search.query(this.value);
+          console.log(queryResult);
+          resultCount.innerText = searchResultCount.toString();
+          hot4.render();
+        });
+
+      </script>
+    </div>
+  </div>
+</div>

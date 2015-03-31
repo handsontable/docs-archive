@@ -1,0 +1,61 @@
+<div class="static-content">
+  <!-- Loading demo dependencies -->
+  <script src="scripts/samples.js"></script>
+
+  <!-- Loading highlight.js -->
+  <script src="bower_components/highlightjs/highlight.pack.js"></script>
+  <link rel="stylesheet" href="bower_components/highlightjs/styles/github.css">
+
+  <div class="example-container">
+    <a href="https://github.com/handsontable/docs/edit/feature/master/tutorials/releasing.html" class="edit-doc" target="_blank">
+      Edit on GitHub
+    </a>
+    <p>Note that Handsontable always uses three-segment version numbers: <code>0.11.0</code>, <code>0.11.1</code>,
+      <code>0.12.0</code>, etc.<br>For beta releases, we use <code>0.11.0-beta1</code>, <code>0.11.0-beta2</code>, etc.</p>
+    <p<strong>To release a new version of Handsontable:</strong></p>
+    <ol>
+      <li>Put all changes you consider ready for release to <code>develop</code> branch.</li>
+      <li>Start a release (<code>git flow release start 0.12.0</code>). Git Flow will checkout the new release branch.</li>
+      <li>
+        <p>On release branch:</p>
+        <ul>
+          <li>run <code>grunt test</code> to make sure tests run in PhantomJS</li>
+          <li>run <code>grunt sauce</code> to make sure tests pass in other browsers</li>
+          <li>perform the regression <a href="https://github.com/handsontable/handsontable/wiki/Smoke-test-scenario">Smoke test scenario</a></li>
+          <li>update files <code>package.json</code>, <code>handsontable.jquery.json</code>, <code>bower.json</code>
+            with next version number 0.12.0. You can also search the files for occurrence of the previous version number and replace it</li>
+          <li>run <code>grunt</code> to build a version with the new version number inside it</li>
+          <li>verify that <code>dist/handsontable.full.js</code> contains the new version number in second line</li>
+          <li>commit changes <code>git commit -m &quot;0.12.0&quot;</code></li>
+        </ul>
+      </li>
+      <li>Finish the release <code>git flow release finish 0.12.0</code>. Changes will be automatically merged back to <code>master</code>
+        and <code>develop</code> branch.</li>
+      <li>On <code>master</code> branch, create a tag for the version: <code>git tag -a &quot;0.12.0&quot; -m &quot;0.12.0&quot;</code>.
+        This tag will be picked up by Bower and GitHub Releases page automatically.</li>
+      <li>
+        <p>Update the static website files</p>
+        <pre><code>git checkout gh-pages
+          git merge master
+        </code></pre>
+      </li>
+      <li>
+        <p>Push changes</p>
+        <pre><code>git checkout gh-pages
+          git push
+          git checkout master
+          git push
+          git checkout develop
+          git push
+          git push --tags
+        </code></pre>
+      <li>Go to the homepage <a href="http://handsontable.com/">http://handsontable.com/</a> and make sure that the
+      ew version is available there</li>
+      <li>Make sure the branches <code>master</code>, <code>develop</code> and <code>gh-pages</code> are all updated
+        with the latest version</li>
+      <li>Update the release notes at <a href="https://github.com/handsontable/handsontable/releases">
+        https://github.com/handsontable/handsontable/releases</a></li>
+      <li>Shout about the new release on Twitter: <a href="https://twitter.com/handsontable">https://twitter.com/handsontable</a></li>
+    </ol>
+  </div>
+</div>

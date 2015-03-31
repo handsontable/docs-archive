@@ -1,0 +1,47 @@
+header {
+  @media only screen and (max-width: 40em) {
+    padding: 0.875rem 0;
+    .name img {
+      margin: 0 1rem;
+    }
+    & .top-bar-section ul > li:hover a {
+      box-shadow: none;
+    }
+    & .top-bar-section .right li .dropdown {
+      left: 104%;
+    }
+  }
+  @media only screen and (min-width: 40.063em) and (max-width: 64em) {
+    .name img {
+      max-width: 147px;
+    }
+    & .top-bar-section ul li {
+      margin: 0 0.3rem;
+    }
+    & .top-bar-section ul li a {
+      font-size: 13px!important;
+    }
+    & .top-bar-section li:not(.has-form) a:not(.button) {
+      padding: 0 0.5rem;
+    }
+  }
+}
+.main header {
+  @media only screen and (max-width: 40em) {
+    padding-bottom: 2rem;
+  }
+}
+.banner {
+  @media only screen and (max-width: 40em) {
+    padding: 0;
+    text-align: center;
+  }
+}
+.footer {
+  @media only screen and (max-width: 40em) {
+    padding: 2rem 0 1rem;
+    & i.fa {
+      display: none;
+    }
+  }
+}

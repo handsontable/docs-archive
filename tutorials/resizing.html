@@ -1,0 +1,57 @@
+<div class="static-content">
+  <!-- Loading Handsontable -->
+  <script src="bower_components/handsontable/dist/handsontable.full.min.js" data-jsfiddle="common"></script>
+
+  <!-- Loading demo dependencies -->
+  <script src="scripts/samples.js"></script>
+
+  <!-- Loading highlight.js -->
+  <script src="bower_components/highlightjs/highlight.pack.js"></script>
+  <link rel="stylesheet" href="bower_components/highlightjs/styles/github.css">
+
+  <div class="example-container">
+    <a href="https://github.com/handsontable/docs/edit/feature/master/tutorials/resizing.html" class="edit-doc" target="_blank">
+      Edit on GitHub
+    </a>
+    <p>To enable these features, use settings <code>manualColumnResize: true</code> and <code>manualRowResize: true</code></p>
+    <p>The draggable resize handle appears:</p>
+    <ul>
+      <li>in the right part of the column header,</li>
+      <li>in the bottom part of the row header.</li>
+    </ul>
+    <p>Double click on the resize handle automatically adjusts size of the row or column.</p>
+
+    <div data-jsfiddle="example1" class="scroll-container">
+      <div id="example1" class="hot"></div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example1">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example1" data-instance="hot"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example1">
+        var container = document.getElementById('example1'),
+          hot;
+
+        hot = new Handsontable(container, {
+          data: Handsontable.helper.createSpreadsheetData(200, 10),
+          rowHeaders: true,
+          colHeaders: true,
+          colWidths: [55, 80, 80, 80, 80, 80, 80],
+          rowHeights: [50, 40, 100],
+          manualColumnResize: true,
+          manualRowResize: true
+        });
+      </script>
+    </div>
+  </div>
+</div>
+

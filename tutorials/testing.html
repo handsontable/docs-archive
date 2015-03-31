@@ -1,0 +1,51 @@
+<div class="static-content">
+  <div class="example-container">
+    <a href="https://github.com/handsontable/docs/edit/feature/master/tutorials/testing.html" class="edit-doc" target="_blank">
+      Edit on GitHub
+    </a>
+    <h3 id="testing-in-browser">Testing in browser</h3>
+    <p>To run the Jasmine tests in your browser, go to the following pages:</p>
+    <ul>
+      <li><a href="http://localhost/handsontable/test/jasmine/SpecRunner.html">http://localhost/handsontable/test/jasmine/SpecRunner.html</a>
+        - (Handsontable main test suite)
+      </li>
+      <li><a href="http://localhost/handsontable/test/jasmine/SpecRunner_wc.html">http://localhost/handsontable/test/jasmine/SpecRunner_wc.html</a>
+        - (Handsontable Web Components test suite)
+      </li>
+      <li><a href="http://localhost/handsontable/src/3rdparty/walkontable/test/jasmine/SpecRunner.html">http://localhost/handsontable/src/3rdparty/walkontable/test/jasmine/SpecRunner.html</a>
+        - (Walkontable test suite)
+      </li>
+    </ul>
+    <h3 id="testing-with-grunt-cli-">Testing with Grunt (CLI)</h3>
+    <p>To run Jasmine tests in your command line (using PhantomJS), first install Grunt (based on the instructions provided
+      on page <a href="https://github.com/handsontable/handsontable/wiki/Building">Building</a>).</p>
+    <p>Useful commands:</p>
+    <ul>
+      <li><code>grunt test</code> - runs all test cases (Handsotnable and Walkontable)</li>
+      <li><code>grunt test:handsontable</code> - runs only Handsontable tests</li>
+      <li><code>grunt test:walkontable</code> - runs only Walkontable tests</li>
+      <li><code>grunt test --filter autocomplete</code> - runs only tests and suites matching the name &quot;autocomplete&quot;
+      </li>
+    </ul>
+    <h3 id="testing-with-sauce-labs">Testing with Sauce Labs</h3>
+    <ol>
+      <li>Create a Sauce account</li>
+      <li>Save your account credentials in env variables SAUCE_USERNAME and SAUCE_ACCESS_KEY (instructions: <a
+        href="https://docs.saucelabs.com/tutorials/js-unit-testing/">general</a>, <a
+        href="http://stackoverflow.com/questions/135688/setting-environment-variables-in-os-x">Mac</a>)
+      </li>
+      <li>In <code>Gruntfile.js</code>, <code>browsers</code> is the array of browsers that will be tested. You can adjust
+        the browser definition list to test only the browsers you want (makes it faster).
+      </li>
+      <li>In <code>Gruntfile.js</code>, <code>concurrency</code> should have the same value as your Sauce account&#39;s
+        &quot;Parallel tests&quot; limit (3 for open source projects)
+      </li>
+      <li>Execute <code>grunt sauce</code> (or <code>grunt sauce:handsontable</code>, <code>grunt sauce:walkontable</code>)
+      </li>
+      <li>Log in to your Sauce account to see the results</li>
+    </ol>
+    <p>More info:
+      <a href="https://github.com/axemclion/grunt-saucelabs">https://github.com/axemclion/grunt-saucelabs</a>
+      <a href="https://saucelabs.com/docs/connect">https://saucelabs.com/docs/connect</a></p>
+  </div>
+</div>
