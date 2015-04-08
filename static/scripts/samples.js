@@ -15,8 +15,8 @@
  *
  */
 
-// @win window reference
-// @fn function reference
+ //@win window reference
+ //@fn function reference
 function contentLoaded(win, fn) {
 
   var done = false, top = true,
@@ -148,35 +148,35 @@ function ajax(url, method, params, callback) {
         var onDomReady = true;
 
         tags.push('</style><!-- Ugly Hack due to jsFiddle issue -->\n');
-        tags.push('<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>\n');
+        //tags.push('<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>\n');
 
         for (var i = 0, ilen = keys.length; i < ilen; i++) {
 
-          var dataFillde = document.querySelectorAll('[data-jsfiddle=' + keys[i] + ']');
+          var dataFiddle = document.querySelectorAll('[data-jsfiddle=' + keys[i] + ']');
 
-          for (var x = 0, len = dataFillde.length; x < len; x++) {
+          for (var x = 0, len = dataFiddle.length; x < len; x++) {
 
-            var tag;
+            var tag = null;
 
 
-            if (dataFillde[x].nodeName === 'LINK') {
-              tag = dataFillde[x].outerHTML;
+            if (dataFiddle[x].nodeName === 'LINK') {
+              tag = dataFiddle[x].outerHTML;
             }
-            else if (dataFillde[x].nodeName === 'SCRIPT' && dataFillde[x].src) {
-              tag = dataFillde[x].outerHTML;
+            else if (dataFiddle[x].nodeName === 'SCRIPT' && dataFiddle[x].src) {
+              tag = dataFiddle[x].outerHTML;
             }
-            else if (dataFillde[x].nodeName === 'SCRIPT') {
-              js += trimCodeBlock(dataFillde[x].innerHTML, 2).join('\n') + '\n';
+            else if (dataFiddle[x].nodeName === 'SCRIPT') {
+              js += trimCodeBlock(dataFiddle[x].innerHTML, 2).join('\n') + '\n';
             }
-            else if (dataFillde[x].nodeName === 'STYLE') {
-              css += trimCodeBlock(dataFillde[x].innerHTML).join('\n') + '\n';
+            else if (dataFiddle[x].nodeName === 'STYLE') {
+              css += trimCodeBlock(dataFiddle[x].innerHTML).join('\n') + '\n';
             }
             else { //DIV
 
-              var clone = dataFillde[x].cloneNode(true);
+              var clone = dataFiddle[x].cloneNode(true);
               var clonedExample = clone.querySelector('#' + runfiddle);
               clonedExample.innerHTML = ''; //clear example HTML, just leave container
-              var originalHT = dataFillde[x].querySelector('#' + runfiddle);
+              var originalHT = dataFiddle[x].querySelector('#' + runfiddle);
 
               var originalStyle = originalHT.getAttribute('data-originalstyle');
               if (originalStyle) {
@@ -221,13 +221,14 @@ function ajax(url, method, params, callback) {
 //        tags.push('<style type="text/css">');
 //        tags.push('body {background: white; margin: 20px;}');
 //        tags.push('h2 {margin: 20px 0;}');
-        css = tags.join('\n') + '\n' + css;
+        css = css + '\n' + tags.join('\n');
 
         js += trimCodeBlock(bindDumpButton.toString(), 2).join('\n') + '\n';
         js += '  bindDumpButton();\n\n';
 
         if (onDomReady) {
-          js = '$(document).ready(function () {\n\n' + js + '});';
+          //js = '$(document).ready(function () {\n\n' + js + '});';
+          js = 'document.addEventListener("DOMContentLoaded", function() {\n\n' + js + '});';
         }
 
         var form = document.createElement('FORM');
@@ -274,9 +275,9 @@ function ajax(url, method, params, callback) {
       pre.className = 'javascript';
 
       var code = document.createElement('CODE');
-      var codeInner = trimCodeBlock(script.innerHTML);
-      codeInner = codeInner.join('<br>').replace(/  /g, "&nbsp;&nbsp;");
-      code.innerHTML = codeInner;
+      //var codeInner = trimCodeBlock(script.innerHTML);
+      //codeInner = codeInner.join('<br>').replace(/  /g, "&nbsp;&nbsp;");
+      code.innerHTML = script.innerHTML;
       pre.appendChild(code);
       script.parentNode.insertBefore(pre, script.nextSibling);
     }
@@ -284,131 +285,131 @@ function ajax(url, method, params, callback) {
 
     bindFiddleButton();
     bindDumpButton();
-    updateFooter();
+    //updateFooter();
   }
 
-  function updateFooter () {
-    var footer = document.querySelector(".footer-text");
-    if(!footer) {
-      return true;
-    }
-    // Email obfuscator script 2.1 by Tim Williams, University of Arizona
-    // Random encryption key feature by Andrew Moulden, Site Engineering Ltd
-    // This code is freeware provided these four comment lines remain intact
-    // A wizard to generate this code is at http://www.jottings.com/obfuscator/
+  //function updateFooter () {
+  //  var footer = document.querySelector(".footer-text");
+  //  if(!footer) {
+  //    return true;
+  //  }
+  //  // Email obfuscator script 2.1 by Tim Williams, University of Arizona
+  //  // Random encryption key feature by Andrew Moulden, Site Engineering Ltd
+  //  // This code is freeware provided these four comment lines remain intact
+  //  // A wizard to generate this code is at http://www.jottings.com/obfuscator/
+  //
+  //  var coded = "1iffw@1R42Vw4nR0fi.Gwa";
+  //  var key = "GF9al7W2hVXHzeENn30K6QkruRfxov1IATMigJ4BcYLmZSyd5swUpDOCtqb8Pj";
+  //  var shift = coded.length;
+  //  var link = "";
+  //  var ltr;
+  //
+  //  for (var i = 0; i < coded.length; i++) {
+  //    if (key.indexOf(coded.charAt(i)) == -1) {
+  //      ltr = coded.charAt(i)
+  //      link += (ltr)
+  //    }
+  //    else {
+  //      ltr = (key.indexOf(coded.charAt(i)) - shift + key.length) % key.length
+  //      link += (key.charAt(ltr))
+  //    }
+  //  }
+  //
+  //  footer.innerHTML = 'Handsontable &copy; 2012-' + new Date().getFullYear() + ' Nextgen. Contact us at <a href="mailto:' + link + '">'+ link +'</a>.<br> Code and documentation licensed under the The MIT License.';
+  //
+  //}
 
-    var coded = "1iffw@1R42Vw4nR0fi.Gwa";
-    var key = "GF9al7W2hVXHzeENn30K6QkruRfxov1IATMigJ4BcYLmZSyd5swUpDOCtqb8Pj";
-    var shift = coded.length;
-    var link = "";
-    var ltr;
-
-    for (var i = 0; i < coded.length; i++) {
-      if (key.indexOf(coded.charAt(i)) == -1) {
-        ltr = coded.charAt(i)
-        link += (ltr)
-      }
-      else {
-        ltr = (key.indexOf(coded.charAt(i)) - shift + key.length) % key.length
-        link += (key.charAt(ltr))
-      }
-    }
-
-    footer.innerHTML = 'Handsontable &copy; 2012-' + new Date().getFullYear() + ' Nextgen. Contact us at <a href="mailto:' + link + '">'+ link +'</a>.<br> Code and documentation licensed under the The MIT License.';
-
-  }
-
-  function initSidebar() {
-
-    function collapseAll(menu) {
-
-      var ul = menu.querySelectorAll('ul ul');
-      for (var i = 0, len = ul.length; i < len; i++) {
-        ul[i].style.display = 'none';
-      }
-      var current = menu.querySelectorAll('.current');
-      for (var x = 0, xLen = current.length; x < xLen; x++) {
-        current[x].className = current[x].className.replace('current', '');
-      }
-    }
-
-    function expandOne(menu, expand, isImmediate) {
-      collapseAll(menu, isImmediate);
-      var elem = expand;
-      while (elem != menu) {
-        elem.className = elem.className + ' current';
-        if (elem.nodeName == "UL") {
-          elem.style.display = 'block';
-        }
-        elem = elem.parentNode;
-      }
-    }
-
-    function importFromHtml(element, html, startWord, endWord) {
-      if (element) {
-        var fragment = html.substring(html.indexOf(startWord), html.indexOf(endWord));
-        var DIV = document.createElement("DIV");
-        DIV.style.display = 'none';
-        DIV.innerHTML = fragment;
-        element.appendChild(DIV);
-        DIV.style.display = 'block';
-      }
-    }
-
-    function onMenuLoad(html) {
-      html = html.response || html.responseText;
-      //top menu
-      importFromHtml(document.getElementById('outside-links-wrapper'), html, "<!-- outside-links start -->", "<!-- outside-links end -->");
-
-      //left menu
-      var menu = document.getElementById('global-menu-clone');
-      importFromHtml(menu, html, "<!-- menu start -->", "<!-- menu end -->");
-      bindMenuEvents(menu);
-      var link = menu.querySelectorAll('a');
-
-      for (var i = 0; i < link.length; i++) {
-        link[i].href = link[i].href.replace(/demo\//, "");
-        if (link[i].href === window.location.href) {
-          link[i].className = 'current';
-          expandOne(menu, link[i], true);
-        }
-      }
-    }
-
-    function bindMenuEvents(menu) {
-      collapseAll(menu, true);
-      Handsontable.Dom.addEvent(menu, 'click', function (ev) {
-        var element = ev.target || ev.srcElement;
-
-        if (element.nodeName == "H3") {
-          if (element.parentNode.className.indexOf('current') != -1) {
-            collapseAll(menu);
-          }
-          else {
-            expandOne(menu, element.parentNode.querySelector("ul"));
-          }
-        }
-      });
-    }
-
-    var menu = document.querySelector("#global-menu");
-    if (menu) {
-      bindMenuEvents(menu)
-    }
-    else {
-      ajax("../index.html", 'GET', '', onMenuLoad);
-    }
-
-  }
+  //function initSidebar() {
+  //
+  //  function collapseAll(menu) {
+  //
+  //    var ul = menu.querySelectorAll('ul ul');
+  //    for (var i = 0, len = ul.length; i < len; i++) {
+  //      ul[i].style.display = 'none';
+  //    }
+  //    var current = menu.querySelectorAll('.current');
+  //    for (var x = 0, xLen = current.length; x < xLen; x++) {
+  //      current[x].className = current[x].className.replace('current', '');
+  //    }
+  //  }
+  //
+  //  function expandOne(menu, expand, isImmediate) {
+  //    collapseAll(menu, isImmediate);
+  //    var elem = expand;
+  //    while (elem != menu) {
+  //      elem.className = elem.className + ' current';
+  //      if (elem.nodeName == "UL") {
+  //        elem.style.display = 'block';
+  //      }
+  //      elem = elem.parentNode;
+  //    }
+  //  }
+  //
+  //  function importFromHtml(element, html, startWord, endWord) {
+  //    if (element) {
+  //      var fragment = html.substring(html.indexOf(startWord), html.indexOf(endWord));
+  //      var DIV = document.createElement("DIV");
+  //      DIV.style.display = 'none';
+  //      DIV.innerHTML = fragment;
+  //      element.appendChild(DIV);
+  //      DIV.style.display = 'block';
+  //    }
+  //  }
+  //
+  //  function onMenuLoad(html) {
+  //    html = html.response || html.responseText;
+  //    //top menu
+  //    importFromHtml(document.getElementById('outside-links-wrapper'), html, "<!-- outside-links start -->", "<!-- outside-links end -->");
+  //
+  //    //left menu
+  //    var menu = document.getElementById('global-menu-clone');
+  //    importFromHtml(menu, html, "<!-- menu start -->", "<!-- menu end -->");
+  //    bindMenuEvents(menu);
+  //    var link = menu.querySelectorAll('a');
+  //
+  //    for (var i = 0; i < link.length; i++) {
+  //      link[i].href = link[i].href.replace(/demo\//, "");
+  //      if (link[i].href === window.location.href) {
+  //        link[i].className = 'current';
+  //        expandOne(menu, link[i], true);
+  //      }
+  //    }
+  //  }
+  //
+  //  function bindMenuEvents(menu) {
+  //    collapseAll(menu, true);
+  //    Handsontable.Dom.addEvent(menu, 'click', function (ev) {
+  //      var element = ev.target || ev.srcElement;
+  //
+  //      if (element.nodeName == "H3") {
+  //        if (element.parentNode.className.indexOf('current') != -1) {
+  //          collapseAll(menu);
+  //        }
+  //        else {
+  //          expandOne(menu, element.parentNode.querySelector("ul"));
+  //        }
+  //      }
+  //    });
+  //  }
+  //
+  //  var menu = document.querySelector("#global-menu");
+  //  if (menu) {
+  //    bindMenuEvents(menu)
+  //  }
+  //  else {
+  //    ajax("../index.html", 'GET', '', onMenuLoad);
+  //  }
+  //
+  //}
 
 
-  var initAll = function () {
-    init();
-    initSidebar();
-  };
+  //var initAll = function () {
+  //  init();
+  //  //initSidebar();
+  //};
 
   contentLoaded(window, function (event) {
-    initAll();
+    init();
   });
 
 //if(document.addEventListener) {

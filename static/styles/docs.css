@@ -1,8 +1,8 @@
-#wrap {
+#wrapper {
   margin-top: 5rem;
   z-index: 1;
 }
-#wrap .nav-fix {
+#wrapper .nav-fix {
   width: 270px;
   height: 1px;
 }

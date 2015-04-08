@@ -306,8 +306,6 @@ exports.publish = function(taffyData, opts, tutorials) {
   // set up templating
   view.layout = 'layout.tmpl';
 
-  debugger;
-
   // set up tutorials for helper
   helper.setTutorials(tutorials);
 

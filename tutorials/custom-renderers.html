@@ -1,6 +1,6 @@
 <div class="static-content">
   <!-- Loading Handsontable -->
-  <script src="bower_components/handsontable/dist/handsontable.full.min.js" data-jsfiddle="common"></script>
+  <script src="bower_components/handsontable/dist/handsontable.full.js" data-jsfiddle="common"></script>
 
   <!-- Loading demo dependencies -->
   <script src="scripts/samples.js"></script>
@@ -10,7 +10,6 @@
 
   <!-- Loading highlight.js -->
   <script src="bower_components/highlightjs/highlight.pack.js"></script>
-  <link rel="stylesheet" href="bower_components/highlightjs/styles/github.css">
 
   <div class="index-list">
     <p><strong>On this page:</strong></p>
@@ -200,13 +199,13 @@
           return td;
         }
 
-        Handsontable.Dom.addEvent(container, 'mousedown', function (event) {
+        Handsontable.Dom.addEvent(container2, 'mousedown', function (event) {
           if (event.target.nodeName == 'INPUT' && event.target.className == 'checker') {
             event.stopPropagation();
           }
         });
 
-        Handsontable.Dom.addEvent(container, 'mouseup', function (event) {
+        Handsontable.Dom.addEvent(container2, 'mouseup', function (event) {
           if (event.target.nodeName == 'INPUT' && event.target.className == 'checker') {
             isChecked = !event.target.checked;
             hot2.render();
