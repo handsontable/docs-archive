@@ -19,11 +19,11 @@ var fs = require('fs');
 
 module.exports = function (grunt) {
   var
-      DOCS_PATH = 'generated',
-      HOT_SRC_PATH = 'src/handsontable',
-      HOT_BRANCH = 'master',
-      HOT_REPO = 'https://github.com/handsontable/handsontable.git',
-      querystring = require('querystring');
+    DOCS_PATH = 'generated',
+    HOT_SRC_PATH = 'src/handsontable',
+    HOT_BRANCH = 'master',
+    HOT_REPO = 'https://github.com/handsontable/handsontable.git',
+    querystring = require('querystring');
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -106,7 +106,7 @@ module.exports = function (grunt) {
     watch: {
       files: ['tutorials/**', 'less/**', 'static/**', 'tmpl/**'],
       tasks: ['default'],
-        options: {
+      options: {
         debounceDelay: 250
       }
     },
@@ -133,7 +133,7 @@ module.exports = function (grunt) {
     }
   });
 
-  grunt.registerTask('default', 'Create documentation for Handsontable', function() {
+  grunt.registerTask('default', 'Create documentation for Handsontable', function () {
     var
       hotPackage,
       timer;
@@ -144,7 +144,7 @@ module.exports = function (grunt) {
       grunt.task.run('gitclone');
     }
 
-    timer = setInterval(function() {
+    timer = setInterval(function () {
       if (!grunt.file.isFile(HOT_SRC_PATH + '/package.json')) {
         return;
       }

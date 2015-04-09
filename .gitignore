@@ -5,5 +5,5 @@
 .idea/*
 node_modules/*
 src/*
-generated/
+generated/*
 bower_components/*

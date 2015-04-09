@@ -110,6 +110,9 @@ function ajax(url, method, params, callback) {
   }
 
   function bindDumpButton() {
+    if(typeof Handsontable === "undefined") {
+      return;
+    }
 
     Handsontable.Dom.addEvent(document.body, 'click', function (e) {
 
@@ -125,6 +128,10 @@ function ajax(url, method, params, callback) {
   }
 
   function bindFiddleButton() {
+    if(typeof Handsontable === "undefined") {
+      return;
+    }
+
     Handsontable.Dom.addEvent(document.body, 'click', function (e) {
       var element = e.target || e.srcElement;
 
@@ -174,6 +181,12 @@ function ajax(url, method, params, callback) {
             else { //DIV
 
               var clone = dataFiddle[x].cloneNode(true);
+
+              var externalExamples = clone.querySelectorAll('[data-jsfiddle="external-example"]');
+              for(var k = 0; k < externalExamples.length; k++) {
+                externalExamples[k].parentNode.removeChild(externalExamples[k]);
+              }
+
               var clonedExample = clone.querySelector('#' + runfiddle);
               clonedExample.innerHTML = ''; //clear example HTML, just leave container
               var originalHT = dataFiddle[x].querySelector('#' + runfiddle);
@@ -215,6 +228,16 @@ function ajax(url, method, params, callback) {
             }
           }
 
+        }
+
+        var externalExamples = document.querySelectorAll('[data-jsfiddle="external-example"]');
+        for(var k = 0; k < externalExamples.length; k++) {
+          var clone = externalExamples[k].cloneNode(true);
+
+          while (clone.firstChild) {
+            clone.removeChild(clone.firstChild);
+          }
+          html += trimCodeBlock(clone.outerHTML).join('\n');
         }
 
 //        tags.push('');
@@ -285,7 +308,16 @@ function ajax(url, method, params, callback) {
 
     bindFiddleButton();
     bindDumpButton();
+    replaceHotVersion();
     //updateFooter();
+  }
+
+  function replaceHotVersion () {
+    var placeholders = document.querySelectorAll(".hotVersion");
+
+    for(var i = 0, placeholdersCount = placeholders.length; i < placeholdersCount; i++) {
+      placeholders[i].innerHTML = config.hotVersion;
+    }
   }
 
   //function updateFooter () {

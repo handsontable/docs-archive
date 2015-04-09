@@ -1,15 +1,7 @@
 <div class="static-content">
-  <!-- Loading Handsontable -->
-  <script src="bower_components/handsontable/dist/handsontable.full.min.js" data-jsfiddle="common"></script>
-
-  <!-- Loading demo dependencies -->
-  <script src="scripts/samples.js"></script>
   <script src="bower_components/raphael/raphael-min.js" data-jsfiddle="common"></script>
   <script src="scripts/graphael-demo/g.raphael-min.js" data-jsfiddle="common"></script>
   <script src="scripts/graphael-demo/g.bar-min.js" data-jsfiddle="common"></script>
-
-  <!-- Loading highlight.js -->
-  <script src="bower_components/highlightjs/highlight.pack.js"></script>
 
   <div class="example-container">
     <a href="https://github.com/handsontable/docs/edit/feature/master/tutorials/graphael-charts.html" class="edit-doc" target="_blank">
@@ -24,14 +16,15 @@
 
     <div data-jsfiddle="example1" class="graphael-container clearfix">
       <div id="example1" class="hot"></div>
-      <div id="graphael-example">
-        <div class="aggregation">
-          <p>Aggreagate by:</p>
-          <div class="aggregate-btn">
-            <button data-aggregate="0" title="Aggregates the Cars column" class="intext-btn">Cars</button>
-            <button data-aggregate="1" title="Aggregates the Years column" class="intext-btn">Years</button>
-            <button data-aggregate="2" title="Aggregates the Colors column" class="intext-btn">Colors</button>
-          </div>
+      <div id="graphael-example" data-jsfiddle="external-example">
+
+      </div>
+      <div class="aggregation" >
+        <p>Aggreagate by:</p>
+        <div class="aggregate-btn">
+          <button data-aggregate="0" title="Aggregates the Cars column" class="intext-btn">Cars</button>
+          <button data-aggregate="1" title="Aggregates the Years column" class="intext-btn">Years</button>
+          <button data-aggregate="2" title="Aggregates the Colors column" class="intext-btn">Colors</button>
         </div>
       </div>
     </div>
@@ -50,26 +43,27 @@
       </div>
       <script data-jsfiddle="example1">
         var data = [
-            ['Nissan', 2008, 'black'],
-            ['Nissan', 2009, 'blue'],
-            ['Chrysler', 2010, 'yellow'],
-            ['Volvo', 2011, 'white'],
-            ['Nissan', 2012, 'blue'],
-            ['Chevrolet', 2013, 'yellow'],
-            ['Volvo', 2014, "red"],
-            ['Ford', 2015, 'yellow'],
-            ['Chevrolet', 2016, 'yellow'],
-            ['Ford', 2017, 'yellow']
-          ],
-          container = document.getElementById('example1'),
-          r = Raphael('graphael-example', 250, 250),
-          chartData = [],
-          activeColumn = 0,
-          lastChange = null,
-          hot;
+              ['Nissan', 2009, 'black'],
+              ['Nissan', 2006, 'blue'],
+              ['Chrysler', 2004, 'yellow'],
+              ['Volvo', 2012, 'white'],
+              ['Nissan', 2006, 'blue'],
+              ['Chevrolet', 2004, 'yellow'],
+              ['Volvo', 2012, "red"],
+              ['Ford', 2006, 'yellow'],
+              ['Chevrolet', 2004, 'yellow'],
+              ['Ford', 2012, 'yellow']
+            ],
+            container = document.getElementById('example1'),
+            r = Raphael('graphael-example', 250, 250),
+            chartData = [],
+            activeColumn = 0,
+            lastChange = null,
+            hot;
 
         hot = new Handsontable(container, {
           data: data,
+          width: 250,
           colHeaders: ['Car', 'Year', 'Color'],
           rowHeaders: true,
           afterChange: refreshChart
@@ -82,7 +76,8 @@
         renderChart();
 
         function fin() {
-          var label = chartData[activeColumn].labels[$('path').toArray().indexOf(this.bar[0])];
+          var pathElements = document.querySelectorAll('path');
+          var label = chartData[activeColumn].labels[Array.prototype.indexOf.call(pathElements, this.bar[0])];
 
           this.flag = r.popup(this.bar.x, this.bar.y, label + " - " + this.bar.value || '0').insertBefore(this);
         }
@@ -103,16 +98,17 @@
         }
 
         function renderChart() {
+          var button = document.querySelector(".aggregation button[data-aggregate='" + activeColumn + "']");
           r.clear();
-          r.text(125, 25, 'Aggregated by ' + $(".aggregation button[data-aggregate='" + activeColumn + "']").text()).attr({ font: "20px sans-serif" });
+          r.text(125, 25, 'Aggregated by ' + button.innerHTML).attr({ font: "20px sans-serif" });
           r.barchart(10, 75, 220, 200, [chartData[activeColumn].values]).hover(fin, fout);
         }
 
         function gatherColData(colNum) {
           var data = hot.getDataAtCol(colNum),
-            chartData = {labels: [], values: []},
-            entryIndex = -1,
-            labelsSize;
+              chartData = {labels: [], values: []},
+              entryIndex = -1,
+              labelsSize;
 
           for (var i = 0; i < data.length; i++) {
             entryIndex = chartData.labels.indexOf(data[i]);
@@ -129,10 +125,13 @@
           return chartData;
         }
 
-        $('.aggregation').on('click', 'button', function () {
-          activeColumn = $(this).attr('data-aggregate');
-          renderChart();
-        });
+        var aggregationButtons = document.querySelectorAll('.aggregation');
+        for(var i = 0, buttonCount = aggregationButtons.length; i < buttonCount; i++) {
+          aggregationButtons[i].addEventListener('mousedown', function (event) {
+            activeColumn = event.target.getAttribute('data-aggregate');
+            renderChart();
+          });
+        }
 
       </script>
     </div>
