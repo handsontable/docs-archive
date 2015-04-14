@@ -35,9 +35,9 @@
       </div>
       <script data-jsfiddle="example1">
         var cols = 40,
-          rows = 30,
-          i, j, len,
-          data2 = [];
+            rows = 30,
+            i, j, len,
+            data2 = [];
 
         for (i = 0; i < rows; i++) {
           data2[i] = [];
@@ -47,7 +47,7 @@
         }
 
         var container2 = document.getElementById('example1'),
-          hot;
+            hot;
 
         hot = new Handsontable(container2, {
           data: data2,
@@ -59,7 +59,7 @@
         table = ex.querySelectorAll('table');
 
         function findAncestor(el, cls) {
-          while ((el = el.parentElement) && !el.classList.contains(cls)){
+          while ((el = el.parentElement) && !el.classList.contains(cls)) {
             return el;
           }
 

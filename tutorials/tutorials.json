@@ -61,13 +61,16 @@
         "title": "Subprojects",
         "children": {
           "ngHandsontable": {
-            "title": "ngHandsontable"
+            "title": "ngHandsontable",
+            "external": "https://github.com/handsontable/ngHandsontable"
           },
           "hot-table": {
-            "title": "hot-table"
+            "title": "hot-table",
+            "external": "https://github.com/handsontable/hot-table"
           },
           "rulejs": {
-            "title": "RuleJS"
+            "title": "RuleJS",
+            "external": "https://github.com/handsontable/handsontable-RuleJS"
           }
         }
       },
@@ -75,31 +78,39 @@
         "title": "Resources",
         "children": {
           "change-log": {
-            "title": "Change log"
+            "title": "Change log",
+            "external": "https://github.com/handsontable/handsontable/releases"
           },
           "roadmap": {
-            "title": "Roadmap"
+            "title": "Roadmap",
+            "external": "https://github.com/handsontable/handsontable/releases"
           },
           "milestones": {
-            "title": "Milestones"
+            "title": "Milestones3",
+            "externalz": "https://github.com/handsontable/handsontable/releases"
           },
           "releasing": {
             "title": "Releasing"
           },
           "licensing": {
-            "title": "Licensing"
+            "title": "Licensing",
+            "external": "https://github.com/handsontable/handsontable/releases"
           },
           "contributing": {
-            "title": "Contributing"
+            "title": "Contributing",
+            "external": "https://github.com/handsontable/handsontable/releases"
           },
           "google-group": {
-            "title": "Google Group"
+            "title": "Google Group",
+            "external": "TODO"
           },
           "github": {
-            "title": "GitHub"
+            "title": "GitHub",
+            "external": "https://github.com/handsontable/handsontable"
           },
           "stackoverflow": {
-            "title": "StackOverflow"
+            "title": "StackOverflow",
+            "external": "TODO"
           }
         }
       },

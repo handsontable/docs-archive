@@ -240,10 +240,6 @@ function ajax(url, method, params, callback) {
           html += trimCodeBlock(clone.outerHTML).join('\n');
         }
 
-//        tags.push('');
-//        tags.push('<style type="text/css">');
-//        tags.push('body {background: white; margin: 20px;}');
-//        tags.push('h2 {margin: 20px 0;}');
         css = css + '\n' + tags.join('\n');
 
         js += trimCodeBlock(bindDumpButton.toString(), 2).join('\n') + '\n';
@@ -264,15 +260,6 @@ function ajax(url, method, params, callback) {
         '<textarea name="css">' + css.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</textarea>';
 
         form.style.visibility = 'hidden';
-//        var form = $('<form action="http://jsfiddle.net/api/post/library/pure/" method="post" target="_blank">' +
-//          '<input type="text" name="title" value="Handsontable example">' +
-//          '<textarea name="html">' + html.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</textarea>' +
-//          '<textarea name="js">' + js.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</textarea>' +
-//          '<textarea name="css">' + css.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</textarea>' +
-//          '</form>');
-//        form.css({
-//          visibility: 'hidden'
-//        });
 
         document.body.appendChild(form);
         form.submit();
@@ -298,9 +285,24 @@ function ajax(url, method, params, callback) {
       pre.className = 'javascript';
 
       var code = document.createElement('CODE');
+      var codeInner = script.innerHTML.split(/\n/);
+      var baseScriptIndent = getScriptBaseIndent(script);
+
+      for (var k = 0, codeLength = codeInner.length; k < codeLength; k++) {
+        if((k === 0 || k === codeLength -1) && codeInner[k] === '') {
+          continue;
+        }
+
+        if(codeInner[k].substring(0, baseScriptIndent.length) == baseScriptIndent) {
+          codeInner[k] = codeInner[k].replace(baseScriptIndent, '');
+        }
+
+        code.innerHTML += '<span class="code-line">' + codeInner[k] + '</span>' + '\n';
+      }
       //var codeInner = trimCodeBlock(script.innerHTML);
       //codeInner = codeInner.join('<br>').replace(/  /g, "&nbsp;&nbsp;");
-      code.innerHTML = script.innerHTML;
+      //code.innerHTML = script.innerHTML;
+
       pre.appendChild(code);
       script.parentNode.insertBefore(pre, script.nextSibling);
     }
@@ -309,9 +311,21 @@ function ajax(url, method, params, callback) {
     bindFiddleButton();
     bindDumpButton();
     replaceHotVersion();
-    //updateFooter();
   }
 
+  function getScriptBaseIndent (scriptEl) {
+    var scriptOuterHtml = scriptEl.outerHTML.split('\n'),
+      firstLine = scriptOuterHtml[scriptOuterHtml.length - 1],
+      indent = "";
+
+    while(firstLine.charAt(0) === ' ') {
+      firstLine = firstLine.substr(1);
+      indent += " ";
+    }
+
+    return indent;
+  }
+  
   function replaceHotVersion () {
     var placeholders = document.querySelectorAll(".hotVersion");
 
@@ -320,136 +334,9 @@ function ajax(url, method, params, callback) {
     }
   }
 
-  //function updateFooter () {
-  //  var footer = document.querySelector(".footer-text");
-  //  if(!footer) {
-  //    return true;
-  //  }
-  //  // Email obfuscator script 2.1 by Tim Williams, University of Arizona
-  //  // Random encryption key feature by Andrew Moulden, Site Engineering Ltd
-  //  // This code is freeware provided these four comment lines remain intact
-  //  // A wizard to generate this code is at http://www.jottings.com/obfuscator/
-  //
-  //  var coded = "1iffw@1R42Vw4nR0fi.Gwa";
-  //  var key = "GF9al7W2hVXHzeENn30K6QkruRfxov1IATMigJ4BcYLmZSyd5swUpDOCtqb8Pj";
-  //  var shift = coded.length;
-  //  var link = "";
-  //  var ltr;
-  //
-  //  for (var i = 0; i < coded.length; i++) {
-  //    if (key.indexOf(coded.charAt(i)) == -1) {
-  //      ltr = coded.charAt(i)
-  //      link += (ltr)
-  //    }
-  //    else {
-  //      ltr = (key.indexOf(coded.charAt(i)) - shift + key.length) % key.length
-  //      link += (key.charAt(ltr))
-  //    }
-  //  }
-  //
-  //  footer.innerHTML = 'Handsontable &copy; 2012-' + new Date().getFullYear() + ' Nextgen. Contact us at <a href="mailto:' + link + '">'+ link +'</a>.<br> Code and documentation licensed under the The MIT License.';
-  //
-  //}
-
-  //function initSidebar() {
-  //
-  //  function collapseAll(menu) {
-  //
-  //    var ul = menu.querySelectorAll('ul ul');
-  //    for (var i = 0, len = ul.length; i < len; i++) {
-  //      ul[i].style.display = 'none';
-  //    }
-  //    var current = menu.querySelectorAll('.current');
-  //    for (var x = 0, xLen = current.length; x < xLen; x++) {
-  //      current[x].className = current[x].className.replace('current', '');
-  //    }
-  //  }
-  //
-  //  function expandOne(menu, expand, isImmediate) {
-  //    collapseAll(menu, isImmediate);
-  //    var elem = expand;
-  //    while (elem != menu) {
-  //      elem.className = elem.className + ' current';
-  //      if (elem.nodeName == "UL") {
-  //        elem.style.display = 'block';
-  //      }
-  //      elem = elem.parentNode;
-  //    }
-  //  }
-  //
-  //  function importFromHtml(element, html, startWord, endWord) {
-  //    if (element) {
-  //      var fragment = html.substring(html.indexOf(startWord), html.indexOf(endWord));
-  //      var DIV = document.createElement("DIV");
-  //      DIV.style.display = 'none';
-  //      DIV.innerHTML = fragment;
-  //      element.appendChild(DIV);
-  //      DIV.style.display = 'block';
-  //    }
-  //  }
-  //
-  //  function onMenuLoad(html) {
-  //    html = html.response || html.responseText;
-  //    //top menu
-  //    importFromHtml(document.getElementById('outside-links-wrapper'), html, "<!-- outside-links start -->", "<!-- outside-links end -->");
-  //
-  //    //left menu
-  //    var menu = document.getElementById('global-menu-clone');
-  //    importFromHtml(menu, html, "<!-- menu start -->", "<!-- menu end -->");
-  //    bindMenuEvents(menu);
-  //    var link = menu.querySelectorAll('a');
-  //
-  //    for (var i = 0; i < link.length; i++) {
-  //      link[i].href = link[i].href.replace(/demo\//, "");
-  //      if (link[i].href === window.location.href) {
-  //        link[i].className = 'current';
-  //        expandOne(menu, link[i], true);
-  //      }
-  //    }
-  //  }
-  //
-  //  function bindMenuEvents(menu) {
-  //    collapseAll(menu, true);
-  //    Handsontable.Dom.addEvent(menu, 'click', function (ev) {
-  //      var element = ev.target || ev.srcElement;
-  //
-  //      if (element.nodeName == "H3") {
-  //        if (element.parentNode.className.indexOf('current') != -1) {
-  //          collapseAll(menu);
-  //        }
-  //        else {
-  //          expandOne(menu, element.parentNode.querySelector("ul"));
-  //        }
-  //      }
-  //    });
-  //  }
-  //
-  //  var menu = document.querySelector("#global-menu");
-  //  if (menu) {
-  //    bindMenuEvents(menu)
-  //  }
-  //  else {
-  //    ajax("../index.html", 'GET', '', onMenuLoad);
-  //  }
-  //
-  //}
-
-
-  //var initAll = function () {
-  //  init();
-  //  //initSidebar();
-  //};
-
   contentLoaded(window, function (event) {
     init();
   });
-
-//if(document.addEventListener) {
-//  document.addEventListener('DOMContentLoaded', initAll, false);
-//} else {
-//  document.attachEvent('DOMContentLoaded', initAll);
-//}
-
 
 })();
 

@@ -44,6 +44,11 @@ $(function () {
   var $currentItem = $('.navigation .item[data-name*="' + filename + '"]:eq(0)');
   var $currentSubItem = $('.navigation .sub-item[data-name*="' + filename + '"]:eq(0)');
 
+  //get the current method element
+  var urlElement = window.location.href.split('/');
+  urlElement = urlElement[urlElement.length - 1].replace('.html', '');
+  var $currentMethod = $currentItem.find('.methods li[data-name*="' + urlElement + '"]:eq(0)');
+
   if ($currentItem.length) {
     $currentItem
       //.remove()
@@ -55,6 +60,16 @@ $(function () {
     $currentSubItem
       .parent('.itemMembers')
       .show();
+  }
+
+  // Add the 'active-link' class to the active page
+  if ($currentSubItem.length) {
+    $currentSubItem.find('a').first().addClass('active-link');
+  }
+
+  // Add the 'active-link' class to the active method
+  if($currentMethod.length) {
+    $currentMethod.find('a').first().addClass('active-link');
   }
 
   // Auto resizing on navigation

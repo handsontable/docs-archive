@@ -23,7 +23,7 @@
           </span>
           <ul class="members itemMembers">
             <?js child.children.forEach(function (c) { ?>
-              <li class="sub-item" data-name="tutorial-<?js= c.name ?>"><?js= self.tutoriallink(c.name) ?></li>
+              <li class="sub-item" data-name="tutorial-<?js= c.name ?>"><?js= c.external ? self.tutoriallink(c.name, {title: c.title, url: c.external}) : self.tutoriallink(c.name) ?></li>
             <?js }); ?>
           </ul>
         </li>

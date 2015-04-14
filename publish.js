@@ -19,7 +19,11 @@ function find(spec) {
   return helper.find(data, spec);
 }
 
-function tutoriallink(tutorial) {
+function tutoriallink(tutorial, customUrl) {
+  if(customUrl) {
+    return '<a class="external" href="' + customUrl.url + '">' + customUrl.title + '</a>';
+  }
+
   return helper.toTutorial(tutorial, null, { tag: 'em', classname: 'disabled', prefix: 'Tutorial: ' });
   //if (!tutorialName) {
   //  require('jsdoc/util/error').handle( new Error('Missing required parameter: tutorial') );
@@ -306,6 +310,8 @@ exports.publish = function(taffyData, opts, tutorials) {
   // set up templating
   view.layout = 'layout.tmpl';
 
+  extendTutorialsObj(tutorials, "external");
+
   // set up tutorials for helper
   helper.setTutorials(tutorials);
 
@@ -455,6 +461,9 @@ exports.publish = function(taffyData, opts, tutorials) {
   view.linkto = linkto;
   view.resolveAuthorLinks = resolveAuthorLinks;
   view.tutoriallink = tutoriallink;
+  
+  //console.log(tutoriallink);
+  
   //view.tutoriallink = function(tutorialName) {
   //    return tutoriallink(tutorialName, tutorials);
   //};
@@ -536,6 +545,9 @@ exports.publish = function(taffyData, opts, tutorials) {
 
     // turn {@link foo} into <a href="foodoc.html">foo</a>
     html = helper.resolveLinks(html);
+    
+    //console.log(tutorialPath, tutorial);
+    
     //tutorialPath = tutorialPath.replace('tutorial-', '');
 
     fs.writeFileSync(tutorialPath, html, 'utf8');
@@ -544,9 +556,98 @@ exports.publish = function(taffyData, opts, tutorials) {
   // tutorials can have only one parent so there is no risk for loops
   function saveChildren(node) {
     node.children.forEach(function(child) {
-      generateTutorial('Tutorial: ' + child.title, child, helper.tutorialToUrl(child.name));
+      //
+      //console.log(child.parent.name)
+
+      //console.log(child);
+      
+      // Do not generate static pages for the main 'headers'
+      if(child.parent.name !== 'index' && !child.external) {
+        //if(child.external) {
+        //  generateTutorial('Tutorial: ' + child.title, child, helper.tutorialToUrl(child.name));
+        //} else {
+          generateTutorial('Tutorial: ' + child.title, child, helper.tutorialToUrl(child.name));
+        //}
+
+      }
       saveChildren(child);
+
     });
   }
+
+  function getExtendedTutorialProperties (parsedJSON, extension, list, name) {
+    var init,
+      children;
+
+    if(!list) {
+      var list = [];
+
+      init = true;
+      parsedJSON = parsedJSON.index;
+    } else {
+      init = false;
+    }
+    
+    if(parsedJSON.hasOwnProperty(extension)) {
+      list.push({
+        'name': name || 'index',
+        'extensionValue': parsedJSON[extension]
+      });
+    }
+
+    if(parsedJSON.hasOwnProperty('children')) {
+      children = Object.keys(parsedJSON.children);
+      for(var i = 0; i < children.length; i++) {
+        getExtendedTutorialProperties(parsedJSON.children[children[i]], extension, list, children[i]);
+      }
+    }
+
+    if(init) {
+      return list;
+    }
+  }
+
+  function setExtendedTutorialProperties (tutorials, extension, extended) {
+    for(var i = 0; i < extended.length; i++) {
+
+//console.log(tutorials.getByName(extended[i].name))
+
+      tutorials.getByName(extended[i].name)[extension] = extended[i].extensionValue;
+
+      //if(tutorial.name && tutorial.name === extended[i].name) {
+      //  tutorial[extension] = extended[i].extensionValue;
+      //  extended.splice(i, 1);
+      //}
+      //
+      //if(tutorial.hasOwnProperty('children')) {
+      //  for(var j = 0; j < tutorial.children.length; j++) {
+      //    setExtendedTutorialProperties(tutorial.children[j], extension, extended);
+      //  }
+      //}
+
+    }
+  }
+
+  function extendTutorialsObj (tutorials, extensions) {
+    var extensionsArray = [],
+      extended,
+      json,
+      parsed;
+
+    if(typeof extensions === 'string') {
+      extensionsArray.push(extensions);
+    }
+
+    json = fs.readFileSync(env.opts.template + '/' + env.opts.tutorials + '/' + env.opts.tutorials + '.json' , env.opts.encoding);
+    parsed = JSON.parse(json);
+
+    for(var i = 0; i < extensionsArray.length; i++) {
+      extended = getExtendedTutorialProperties (parsed, extensionsArray[i]);
+      setExtendedTutorialProperties(tutorials, extensionsArray[i], extended);
+    }
+
+    return tutorials;
+  }
+
   saveChildren(tutorials);
 };

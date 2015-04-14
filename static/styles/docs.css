@@ -297,6 +297,20 @@
 }
 .main pre {
   font-size: 14px;
+  counter-reset: codeLine;
+}
+.main pre .code-line {
+  counter-increment: codeLine;
+}
+.main pre .code-line::before {
+  content: counter(codeLine);
+  color: #C0C0C0;
+  text-align: right;
+  display: inline-block;
+  width: 2em;
+  padding-right: 0.5em;
+  margin-right: 0.5em;
+  border-right: 1px solid #e0e0e0;
 }
 .main table {
   width: 100%;
@@ -872,7 +886,7 @@ nav,
   width: 584px;
   height: 320px;
   margin: 1rem 0 1rem;
-  overflow: scroll;
+  overflow: hidden;
 }
 .scroll-container .hot {
   margin: 0;
@@ -7463,10 +7477,6 @@ button.bootstrap-container .close {
   .bootstrap-container .hidden-print {
     display: none !important;
   }
-}
-.bootstrap-container .handsontable .table th,
-.bootstrap-container .handsontable .table td {
-  border-top: none;
 }
 .bootstrap-container .handsontable tr {
   background: #fff;

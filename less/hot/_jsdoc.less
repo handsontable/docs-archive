@@ -354,6 +354,22 @@
 
   pre {
     font-size: 14px;
+    counter-reset: codeLine;
+
+    .code-line {
+      counter-increment: codeLine;
+    }
+    .code-line::before {
+      content: counter(codeLine);
+      color: #C0C0C0;
+      text-align: right;
+      display: inline-block;
+      width: 2em;
+      padding-right: 0.5em;
+      margin-right: 0.5em;
+      border-right: 1px solid #e0e0e0;
+    }
+
   }
 
   table {
