@@ -37,6 +37,8 @@ $(function () {
     if (event.target.getAttribute('href') === '#') {
       $(this).parent().find('.itemMembers').toggle();
     }
+
+    return false;
   });
 
   // Show an item related a current documentation automatically
