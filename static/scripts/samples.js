@@ -285,7 +285,8 @@ function ajax(url, method, params, callback) {
       pre.className = 'javascript';
 
       var code = document.createElement('CODE');
-      var codeInner = script.innerHTML.split(/\n/);
+      var codeInner = script.innerHTML.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").split(/\n/);
+
       var baseScriptIndent = getScriptBaseIndent(script);
 
       for (var k = 0, codeLength = codeInner.length; k < codeLength; k++) {
