@@ -17,6 +17,7 @@
     <!-- Tutorials -->
     <?js this.members.tutorials.forEach(function (tutorial) { ?>
       <?js tutorial.children.forEach(function (child) { ?>
+        <?js if(child.demo) { return; } ?>
         <li class="item" data-name="tutorial-<?js= child.name ?>">
           <span class="title">
             <a href="#"><?js= child.title ?></a>
@@ -29,7 +30,25 @@
         </li>
       <?js }); ?>
     <?js }) ?>
-  <div class="sublist">
+  <div class="sublist demos">
+    <p class="header">Demos</p>
+      <?js this.members.tutorials.forEach(function (tutorial) { ?>
+      <?js tutorial.children.forEach(function (child) { ?>
+        <?js if(!child.demo) { return; } ?>
+      <li class="item" data-name="tutorial-<?js= child.name ?>">
+            <span class="title">
+              <a href="#"><?js= child.title ?></a>
+            </span>
+        <ul class="members itemMembers">
+          <?js child.children.forEach(function (c) { ?>
+          <li class="sub-item" data-name="tutorial-<?js= c.name ?>"><?js= c.external ? self.tutoriallink(c.name, {title: c.title, url: c.external}) : self.tutoriallink(c.name) ?></li>
+          <?js }); ?>
+        </ul>
+      </li>
+      <?js }); ?>
+      <?js }) ?>
+  </div>
+  <div class="sublist api">
     <p class="header">API Reference</p>
 
     <!-- Core -->

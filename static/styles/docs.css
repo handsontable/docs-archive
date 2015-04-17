@@ -127,6 +127,9 @@
 .navigation .sublist .itemMembers a:hover {
   color: #118AE2;
 }
+.navigation .sublist.demos .header {
+  margin: 16px 12px 12px;
+}
 .main {
   width: 100%;
   padding: 20px 20px;

@@ -25,14 +25,6 @@ function tutoriallink(tutorial, customUrl) {
   }
 
   return helper.toTutorial(tutorial, null, { tag: 'em', classname: 'disabled', prefix: 'Tutorial: ' });
-  //if (!tutorialName) {
-  //  require('jsdoc/util/error').handle( new Error('Missing required parameter: tutorial') );
-  //  return;
-  //}
-  //var node = tutorials.getByName(tutorialName);
-  //var content = node.title;
-  //
-  //return '<a href="' + helper.tutorialToUrl(tutorialName).replace('tutorial-', '') + '">' + content + '</a>';
 }
 
 function getAncestorLinks(doclet) {
@@ -310,8 +302,13 @@ exports.publish = function(taffyData, opts, tutorials) {
   // set up templating
   view.layout = 'layout.tmpl';
 
-  extendTutorialsObj(tutorials, "external");
 
+  
+  extendTutorialsObj(tutorials, "external");
+  extendTutorialsObj(tutorials, "demo");
+
+  console.log(tutorials.children[0]);
+  
   // set up tutorials for helper
   helper.setTutorials(tutorials);
 
@@ -452,21 +449,13 @@ exports.publish = function(taffyData, opts, tutorials) {
   var members = helper.getMembers(data);
   members.tutorials = tutorials.children;
 
-  //members.tutorials.sort(function(tutorial) {
-  //
-  //});
 
   // add template helpers
   view.find = find;
   view.linkto = linkto;
   view.resolveAuthorLinks = resolveAuthorLinks;
   view.tutoriallink = tutoriallink;
-  
-  //console.log(tutoriallink);
-  
-  //view.tutoriallink = function(tutorialName) {
-  //    return tutoriallink(tutorialName, tutorials);
-  //};
+
   view.htmlsafe = htmlsafe;
   view.members = members; //@davidshimjs: To make navigation for customizing
 
@@ -545,10 +534,6 @@ exports.publish = function(taffyData, opts, tutorials) {
 
     // turn {@link foo} into <a href="foodoc.html">foo</a>
     html = helper.resolveLinks(html);
-    
-    //console.log(tutorialPath, tutorial);
-    
-    //tutorialPath = tutorialPath.replace('tutorial-', '');
 
     fs.writeFileSync(tutorialPath, html, 'utf8');
   }
@@ -556,18 +541,10 @@ exports.publish = function(taffyData, opts, tutorials) {
   // tutorials can have only one parent so there is no risk for loops
   function saveChildren(node) {
     node.children.forEach(function(child) {
-      //
-      //console.log(child.parent.name)
-
-      //console.log(child);
       
       // Do not generate static pages for the main 'headers'
       if(child.parent.name !== 'index' && !child.external) {
-        //if(child.external) {
-        //  generateTutorial('Tutorial: ' + child.title, child, helper.tutorialToUrl(child.name));
-        //} else {
           generateTutorial('Tutorial: ' + child.title, child, helper.tutorialToUrl(child.name));
-        //}
 
       }
       saveChildren(child);
@@ -609,22 +586,7 @@ exports.publish = function(taffyData, opts, tutorials) {
 
   function setExtendedTutorialProperties (tutorials, extension, extended) {
     for(var i = 0; i < extended.length; i++) {
-
-//console.log(tutorials.getByName(extended[i].name))
-
       tutorials.getByName(extended[i].name)[extension] = extended[i].extensionValue;
-
-      //if(tutorial.name && tutorial.name === extended[i].name) {
-      //  tutorial[extension] = extended[i].extensionValue;
-      //  extended.splice(i, 1);
-      //}
-      //
-      //if(tutorial.hasOwnProperty('children')) {
-      //  for(var j = 0; j < tutorial.children.length; j++) {
-      //    setExtendedTutorialProperties(tutorial.children[j], extension, extended);
-      //  }
-      //}
-
     }
   }
 

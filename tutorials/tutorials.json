@@ -114,8 +114,9 @@
           }
         }
       },
-      "demos-1": {
-        "title": "Demos: cell features",
+      "cell-features-demos": {
+        "title": "Cell features",
+        "demo": true,
         "children": {
           "drag-down": {
             "title": "Drag down"
@@ -131,8 +132,9 @@
           }
         }
       },
-      "demos-2": {
-        "title": "Demos: cell renderers",
+      "cell-renderers-demos": {
+        "title": "Cell Renderers",
+        "demo": true,
         "children": {
           "custom-renderers": {
             "title": "Custom renderers"
@@ -163,8 +165,9 @@
           }
         }
       },
-      "demos-3": {
-        "title": "Demos: rows and columns",
+      "rows-ang-columns-demos": {
+        "title": "Rows and Columns",
+        "demo": true,
         "children": {
           "fixed-rows-and-columns": {
             "title": "Fixed rows and columns"
@@ -195,16 +198,18 @@
           }
         }
       },
-      "demos-4": {
-        "title": "Demos: data validation",
+      "data-validation-demos": {
+        "title": "Data Validation",
+        "demo": true,
         "children": {
           "data-validation": {
             "title": "Data validation"
           }
         }
       },
-      "demos-5": {
-        "title": "Demos: navigation",
+      "navigation-demos": {
+        "title": "Navigation",
+        "demo": true,
         "children": {
           "pagination": {
             "title": "Pagination"
@@ -214,16 +219,18 @@
           }
         }
       },
-      "demos-6": {
-        "title": "Demos: sorting data",
+      "sorting-data-demos": {
+        "title": "Sorting Data",
+        "demo": true,
         "children": {
           "sorting-data": {
             "title": "Sorting data"
           }
         }
       },
-      "demos-7": {
-        "title": "Demos: appearance",
+      "appearance-demos": {
+        "title": "Appearance",
+        "demo": true,
         "children": {
           "conditional-formatting": {
             "title": "Conditional formatting"
@@ -233,24 +240,27 @@
           }
         }
       },
-      "demos-8": {
-        "title": "Demos: formula support",
+      "formula-support-demos": {
+        "title": "Formula Support",
+        "demo": true,
         "children": {
           "formula-support": {
             "title": "Formula support"
           }
         }
       },
-      "demos-9": {
-        "title": "Demos: mobiles and tablets",
+      "mobiles-and-tablets-demos": {
+        "title": "Mobiles and Tablets",
+        "demo": true,
         "children": {
           "mobiles-and-tablets": {
             "title": "Mobiles and tablets"
           }
         }
       },
-      "demos-10": {
-        "title": "Demos: utilities",
+      "utilities-demos": {
+        "title": "Utilities",
+        "demo": true,
         "children": {
           "context-menu": {
             "title": "Context menu"
@@ -263,8 +273,9 @@
           }
         }
       },
-      "demos-11": {
-        "title": "Demos: integrations",
+      "integrations-demos": {
+        "title": "Integrations",
+        "demo": true,
         "children": {
           "jquery": {
             "title": "jQuery"

@@ -17,16 +17,16 @@ $(function () {
 
           return;
         }
-        if ($item.data('name') && regexp.test($item.data('name'))) {
+        
+        if ($item.data('name') && regexp.test($item.find("a").first().text())) {
           $item.show();
           $item.closest('.itemMembers').show();
           $item.closest('.item').show();
         }
       });
     } else {
-      //$el.find('.item, .itemMembers').show();
-      $el.find('.item, .header, .api-reference').show();
-      $el.find('.itemMembers').hide();
+      $el.find('.item, .sub-item, .itemMembers li').show();
+      $el.find('.item .itemMembers').hide();
     }
 
     $el.find('.list').scrollTop(0);
@@ -47,7 +47,7 @@ $(function () {
   //get the current method element
   var urlElement = window.location.href.split('/');
   urlElement = urlElement[urlElement.length - 1].replace('.html', '');
-  var $currentMethod = $currentItem.find('.methods li[data-name*="' + urlElement + '"]:eq(0)');
+  var $currentMethod = $currentItem.find('li[data-name*="' + urlElement + '"]:eq(0)');
 
   if ($currentItem.length) {
     $currentItem
@@ -71,6 +71,9 @@ $(function () {
   if($currentMethod.length) {
     $currentMethod.find('a').first().addClass('active-link');
   }
+
+  var breadcrumbs = buildBreadcrumbs($currentMethod);
+  $('div.breadcrumbs').eq(0).html(breadcrumbs);
 
   // Auto resizing on navigation
   var _onResize = function () {
@@ -102,3 +105,52 @@ $(function () {
     });
   }
 });
+
+function buildBreadcrumbs() {
+  var $activeLink = $('.active-link').eq(0),
+    $activeLinkParent = $activeLink.parent(),
+    $subtitle,
+    $item,
+    $subheader,
+    $header,
+    docsLink,
+    breadcrumbs;
+
+  var makeSpan = function (content) {
+    return '<span>' + content + '</span>';
+  };
+
+  // links
+  docsLink = document.createElement('a');
+  docsLink.href = '/';
+  docsLink.text = 'Documentation';
+
+  if($activeLink.parents("div.sublist.api").size() > 0) {
+    $subtitle = $activeLinkParent.prevAll('span.subtitle').eq(0).filter(function () {
+      return $activeLinkParent.parent()[0] === $(this).parent()[0];
+    });
+
+    $item = $activeLink.parents('li.item').eq(0);
+    $subheader = $item.prevAll('p.subheader').eq(0);
+    $header = $item.prevAll('p.header').eq(0);
+
+    breadcrumbs = docsLink.outerHTML
+      + makeSpan(config.hotVersion)
+      + makeSpan($header.text())
+      + makeSpan($subheader.text())
+      + makeSpan($item.attr('data-name'))
+      + makeSpan($subtitle.text())
+      + makeSpan($activeLink.text());
+
+  } else {
+    $item = $activeLink.parents('li.item').eq(0);
+    $item = $item.find('.title a');
+
+    breadcrumbs = docsLink.outerHTML
+      + makeSpan(config.hotVersion)
+      + makeSpan($item.text())
+      + makeSpan($activeLink.text());
+  }
+
+  return breadcrumbs;
+}
