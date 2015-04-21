@@ -4,11 +4,21 @@ header {
     .name img {
       margin: 0 1rem;
     }
-    & .top-bar-section ul > li:hover a {
-      box-shadow: none;
+    .top-bar .toggle-topbar.menu-icon {
+      margin-top: 0;
+      top: 10%;
+      right: 14px;
+    }
+    & .top-bar-section ul li a {
+      padding: .36rem 0.875rem!important;
+      font-size: 15px;
+      box-shadow: none!important;
     }
     & .top-bar-section .right li .dropdown {
       left: 104%;
+    }
+    & .top-bar-section li .dropdown li a:hover {
+      background: none!important;
     }
   }
   @media only screen and (min-width: 40.063em) and (max-width: 64em) {
@@ -26,22 +36,33 @@ header {
     }
   }
 }
-.main header {
-  @media only screen and (max-width: 40em) {
-    padding-bottom: 2rem;
+@media only screen and (max-width: 40em) {
+  #wrapper {
+    margin-top: 6rem;
   }
-}
-.banner {
-  @media only screen and (max-width: 40em) {
+  .main {
     padding: 0;
-    text-align: center;
   }
-}
-.footer {
-  @media only screen and (max-width: 40em) {
-    padding: 2rem 0 1rem;
-    & i.fa {
-      display: none;
-    }
+  .small-1, .nav-fix, .navigation {
+    width: 100%!important;
+    float: none!important;
+    position: static!important;
+  }
+  .small-1.large-3 {
+    height: 320px!important;
+  }
+  .small-1.large-3 .navigation {
+    height: 300px!important;
+    overflow-y: scroll!important;
+  }
+  .navigation .list {
+    height: auto!important;
+  }
+  .breadcrumbs {
+    display: none;
+  }
+  .footer {
+    margin-top: 2rem;
+    text-align: center;
   }
 }

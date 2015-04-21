@@ -47,6 +47,7 @@
       margin-bottom: 0.5rem;
       background-color: #fff;
       color: #909090;
+      font-weight: 300;
       box-shadow: none;
       border-color: #ccc;
     }
@@ -67,31 +68,47 @@
     list-style: none;
   }
   li.item {
-    margin: 6px 12px 6px 18px;
-    box-shadow: 0 1px 0 #FFFFFF;
-    border-bottom: 1px solid #dfdfdf;
+    margin: 10px 12px 10px 18px;
     a {
       color: #037BD2;
       &:hover {
         color: #037BD2;
       }
+      &.active-link {
+        font-weight: 600;
+      }
+      &.external:after {
+        margin-top: -2px;
+        padding-left: 4px;
+        display: inline-block;
+        font: normal normal normal 10px/1 FontAwesome;
+        content: "\f08e";
+      }
     }
     .title {
       cursor: pointer;
       position: relative;
+      display: block;
+      font-size: 0.8em;
       a {
         padding-bottom: 6px;
         display: block;
         font-size: 13px;
-        font-weight: 600;
         color: #393939;
+        cursor: default;
         &:hover {
           color: #454545;
         }
+        &:after {
+          content: "\f107";
+          font-family: FontAwesome;
+          color: #B5B5B5;
+          font-size: 17px;
+          position: absolute;
+          top: -3px;
+          right: 4px;
+        }
       }
-      display: block;
-      font-size: 0.8em;
-
       .static {
         display: block;
         border-radius: 3px;
@@ -113,7 +130,7 @@
     ul {
       & > li {
         font-size: 13px;
-        padding-bottom: 0.125em;
+        padding: 0.2rem 0;
       }
     }
 
@@ -129,8 +146,11 @@
     }
     p.header {
       margin: 16px 12px 6px;
+      padding-top: 1rem;
       font-size: 16px;
+      font-weight: 400;
       color: #838383;
+      border-top: 1px solid rgb(221, 221, 221);
     }
     p.subheader {
       margin: 16px 12px 6px;
@@ -172,7 +192,7 @@
   }
 
   h2 {
-    font-weight: 600;
+    font-weight: 400;
     font-size: 1.5em;
   }
 
@@ -392,7 +412,10 @@
   table {
     width: 100%;
     margin-bottom: 15px;
-
+    &.params th,
+    &.params td, {
+      border: 1px solid #e1e1e1;
+    }
     th {
       padding: 3px 3px;
     }

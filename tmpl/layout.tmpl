@@ -17,6 +17,9 @@
   <?js if (env.conf.templates.openGraph.site_name) { ?><meta property="og:site_name" content="<?js= env.conf.templates.openGraph.site_name ?>"/><?js } ?>
     <meta property="og:url" content="<?js= env.conf.templates.openGraph.url ?>"/>
   <?js } ?>
+
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
   <script src="scripts/prettify/prettify.js"></script>
   <script src="scripts/prettify/lang-css.js"></script>
   <script src="scripts/jquery.min.js"></script>
@@ -77,22 +80,21 @@
             <li class="has-dropdown"><a href="http://handsontable.com/about-us.html">About project</a>
               <ul class="dropdown">
                 <li class="left">
-                  <a href="http://handsontable.com/features.html" class="features-el">Features</a
-                  ><a href="http://handsontable.com/licensing.html" class="licensing-el">Licensing</a>
-                  <a href="http://handsontable.com/about-us.html" class="about-el">About us</a>
+                  <a href="http://handsontable.com/features.html">Features</a
+                  ><a href="http://handsontable.com/licensing.html">Licensing</a>
+                  <a href="http://handsontable.com/about-us.html">About us</a>
                 </li>
               </ul>
             </li>
-            <li><a href="http://handsontable.com/examples.html" class="examples-el">Examples</a></li>
-            <li><a href="http://developer.handsontable.com/get-started" class="documentation-el">Documentation</a></li>
-            <li><a href="http://handsontable.com/pricing.html" class="pricing-el">Pricing</a></li>
-            <li class="has-dropdown"><a href="http://handsontable.com/help-and-support.html" class="support-el">Help and Support</a>
+            <li><a href="http://handsontable.com/examples.html">Examples</a></li>
+            <li><a href="http://docs.handsontable.com" class="documentation-el">Documentation</a></li>
+            <li><a href="http://handsontable.com/support-services.html">Support services</a></li>
+            <li class="has-dropdown"><a href="http://handsontable.com/community.html">Community</a>
               <ul class="dropdown">
                 <li class="left">
-                  <a href="https://github.com/handsontable/handsontable/issues" target="_blank">GitHub issues</a>
                   <a href="https://groups.google.com/forum/#!forum/handsontable" target="_blank">Google Group</a>
                   <a href="http://stackoverflow.com/questions/tagged/handsontable" target="_blank">Stack Overflow</a>
-                  <a href="http://handsontable.com/contact-us.html" class="contact-el">Consultancy</a>
+                  <a href="https://github.com/handsontable/handsontable" target="_blank">GitHub</a>
                   <a href="https://twitter.com/handsontable" target="_blank">Twitter</a>
                 </li>
               </ul>
@@ -105,12 +107,12 @@
 
   <div id="wrapper">
     <div class="row">
-      <div class="small-3 columns">
+      <div class="large-3 medium-3 small-1 columns">
         <div class="nav-fix">
           <?js= this.partial('navigation.tmpl', this) ?>
         </div>
       </div>
-      <div class="small-9 columns">
+      <div class="large-9 medium-7 small-1 columns">
         <div class="main">
           <h1 class="page-title" data-filename="<?js= filename ?>"><?js= title ?></h1>
           <div class="breadcrumbs"></div>

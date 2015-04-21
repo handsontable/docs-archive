@@ -16,7 +16,7 @@ a, a:visited, a:hover, a:visited:hover {
 }
 hr {
   height: 0;
-  border: solid #DDD;
+  border: solid #d7d7d7;
   border-width: 1px 0 0;
   clear: both;
   margin: 1.25rem 0 1.1875rem;
@@ -85,24 +85,23 @@ a.button, a.button:hover {
 /* header */
 header {
   width: 100%;
-  padding: 1rem 0;
+  padding: 1rem 0 15px;
   position: fixed;
   top: 0;
   z-index: 300;
-  background: #1976D2;
+  background: #045ab0;
   & .name img {
     max-width: 181px;
     margin: 0 1rem;
-  }
-  nav.top-bar {
-    line-height: 1;
+    position: relative;
+    top: -2px;
   }
   nav.top-bar .title-area {
     padding: 0;
   }
   nav.top-bar, .top-bar-section ul, .top-bar-section ul li, .top-bar-section ul li a,
   & .top-bar-section ul li, & .top-bar-section ul li a, & .top-bar.expanded .title-area {
-    background: transparent!important;
+    background-color: #045ab0!important;
     transition: none!important;
   }
   & .top-bar-section li:not(.has-form) a:not(.button) {
@@ -127,12 +126,11 @@ header {
   }
   & .top-bar-section ul li a {
     line-height: 36px!important;
-    font-size: 13px!important;
     font-weight: 300!important;
   }
-  & .top-bar-section ul > li:hover a {
+  & .top-bar-section ul > li:hover > a {
     padding: 0;
-    box-shadow: 0 0 1px #fff inset;
+    box-shadow: 0 1px 0 #4B96E0 inset, -1px 0 0 #4B96E0 inset, 1px 0 0 #4B96E0 inset, 0 -1px 0 #4B96E0 inset;
   }
   & .top-bar-section .right li .dropdown {
     left: 0;
@@ -141,9 +139,15 @@ header {
   & .top-bar-section .dropdown li {
     margin: 0;
   }
-  & .top-bar-section ul .dropdown li a {
-    font-size: 13px!important;
-    background-color: #1976D2!important;
+  & .top-bar-section ul .dropdown li a,
+  & .top-bar-section li.has-dropdown:hover > a {
+    box-shadow: 0 1px 0 #4B96E0 inset, -1px 0 0 #4B96E0 inset, 1px 0 0 #4B96E0 inset;
+  }
+  & .top-bar-section ul .dropdown li a:hover {
+    background-color: #0760BA!important;
+  }
+  & .top-bar-section ul .dropdown li a:last-child {
+    box-shadow: 0 1px 0 #4B96E0 inset, -1px 0 0 #4B96E0 inset, 1px 0 0 #4B96E0 inset, 0 -1px 0 #4B96E0 inset;
   }
   & .top-bar-section ul .has-dropdown > a:after {
     margin-top: -7px;
@@ -154,8 +158,8 @@ header {
 }
 
 /* active menu */
-.documentation .documentation-el {
-  background-color: #1A84E0!important;
+.documentation-el {
+  box-shadow: 0 1px 0 #4B96E0 inset, -1px 0 0 #4B96E0 inset, 1px 0 0 #4B96E0 inset, 0 -1px 0 #4B96E0 inset;
 }
 
 /* banner */
@@ -175,19 +179,17 @@ header {
   background-color: #f2f2f2;
 }
 & .breadcrumbs {
-  margin-bottom: 2rem;
-  padding: 0.625rem 0.625rem;
+  margin-bottom: 1rem;
+  padding: 1rem 0;
   font-size: 0.9231rem;
-  border: 1px solid #D7D7D7;
-  border-radius: 0;
   background: #fff;
   span {
-    color: #aaa;
+    color: #676767;
   }
   & > * {
     color: #037BD2;
     font-size: 12px;
-    font-weight: 400;
+    font-weight: 300;
     text-transform: none;
   }
   & > *:before {
@@ -201,23 +203,23 @@ header {
   position: relative;
   h3 {
     margin: 1rem 0;
-    font-weight: 600;
+    font-weight: 400;
     font-size: 18px;
   }
   .head-gap {
-    margin-top: 3rem;
+    margin-top: 1rem;
   }
   .edit-doc {
-    padding: 0.4rem 0.8rem 0.3rem;
+    padding: 0.2rem 0.8rem 0.2rem;
     position: absolute;
-    top: -49px;
+    top: -43px;
     color: #fff;
     right: 0;
-    font-size: 13px;
-    background: #ddd;
+    font-size: 12px;
+    background: #045AB0;
   }
   .edit-doc:hover {
-    background-color: #d3d3d3;
+    background-color: #1C72C8;
   }
   .codeLayout {
     margin-top: 2rem;
@@ -256,7 +258,7 @@ header {
     margin-right: 0.4rem;
   }
   .index-list {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     border-bottom: 1px solid #ddd;
   }
   code {
@@ -313,7 +315,7 @@ header {
 
 /* Footer */
 .footer {
-  margin-top: 7rem;
+  margin-top: 5rem;
   padding-bottom: 1rem;
   text-align: right;
   & .footer-menu {

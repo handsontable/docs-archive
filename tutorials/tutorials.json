@@ -5,9 +5,6 @@
       "getting-started": {
         "title": "Getting started",
         "children": {
-          "introduction": {
-            "title": "Introduction"
-          },
           "quick-start": {
             "title": "Quick start"
           },
@@ -37,6 +34,12 @@
           "load-and-save": {
             "title": "Load and save"
           },
+          "options": {
+            "title": "Options"
+          },
+          "callbacks": {
+            "title": "Callbacks"
+          },
           "styling": {
             "title": "Styling"
           },
@@ -57,6 +60,33 @@
           }
         }
       },
+      "resources": {
+        "title": "Resources",
+        "children": {
+          "change-log": {
+            "title": "Change log",
+            "external": "https://github.com/handsontable/handsontable/releases"
+          },
+          "roadmap": {
+            "title": "Roadmap",
+            "external": "https://trello.com/b/wMvdMvow/handsontable-roadmap-2015"
+          },
+          "milestones": {
+            "title": "Milestones",
+            "external": "https://github.com/handsontable/handsontable/milestones"
+          },
+          "licensing": {
+            "title": "Licensing",
+            "external": "https://handsontable.com/licensing.html"
+          },
+          "releasing": {
+            "title": "Releasing"
+          },
+          "contributing": {
+            "title": "Contributing"
+          }
+        }
+      },
       "subprojects": {
         "title": "Subprojects",
         "children": {
@@ -74,43 +104,42 @@
           }
         }
       },
-      "resources": {
-        "title": "Resources",
+      "general-configuration-demos": {
+        "title": "General configuration",
+        "demo": true,
         "children": {
-          "change-log": {
-            "title": "Change log",
-            "external": "https://github.com/handsontable/handsontable/releases"
+          "fixed-rows-and-columns": {
+            "title": "Fixed rows and columns"
           },
-          "roadmap": {
-            "title": "Roadmap",
-            "external": "https://github.com/handsontable/handsontable/releases"
+          "resizing": {
+            "title": "Resizing rows and columns"
           },
-          "milestones": {
-            "title": "Milestones3",
-            "externalz": "https://github.com/handsontable/handsontable/releases"
+          "scrollbars": {
+            "title": "Scrolling rows and columns"
           },
-          "releasing": {
-            "title": "Releasing"
+          "stretching": {
+            "title": "Columns stretching"
           },
-          "licensing": {
-            "title": "Licensing",
-            "external": "https://github.com/handsontable/handsontable/releases"
+          "freezing": {
+            "title": "Columns freezing"
           },
-          "contributing": {
-            "title": "Contributing",
-            "external": "https://github.com/handsontable/handsontable/releases"
+          "moving": {
+            "title": "Columns moving"
           },
-          "google-group": {
-            "title": "Google Group",
-            "external": "TODO"
+          "highlighting-current": {
+            "title": "Highlighting current"
           },
-          "github": {
-            "title": "GitHub",
-            "external": "https://github.com/handsontable/handsontable"
+          "grouping-and-ungrouping": {
+            "title": "Grouping and ungrouping"
           },
-          "stackoverflow": {
-            "title": "StackOverflow",
-            "external": "TODO"
+          "pre-populating-new-rows": {
+            "title": "Pre-populating new rows"
+          },
+          "sorting-data": {
+            "title": "Sorting data"
+          },
+          "pagination": {
+            "title": "Pagination"
           }
         }
       },
@@ -118,6 +147,9 @@
         "title": "Cell features",
         "demo": true,
         "children": {
+          "data-validation": {
+            "title": "Data validation"
+          },
           "drag-down": {
             "title": "Drag down"
           },
@@ -132,8 +164,8 @@
           }
         }
       },
-      "cell-renderers-demos": {
-        "title": "Cell Renderers",
+      "cell-types-demos": {
+        "title": "Cell types",
         "demo": true,
         "children": {
           "custom-renderers": {
@@ -165,69 +197,6 @@
           }
         }
       },
-      "rows-ang-columns-demos": {
-        "title": "Rows and Columns",
-        "demo": true,
-        "children": {
-          "fixed-rows-and-columns": {
-            "title": "Fixed rows and columns"
-          },
-          "scrollbars": {
-            "title": "Scrollbars"
-          },
-          "highlighting-current": {
-            "title": "Highlighting current"
-          },
-          "stretching": {
-            "title": "Stretching"
-          },
-          "grouping-and-ungrouping": {
-            "title": "Grouping and ungrouping"
-          },
-          "resizing": {
-            "title": "Resizing"
-          },
-          "freezing": {
-            "title": "Freezing"
-          },
-          "moving": {
-            "title": "Moving"
-          },
-          "pre-populating-new-rows": {
-            "title": "Pre-populating new rows"
-          }
-        }
-      },
-      "data-validation-demos": {
-        "title": "Data Validation",
-        "demo": true,
-        "children": {
-          "data-validation": {
-            "title": "Data validation"
-          }
-        }
-      },
-      "navigation-demos": {
-        "title": "Navigation",
-        "demo": true,
-        "children": {
-          "pagination": {
-            "title": "Pagination"
-          },
-          "search-of-values": {
-            "title": "Search of values"
-          }
-        }
-      },
-      "sorting-data-demos": {
-        "title": "Sorting Data",
-        "demo": true,
-        "children": {
-          "sorting-data": {
-            "title": "Sorting data"
-          }
-        }
-      },
       "appearance-demos": {
         "title": "Appearance",
         "demo": true,
@@ -237,15 +206,6 @@
           },
           "custom-borders": {
             "title": "Custom borders"
-          }
-        }
-      },
-      "formula-support-demos": {
-        "title": "Formula Support",
-        "demo": true,
-        "children": {
-          "formula-support": {
-            "title": "Formula support"
           }
         }
       },
@@ -262,6 +222,9 @@
         "title": "Utilities",
         "demo": true,
         "children": {
+          "search-for-values": {
+            "title": "Search for values"
+          },
           "context-menu": {
             "title": "Context menu"
           },
@@ -277,6 +240,9 @@
         "title": "Integrations",
         "demo": true,
         "children": {
+          "formula-support": {
+            "title": "RuleJS (formula support)"
+          },
           "jquery": {
             "title": "jQuery"
           },
