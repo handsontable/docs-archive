@@ -10,12 +10,16 @@ module.exports = function (shipit) {
       repositoryUrl: 'https://github.com/handsontable/docs.git',
       branch: 'develop',
       ignores: ['.git', 'node_modules'],
-      rsync: ['--del'],
+      rsync: ['-I', '--stats', '--chmod=ug=rwX,o=r'],
       keepReleases: 3,
       shallowClone: true
     }
   });
 
+  shipit.task('test', function() {
+    shipit.remote('pwd');
+  });
+  
   shipit.on('published', function() {
     var current = shipit.config.deployTo + '/current';
 
