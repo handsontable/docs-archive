@@ -125,7 +125,7 @@
           return chartData;
         }
 
-        var aggregationButtons = document.querySelectorAll('.aggregation');
+        var aggregationButtons = document.querySelectorAll('.aggregation button');
         for(var i = 0, buttonCount = aggregationButtons.length; i < buttonCount; i++) {
           aggregationButtons[i].addEventListener('mousedown', function (event) {
             activeColumn = event.target.getAttribute('data-aggregate');
