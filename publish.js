@@ -19,12 +19,14 @@ function find(spec) {
   return helper.find(data, spec);
 }
 
-function tutoriallink(tutorial, customUrl) {
-  if(customUrl) {
-    return '<a class="external" href="' + customUrl.url + '">' + customUrl.title + '</a>';
+function tutoriallink(node) {
+  if(node.external) {
+    return '<a class="external" href="' + node.external + '">' + node.name + '</a>';
+  } else if(node.demo || (node.parent && node.parent.demo)) {
+    return helper.toTutorial(node.name, null, { tag: 'em', classname: 'disabled', prefix: 'Demo: ' }).replace('tutorial-','demo-');
+  } else {
+    return helper.toTutorial(node.name, null, { tag: 'em', classname: 'disabled', prefix: 'Tutorial: ' });
   }
-
-  return helper.toTutorial(tutorial, null, { tag: 'em', classname: 'disabled', prefix: 'Tutorial: ' });
 }
 
 function getAncestorLinks(doclet) {
@@ -534,6 +536,10 @@ exports.publish = function(taffyData, opts, tutorials) {
 
     // turn {@link foo} into <a href="foodoc.html">foo</a>
     html = helper.resolveLinks(html);
+    if(tutorial.demo || (tutorial.parent && tutorial.parent.demo)) {
+      tutorialPath = tutorialPath.replace('tutorial-', 'demo-');
+    }
+
 
     fs.writeFileSync(tutorialPath, html, 'utf8');
   }

@@ -14,7 +14,7 @@
     </a>
     <h3>Saving data using onChange callback</h3>
     <p>Use the <strong>onChange</strong> callback to track changes made in the table. In the example below,
-      <code>$.ajax</code> is used to load and save grid data. Note that this is just a mockup.
+      <code>ajax</code> is used to load and save grid data. Note that this is just a mockup.
       Nothing is actually saved. You have to implement the server-side part by yourself.</p>
 
     <div data-jsfiddle="example1" class="ajax-container">
@@ -36,15 +36,14 @@
         </button>
       </div>
       <script data-jsfiddle="example1">
-        var
-          $ = function(id) {
+        var $$ = function(id) {
             return document.getElementById(id);
           },
-          container = $('example1'),
-          exampleConsole = $('example1console'),
-          autosave = $('autosave'),
-          load = $('load'),
-          save = $('save'),
+          container = $$('example1'),
+          exampleConsole = $$('example1console'),
+          autosave = $$('autosave'),
+          load = $$('load'),
+          save = $$('save'),
           autosaveNotification,
           hot;
 

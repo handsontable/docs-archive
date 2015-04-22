@@ -4,7 +4,7 @@
       <ul>
         <?js var self = this; ?>
         <?js children.forEach(function(t) { ?>
-          <li><?js= self.tutoriallink(t.name) ?></li>
+          <li><?js= self.tutoriallink({name: t.name}) ?></li>
         <?js }); ?>
       </ul>
     <?js } ?>

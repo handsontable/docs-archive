@@ -60,7 +60,7 @@
     <dd class="tag-tutorial">
       <ul>
         <?js tutorials.forEach(function(t) { ?>
-          <li><?js= self.tutoriallink(t) ?></li>
+          <li><?js= self.tutoriallink({name: t}) ?></li>
         <?js }); ?>
       </ul>
     </dd>

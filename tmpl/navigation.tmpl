@@ -18,13 +18,13 @@
     <?js this.members.tutorials.forEach(function (tutorial) { ?>
       <?js tutorial.children.forEach(function (child) { ?>
         <?js if(child.demo) { return; } ?>
-        <li class="item" data-name="tutorial-<?js= child.name ?>">
+        <li class="item" data-name="<?js= child.name ?>">
           <span class="title">
             <a href="#"><?js= child.title ?></a>
           </span>
           <ul class="members itemMembers">
             <?js child.children.forEach(function (c) { ?>
-              <li class="sub-item" data-name="tutorial-<?js= c.name ?>"><?js= c.external ? self.tutoriallink(c.name, {title: c.title, url: c.external}) : self.tutoriallink(c.name) ?></li>
+              <li class="sub-item" data-name="<?js= c.name ?>"><?js= self.tutoriallink(c)?></li>
             <?js }); ?>
           </ul>
         </li>
@@ -35,13 +35,13 @@
       <?js this.members.tutorials.forEach(function (tutorial) { ?>
       <?js tutorial.children.forEach(function (child) { ?>
         <?js if(!child.demo) { return; } ?>
-      <li class="item" data-name="tutorial-<?js= child.name ?>">
+      <li class="item" data-name="<?js= child.name ?>">
             <span class="title">
               <a href="#"><?js= child.title ?></a>
             </span>
         <ul class="members itemMembers">
           <?js child.children.forEach(function (c) { ?>
-          <li class="sub-item" data-name="tutorial-<?js= c.name ?>"><?js= c.external ? self.tutoriallink(c.name, {title: c.title, url: c.external}) : self.tutoriallink(c.name) ?></li>
+          <li class="sub-item" data-name="<?js= c.name ?>"><?js= self.tutoriallink(c) ?></li>
           <?js }); ?>
         </ul>
       </li>
