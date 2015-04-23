@@ -343,7 +343,7 @@ function ajax(url, method, params, callback) {
     var placeholders = document.querySelectorAll(".hotVersion");
 
     for (var i = 0, placeholdersCount = placeholders.length; i < placeholdersCount; i++) {
-      placeholders[i].innerHTML = config.hotVersion;
+      placeholders[i].innerHTML = hotVersion;
     }
   }
 
