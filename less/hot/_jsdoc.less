@@ -390,6 +390,7 @@
   }
 
   pre {
+    margin: 0;
     font-size: 14px;
     counter-reset: codeLine;
 
@@ -493,6 +494,9 @@
     ul > li {
       margin-bottom: 5px;
       list-style-type: square;
+      &.strike {
+        text-decoration: line-through;
+      }
     }
     p, ul li, ol li {
       font-weight: 400;

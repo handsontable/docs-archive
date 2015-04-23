@@ -8,6 +8,9 @@
           "quick-start": {
             "title": "Quick start"
           },
+          "custom-build": {
+            "title": "Custom build"
+          },
           "features": {
             "title": "Features"
           },
@@ -57,6 +60,12 @@
           },
           "testing": {
             "title": "Testing"
+          },
+          "releasing": {
+            "title": "Releasing"
+          },
+          "contributing": {
+            "title": "Contributing"
           }
         }
       },
@@ -78,12 +87,6 @@
           "licensing": {
             "title": "Licensing",
             "external": "https://handsontable.com/licensing.html"
-          },
-          "releasing": {
-            "title": "Releasing"
-          },
-          "contributing": {
-            "title": "Contributing"
           }
         }
       },

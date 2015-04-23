@@ -328,6 +328,7 @@
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 .main pre {
+  margin: 0;
   font-size: 14px;
   counter-reset: codeLine;
 }
@@ -413,6 +414,9 @@
 .main article ul > li {
   margin-bottom: 5px;
   list-style-type: square;
+}
+.main article ul > li.strike {
+  text-decoration: line-through;
 }
 .main article p,
 .main article ul li,
@@ -815,6 +819,23 @@ nav,
 .static-content #example1_events {
   width: 100%;
   height: 8rem;
+}
+.static-content .error-container {
+  margin-top: 4rem;
+}
+.static-content .error-container h1,
+.static-content .error-container h3 {
+  margin-top: 0.5rem;
+  text-align: center;
+}
+.static-content .error-container h3 {
+  font-style: italic;
+}
+.static-content .error-container .hot {
+  margin: 3rem auto 0;
+}
+.static-content .error-container .cell-dark {
+  background-color: #222;
 }
 /* Footer */
 .footer {
