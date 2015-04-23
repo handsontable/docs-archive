@@ -744,8 +744,8 @@ nav,
 .static-content .buttons {
   margin-bottom: 0.3rem;
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 2px;
+  right: 2px;
 }
 .static-content .buttons button,
 .static-content button.intext-btn {

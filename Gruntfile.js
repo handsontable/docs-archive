@@ -111,7 +111,7 @@ module.exports = function (grunt) {
 
     watch: {
       files: ['tutorials/**', 'less/**', 'static/**', 'tmpl/**'],
-      tasks: ['default'],
+      tasks: [],
       options: {
         debounceDelay: 250
       },

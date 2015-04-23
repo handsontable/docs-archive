@@ -46,6 +46,9 @@
           "styling": {
             "title": "Styling"
           },
+          "cell-types": {
+            "title": "Cell types"
+          },
           "cell-editor": {
             "title": "Cell editor"
           },

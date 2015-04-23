@@ -16,8 +16,8 @@
     <h3>Understand binding as a reference</h3>
     <p>Handsontable binds to your data source (array or object) by reference. Therefore, all the data entered in
       the grid will alter the original data source. In complex applications, you may have a purpose to
-      change data source programatically (outside of
-      Handsontable). A value change that was done programatically will not be presented on the screen unless you
+      change data source programmatically (outside of
+      Handsontable). A changed being made will not be presented on the screen unless you
       refresh the grid on screen using the <strong>render</strong> method.</p>
 
     <div data-jsfiddle="example1">
@@ -53,7 +53,7 @@
           hot1;
 
         hot1 = new Handsontable(container1, settings1);
-        data1[0][1] = 'Ford'; // change "Kia" to "Ford" programatically
+        data1[0][1] = 'Ford'; // change "Kia" to "Ford" programmatically
         hot1.render();
       </script>
     </div>
