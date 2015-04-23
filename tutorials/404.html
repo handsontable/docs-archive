@@ -79,6 +79,15 @@
           {row: 5, col: 9, className: "cell-dark"}
         ]
       });
+
+      $("td").on("click", function () {
+        if ($(this).hasClass('cell-dark')) {
+          $(this).removeClass('cell-dark');
+        } else {
+          $(this).addClass('cell-dark');
+        }
+      });
+
     </script>
   </div>
 </div>
