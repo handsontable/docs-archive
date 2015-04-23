@@ -803,22 +803,48 @@ nav,
   margin: -3px 0.2rem 0 0;
   vertical-align: middle;
 }
-.static-content .graphael-container {
+.static-content .part-left-container {
   margin: 2rem 0;
 }
-.static-content .graphael-container > div {
+.static-content .part-left-container > div {
   width: 35%;
   float: left;
 }
-.static-content .graphael-container #graphael-example {
+.static-content .part-left-container.callbacks-container {
+  margin-bottom: 0;
+}
+.static-content .part-left-container.callbacks-container > div {
+  width: 50%;
+}
+.static-content .part-left-container #example1_events {
+  height: 165px;
+  padding: 0.5rem;
+  overflow: auto;
+  font-size: 11px;
+  border: 1px solid #CCC;
+}
+.static-content .part-left-container #graphael-example {
   text-align: center;
 }
-.static-content .graphael-container .aggregation p {
+.static-content .part-left-container .aggregation p {
   font-size: 13px;
 }
-.static-content #example1_events {
-  width: 100%;
-  height: 8rem;
+.static-content .clear-log {
+  margin-top: 0.5rem;
+  text-align: right;
+}
+.static-content #hooksList {
+  padding: 0;
+}
+.static-content #hooksList li {
+  width: 33%;
+  float: left;
+  list-style: none;
+}
+.static-content #hooksList input[type="checkbox"] {
+  margin-right: 0.5rem;
+  position: relative;
+  top: 2px;
 }
 .static-content .error-container {
   margin-top: 4rem;
@@ -888,8 +914,8 @@ nav,
 }
 .main .hot .handsontable table,
 .hot .handsontable table {
-  -webkit-box-shadow: 0 1px 0 #cccccc;
-  box-shadow: 0 1px 0 #cccccc;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 .main .hot thead .htGroupIndicatorContainer,
 .hot thead .htGroupIndicatorContainer {
