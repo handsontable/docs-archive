@@ -29,7 +29,8 @@ module.exports = function (grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     clean: {
-      dist: [DOCS_PATH]
+      dist: [DOCS_PATH],
+      release: [DOCS_PATH, HOT_SRC_PATH, 'bower_components', 'node_modules']
     },
 
     jsdoc: {
@@ -168,30 +169,38 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('default', 'Create documentation for Handsontable', function () {
-    var
-      hotPackage,
-      timer;
+    var timer;
 
-    if (fs.existsSync(HOT_SRC_PATH)) {
-      grunt.task.run('gitpull');
-    } else {
-      grunt.task.run('gitclone');
-    }
+    grunt.task.run('update-hot');
 
     timer = setInterval(function () {
       if (!grunt.file.isFile(HOT_SRC_PATH + '/package.json')) {
         return;
       }
       clearInterval(timer);
-      grunt.task.run('less', 'clean', 'copy', 'bowercopy');
-
-      hotPackage = grunt.file.readJSON(HOT_SRC_PATH + '/package.json');
-      grunt.config.set('jsdoc.docs.options.query', querystring.stringify({
-        version: hotPackage.version
-      }));
-
-      grunt.task.run('jsdoc');
+      grunt.task.run('build');
     }, 50);
+  });
+
+  grunt.registerTask('update-hot', 'Update Handsontable repository', function () {
+    if (fs.existsSync(HOT_SRC_PATH)) {
+      grunt.task.run('gitpull');
+    } else {
+      grunt.task.run('gitclone');
+    }
+  });
+
+  grunt.registerTask('build', 'Generate documentation for Handsontable', function () {
+    var hotPackage;
+
+    grunt.task.run('less', 'copy', 'bowercopy');
+
+    hotPackage = grunt.file.readJSON(HOT_SRC_PATH + '/package.json');
+    grunt.config.set('jsdoc.docs.options.query', querystring.stringify({
+      version: hotPackage.version
+    }));
+
+    grunt.task.run('jsdoc');
   });
 
   grunt.loadNpmTasks('grunt-contrib-clean');
