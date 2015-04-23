@@ -81,11 +81,7 @@
       });
 
       $("td").on("click", function () {
-        if ($(this).hasClass('cell-dark')) {
-          $(this).removeClass('cell-dark');
-        } else {
-          $(this).addClass('cell-dark');
-        }
+        $(this).toggleClass('cell-dark');
       });
 
     </script>
