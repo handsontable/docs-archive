@@ -29,7 +29,7 @@ module.exports = function (grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     clean: {
-      dist: [DOCS_PATH]
+      dist: [DOCS_PATH, HOT_SRC_PATH, 'bower_components', 'node_modules']
     },
 
     jsdoc: {
@@ -192,7 +192,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', 'Generate documentation for Handsontable', function () {
     var hotPackage;
 
-    grunt.task.run('less', 'clean', 'copy', 'bowercopy');
+    grunt.task.run('less', 'copy', 'bowercopy');
 
     hotPackage = grunt.file.readJSON(HOT_SRC_PATH + '/package.json');
     grunt.config.set('jsdoc.docs.options.query', querystring.stringify({
