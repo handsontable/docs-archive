@@ -144,7 +144,7 @@ function buildBreadcrumbs() {
     var filename = $('.page-title').data('filename').replace(/\.[a-z]+$/, '');
 
     breadcrumbs = docsLink.outerHTML
-      + makeSpan(config.hotVersion)
+      + makeSpan(hotVersion)
       + makeSpan("Source: " + filename);
 
   } else if ($activeLink.parents("div.sublist.api").size() > 0) {
@@ -157,7 +157,7 @@ function buildBreadcrumbs() {
     $header = $item.prevAll('p.header').eq(0);
 
     breadcrumbs = docsLink.outerHTML
-      + makeSpan(config.hotVersion)
+      + makeSpan(hotVersion)
       + makeSpan($header.text())
       + makeSpan($subheader.text())
       + makeSpan($item.attr('data-name'))
@@ -169,7 +169,7 @@ function buildBreadcrumbs() {
     $item = $item.find('.title a');
 
     breadcrumbs = docsLink.outerHTML
-      + makeSpan(config.hotVersion)
+      + makeSpan(hotVersion)
       + makeSpan($item.text())
       + makeSpan($activeLink.text());
   }
