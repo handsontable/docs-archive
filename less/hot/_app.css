@@ -433,7 +433,7 @@ nav,
   color: #e1e1e1;
   margin-left: 7px;
 }
-.main h4.name span.returnType {
+.main h4.name span.returnType, .main h5 span.returnType {
   margin-left: 3px;
   background-color: transparent!important;
   color: gray!important;
