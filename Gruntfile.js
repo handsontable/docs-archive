@@ -61,6 +61,7 @@ module.exports = function (grunt) {
         dest: 'static/styles/docs.css'
       }
     },
+
     copy: {
       dist: {
         files: [{
@@ -73,6 +74,7 @@ module.exports = function (grunt) {
         }]
       }
     },
+
     bowercopy: {
       options: {
         srcPrefix: 'bower_components'
@@ -103,11 +105,35 @@ module.exports = function (grunt) {
         }
       }
     },
+
     watch: {
       files: ['tutorials/**', 'less/**', 'static/**', 'tmpl/**'],
       tasks: ['default'],
       options: {
         debounceDelay: 250
+      },
+      dist: {
+        files: ['generated/**'],
+        options: {
+          livereload: true
+        }
+      }
+    },
+
+    connect: {
+      dist: {
+        options: {
+          port: 5455,
+          hostname: '0.0.0.0',
+          base: 'generated',
+          livereload: true
+        }
+      }
+    },
+
+    open: {
+      dist: {
+        path: 'http://localhost:5455'
       }
     },
 
@@ -132,6 +158,12 @@ module.exports = function (grunt) {
       }
     }
   });
+
+  grunt.registerTask('server', [
+    'connect',
+    'open',
+    'watch'
+  ]);
 
   grunt.registerTask('default', 'Create documentation for Handsontable', function () {
     var
@@ -163,8 +195,10 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-exec');
+  grunt.loadNpmTasks('grunt-open');
   grunt.loadNpmTasks('grunt-git');
   grunt.loadNpmTasks('grunt-jsdoc');
   grunt.loadNpmTasks('grunt-bowercopy');
