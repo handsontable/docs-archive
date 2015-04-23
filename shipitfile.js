@@ -10,7 +10,7 @@ module.exports = function (shipit) {
       repositoryUrl: 'https://github.com/handsontable/docs.git',
       branch: 'develop',
       ignores: ['.git', 'node_modules'],
-      rsync: ['-I', '--stats', '--chmod=ug=rwX,o=r'],
+      rsync: ['--del', '-I', '--stats', '--chmod=ug=rwX,o=r'],
       keepReleases: 3,
       shallowClone: true
     }

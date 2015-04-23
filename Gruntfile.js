@@ -168,9 +168,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('default', 'Create documentation for Handsontable', function () {
-    var
-      hotPackage,
-      timer;
+    var timer;
 
     if (fs.existsSync(HOT_SRC_PATH)) {
       grunt.task.run('gitpull');
@@ -183,15 +181,21 @@ module.exports = function (grunt) {
         return;
       }
       clearInterval(timer);
-      grunt.task.run('less', 'clean', 'copy', 'bowercopy');
-
-      hotPackage = grunt.file.readJSON(HOT_SRC_PATH + '/package.json');
-      grunt.config.set('jsdoc.docs.options.query', querystring.stringify({
-        version: hotPackage.version
-      }));
-
-      grunt.task.run('jsdoc');
+      grunt.task.run('build');
     }, 50);
+  });
+
+  grunt.registerTask('build', 'Generate documentation for Handsontable', function () {
+    var hotPackage;
+
+    grunt.task.run('less', 'clean', 'copy', 'bowercopy');
+
+    hotPackage = grunt.file.readJSON(HOT_SRC_PATH + '/package.json');
+    grunt.config.set('jsdoc.docs.options.query', querystring.stringify({
+      version: hotPackage.version
+    }));
+
+    grunt.task.run('jsdoc');
   });
 
   grunt.loadNpmTasks('grunt-contrib-clean');
