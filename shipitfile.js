@@ -19,7 +19,7 @@ module.exports = function (shipit) {
   shipit.task('test', function() {
     shipit.remote('pwd');
   });
-  
+
   shipit.on('published', function() {
     var current = shipit.config.deployTo + '/current';
 
