@@ -170,11 +170,7 @@ module.exports = function (grunt) {
   grunt.registerTask('default', 'Create documentation for Handsontable', function () {
     var timer;
 
-    if (fs.existsSync(HOT_SRC_PATH)) {
-      grunt.task.run('gitpull');
-    } else {
-      grunt.task.run('gitclone');
-    }
+    grunt.task.run('update-hot');
 
     timer = setInterval(function () {
       if (!grunt.file.isFile(HOT_SRC_PATH + '/package.json')) {
@@ -183,6 +179,14 @@ module.exports = function (grunt) {
       clearInterval(timer);
       grunt.task.run('build');
     }, 50);
+  });
+
+  grunt.registerTask('update-hot', 'Update Handsontable repository', function () {
+    if (fs.existsSync(HOT_SRC_PATH)) {
+      grunt.task.run('gitpull');
+    } else {
+      grunt.task.run('gitclone');
+    }
   });
 
   grunt.registerTask('build', 'Generate documentation for Handsontable', function () {
