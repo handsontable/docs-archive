@@ -15,8 +15,8 @@
  *
  */
 
- //@win window reference
- //@fn function reference
+//@win window reference
+//@fn function reference
 function contentLoaded(win, fn) {
 
   var done = false, top = true,
@@ -29,21 +29,29 @@ function contentLoaded(win, fn) {
     rem = modern ? 'removeEventListener' : 'detachEvent',
     pre = modern ? '' : 'on',
 
-    init = function(e) {
+    init = function (e) {
       if (e.type == 'readystatechange' && doc.readyState != 'complete') return;
       (e.type == 'load' ? win : doc)[rem](pre + e.type, init, false);
       if (!done && (done = true)) fn.call(win, e.type || e);
     },
 
-    poll = function() {
-      try { root.doScroll('left'); } catch(e) { setTimeout(poll, 50); return; }
+    poll = function () {
+      try {
+        root.doScroll('left');
+      } catch (e) {
+        setTimeout(poll, 50);
+        return;
+      }
       init('poll');
     };
 
   if (doc.readyState == 'complete') fn.call(win, 'lazy');
   else {
     if (!modern && root.doScroll) {
-      try { top = !win.frameElement; } catch(e) { }
+      try {
+        top = !win.frameElement;
+      } catch (e) {
+      }
       if (top) poll();
     }
     doc[add](pre + 'DOMContentLoaded', init, false);
@@ -77,7 +85,7 @@ function ajax(url, method, params, callback) {
   };
   obj.open(method, url, true);
   obj.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-  obj.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+  obj.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   obj.send(params);
 
   return obj;
@@ -110,7 +118,7 @@ function ajax(url, method, params, callback) {
   }
 
   function bindDumpButton() {
-    if(typeof Handsontable === "undefined") {
+    if (typeof Handsontable === "undefined") {
       return;
     }
 
@@ -128,7 +136,7 @@ function ajax(url, method, params, callback) {
   }
 
   function bindFiddleButton() {
-    if(typeof Handsontable === "undefined") {
+    if (typeof Handsontable === "undefined") {
       return;
     }
 
@@ -183,7 +191,7 @@ function ajax(url, method, params, callback) {
               var clone = dataFiddle[x].cloneNode(true);
 
               var externalExamples = clone.querySelectorAll('[data-jsfiddle="external-example"]');
-              for(var k = 0; k < externalExamples.length; k++) {
+              for (var k = 0; k < externalExamples.length; k++) {
                 externalExamples[k].parentNode.removeChild(externalExamples[k]);
               }
 
@@ -231,7 +239,7 @@ function ajax(url, method, params, callback) {
         }
 
         var externalExamples = document.querySelectorAll('[data-jsfiddle="external-example"]');
-        for(var k = 0; k < externalExamples.length; k++) {
+        for (var k = 0; k < externalExamples.length; k++) {
           var clone = externalExamples[k].cloneNode(true);
 
           while (clone.firstChild) {
@@ -255,9 +263,9 @@ function ajax(url, method, params, callback) {
         form.method = 'POST';
         form.target = '_blank';
         form.innerHTML = '<input type="text" name="title" value="Handsontable example">' +
-        '<textarea name="html">' + html.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</textarea>' +
-        '<textarea name="js">' + js.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</textarea>' +
-        '<textarea name="css">' + css.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</textarea>';
+          '<textarea name="html">' + html.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</textarea>' +
+          '<textarea name="js">' + js.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</textarea>' +
+          '<textarea name="css">' + css.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</textarea>';
 
         form.style.visibility = 'hidden';
 
@@ -268,6 +276,27 @@ function ajax(url, method, params, callback) {
 
       }
     });
+  }
+
+  function addLineIndicators(code) {
+    var codeInner = code.innerHTML.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").split(/\n/);
+    var finalString = '';
+
+    var baseScriptIndent = getScriptBaseIndent(code);
+
+    for (var k = 0, codeLength = codeInner.length; k < codeLength; k++) {
+      if ((k === 0 || k === codeLength - 1) && codeInner[k] === '') {
+        continue;
+      }
+
+      if (codeInner[k].substring(0, baseScriptIndent.length) == baseScriptIndent) {
+        codeInner[k] = codeInner[k].replace(baseScriptIndent, '');
+      }
+
+      finalString += '<span class="code-line">' + codeInner[k] + '</span>' + '\n';
+    }
+
+    return finalString;
   }
 
   function init() {
@@ -285,24 +314,7 @@ function ajax(url, method, params, callback) {
       pre.className = 'javascript';
 
       var code = document.createElement('CODE');
-      var codeInner = script.innerHTML.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").split(/\n/);
-
-      var baseScriptIndent = getScriptBaseIndent(script);
-
-      for (var k = 0, codeLength = codeInner.length; k < codeLength; k++) {
-        if((k === 0 || k === codeLength -1) && codeInner[k] === '') {
-          continue;
-        }
-
-        if(codeInner[k].substring(0, baseScriptIndent.length) == baseScriptIndent) {
-          codeInner[k] = codeInner[k].replace(baseScriptIndent, '');
-        }
-
-        code.innerHTML += '<span class="code-line">' + codeInner[k] + '</span>' + '\n';
-      }
-      //var codeInner = trimCodeBlock(script.innerHTML);
-      //codeInner = codeInner.join('<br>').replace(/  /g, "&nbsp;&nbsp;");
-      //code.innerHTML = script.innerHTML;
+      code.innerHTML = addLineIndicators(script);
 
       pre.appendChild(code);
       script.parentNode.insertBefore(pre, script.nextSibling);
@@ -314,23 +326,23 @@ function ajax(url, method, params, callback) {
     replaceHotVersion();
   }
 
-  function getScriptBaseIndent (scriptEl) {
+  function getScriptBaseIndent(scriptEl) {
     var scriptOuterHtml = scriptEl.outerHTML.split('\n'),
       firstLine = scriptOuterHtml[scriptOuterHtml.length - 1],
       indent = "";
 
-    while(firstLine.charAt(0) === ' ') {
+    while (firstLine.charAt(0) === ' ') {
       firstLine = firstLine.substr(1);
       indent += " ";
     }
 
     return indent;
   }
-  
-  function replaceHotVersion () {
+
+  function replaceHotVersion() {
     var placeholders = document.querySelectorAll(".hotVersion");
 
-    for(var i = 0, placeholdersCount = placeholders.length; i < placeholdersCount; i++) {
+    for (var i = 0, placeholdersCount = placeholders.length; i < placeholdersCount; i++) {
       placeholders[i].innerHTML = config.hotVersion;
     }
   }

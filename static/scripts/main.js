@@ -44,14 +44,14 @@ $(function () {
 
   // Show an item related a current documentation automatically
   var filename = $('.page-title').data('filename').replace(/\.[a-z]+$/, '');
-  var $currentItem = $('.navigation .item[data-name*="' + filename + '"]:eq(0)');
-  var $currentSubItem = $('.navigation .sub-item[data-name*="' + filename + '"]:eq(0)');
+  var $currentItem = $('.navigation .item[data-name="' + filename + '"]:eq(0)');
+  var $currentSubItem = $('.navigation .sub-item[data-name="' + filename + '"]:eq(0)');
   var $current;
 
   //get the current method element
   var urlElement = window.location.href.split('/');
   urlElement = urlElement[urlElement.length - 1].replace('.html', '');
-  var $currentMethod = $currentItem.find('li[data-name*="' + urlElement + '"]:eq(0)');
+  var $currentMethod = $currentItem.find('li[data-name="' + urlElement + '"]:eq(0)');
 
   if ($currentItem.length) {
     $currentItem
