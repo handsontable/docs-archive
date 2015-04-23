@@ -1,25 +1,24 @@
 <div class="static-content">
   <!-- hard coded, ugly, ugly -->
   <style>
-    .large-3, .heading, .breadcrumbs, .footer {
-      display: none!important;
-    }
-    .large-9 {
-      width: 100%!important;
-    }
+  .large-3, .heading, .breadcrumbs, .footer {
+    display: none!important;
+  }
+  .large-9 {
+    width: 100%!important;
+  }
   </style>
   <div class="error-container">
-    <h1>We couldn’t find the page you’re looking for.</h1>
+    <h1>You are not authenticated to access this page.</h1>
     <h3>But guess what, you can still play with Handsontable below.</h3>
     <div id="example1" class="hot"></div>
-
     <script data-jsfiddle="example1">
       var container = document.getElementById('example1'),
         hot1;
 
       hot1 = new Handsontable(container, {
-        data: Handsontable.helper.createSpreadsheetData(10, 13),
-        width: 702,
+        data: Handsontable.helper.createSpreadsheetData(10, 12),
+        width: 648,
         colWidths: 54,
         readOnly: true,
         cell: [
@@ -62,22 +61,18 @@
           {row: 7, col: 7, className: "cell-dark"},
           {row: 8, col: 7, className: "cell-dark"},
 
-          // 4(2)
-          {row: 1, col: 11, className: "cell-dark"},
-          {row: 2, col: 11, className: "cell-dark"},
-          {row: 3, col: 11, className: "cell-dark"},
-          {row: 4, col: 11, className: "cell-dark"},
-          {row: 5, col: 11, className: "cell-dark"},
-          {row: 6, col: 11, className: "cell-dark"},
-          {row: 7, col: 11, className: "cell-dark"},
-          {row: 8, col: 11, className: "cell-dark"},
-
+          // 1
+          {row: 1, col: 10, className: "cell-dark"},
           {row: 2, col: 10, className: "cell-dark"},
+          {row: 3, col: 10, className: "cell-dark"},
+          {row: 4, col: 10, className: "cell-dark"},
           {row: 5, col: 10, className: "cell-dark"},
+          {row: 6, col: 10, className: "cell-dark"},
+          {row: 7, col: 10, className: "cell-dark"},
+          {row: 8, col: 10, className: "cell-dark"},
 
-          {row: 3, col: 9, className: "cell-dark"},
-          {row: 4, col: 9, className: "cell-dark"},
-          {row: 5, col: 9, className: "cell-dark"}
+          {row: 2, col: 9, className: "cell-dark"},
+          {row: 3, col: 9, className: "cell-dark"}
         ]
       });
 
