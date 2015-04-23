@@ -294,22 +294,48 @@ header {
       vertical-align: middle;
     }
   }
-  .graphael-container {
+  .part-left-container {
     margin: 2rem 0;
     & > div {
       width: 35%;
       float: left;
     }
-    #graphael-example {
+    &.callbacks-container {
+      margin-bottom: 0;
+    }
+    &.callbacks-container > div {
+      width: 50%;
+    }
+    & #example1_events {
+      height: 165px;
+      padding: 0.5rem;
+      overflow: auto;
+      font-size: 11px;
+      border: 1px solid #CCC;
+    }
+    & #graphael-example {
       text-align: center;
     }
-    .aggregation p {
+    & .aggregation p {
       font-size: 13px;
     }
   }
-  #example1_events {
-    width: 100%;
-    height: 8rem;
+  .clear-log {
+    margin-top: 0.5rem;
+    text-align: right;
+  }
+  & #hooksList {
+    padding: 0;
+    & li {
+      width: 33%;
+      float: left;
+      list-style: none;
+    }
+    & input[type="checkbox"] {
+      margin-right: 0.5rem;
+      position: relative;
+      top: 2px;
+    }
   }
   .error-container {
     margin-top: 4rem;

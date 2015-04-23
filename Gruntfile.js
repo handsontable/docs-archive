@@ -44,7 +44,7 @@ module.exports = function (grunt) {
           // temp fix for file using arrow function - waiting for jsdoc support
           '!' + HOT_SRC_PATH + '/src/plugins/contextMenuCopyPaste/contextMenuCopyPaste.js'
         ],
-        jsdoc: 'node_modules/jsdoc/jsdoc.js',
+        jsdoc: 'node_modules/.bin/' + (/^win/.test(process.platform) ? 'jsdoc.cmd' : 'jsdoc'),
         options: {
           verbose: true,
           destination: DOCS_PATH,

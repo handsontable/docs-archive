@@ -1,6 +1,14 @@
 <div class="static-content">
 
-  <div class="example-container clearfix">
+  <div class="index-list">
+    <p><strong>On this page:</strong></p>
+    <ul>
+      <li><a href="#callbacks">Callbacks</a></li>
+      <li><a href="#beforeKeyDown">beforeKeyDown callback</a></li>
+    </ul>
+  </div>
+
+  <div class="example-container clearfix" name="callbacks">
     <a href="https://github.com/handsontable/docs/edit/feature/master/tutorials/callbacks.html" class="edit-doc" target="_blank">
       Edit on GitHub
     </a>
@@ -8,155 +16,228 @@
       please open an <a href="https://github.com/handsontable/handsontable/issues" target="_blank">issue</a>.
       Note that some callbacks are unchecked on this page by default.
     </p>
-    <h3>Events log
-      <button onclick="$('#example1_events').empty()">
-        Clear
-      </button>
-    </h3>
-    <div id="example1_events"></div>
-    <p>Choose events to be logged:</p>
-    <ul class="tight" id="hooksList">
-      <li><label><input type="checkbox" id="check_select_all"> <strong>select all</strong></label></li>
-    </ul>
 
-    <div data-jsfiddle="example1">
+    <div data-jsfiddle="example1" class="part-left-container callbacks-container clearfix">
       <div id="example1" class="hot"></div>
+      <div id="example1_events"></div>
+    </div>
+    <div class="clear-log">
+      <button onclick="$('#example1_events').empty()" class="intext-btn">Clear log</button>
+    </div>
+    <p><strong>Choose events to be logged:</strong></p>
+    <ul class="tight clearfix" id="hooksList">
+      <li><label><input type="checkbox" id="check_select_all"><strong>select all</strong></label></li>
+    </ul>
+  </div>
+
+  <div class="codeLayout">
+    <div class="buttons">
+      <button class="jsFiddleLink" data-runfiddle="example1">
+        <i class="fa fa-jsfiddle"></i>
+        Edit in jsFiddle
+      </button>
+      <button class="dump" name="dump" data-dump="#example1" data-instance="hot"
+              title="Print current data source to console">
+        <i class="fa fa-terminal"></i>
+        Dump data to console
+      </button>
+    </div>
+    <script data-jsfiddle="example1">
+      var data = [
+          ['', 'Maserati', 'Mazda', 'Mercedes', 'Mini', 'Mitsubishi'],
+          ['2013', 0, 2941, 4303, 354, 5814],
+          ['2014', 3, 2905, 2867, 412, 5284],
+          ['2015', 4, 2517, 4822, 552, 6127],
+          ['2016', 2, 2422, 5399, 776, 4151]
+        ],
+        example1 = document.getElementById('example1'),
+        config,
+        $hooksList,
+        hooks,
+        hot;
+
+      config = {
+        data: data,
+        minRows: 5,
+        minCols: 6,
+        minSpareRows: 1,
+        autoWrapRow: true,
+        colHeaders: true,
+        contextMenu: true
+      };
+
+      $hooksList = $('#hooksList');
+      hooks = Handsontable.hooks.getRegistered();
+
+      hooks.forEach(function(hook) {
+        var checked = '';
+
+        if (hook !== 'modifyRowHeight' && hook !== 'modifyRow' && hook !== 'modifyCol' &&
+          hook !== 'afterRenderer' && hook !== 'beforeGetCellMeta' && hook !== 'afterGetCellMeta') {
+          checked = 'checked';
+
+        }
+        $hooksList.append('<li><label><input type="checkbox" ' + checked + ' id="check_' + hook + '"> ' + hook + '</label></li>');
+        config[hook] = function() {
+          log_events(hook, arguments);
+        }
+      });
+
+      var start = (new Date()).getTime();
+      var i = 0;
+      var timer;
+      var example1_events = document.getElementById("example1_events");
+
+      function log_events(event, data) {
+        if (document.getElementById('check_' + event).checked) {
+          var now = (new Date()).getTime(),
+            diff = now - start,
+            vals, str, div, text;
+
+          vals = [
+            i,
+              "@" + numeral(diff / 1000).format('0.000'),
+              "[" + event + "]"
+          ];
+
+          for (var d = 0; d < data.length; d++) {
+            try {
+              str = JSON.stringify(data[d]);
+            }
+            catch (e) {
+              str = data[d].toString(); // JSON.stringify breaks on circular reference to a HTML node
+            }
+
+            if (str === void 0) {
+              continue;
+            }
+
+            if (str.length > 20) {
+              str = Object.prototype.toString.call(data[d]);
+            }
+            if (d < data.length - 1) {
+              str += ',';
+            }
+            vals.push(str);
+          }
+
+          if (window.console) {
+            console.log(i,
+                "@" + numeral(diff / 1000).format('0.000'),
+                "[" + event + "]",
+              data);
+          }
+          div = document.createElement("DIV");
+          text = document.createTextNode(vals.join(" "));
+
+          div.appendChild(text);
+          example1_events.appendChild(div);
+          clearTimeout(timer);
+          timer = setTimeout(function() {
+            example1_events.scrollTop = example1_events.scrollHeight;
+          }, 10);
+
+          i++;
+        }
+      }
+
+      example1 = document.getElementById('example1');
+      hot = new Handsontable(example1,config);
+
+      $('#check_select_all').click(function () {
+        var state = this.checked;
+
+        $('input[type=checkbox]').each(function () {
+          if (state === true) {
+            if (this.id === 'check_modifyRow') {
+              return; //too much noise in the log
+            }
+          }
+          this.checked = state;
+        });
+      });
+
+      $('input[type=checkbox]').click(function () {
+        if (!this.checked) {
+          document.getElementById('check_select_all').checked = false;
+        }
+      });
+    </script>
+  </div>
+
+  <div class="example-container clearfix head-gap" name="beforeKeyDown">
+    <h3>beforeKeyDown callback</h3>
+    <p>The following demo uses <code>beforeKeyDown</code> callback to modify some key bindings:</p>
+    <ul>
+      <li>Pressing <kbd>DELETE</kbd> or <kbd>BACKSPACE</kbd> on a cell deletes the cell and shifts all cells beneath it
+        in the column up resulting in the cursor (which doesn't move) having the value previously beneath it,
+        now in the current cell.</li>
+      <li>Pressing <kbd>ENTER</kbd> in a cell (not changing the value) results in pushing all the cells in the column beneath
+        this cell down one row (including current cell) resulting in a blank cell under the cursor (which hasn't moved).</li>
+    </ul>
+    <div data-jsfiddle="example2">
+      <div id="example2" class="hot"></div>
     </div>
 
     <div class="codeLayout">
       <div class="buttons">
-        <button class="jsFiddleLink" data-runfiddle="example1">
+        <button class="jsFiddleLink" data-runfiddle="example2">
           <i class="fa fa-jsfiddle"></i>
           Edit in jsFiddle
         </button>
-        <button class="dump" name="dump" data-dump="#example1" data-instance="hot"
+        <button class="dump" name="dump" data-dump="#example2" data-instance="hot2"
                 title="Print current data source to console">
           <i class="fa fa-terminal"></i>
           Dump data to console
         </button>
       </div>
-      <script data-jsfiddle="example1">
+      <script data-jsfiddle="example2">
         var data = [
-            ['', 'Maserati', 'Mazda', 'Mercedes', 'Mini', 'Mitsubishi'],
-            ['2009', 0, 2941, 4303, 354, 5814],
-            ['2010', 3, 2905, 2867, 412, 5284],
-            ['2011', 4, 2517, 4822, 552, 6127],
-            ['2012', 2, 2422, 5399, 776, 4151]
+            ['Nissan', 2014, 'black', 'black'],
+            ['Nissan', 2015, 'blue', 'blue'],
+            ['Chrysler', 2016, 'yellow', 'black'],
+            ['Volvo', 2017, 'yellow', 'gray']
           ],
-          example1 = document.getElementById('example1'),
-          config,
-          $hooksList,
-          hooks,
+          container = document.getElementById("example2"),
+          lastChange = null,
           hot;
 
-        config = {
+        hot = new Handsontable(container, {
           data: data,
-          minRows: 5,
-          minCols: 6,
-          minSpareRows: 1,
-          autoWrapRow: true,
           colHeaders: true,
-          contextMenu: true
-        };
-
-        $hooksList = $('#hooksList');
-        hooks = Handsontable.hooks.getRegistered();
-
-        hooks.forEach(function(hook) {
-          var checked = '';
-
-          if (hook !== 'modifyRowHeight' && hook !== 'modifyRow' && hook !== 'modifyCol' &&
-            hook !== 'afterRenderer' && hook !== 'beforeGetCellMeta' && hook !== 'afterGetCellMeta') {
-            checked = 'checked';
-
-          }
-          $hooksList.append('<li><label><input type="checkbox" ' + checked + ' id="check_' + hook + '"> ' + hook + '</label></li>');
-          config[hook] = function() {
-            log_events(hook, arguments);
+          rowHeaders: true,
+          minSpareRows: 1,
+          beforeChange: function (changes, source) {
+            lastChange = changes;
           }
         });
 
-        var start = (new Date()).getTime();
-        var i = 0;
-        var timer;
-        var example1_events = document.getElementById("example1_events");
+        hot.updateSettings({
+            beforeKeyDown: function (e) {
+              var selection = hot.getSelected();
 
-        function log_events(event, data) {
-          if (document.getElementById('check_' + event).checked) {
-            var now = (new Date()).getTime(),
-              diff = now - start,
-              vals, str, div, text;
-
-            vals = [
-              i,
-                "@" + numeral(diff / 1000).format('0.000'),
-                "[" + event + "]"
-            ];
-
-            for (var d = 0; d < data.length; d++) {
-              try {
-                str = JSON.stringify(data[d]);
+              // BACKSPACE or DELETE
+              if (e.keyCode === 8 || e.keyCode === 46) {
+                e.stopImmediatePropagation();
+                // remove data at cell, shift up
+                hot.spliceCol(selection[1], selection[0], 1);
+                e.preventDefault();
               }
-              catch (e) {
-                str = data[d].toString(); // JSON.stringify breaks on circular reference to a HTML node
+              // ENTER
+              else if (e.keyCode === 13) {
+                // if last change affected a single cell and did not change it's values
+                if (lastChange && lastChange.length === 1 && lastChange[0][2] == lastChange[0][3]) {
+                  e.stopImmediatePropagation();
+                  hot.spliceCol(selection[1], selection[0], 0, ''); // add new cell
+                  hot.selectCell(selection[0], selection[1]); // select new cell
+                }
               }
 
-              if (str === void 0) {
-                continue;
-              }
-
-              if (str.length > 20) {
-                str = Object.prototype.toString.call(data[d]);
-              }
-              if (d < data.length - 1) {
-                str += ',';
-              }
-              vals.push(str);
+              lastChange = null;
             }
-
-            if (window.console) {
-              console.log(i,
-                  "@" + numeral(diff / 1000).format('0.000'),
-                  "[" + event + "]",
-                data);
-            }
-            div = document.createElement("DIV");
-            text = document.createTextNode(vals.join(" "));
-
-            div.appendChild(text);
-            example1_events.appendChild(div);
-            clearTimeout(timer);
-            timer = setTimeout(function() {
-              example1_events.scrollTop = example1_events.scrollHeight;
-            }, 10);
-
-            i++;
           }
-        }
-
-        example1 = document.getElementById('example1');
-        hot = new Handsontable(example1,config);
-
-        $('#check_select_all').click(function () {
-          var state = this.checked;
-
-          $('input[type=checkbox]').each(function () {
-            if (state === true) {
-              if (this.id === 'check_modifyRow') {
-                return; //too much noise in the log
-              }
-            }
-            this.checked = state;
-          });
-        });
-
-        $('input[type=checkbox]').click(function () {
-          if (!this.checked) {
-            document.getElementById('check_select_all').checked = false;
-          }
-        });
+        );
       </script>
     </div>
   </div>
 </div>
-
