@@ -7,7 +7,7 @@
   <?js } ?>
 
   <?js if (example.code.toString().indexOf('<pre>') === -1) { ?>
-    <pre class="prettyprint"><code><?js= example.code ?></code></pre>
+    <pre class="prettyprint"><code class="js"><?js= example.code ?></code></pre>
   <?js } else { ?>
     <?js= example.code.replace(/<pre>/g, '<pre class="prettyprint">') ?>
   <?js } ?>

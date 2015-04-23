@@ -46,6 +46,7 @@
   <?js } ?>
 
   <?js if (data.params && params.length) { ?>
+    <h5>Parameters:</h5>
     <?js= this.partial('params.tmpl', params) ?>
   <?js } ?>
 
@@ -93,9 +94,11 @@
     <?js } ?>
   <?js } ?>
 
-  <?js if (data.returns && returns.length) { ?>
-  <h5>Returns:</h5>
-  <?js= self.partial('returns.tmpl', data.returns) ?>
+  <?js if (data.returns && returns.length === 1 ) { ?>
+    <h5>Returns: <?js= self.partial('returns.tmpl', data.returns) ?></h5>
+  <?js } else if (data.returns && returns.length > 1 ) { ?>
+    <h5>Returns:</h5>
+    <?js= self.partial('returns.tmpl', data.returns) ?>
   <?js } ?>
 
   <?js if (data.examples && examples.length) { ?>

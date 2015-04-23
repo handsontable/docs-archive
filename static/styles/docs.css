@@ -6,6 +6,10 @@
   width: 270px;
   height: 1px;
 }
+.tag-since,
+.tag-default {
+  margin-left: 0;
+}
 .navigation {
   width: 270px;
   min-width: 270px;
@@ -225,6 +229,14 @@
   margin-left: 3px;
   background-color: transparent!important;
   color: gray!important;
+}
+.main h5 span.returnType {
+  margin-left: 3px;
+  background-color: transparent!important;
+  color: gray!important;
+}
+.main h5 .return-description {
+  font-weight: normal;
 }
 .main span.static {
   display: inline-block;
@@ -867,8 +879,8 @@ nav,
 }
 .main .hot .handsontable table,
 .hot .handsontable table {
-  -webkit-box-shadow: 0 1px 0 #cccccc;
-  box-shadow: 0 1px 0 #cccccc;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 .main .hot thead .htGroupIndicatorContainer,
 .hot thead .htGroupIndicatorContainer {

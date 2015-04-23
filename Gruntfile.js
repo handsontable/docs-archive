@@ -21,7 +21,7 @@ module.exports = function (grunt) {
   var
     DOCS_PATH = 'generated',
     HOT_SRC_PATH = 'src/handsontable',
-    HOT_BRANCH = 'master',
+    HOT_BRANCH = 'develop',
     HOT_REPO = 'https://github.com/handsontable/handsontable.git',
     querystring = require('querystring');
 
@@ -40,10 +40,12 @@ module.exports = function (grunt) {
           '!' + HOT_SRC_PATH + '/src/**/*.spec.js',
           '!' + HOT_SRC_PATH + '/src/3rdparty/walkontable/test/**/*.js',
           '!' + HOT_SRC_PATH + '/src/intro.js',
-          '!' + HOT_SRC_PATH + '/src/outro.js'
+          '!' + HOT_SRC_PATH + '/src/outro.js',
+          // temp fix for file using arrow function - waiting for jsdoc support
+          '!' + HOT_SRC_PATH + '/src/plugins/contextMenuCopyPaste/contextMenuCopyPaste.js'
         ],
+        jsdoc: 'node_modules/jsdoc/jsdoc.js',
         options: {
-          jsdoc: 'node_modules/grunt-jsdoc/node_modules/jsdoc/jsdoc.js',
           verbose: true,
           destination: DOCS_PATH,
           configure: 'conf.json',

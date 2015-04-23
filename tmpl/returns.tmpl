@@ -43,7 +43,7 @@ returns.forEach(function (ret, i) {
 });
 ?>
 
-<?js if (hasType) { ?>
+<?js if (false) { ?>
   <table class="params">
     <thead>
       <tr>
@@ -83,7 +83,14 @@ returns.forEach(function (ret, i) {
     </tbody>
   </table>
 <?js } else { ?>
-  <?js if (returns[0].description) { ?>
-    <?js= returns[0].description ?>
+  <?js if (returns[0].type) { ?>
+    <span class="type-signature returnType">{<?js= returns[0].type.names.join('|') ?>}</span>
+    <span class="return-description"><?js= returns[0].description ?></span>
+  <?js } else { ?>
+    <span class="type-signature returnType">{undefined}</span>
+
+    <?js if (returns[0].description) { ?>
+      <span class="return-description"><?js= returns[0].description ?></span>
+    <?js } ?>
   <?js } ?>
 <?js } ?>
