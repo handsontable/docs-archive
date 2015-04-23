@@ -33,7 +33,6 @@
   <script src="/bower_components/moment/moment.js" data-jsfiddle="common"></script>
   <script src="/bower_components/pikaday/pikaday.js" data-jsfiddle="common"></script>
 
-  <!--<link data-jsfiddle="common" rel="stylesheet" media="screen" href="styles/samples.css">-->
   <link type="text/css" rel="stylesheet" href="/bower_components/pikaday/css/pikaday.css" data-jsfiddle="common">
   <link type="text/css" rel="stylesheet" href="/bower_components/highlightjs/styles/github.css">
   <link type="text/css" rel="stylesheet" href="/scripts/foundation/normalize.css">
@@ -45,11 +44,12 @@
   <link type="text/css" rel="stylesheet"
         href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700);">
 
+  <script>
   <?js if (env.conf.templates) { ?>
-    <script>
       var config = <?js= JSON.stringify(env.conf.templates) ?>;
-    </script>
   <?js } ?>
+      var hotVersion = "<?js= env.opts.query.version ?>";
+  </script>
 
   <?js if (env.conf.templates.googleAnalytics) { ?>
     <script type="text/javascript">

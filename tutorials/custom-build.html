@@ -1,0 +1,85 @@
+<div class="static-content">
+
+  <div class="index-list">
+    <p><strong>On this page:</strong></p>
+    <ul>
+      <li><a href="#building">Building your own Handsontable</a></li>
+      <li><a href="#tasks">Grunt tasks</a></li>
+      <li><a href="#running">Running your first build</a></li>
+      <li><a href="#customizing">Creating a custom package</a></li>
+    </ul>
+  </div>
+
+  <div class="example-container clearfix" name="building">
+    <a href="https://github.com/handsontable/docs/edit/feature/master/tutorials/custom-build.html" class="edit-doc" target="_blank">
+      Edit on GitHub
+    </a>
+
+    <p>The build process is done using <a href="http://gruntjs.com/" target="_blank">Grunt</a> and bunch of its
+      tasks that are defined in
+      <a href="https://github.com/handsontable/handsontable/blob/master/Gruntfile.js" target="_blank">Gruntfile.js</a>.
+    </p>
+    <p>During the build process, the source files located in directory <code>src/*</code> are transformed into output files:</p>
+    <ul>
+      <li><code>./dist/handsontable.js</code></li>
+      <li><code>./dist/handsontable.css</code></li>
+      <li><code>./dist/handsontable.full.js</code></li>
+      <li><code>./dist/handsontable.full.css</code> (more info about dist packages
+        <a href="https://github.com/handsontable/handsontable/tree/master/dist" target="_blank">here</a>)
+      </li>
+      <li><code>./dist/handsontable.full.min.js</code></li>
+      <li><code>./dist/handsontable.full.min.css</code></li>
+    </ul>
+    <p>It is advised that you never modify the above files but rather make changes in the <code>src/</code>
+      directory and then run a proper build. This is especially important if you want to contribute
+      your changes back to Handsontable using a pull request.</p>
+  </div>
+
+  <div class="example-container clearfix" name="tasks">
+    <h3>Grunt tasks</h3>
+    <p>Currently, the following tasks are available for building Handsontable:</p>
+    <ul>
+      <li><code>grunt</code> - runs a single build</li>
+      <li><code>grunt jshint</code> - checks code quality</li>
+      <li><code>grunt watch</code> - watches for changes in source directory and runs a build when a change is observed
+      </li>
+      <li><code>grunt --force default watch</code> - runs a single build and then watches for changes</li>
+      <li><code>grunt test</code> - runs a single build followed by Jasmine test suite executed in PhantomJS. Note that
+        there is a known issue when running PhantomJS on Node.js 0.10.0. If you experience this problem, try to
+        downgrade to Node.js 0.8.22, delete &quot;node_modules&quot; directory and call &quot;npm install&quot; again.
+      </li>
+    </ul>
+    <p>You can create your own tasks by editing <code>Gruntfile.js</code></p>
+  </div>
+  <div class="example-container clearfix" name="running">
+    <h3>Running your first build</h3>
+    <p>To run your own build, follow the below steps:</p>
+    <ol>
+      <li>Install Node.js (available for Windows, Mac and Linux). This will also install NPM (Node Package Manager) that
+        handles all the dependencies. Handsontable was tested with Node.js 0.8.20
+      </li>
+      <li>Clone Handsontable repository on your local disk and go to the directory where you cloned it.</li>
+      <li>Install Grunt CLI as a global NPM module (<code>npm install -g grunt-cli</code>). More details about that
+        you can find on <a href="http://gruntjs.com/getting-started" target="_blank">Grunt - Getting Started</a>.</li>
+      <li>Run <code>npm install</code> to download all the dependencies defined in <code>package.json</code>. The
+        dependencies will be downloaded into a new directory <code>node_modules</code>, that is ignored by Git.
+      </li>
+      <li><strong>Run <code>grunt</code> to make your first build!</strong></li>
+    </ol>
+    <p>If all is working correctly, you should see something like this:</p>
+    <img src="images/running-1.jpg" alt="Running your first build" />
+  </div>
+  <div class="example-container clearfix" name="customizing">
+    <h3>Creating a custom package</h3>
+    <p>For more advanced users we prepared a tool called <code>hot-builder</code>.
+      By this tool you can customize Handsontable by excluding or including plugins. To install hot-builder globally run:</p>
+    <p><code>npm install hot-builder -g</code></p>
+    <p>Then to build Handsontable run:</p>
+    <p><code>hot-builder build --output-dir hot-dist</code></p>
+    <p>Select all necessary plugins in your terminal and press Enter.
+      If it works correctly, you should see something like this:</p>
+    <p><img src="images/customizing-1.jpg" alt="Creating a custom package" /></p>
+    <p><img src="images/customizing-2.jpg" alt="Creating a custom package" /></p>
+    <p>For further details, check out <a href="https://github.com/handsontable/hot-builder" target="_blank">the project page</a>.</p>
+  </div>
+</div>
