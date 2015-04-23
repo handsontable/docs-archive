@@ -29,7 +29,8 @@ module.exports = function (grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     clean: {
-      dist: [DOCS_PATH, HOT_SRC_PATH, 'bower_components', 'node_modules']
+      dist: [DOCS_PATH],
+      release: [DOCS_PATH, HOT_SRC_PATH, 'bower_components', 'node_modules']
     },
 
     jsdoc: {

@@ -23,7 +23,7 @@ module.exports = function (shipit) {
   shipit.on('published', function() {
     var current = shipit.config.deployTo + '/current';
 
-    shipit.remote('cd ' + current + ' && grunt clean').then(function() {
+    shipit.remote('cd ' + current + ' && grunt clean:release').then(function() {
       return shipit.remote('cd ' + current + ' && npm install');
 
     }).then(function() {
