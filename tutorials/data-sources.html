@@ -3,12 +3,12 @@
   <div class="index-list">
     <p>This page shows how to use Handsontable with various data sources:</p>
     <ul>
-      <li><a href="#array">Array data source</a></li>
-      <li><a href="#array-hidden">Array data source with hidden columns</a></li>
-      <li><a href="#object">Object data source</a></li>
-      <li><a href="#nested">Object data source with column mapping (nested)</a></li>
-      <li><a href="#dataschema">Object data source with custom data schema</a></li>
-      <li><a href="#propertyschema">Function data source and schema</a></li>
+      <li><a href="#page-array">Array data source</a></li>
+      <li><a href="#page-array-hidden">Array data source with hidden columns</a></li>
+      <li><a href="#page-object">Object data source</a></li>
+      <li><a href="#page-nested">Object data source with column mapping (nested)</a></li>
+      <li><a href="#page-data-schema">Object data source with custom data schema</a></li>
+      <li><a href="#page-property-schema">Function data source and schema</a></li>
     </ul>
     <p><strong>Please take note that Handsontable will change the original data source.</strong></p>
   </div>
@@ -17,7 +17,7 @@
     <a href="https://github.com/handsontable/docs/edit/master/tutorials/data-sources.html" class="edit-doc" target="_blank">
       Edit on GitHub
     </a>
-    <h3 id="array">Array data source</h3>
+    <h3 id="page-array">Array data source</h3>
     <p>The most popular way of binding data with Handsontable is to use <strong>array of arrays</strong>.</p>
 
     <div data-jsfiddle="example1">
@@ -61,7 +61,7 @@
   </div>
 
   <div class="example-container clearfix head-gap" name="array-hidden">
-    <h3 id="array-hidden">Array data source with hidden columns</h3>
+    <h3 id="page-array-hidden">Array data source with hidden columns</h3>
     <p>Let's say, you want the same data source, but without the <strong>Kia</strong> column:</p>
 
     <div data-jsfiddle="example2">
@@ -111,7 +111,7 @@
   </div>
 
   <div class="example-container clearfix head-gap" name="object">
-    <h3 id="object">Object data source</h3>
+    <h3 id="page-object">Object data source</h3>
     <p>You can use <strong>array of objects</strong> as a data source.</p>
 
     <div data-jsfiddle="example3">
@@ -152,7 +152,7 @@
   </div>
 
   <div class="example-container clearfix head-gap" name="nested">
-    <h3 id="nested">Object data source with column mapping (nested)</h3>
+    <h3 id="page-nested">Object data source with column mapping (nested)</h3>
     <p>Some people have nested objects. They can also be used at the data source with a little bit of column
       mapping. The mapping is done using the <strong>columns</strong> option.</p>
 
@@ -198,7 +198,7 @@
   </div>
 
   <div class="example-container clearfix head-gap" name="dataschema">
-    <h3 id="dataschema">Object data source with custom data schema</h3>
+    <h3 id="page-data-schema">Object data source with custom data schema</h3>
     <p>When you use object data binding, Handsontable needs to know the data structure to create when you add a new
       row. If your data source contains at least one row, Handsontable will figure out the data structure based on the
       first row.</p>
@@ -246,7 +246,7 @@
   </div>
 
   <div class="example-container clearfix head-gap" name="propertyschema">
-    <h3 id="propertyschema">Function data source and schema</h3>
+    <h3 id="page-property-schema">Function data source and schema</h3>
     <p>
       If your <strong>dataSchema</strong> is actually a constructor of an
       object that doesn't directly expose its members, like a Backbone.js

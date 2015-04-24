@@ -26,10 +26,12 @@
         </button>
       </div>
       <script data-jsfiddle="example1">
-        var myData = Handsontable.helper.createSpreadsheetData(200, 100);
-        var container = document.getElementById('example1');
+        var
+          myData = Handsontable.helper.createSpreadsheetData(200, 100),
+          container = document.getElementById('example1'),
+          hot;
 
-        var ht = new Handsontable(container, {
+        hot = new Handsontable(container, {
           data: myData,
           rowHeaders: true,
           colHeaders: true,
@@ -37,7 +39,6 @@
           contextMenu: true,
           manualColumnFreeze: true
         });
-
       </script>
     </div>
   </div>

@@ -21,9 +21,9 @@
       the UI control. Pikaday uses <a href="https://github.com/moment/moment" target="_blank">Moment.js</a> as a date formatter.
     <p>Note that Date cell requires additional files in your <code>&lt;head&gt;</code> :
     <ul>
-      <li><code>demo/js/moment/moment.js</code></li>
-      <li><code>demo/js/pikaday/pikaday.js</code></li>
-      <li><code>demo/js/pikaday/css/pikaday.css</code></li>
+      <li><code>/dist/moment/moment.js</code></li>
+      <li><code>/dist/pikaday/pikaday.js</code></li>
+      <li><code>/dist/pikaday/css/pikaday.css</code></li>
     </ul>
     <p>All data entered to the data-typed cells are validated agains the default date format (<code><a
       href="http://momentjs.com/docs/#/parsing/" target="_blank"
@@ -48,7 +48,8 @@
         </button>
       </div>
       <script data-jsfiddle="example1">
-        var container = document.getElementById('example1'),
+        var
+          container = document.getElementById('example1'),
           hot;
 
         hot = new Handsontable(container, {
