@@ -3,23 +3,22 @@
   <div class="index-list">
     <p>On this page:</p>
     <ul>
-      <li><a href="#options">Introduction to cell options</a></li>
-      <li><a href="#config">How does the Cascading Configuration work?</a></li>
-      <li><a href="#cascading">The Cascading Configuration model</a></li>
+      <li><a href="#page-options">Introduction to cell options</a></li>
+      <li><a href="#page-config">How does the Cascading Configuration work?</a></li>
+      <li><a href="#page-cascading">The Cascading Configuration model</a></li>
     </ul>
   </div>
 
   <div class="example-container clearfix">
-    <a href="https://github.com/handsontable/docs/edit/feature/master/tutorials/setting-options.html" class="edit-doc" target="_blank">
+    <a href="https://github.com/handsontable/docs/edit/master/tutorials/setting-options.html" class="edit-doc" target="_blank">
       Edit on GitHub
     </a>
-    <h3 id="options">Introduction to cell options</h3>
+    <h3 id="page-options">Introduction to cell options</h3>
     <p>Any constructor or column option may be overwritten for a particular cell (row/column combination),
       using <code>cell</code> array passed to the Handsontable constructor. Example:</p>
     <pre>
       <code>
-        var exampleContainer = document.getElementById('example');
-        var hot = new Handsontable(exampleContainer, {
+        var hot = new Handsontable(document.getElementById('example'), {
           cell: [
             {row: 0, col: 0, readOnly: true}
           ]
@@ -29,13 +28,14 @@
     <p>Or using cells function property to the Handsontable constructor. Example:</p>
     <pre>
       <code>
-        var exampleContainer = document.getElementById('example');
-        var hot = new Handsontable(exampleContainer, {
+        var hot = new Handsontable(document.getElementById('example'), {
           cells: function (row, col, prop) {
             var cellProperties = {}
-            if(row === 0 && col === 0) {
+
+            if (row === 0 &#x26;&#x26; col === 0) {
                 cellProperties.readOnly = true;
             }
+
             return cellProperties;
           }
         })
@@ -44,14 +44,13 @@
   </div>
 
   <div class="example-container clearfix head-gap">
-    <h3 id="config">How does the Cascading Configuration work?</h3>
+    <h3 id="page-config">How does the Cascading Configuration work?</h3>
     <p>Since Handsontable 0.9 we use Cascading Configuration, which is fast way to provide configuration
       options for the whole table, its columns and particular cells.</p>
     <p>Consider the following example:</p>
     <pre>
       <code>
-        var exampleContainer = document.getElementById('example');
-        var hot = new Handsontable(exampleContainer, {
+        var hot = new Handsontable(document.getElementById('example'), {
           readOnly: true,
           columns: [
             {readOnly: false},
@@ -60,9 +59,11 @@
           ],
           cells: function (row, col, prop) {
             var cellProperties = {}
-            if(row === 0 && col === 0) {
+
+            if (row === 0 &#x26;&#x26; col === 0) {
               cellProperties.readOnly = true;
             }
+
             return cellProperties;
           }
         });
@@ -73,25 +74,36 @@
   </div>
 
   <div class="example-container clearfix head-gap">
-    <h3 id="cascading">The cascading configuration model</h3>
+    <h3 id="page-cascading">The cascading configuration model</h3>
     <p>The Cascading Configuration model is based on prototypal inheritance. It is much faster and memory
       efficient compared to the previous model that used jQuery extend. See it yourself:
       <a href="http://jsperf.com/extending-settings" target="_blank">http://jsperf.com/extending-settings</a></p>
     <ul>
       <li>
         <p><strong>Constructor</strong></p>
-        <p>Configuration options that are provided using first-level<br/>
-          <code>Handsontable(container, {option: "value"})</code> and <code>updateSettings</code> method.</p>
+        <p>Configuration options that are provided using first-level</p>
+        <pre><code class="lang-javascript">new Handsontable(document.getElementById('example'), {
+  option: 'value'
+});</code></pre>
+        <p>and <code>updateSettings</code> method.</p>
       </li>
       <li>
         <p><strong>Columns</strong></p>
-        <p>Configuration options that are provided using second-level object <br />
-          <code>Handsontable(container, {columns: {option: "value"}]})</code></p>
+        <p>Configuration options that are provided using second-level object</p>
+        <pre><code class="lang-javascript">new Handsontable(document.getElementById('example'), {
+  columns: {
+    option: 'value'
+  }
+});</code></pre>
       </li>
       <li>
         <p><strong>Cells</strong></p>
-        <p>Configuration options that are provided using second-level function <br />
-          <code>Handsontable(container, {cells: function: (row, col, prop){ /* ... */}})</code></p>
+        <p>Configuration options that are provided using second-level function</p>
+<pre><code class="lang-javascript">new Handsontable(document.getElementById('example'), {
+  cells: function(row, col, prop) {
+
+  }
+});</code></pre>
       </li>
     </ul>
   </div>
