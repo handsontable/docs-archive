@@ -44,9 +44,7 @@
       <li><code>grunt watch</code> - watches for changes in source directory and runs a build when a change is observed
       </li>
       <li><code>grunt --force default watch</code> - runs a single build and then watches for changes</li>
-      <li><code>grunt test</code> - runs a single build followed by Jasmine test suite executed in PhantomJS. Note that
-        there is a known issue when running PhantomJS on Node.js 0.10.0. If you experience this problem, try to
-        downgrade to Node.js 0.8.22, delete &quot;node_modules&quot; directory and call &quot;npm install&quot; again.
+      <li><code>grunt test</code> - runs a single build followed by Jasmine test suite executed in PhantomJS.
       </li>
     </ul>
     <p>You can create your own tasks by editing <code>Gruntfile.js</code></p>
@@ -56,7 +54,7 @@
     <p>To run your own build, follow the below steps:</p>
     <ol>
       <li>Install Node.js (available for Windows, Mac and Linux). This will also install NPM (Node Package Manager) that
-        handles all the dependencies. Handsontable was tested with Node.js 0.8.20
+        handles all the dependencies. Handsontable was tested with Node.js >=0.10 and npm >=1.4
       </li>
       <li>Clone Handsontable repository on your local disk and go to the directory where you cloned it.</li>
       <li>Install Grunt CLI as a global NPM module (<code>npm install -g grunt-cli</code>). More details about that
@@ -67,7 +65,7 @@
       <li><strong>Run <code>grunt</code> to make your first build!</strong></li>
     </ol>
     <p>If all is working correctly, you should see something like this:</p>
-    <img src="images/running-1.jpg" alt="Running your first build" />
+    <img src="/images/running-1.jpg" alt="Running your first build" />
   </div>
   <div class="example-container clearfix" name="customizing">
     <h3>Creating a custom package</h3>
@@ -78,8 +76,8 @@
     <p><code>hot-builder build --output-dir hot-dist</code></p>
     <p>Select all necessary plugins in your terminal and press Enter.
       If it works correctly, you should see something like this:</p>
-    <p><img src="images/customizing-1.jpg" alt="Creating a custom package" /></p>
-    <p><img src="images/customizing-2.jpg" alt="Creating a custom package" /></p>
+    <p><img src="/images/customizing-1.jpg" alt="Creating a custom package" /></p>
+    <p><img src="/images/customizing-2.jpg" alt="Creating a custom package" /></p>
     <p>For further details, check out <a href="https://github.com/handsontable/hot-builder" target="_blank">the project page</a>.</p>
   </div>
 </div>
