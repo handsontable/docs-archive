@@ -1,7 +1,7 @@
 <div class="static-content">
 
   <div class="example-container clearfix">
-    <a href="https://github.com/handsontable/docs/edit/feature/master/tutorials/quick-start.html" class="edit-doc" target="_blank">
+    <a href="https://github.com/handsontable/docs/edit/master/tutorials/quick-start.html" class="edit-doc" target="_blank">
       Edit on GitHub
     </a>
     <div data-alert class="alert-box secondary">
@@ -102,16 +102,14 @@
     </p>
     <p>Then pass a reference to that div and load some data if you wish:</p>
     <pre>
-      <code class="javascript">
-        &lt;script&gt;
-          var data = [
-            ["", "Ford", "Volvo", "Toyota", "Honda"],
-            ["2014", 10, 11, 12, 13],
-            ["2015", 20, 11, 14, 13],
-            ["2016", 30, 15, 12, 13]
-          ];
+      <code class="javascript">var data = [
+  ["", "Ford", "Volvo", "Toyota", "Honda"],
+  ["2014", 10, 11, 12, 13],
+  ["2015", 20, 11, 14, 13],
+  ["2016", 30, 15, 12, 13]
+];
 
-var container = ;
+var container = document.getElementById('example');
 var hot = new Handsontable(container, {
   data: data,
   minSpareRows: 1,
