@@ -37,8 +37,8 @@
           "load-and-save": {
             "title": "Load and save"
           },
-          "options": {
-            "title": "Options"
+          "setting-options": {
+            "title": "Setting options"
           },
           "callbacks": {
             "title": "Callbacks"
