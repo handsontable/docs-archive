@@ -6,44 +6,45 @@
     </a>
     <h2 id="cell-options">Cell options</h2>
     <p>Any constructor or column option may be overwritten for a particular cell (row/column combination), using <code>cell</code> array passed to the Handsontable constructor. Example:</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> exampleContainer = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'example'</span>);
-  <span class="hljs-keyword">var</span> hot = <span class="hljs-keyword">new</span> Handsontable(exampleContainer, {
-  cell: [
-  {row: <span class="hljs-number">0</span>, col: <span class="hljs-number">0</span>, readOnly: <span class="hljs-literal">true</span>}
-  ]
-  });
+<pre><code class="lang-javascript">var hot = new Handsontable(document.getElementById(&#x27;example&#x27;), {
+ cell: [
+  {row: 0, col: 0, readOnly: true}
+ ]
+});
 </code></pre>
     <p>Or using <code>cells</code> function property to the Handsontable constructor. Example:</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> exampleContainer = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'example'</span>);
-  <span class="hljs-keyword">var</span> hot = <span class="hljs-keyword">new</span> Handsontable(exampleContainer, {
-  cells: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(row, col, prop)</span> </span>{
-  <span class="hljs-keyword">var</span> cellProperties = {}
-  <span class="hljs-keyword">if</span>(row === <span class="hljs-number">0</span> &amp;&amp; col === <span class="hljs-number">0</span>) {
-  cellProperties.readOnly = <span class="hljs-literal">true</span>;
+<pre><code class="lang-javascript">var hot = new Handsontable(document.getElementById(&#x27;example&#x27;), {
+  cells: function(row, col, prop) {
+    var cellProperties = {}
+
+    if (row === 0 &#x26;&#x26; col === 0) {
+      cellProperties.readOnly = true;
+    }
+
+    return cellProperties;
   }
-  <span class="hljs-keyword">return</span> cellProperties;
-  }
-  })
+});
 </code></pre>
     <h2 id="how-does-cascading-configuration-work">How does cascading configuration work</h2>
     <p>Handsontable 0.9 and newer is using <em>Cascading Configuration</em>, which is fast way to provide configuration options for whole table, its columns and particular cells.</p>
     <p>Consider the following example:</p>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> exampleContainer = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'example'</span>);
-  <span class="hljs-keyword">var</span> hot = <span class="hljs-keyword">new</span> Handsontable(exampleContainer, {
-  readOnly: <span class="hljs-literal">true</span>,
+<pre><code class="lang-js">var hot = new Handsontable(document.getElementById(&#x27;example&#x27;), {
+  readOnly: true,
   columns: [
-  {readOnly: <span class="hljs-literal">false</span>},
-  {},
-  {}
+    {readOnly: false},
+    {},
+    {}
   ],
-  cells: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(row, col, prop)</span> </span>{
-  <span class="hljs-keyword">var</span> cellProperties = {}
-  <span class="hljs-keyword">if</span>(row === <span class="hljs-number">0</span> &amp;&amp; col === <span class="hljs-number">0</span>) {
-  cellProperties.readOnly = <span class="hljs-literal">true</span>;
+  cells: function(row, col, prop) {
+    var cellProperties = {}
+
+    if (row === 0 &#x26;&#x26; col === 0) {
+      cellProperties.readOnly = true;
+    }
+
+    return cellProperties;
   }
-  <span class="hljs-keyword">return</span> cellProperties;
-  }
-  });
+});
 </code></pre>
     <p>The above notation will result in all TDs being <em>read only</em>, except for first column TDs which will be <em>editable</em>, except for the TD in top left corner which will still be <em>read only</em>.</p>
     <h3 id="the-cascading-configuration-model">The Cascading Configuration model</h3>

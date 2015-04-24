@@ -90,29 +90,25 @@
       <li><code>Handsontable.NumericValidator</code></li>
     </ul>
     <p>so instead of writing</p>
-    <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> container = <span class="hljs-built_in">document</span>.getElementById(<span
-      class="hljs-string">'container'</span>);
-      <span class="hljs-keyword">var</span> hot = <span class="hljs-keyword">new</span> Handsontable(container, {
-      columns: [
-      {
+    <pre><code class="lang-javascript">var container = document.getElementById('container');
+var hot = new Handsontable(container, {
+  columns: [
+    {
       renderer: Handsontable.NumericRenderer,
       editor: Handsontable.editors.TextEditor,
       validator: Handsontable.NumericValidator
-      }
-      ]
-      })
-    </code></pre>
+    }
+  ]
+});</code></pre>
     <p>you can simply write</p>
-    <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> container = <span class="hljs-built_in">document</span>.getElementById(<span
-      class="hljs-string">'container'</span>);
-      <span class="hljs-keyword">var</span> hot = <span class="hljs-keyword">new</span> Handsontable(container, {
-      columns: [
-      {
-      type: <span class="hljs-string">'numeric'</span>
-      }
-      ]
-      })
-    </code></pre>
+    <pre><code class="lang-javascript">var container = document.getElementById('container');
+var hot = new Handsontable(container, {
+  columns: [
+    {
+      type: 'numeric'
+    }
+  ]
+});</code></pre>
     <p>When Handsontable encounters a cell with <code>type</code> option defined, it checks to which cell functions this
       type refers and use them.</p>
     <h3 id="native-types">Native types</h3>
@@ -132,106 +128,92 @@
     <h3 id="precedence">Precedence</h3>
     <p>It is possible to define the <code>type</code> option together with options such as <code>renderer</code>, <code>editor</code>
       or <code>validator</code>. Lets look at this example:</p>
-    <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> container = <span class="hljs-built_in">document</span>.getElementById(<span
-      class="hljs-string">'container'</span>);
-      <span class="hljs-keyword">var</span> hot = <span class="hljs-keyword">new</span> Handsontable(container, {
-      columns: [
-      {
-      type: <span class="hljs-string">'numeric'</span>,
-      validator: customValidator <span class="hljs-comment">//validator function defined elsewhere</span>
-      }
-      ]
-      })
-    </code></pre>
+    <pre><code class="lang-javascript">var container = document.getElementById('container');
+var hot = new Handsontable(container, {
+  columns: [
+  {
+    type: 'numeric',
+    validator: customValidator // validator function defined elsewhere
+  }
+]
+});</code></pre>
     <p>We defined the <code>type</code> for all cells in a column to be <code>numeric</code>. Besides that, we also defined
       a validator function directly. In Handsontable, cell functions defined directly always take precedence over functions
       associated with cell type, so the above configuration is equivalent to:</p>
-    <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> container = <span class="hljs-built_in">document</span>.getElementById(<span
-      class="hljs-string">'container'</span>);
-      <span class="hljs-keyword">var</span> hot = <span class="hljs-keyword">new</span> Handsontable(container, {
-      columns: [
-      {
+    <pre><code class="lang-javascript">var container = document.getElementById('container');
+var hot = new Handsontable(container, {
+  columns: [
+    {
       renderer: Handsontable.NumericRenderer,
       editor: Handsontable.editors.TextEditor,
       validator: customValidator
-      }
-      ]
-      })
-    </code></pre>
+    }
+  ]
+});</code></pre>
     <p>There is one more way you can define the configuration using types:</p>
-    <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> container = <span class="hljs-built_in">document</span>.getElementById(<span
-      class="hljs-string">'container'</span>);
-      <span class="hljs-keyword">var</span> hot = <span class="hljs-keyword">new</span> Handsontable(container, {
-      validator: customValidator, <span class="hljs-comment">//validator function defined elsewhere</span>
-      columns: [
-      {
-      type: <span class="hljs-string">'password'</span>
-      },
-      {}
-      ]
-      })
-    </code></pre>
+    <pre><code class="lang-javascript">var container = document.getElementById('container');
+var hot = new Handsontable(container, {
+  validator: customValidator, // validator function defined elsewhere
+  columns: [
+    {
+      type: 'password'
+    },
+    {}
+  ]
+});</code></pre>
     <p>We take advantage of the <a
       href="https://github.com/handsontable/handsontable/wiki/Options#how-does-cascading-configuration-work">cascade
       configuration</a> and define a table with two columns, with <code>validator</code> set to <code>customValidator</code>
       function. We also set <code>type</code> of the first column to <code>password</code>. <code>Password</code> cell type
       does not define a validator function:</p>
     <pre><code class="lang-javascript">renderer: Handsontable.PasswordRenderer,
-      editor: Handsontable.editors.PasswordEditor,
-      validator: <span class="hljs-literal">undefined</span>
-    </code></pre>
+editor: Handsontable.editors.PasswordEditor,
+validator: undefined</code></pre>
     <p>Because <code>type: &#39;password&#39;</code> is a more specific configuration for the cells in the first column,
       than the <code>validator: customValidator</code>, cell functions associated with the <code>password</code> type takes
       precedence over the functions defined on the higher level of configuration. Therefore, the equivalent configuration
       is:</p>
-    <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> container = <span class="hljs-built_in">document</span>.getElementById(<span
-      class="hljs-string">'container'</span>);
-      <span class="hljs-keyword">var</span> hot = <span class="hljs-keyword">new</span> Handsontable(container, {
-      columns: [
-      {
+    <pre><code class="lang-javascript">var container = document.getElementById('container');
+var hot = new Handsontable(container, {
+  columns: [
+    {
       renderer: Handsontable.PasswordRenderer,
       editor: Handsontable.editors.PasswordEditor,
-      validator: <span class="hljs-literal">undefined</span>
-      }
-      {
-      renderer: Handsontable.TextRenderer, <span class="hljs-comment">//text cell type is the default one</span>
-      editor: Handsontable.editors.TextEditor,<span class="hljs-comment">//text cell type is the default one</span>
+      validator: undefined
+    }
+    {
+      renderer: Handsontable.TextRenderer, // text cell type is the default one
+      editor: Handsontable.editors.TextEditor, // text cell type is the default one
       validator: customValidator
-      }
-      ]
-      })
-    </code></pre>
+    }
+  ]
+});</code></pre>
     <h2 id="cell-functions-getters">Cell functions getters</h2>
     <p>If, for some reason, you have to get the <code>renderer</code>, <code>editor</code> or <code>validator</code>
       function of specific cell you can use standard <code>getCellMeta(row, col)</code> method to get all properties of
       particular cell and then refer to cell functions like so:</p>
-    <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> cellProperties = $(<span class="hljs-string">'#container'</span>).handsontable(<span
-      class="hljs-string">'getCellMeta'</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)
-      <span class="hljs-comment">//get cell properties for cell [0, 0]</span>
-      cellProperties.renderer; <span class="hljs-comment">//get cell renderer</span>
-      cellProperties.editor; <span class="hljs-comment">//get cell editor</span>
-      cellProperties.validator; <span class="hljs-comment">//get cell validator</span>
-    </code></pre>
+    <pre><code class="lang-javascript">var cellProperties = $('#container').handsontable('getCellMeta', 0, 0);
+// get cell properties for cell [0, 0]
+cellProperties.renderer; // get cell renderer
+cellProperties.editor; // get cell editor
+cellProperties.validator; // get cell validator</code></pre>
     <p>However, you have to remember that <code>getCellMeta()</code> return cell properties &quot;as they are&quot;, which
       means that if you use cell type to set cell functions, instead of defining functions directly those cell functions
       will be <code>undefined</code>:</p>
-    <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> container = <span class="hljs-built_in">document</span>.getElementById(<span
-      class="hljs-string">'container'</span>);
-      <span class="hljs-keyword">var</span> hot = <span class="hljs-keyword">new</span> Handsontable(container, {
-      columns: [
-      {
-      type: <span class="hljs-string">'numeric'</span>
-      }
-      ]
-      });
+    <pre><code class="lang-javascript">var container = document.getElementById('container');
+var hot = new Handsontable(container, {
+  columns: [
+    {
+      type: 'numeric'
+    }
+  ]
+});
 
-      <span class="hljs-keyword">var</span> cellProperties = hot.getCellMeta(<span class="hljs-number">0</span>, <span
-        class="hljs-number">0</span>); <span class="hljs-comment">//get cell properties for cell [0, 0]</span>
-      cellProperties.renderer; <span class="hljs-comment">//undefined</span>
-      cellProperties.editor; <span class="hljs-comment">//undefined</span>
-      cellProperties.validator; <span class="hljs-comment">//undefined</span>
-      cellProperties.type; <span class="hljs-comment">//"numeric"</span>
-    </code></pre>
+var cellProperties = hot.getCellMeta(0, 0); // get cell properties for cell [0, 0]
+cellProperties.renderer; // undefined
+cellProperties.editor; // undefined
+cellProperties.validator; // undefined
+cellProperties.type; // "numeric"</code></pre>
     <p>To get the actual cell function use appropriate <em>cell function getter</em>:</p>
     <ul>
       <li><code>getCellRenderer(row, col)</code></li>

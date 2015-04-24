@@ -115,17 +115,13 @@
       invoke the original method and then perform other operations, specific to your editor.</p>
     <p><strong>Example</strong> - overriding common method</p>
     <pre>
-      <code class="lang-javascript"><span class="hljs-comment">//CustomEditor is a class function, inheriting form BaseEditor</span>
-        CustomEditor.prototype.prepare = <span class="hljs-function"><span class="hljs-keyword">function</span><span
-          class="hljs-params">(row, col, prop, td, originalValue, cellProperties)</span></span>{
-        <span class="hljs-comment">//Invoke the original method...</span>
-        Handsontable.editors.BaseEditor.prototype.prepare.apply(<span class="hljs-keyword">this</span>, <span
-          class="hljs-built_in">arguments</span>);
-
-        <span class="hljs-comment">//...and then do some stuff specific to your CustomEditor</span>
-        <span class="hljs-keyword">this</span>.customEditorSpecificProperty = <span class="hljs-string">'foo'</span>;
-
-        };
+      <code class="lang-js">// CustomEditor is a class function, inheriting form BaseEditor
+CustomEditor.prototype.prepare = function(row, col, prop, td, originalValue, cellProperties){
+  // Invoke the original method...
+  Handsontable.editors.BaseEditor.prototype.prepare.apply(this, arguments);
+  // ...and then do some stuff specific to your CustomEditor
+  this.customEditorSpecificProperty = &#x27;foo&#x27;;
+};
       </code>
     </pre>
     <p>There are 7 common methods. All of them are described below.</p>
@@ -169,20 +165,15 @@
       methods of the returned class can be safely
       overwritten, without a danger of altering parent&#39;s <code>prototype</code>.</p>
     <p><strong>Example</strong> - inheriting from <code>BaseEditor</code> and overriding its method</p>
-    <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> CustomEditor =
-      Handsontable.editors.BaseEditor.prototype.extend();
+    <pre><code class="lang-js">var CustomEditor = Handsontable.editors.BaseEditor.prototype.extend();
 
-      <span class="hljs-comment">//This won't alter BaseEditor.prototype.beginEditing()</span>
-      CustomEditor.prototype.beginEditing = <span class="hljs-function"><span class="hljs-keyword">function</span><span
-        class="hljs-params">()</span></span>{};
-    </code></pre>
+// This won't alter BaseEditor.prototype.beginEditing()
+CustomEditor.prototype.beginEditing = function() {};</code></pre>
     <p><strong>Example</strong> - inheriting from another editor</p>
-    <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> CustomTextEditor =
-      Handsontable.editors.TextEditor.prototype.extend();
+    <pre><code class="lang-js">var CustomTextEditor = Handsontable.editors.TextEditor.prototype.extend();
 
-      <span class="hljs-comment">//CustomTextEditor uses all methods implemented by TextEditor.</span>
-      <span class="hljs-comment">//You can safely override any method without affecting original TextEditor.</span>
-    </code></pre>
+// CustomTextEditor uses all methods implemented by TextEditor.
+// You can safely override any method without affecting original TextEditor.</code></pre>
     <p><strong>Note:</strong> This is an utility method not related to the process of editing cell.</p>
     <h3 id="editor-specific-methods">Editor specific methods</h3>
     <p>Editor specific methods are methods not implemented in <code>BaseEditor</code>. In order to work, every editor class
@@ -201,41 +192,32 @@
     <p><strong>Example</strong>
       Let&#39;s say we are implementing a DateEditor, which helps selecting date, by displaying a calendar.
       <code>getValue()</code> and <code>setValue()</code> method could work like so:</p>
-    <pre><code class="lang-javascript">CalendarEditor.prototype.getValue = <span class="hljs-function"><span
-      class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
-      <span class="hljs-keyword">return</span> calendar.getDate(); <span class="hljs-comment">//returns currently selected date, for example "2013/09/15"</span>
-      }
+    <pre><code class="lang-js">CalendarEditor.prototype.getValue = function() {
+  return calendar.getDate(); // returns currently selected date, for example "2013/09/15"
+};
 
-      CalendarEditor.prototype.setValue = <span class="hljs-function"><span class="hljs-keyword">function</span><span
-        class="hljs-params">(newValue)</span></span>{
-      calendar.highlightDate(newValue); <span class="hljs-comment">//highlights given date on calendar</span>
-      }
-    </code></pre>
+CalendarEditor.prototype.setValue = function(newValue) {
+  calendar.highlightDate(newValue); // highlights given date on calendar
+};</code></pre>
     <h4 id="open-">open()</h4>
     <p>Displays the editor. In most cases this method can be as simple as:</p>
-    <pre><code class="lang-javascript">CustomEditor.prototype.open = <span class="hljs-function"><span class="hljs-keyword">function</span><span
-      class="hljs-params">()</span></span>{
-      <span class="hljs-keyword">this</span>.editorDiv.style.display = <span class="hljs-string">''</span>;
-      };
-    </code></pre>
+    <pre><code class="lang-js">CustomEditor.prototype.open = function() {
+  this.editorDiv.style.display = '';
+};</code></pre>
     <p>This method does need to return any value.</p>
     <h4 id="close-">close()</h4>
     <p>Hides the editor after cell value has been changed. In most cases this method can be as simple as:</p>
-    <pre><code class="lang-javascript">CustomEditor.prototype.close = <span class="hljs-function"><span
-      class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
-      <span class="hljs-keyword">this</span>.editorDiv.style.display = <span class="hljs-string">'none'</span>;
-      };
-    </code></pre>
+    <pre><code class="lang-js">CustomEditor.prototype.close = function() {
+  this.editorDiv.style.display = 'none';
+};</code></pre>
     <p>This method does need to return any value.</p>
     <h4 id="focus-">focus()</h4>
     <p>Focuses the editor. This method is called when user wants to close the editor by selecting another cell and the value
       in editor does not validate (and <code>allowInvalid</code> is <code>false</code>). In most cases this method can be as
       simple as:</p>
-    <pre><code class="lang-javascript">CustomEditor.prototype.focus = <span class="hljs-function"><span
-      class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
-      <span class="hljs-keyword">this</span>.editorInput.focus();
-      };
-    </code></pre>
+    <pre><code class="lang-js">CustomEditor.prototype.focus = function() {
+  this.editorInput.focus();
+};</code></pre>
     <p>This method does need to return any value.</p>
     <h3 id="common-editor-properties">Common editor properties</h3>
     <p>All of the undermentioned properties are available in editor instance through <code>this</code> object (e.g. <code>this.instance</code>).
@@ -283,48 +265,38 @@
         &lt;textarea&gt;</code> node and append it to DOM during
       editor initialization - BINGO!.</p>
     <p>Here is the code</p>
-    <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> PasswordEditor =
-      Handsontable.editors.TextEditor.prototype.extend();
+    <pre><code class="lang-js">var PasswordEditor = Handsontable.editors.TextEditor.prototype.extend();
 
-      PasswordEditor.prototype.createElements = <span class="hljs-function"><span class="hljs-keyword">function</span> <span
-        class="hljs-params">()</span> </span>{
+PasswordEditor.prototype.createElements = function () {
+  // Call the original createElements method
+  Handsontable.editors.TextEditor.prototype.createElements.apply(this, arguments);
 
-      <span class="hljs-comment">//Call the original createElements method</span>
-      Handsontable.editors.TextEditor.prototype.createElements.apply(<span class="hljs-keyword">this</span>, <span
-        class="hljs-built_in">arguments</span>);
+  // Create password input and update relevant properties
+  this.TEXTAREA = document.createElement('input');
+  this.TEXTAREA.setAttribute('type', 'password');
+  this.TEXTAREA.className = 'handsontableInput';
+  this.textareaStyle = this.TEXTAREA.style;
+  this.textareaStyle.width = 0;
+  this.textareaStyle.height = 0;
 
-      <span class="hljs-comment">//Create password input and update relevant properties</span>
-      <span class="hljs-keyword">this</span>.TEXTAREA = <span class="hljs-built_in">document</span>.createElement(<span
-        class="hljs-string">'input'</span>);
-      <span class="hljs-keyword">this</span>.TEXTAREA.setAttribute(<span class="hljs-string">'type'</span>, <span
-        class="hljs-string">'password'</span>);
-      <span class="hljs-keyword">this</span>.TEXTAREA.className = <span class="hljs-string">'handsontableInput'</span>;
-      <span class="hljs-keyword">this</span>.textareaStyle = <span class="hljs-keyword">this</span>.TEXTAREA.style;
-      <span class="hljs-keyword">this</span>.textareaStyle.width = <span class="hljs-number">0</span>;
-      <span class="hljs-keyword">this</span>.textareaStyle.height = <span class="hljs-number">0</span>;
-
-      <span class="hljs-comment">//Replace textarea with password input</span>
-      Handsontable.Dom.empty(<span class="hljs-keyword">this</span>.TEXTAREA_PARENT);
-      <span class="hljs-keyword">this</span>.TEXTAREA_PARENT.appendChild(<span class="hljs-keyword">this</span>.TEXTAREA);
-      };
-    </code></pre>
+  // Replace textarea with password input
+  Handsontable.Dom.empty(this.TEXTAREA_PARENT);
+  this.TEXTAREA_PARENT.appendChild(this.TEXTAREA);
+};</code></pre>
     <p>That&#39;s it! You can now use your new editor:</p>
-    <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> container = <span class="hljs-built_in">document</span>.getElementById(<span
-      class="hljs-string">'container'</span>);
-      <span class="hljs-keyword">var</span> hot = <span class="hljs-keyword">new</span> Handsontable(container, {
-      data: someData,
-      columns: [
-      {
-      type: <span class="hljs-string">'text'</span>
-      },
-      {
+    <pre><code class="lang-js">var container = document.getElementById('container');
+var hot = new Handsontable(container, {
+  data: someData,
+  columns: [
+    {
+      type: 'text'
+    },
+    {
       editor: PasswordEditor
-      <span class="hljs-comment">//If you want to use string 'password' instead of passing the actual editor class check out section "Registering editor"</span>
-      }
-      ]
-
-      });
-    </code></pre>
+      // If you want to use string 'password' instead of passing the actual editor class check out section "Registering editor"
+    }
+  ]
+});</code></pre>
     <p>Wow, that was easy. Just a few lines of code and everything works.
       Let&#39;s try something more complex, let&#39;s build new editor from the ground up.</p>
     <h3 id="-selecteditor-creating-editor-from-scratch"><code>SelectEditor</code> - creating editor from scratch</h3>
@@ -357,9 +329,7 @@
     <p>That&#39;s probably the easiest part. All we have to do is call <code>BaseEditor.prototype.extend()</code> function
       which will return
       a new function class that inherits from <code>BaseEditor</code>.</p>
-    <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> SelectEditor =
-      Handsontable.editors.BaseEditor.prototype.extend();
-    </code></pre>
+    <pre><code class="lang-js">var SelectEditor = Handsontable.editors.BaseEditor.prototype.extend();</code></pre>
     <p>Task one: <strong>DONE</strong></p>
     <h4 id="creating-select-input-and-attaching-it-to-dom">Creating <code>&lt;select&gt;</code> input and attaching it to
       DOM</h4>
@@ -398,30 +368,24 @@
       <code>init()</code> method. DOM manipulation is considered to be quite expensive (regarding the resource consumption)
       operation, so
       it&#39;s best to perform it once and reuse the produced HTML nodes throughout the life of editor.</p>
-    <pre><code class="lang-javascript">SelectEditor.prototype.init = <span class="hljs-function"><span class="hljs-keyword">function</span><span
-      class="hljs-params">()</span></span>{
-      <span class="hljs-comment">// Create detached node, add CSS class and make sure its not visible</span>
-      <span class="hljs-keyword">this</span>.select = <span class="hljs-built_in">document</span>.createElement(<span
-        class="hljs-string">'SELECT'</span>);
-      Handsontable.Dom.addClass(<span class="hljs-keyword">this</span>.select, <span
-        class="hljs-string">'htSelectEditor'</span>);
-      <span class="hljs-keyword">this</span>.select.style.display = <span class="hljs-string">'none'</span>;
+    <pre><code class="lang-js">SelectEditor.prototype.init = function() {
+  // Create detached node, add CSS class and make sure its not visible
+  this.select = document.createElement('SELECT');
+  Handsontable.Dom.addClass(this.select, 'htSelectEditor');
+  this.select.style.display = 'none';
 
-      <span class="hljs-comment">// Attach node to DOM, by appending it to the container holding the table</span>
-      <span class="hljs-keyword">this</span>.instance.rootElement.appendChild(<span class="hljs-keyword">this</span>.select);
-      };
-    </code></pre>
-    <pre><code class="lang-css"><span class="hljs-class">.htSelectEditor</span> <span class="hljs-rules">{
-      <span class="hljs-rule"><span class="hljs-attribute">padding</span>:<span class="hljs-value"> <span
-        class="hljs-number">5px</span> <span class="hljs-number">7px</span></span></span>;
-      <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> absolute</span></span>;
-      <span class="hljs-comment">/*
-      * This hack enables to change &lt;select&gt; dimensions in WebKit browsers
-      */</span>
-      <span class="hljs-rule"><span class="hljs-attribute">-webkit-appearance</span>:<span class="hljs-value"> menulist-button <span
-        class="hljs-important">!important</span></span></span>;
-    <span class="hljs-rule">}</span></span>
-    </code></pre>
+  // Attach node to DOM, by appending it to the container holding the table
+  this.instance.rootElement.appendChild(this.select);
+};</code></pre>
+    <br/>
+    <pre><code class="lang-css">.htSelectEditor {
+  padding: 5px 7px;
+  position: absolute;
+  /*
+   * This hack enables to change &#x3C;select&#x3E; dimensions in WebKit browsers
+   */
+  -webkit-appearance: menulist-button !important;
+}</code></pre>
     <p>Task two: <strong>DONE</strong></p>
     <h4 id="populating-select-with-options">Populating <code>&lt;select&gt;</code> with options</h4>
     <p>In the previous step we implemented a function that crates <code>&lt;select&gt;</code> input and attaches it to DOM.
@@ -430,19 +394,16 @@
       display the list, it would be
       empty.</p>
     <p>We want to be able to define an option list like so:</p>
-    <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> container = <span class="hljs-built_in">document</span>.getElementById(<span
-      class="hljs-string">'container'</span>);
-      <span class="hljs-keyword">var</span> hot = <span class="hljs-keyword">new</span> Handsontable(container, {
-      data: someData,
-      columns: [
-      {
+    <pre><code class="lang-js">var container = document.getElementById('container');
+var hot = new Handsontable(container, {
+  data: someData,
+  columns: [
+    {
       editor: SelectEditor,
-      selectOptions: [<span class="hljs-string">'option1'</span>, <span class="hljs-string">'option2'</span>, <span
-        class="hljs-string">'option3'</span>]
-      }
-      ]
-      });
-    </code></pre>
+      selectOptions: ['option1', 'option2', 'option3']
+    }
+  ]
+});</code></pre>
     <p>There is no (easy) way to get to the value of <code>selectOptions</code>. Even if we could get to this array we could
       only populate
       list with options once, what if we have more than one column using <code>SelectEditor</code> and each of them has it&#39;s
@@ -460,101 +421,80 @@
       overriding <code>prepare()</code>.
       <code>BaseEditor.prototype.prepare()</code> sets some important properties, which are used by other editor methods.
     </p>
-    <pre><code class="lang-javascript"><span class="hljs-comment">// Create options in prepare() method</span>
-      SelectEditor.prototype.prepare = <span class="hljs-function"><span class="hljs-keyword">function</span><span
-        class="hljs-params">()</span></span>{
+    <pre><code class="lang-javascript">// Create options in prepare() method
+SelectEditor.prototype.prepare = function() {
+  // Remember to invoke parent's method
+  Handsontable.editors.BaseEditor.prototype.prepare.apply(this, arguments);
 
-      <span class="hljs-comment">//Remember to invoke parent's method</span>
-      Handsontable.editors.BaseEditor.prototype.prepare.apply(<span class="hljs-keyword">this</span>, <span
-        class="hljs-built_in">arguments</span>);
+  var selectOptions = this.cellProperties.selectOptions;
+  var options;
 
-      <span class="hljs-keyword">var</span> selectOptions = <span class="hljs-keyword">this</span>.cellProperties.selectOptions;
-      <span class="hljs-keyword">var</span> options;
+  if (typeof selectOptions == 'function') {
+    options = this.prepareOptions(selectOptions(this.row,
+    this.col, this.prop))
+  } else {
+    options = this.prepareOptions(selectOptions);
+  }
+  Handsontable.Dom.empty(this.select);
 
-      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> selectOptions == <span
-        class="hljs-string">'function'</span>){
-      options = <span class="hljs-keyword">this</span>.prepareOptions(selectOptions(<span class="hljs-keyword">this</span>.row,
-      <span class="hljs-keyword">this</span>.col, <span class="hljs-keyword">this</span>.prop))
-      } <span class="hljs-keyword">else</span> {
-      options = <span class="hljs-keyword">this</span>.prepareOptions(selectOptions);
-      }
-
-      Handsontable.Dom.empty(<span class="hljs-keyword">this</span>.select);
-
-      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> option <span
-        class="hljs-keyword">in</span> options){
-      <span class="hljs-keyword">if</span> (options.hasOwnProperty(option)){
-      <span class="hljs-keyword">var</span> optionElement = <span class="hljs-built_in">document</span>.createElement(<span
-        class="hljs-string">'OPTION'</span>);
+  for (var option in options) {
+    if (options.hasOwnProperty(option)) {
+      var optionElement = document.createElement('OPTION');
       optionElement.value = option;
       Handsontable.Dom.fastInnerHTML(optionElement, options[option]);
-      <span class="hljs-keyword">this</span>.select.appendChild(optionElement);
-      }
-      }
-      };
-    </code></pre>
+      this.select.appendChild(optionElement);
+    }
+  }
+}; </code></pre>
     <p>Where the <code>prepareOptions</code> is:</p>
-    <pre><code class="lang-javascript">SelectEditor.prototype.prepareOptions = <span class="hljs-function"><span
-      class="hljs-keyword">function</span><span class="hljs-params">(optionsToPrepare)</span></span>{
+    <pre><code class="lang-javascript">SelectEditor.prototype.prepareOptions = function(optionsToPrepare) {
+  var preparedOptions = {};
 
-      <span class="hljs-keyword">var</span> preparedOptions = {};
-
-      <span class="hljs-keyword">if</span> (Handsontable.helper.isArray(optionsToPrepare)){
-      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>,
-      len = optionsToPrepare.length; i &lt; len; i++){
+  if (Handsontable.helper.isArray(optionsToPrepare)) {
+    for(var i = 0, len = optionsToPrepare.length; i < len; i++) {
       preparedOptions[optionsToPrepare[i]] = optionsToPrepare[i];
-      }
-      }
-      <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span>
-      optionsToPrepare == <span class="hljs-string">'object'</span>) {
-      preparedOptions = optionsToPrepare;
-      }
+    }
+  } else if (typeof optionsToPrepare == 'object') {
+    preparedOptions = optionsToPrepare;
+  }
 
-      <span class="hljs-keyword">return</span> preparedOptions;
-
-      };
-    </code></pre>
+  return preparedOptions;
+};</code></pre>
     <p>Task three: <strong>DONE</strong></p>
     <h4 id="implementing-editor-specific-methods">Implementing editor specific methods</h4>
     <p>Most of the work is done. Now we just need to implement all the editor specific methods. Luckily, our editor is quite
       simple
       so those methods will be only few lines of code.</p>
-    <pre><code class="lang-javascript">SelectEditor.prototype.getValue = <span class="hljs-function"><span
-      class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.select.value;
-      };
+    <pre><code class="lang-javascript">SelectEditor.prototype.getValue = function() {
+  return this.select.value;
+};
 
-      SelectEditor.prototype.setValue = <span class="hljs-function"><span class="hljs-keyword">function</span> <span
-        class="hljs-params">(value)</span> </span>{
-      <span class="hljs-keyword">this</span>.select.value = value;
-      };
+SelectEditor.prototype.setValue = function(value) {
+  this.select.value = value;
+};
 
-      SelectEditor.prototype.open = <span class="hljs-function"><span class="hljs-keyword">function</span> <span
-        class="hljs-params">()</span> </span>{
-      <span class="hljs-keyword">var</span> width = Handsontable.Dom.outerWidth(<span class="hljs-keyword">this</span>.TD);
-      <span class="hljs-keyword">var</span> height = Handsontable.Dom.outerHeight(<span class="hljs-keyword">this</span>.TD);
-      <span class="hljs-keyword">var</span> rootOffset = Handsontable.Dom.offset(<span class="hljs-keyword">this</span>.instance.rootElement);
-      <span class="hljs-keyword">var</span> tdOffset = Handsontable.Dom.offset(<span class="hljs-keyword">this</span>.TD);
+SelectEditor.prototype.open = function() {
+  var width = Handsontable.Dom.outerWidth(this.TD);
+  var height = Handsontable.Dom.outerHeight(this.TD);
+  var rootOffset = Handsontable.Dom.offset(this.instance.rootElement);
+  var tdOffset = Handsontable.Dom.offset(this.TD);
 
-      <span class="hljs-comment">//sets &lt;select&gt; dimensions to match cell size</span>
-      <span class="hljs-keyword">this</span>.select.style.height = height + <span class="hljs-string">'px'</span>;
-      <span class="hljs-keyword">this</span>.select.style.minWidth = width + <span class="hljs-string">'px'</span>;
+  // sets select dimensions to match cell size
+  this.select.style.height = height + 'px';
+  this.select.style.minWidth = width + 'px';
 
-      <span class="hljs-comment">//make sure that list positions matches cell position</span>
-      <span class="hljs-keyword">this</span>.select.style.top = tdOffset.top - rootOffset.top + <span class="hljs-string">'px'</span>;
-      <span class="hljs-keyword">this</span>.select.style.left = tdOffset.left - rootOffset.left + <span
-        class="hljs-string">'px'</span>;
-      <span class="hljs-keyword">this</span>.select.style.margin = <span class="hljs-string">'0px'</span>;
+  // make sure that list positions matches cell position
+  this.select.style.top = tdOffset.top - rootOffset.top + 'px';
+  this.select.style.left = tdOffset.left - rootOffset.left + 'px';
+  this.select.style.margin = '0px';
 
-      <span class="hljs-comment">//display the list</span>
-      <span class="hljs-keyword">this</span>.select.style.display = <span class="hljs-string">''</span>;
-      };
+  // display the list
+  this.select.style.display = '';
+};
 
-      SelectEditor.prototype.close = <span class="hljs-function"><span class="hljs-keyword">function</span> <span
-        class="hljs-params">()</span> </span>{
-      <span class="hljs-keyword">this</span>.select.style.display = <span class="hljs-string">'none'</span>;
-      };
-    </code></pre>
+SelectEditor.prototype.close = function() {
+  this.select.style.display = 'none';
+};</code></pre>
     <p>The implementations of <code>getValue()</code>, <code>setValue()</code> and <code>close()</code> are
       self-explanatory, but <code>open()</code> requires a few words of comment. First of all,
       the implementation assumes that code responsible for populating the list with options is placed in
@@ -571,27 +511,20 @@
     <p>Task four: <strong>DONE</strong></p>
     <p>At this point we should have an editor that is ready to use. Put the code somewhere in your page and pass <code>SelectEditor</code>
       class function as value of <code>editor</code> property.</p>
-    <pre><code class="lang-javascript"><span class="hljs-comment">/*
-    *
-    * PLACE EDITOR CODE HERE
-    *
-    */</span>
-
-      <span class="hljs-keyword">var</span> container = <span class="hljs-built_in">document</span>.getElementById(<span
-        class="hljs-string">'container'</span>);
-      <span class="hljs-keyword">var</span> hot = <span class="hljs-keyword">new</span> Handsontable(container, {
-      data: someData,
-      columns: [
-      {},
-      {
+    <pre><code class="lang-javascript">/*
+ * PLACE EDITOR CODE HERE
+ */
+var container = document.getElementById('container');
+var hot = new Handsontable(container, {
+  data: someData,
+  columns: [
+    {},
+    {
       editor: SelectEditor,
-      selectOptions: [<span class="hljs-string">'option1'</span>, <span class="hljs-string">'option2'</span>, <span
-        class="hljs-string">'option3'</span>]
-      }
-      ]
-
-      });
-    </code></pre>
+      selectOptions: ['option1', 'option2', 'option3']
+    }
+  ]
+});</code></pre>
     <h4 id="use-kbd-arrow_up-kbd-and-kbd-arrow_down-kbd-to-change-selected-value">Use <kbd>ARROW_UP</kbd> and
       <kbd>ARROW_DOWN</kbd> to change selected value</h4>
     <p>We know that our editor works, but let&#39;s add one more tweak to it. Currently, when editor is opened and user
@@ -622,45 +555,35 @@
       register our listener would be the <code>open()</code> method and the <code>close()</code> method should contain code
       that will remove our listener.</p>
     <p>Here&#39;s how the listener function could look like:</p>
-    <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> onBeforeKeyDown = <span
-      class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(event)</span> </span>{
+    <pre><code class="lang-javascript">var onBeforeKeyDown = function(event) {
+  var instance = this; // context of listener function is always set to Handsontable.Core instance
+  var editor = instance.getActiveEditor();
+  var selectedIndex = editor.select.selectedIndex;
 
-      <span class="hljs-keyword">var</span> instance = <span class="hljs-keyword">this</span>; <span class="hljs-comment">//context of listener function is always set to Handsontable.Core instance</span>
-      <span class="hljs-keyword">var</span> editor = instance.getActiveEditor();
-      <span class="hljs-keyword">var</span> selectedIndex = editor.select.selectedIndex;
+  Handsontable.Dom.enableImmediatePropagation(event);
 
-      Handsontable.Dom.enableImmediatePropagation(event);
+  switch (event.keyCode) {
+    case Handsontable.helper.keyCode.ARROW_UP:
+      var previousOption = editor.select.options[selectedIndex - 1];
 
-      <span class="hljs-keyword">switch</span> (event.keyCode){
-      <span class="hljs-keyword">case</span> Handsontable.helper.keyCode.ARROW_UP:
-
-      <span class="hljs-keyword">var</span> previousOption = editor.select.options[selectedIndex - <span
-        class="hljs-number">1</span>];
-
-      <span class="hljs-keyword">if</span> (previousOption) { <span class="hljs-comment">// if previous option exists</span>
-      editor.select.value = previousOption.value; <span class="hljs-comment">// mark it as selected</span>
+      if (previousOption) { // if previous option exists
+        editor.select.value = previousOption.value; // mark it as selected
       }
 
-      event.stopImmediatePropagation(); <span
-        class="hljs-comment">// prevent EditorManager from processing this event</span>
-      event.preventDefault(); <span class="hljs-comment">// prevent browser from scrolling the page up</span>
-      <span class="hljs-keyword">break</span>;
+      event.stopImmediatePropagation(); // prevent EditorManager from processing this event
+      event.preventDefault(); // prevent browser from scrolling the page up
+      break;
 
-      <span class="hljs-keyword">case</span> Handsontable.helper.keyCode.ARROW_DOWN:
+    case Handsontable.helper.keyCode.ARROW_DOWN:
+      var nextOption = editor.select.options[selectedIndex + 1];
 
-      <span class="hljs-keyword">var</span> nextOption = editor.select.options[selectedIndex + <span
-        class="hljs-number">1</span>];
-
-      <span class="hljs-keyword">if</span> (nextOption) { <span class="hljs-comment">// if previous option exists</span>
-      editor.select.value = nextOption.value; <span class="hljs-comment">// mark it as selected</span>
+      if (nextOption) { // if previous option exists
+        editor.select.value = nextOption.value; // mark it as selected
       }
-
-      event.stopImmediatePropagation(); <span
-        class="hljs-comment">// prevent EditorManager from processing this event</span>
-      event.preventDefault(); <span class="hljs-comment">// prevent browser from scrolling the page up</span>
-      <span class="hljs-keyword">break</span>;
-      }
-    </code></pre>
+      event.stopImmediatePropagation(); // prevent EditorManager from processing this event
+      event.preventDefault(); // prevent browser from scrolling the page up
+      break;
+}</code></pre>
     <p>The first two lines of <code>onBeforeKeyDown()</code> are the most important. First of all, in listeners
       <code>this</code> is set to instance
       of <code>Handsontable.Core</code> <strong>NOT</strong> the instance of our editor. To get an instance of editor class,
@@ -674,96 +597,83 @@
       and now
       <code>getActiveEditor()</code> will return an object of <code>DateEditor</code> class.</p>
     <p>The rest of the code should be quite clear. Now all we have to do is register our listener.</p>
-    <pre><code class="lang-javascript">SelectEditor.prototype.open = <span class="hljs-function"><span class="hljs-keyword">function</span> <span
-      class="hljs-params">()</span> </span>{
-      <span class="hljs-keyword">var</span> width = Handsontable.Dom.outerWidth(<span class="hljs-keyword">this</span>.TD);
-      <span class="hljs-keyword">var</span> height = Handsontable.Dom.outerHeight(<span class="hljs-keyword">this</span>.TD);
-      <span class="hljs-keyword">var</span> rootOffset = Handsontable.Dom.offset(<span class="hljs-keyword">this</span>.instance.rootElement);
-      <span class="hljs-keyword">var</span> tdOffset = Handsontable.Dom.offset(<span class="hljs-keyword">this</span>.TD);
+    <pre><code class="lang-javascript">SelectEditor.prototype.open = function() {
+  var width = Handsontable.Dom.outerWidth(this.TD);
+  var height = Handsontable.Dom.outerHeight(this.TD);
+  var rootOffset = Handsontable.Dom.offset(this.instance.rootElement);
+  var tdOffset = Handsontable.Dom.offset(this.TD);
 
-      <span class="hljs-keyword">this</span>.select.style.height = height + <span class="hljs-string">'px'</span>;
-      <span class="hljs-keyword">this</span>.select.style.minWidth = width + <span class="hljs-string">'px'</span>;
-      <span class="hljs-keyword">this</span>.select.style.top = tdOffset.top - rootOffset.top + <span class="hljs-string">'px'</span>;
-      <span class="hljs-keyword">this</span>.select.style.left = tdOffset.left - rootOffset.left + <span
-        class="hljs-string">'px'</span>;
-      <span class="hljs-keyword">this</span>.select.style.margin = <span class="hljs-string">'0px'</span>;
-      <span class="hljs-keyword">this</span>.select.style.display = <span class="hljs-string">''</span>;
+  this.select.style.height = height + 'px';
+  this.select.style.minWidth = width + 'px';
+  this.select.style.top = tdOffset.top - rootOffset.top + 'px';
+  this.select.style.left = tdOffset.left - rootOffset.left + 'px';
+  this.select.style.margin = '0px';
+  this.select.style.display = '';
 
-      <span class="hljs-keyword">this</span>.instance.addHook(<span class="hljs-string">'beforeKeyDown'</span>,
-      onBeforeKeyDown); <span class="hljs-comment">// register listener</span>
-      };
+  // register listener
+  this.instance.addHook('beforeKeyDown', onBeforeKeyDown);
+};
 
-      SelectEditor.prototype.close = <span class="hljs-function"><span class="hljs-keyword">function</span> <span
-        class="hljs-params">()</span> </span>{
-      <span class="hljs-keyword">this</span>.select.style.display = <span class="hljs-string">'none'</span>;
-      <span class="hljs-keyword">this</span>.instance.removeHook(<span class="hljs-string">'beforeKeyDown'</span>,
-      onBeforeKeyDown); <span class="hljs-comment">// remove listener</span>
-      };
-    </code></pre>
+SelectEditor.prototype.close = function() {
+  this.select.style.display = 'none';
+  // remove listener
+  this.instance.removeHook('beforeKeyDown', onBeforeKeyDown);
+};</code></pre>
     <p>Additionally, due to the recent change in the positioning of the overlays (fixed columns, rows, headers etc.) we need
       to set the css transform property. We&#39;ll use the <code>Handsontable.Dom</code>&#39;s <code>getCssTransform</code>
       and <code>resetCssTransform</code> to get the correct values:</p>
-    <pre><code class="lang-javascript">SelectEditor.prototype.open = <span class="hljs-function"><span class="hljs-keyword">function</span> <span
-      class="hljs-params">()</span> </span>{
-      <span class="hljs-keyword">var</span> width = Handsontable.Dom.outerWidth(<span class="hljs-keyword">this</span>.TD);
-      <span class="hljs-comment">//important - group layout reads together for better performance</span>
-      <span class="hljs-keyword">var</span> height = Handsontable.Dom.outerHeight(<span class="hljs-keyword">this</span>.TD);
-      <span class="hljs-keyword">var</span> rootOffset = Handsontable.Dom.offset(<span class="hljs-keyword">this</span>.instance.rootElement);
-      <span class="hljs-keyword">var</span> tdOffset = Handsontable.Dom.offset(<span class="hljs-keyword">this</span>.TD);
-      <span class="hljs-keyword">var</span> editorSection = <span class="hljs-keyword">this</span>.checkEditorSection();
-      <span class="hljs-keyword">var</span> cssTransformOffset;
+    <pre><code class="lang-javascript">SelectEditor.prototype.open = function() {
+  var width = Handsontable.Dom.outerWidth(this.TD);
+  // important - group layout reads together for better performance
+  var height = Handsontable.Dom.outerHeight(this.TD);
+  var rootOffset = Handsontable.Dom.offset(this.instance.rootElement);
+  var tdOffset = Handsontable.Dom.offset(this.TD);
+  var editorSection = this.checkEditorSection();
+  var cssTransformOffset;
 
-      <span class="hljs-keyword">switch</span>(editorSection) {
-      <span class="hljs-keyword">case</span> <span class="hljs-string">'top'</span>:
-      cssTransformOffset = Handsontable.Dom.getCssTransform(<span class="hljs-keyword">this</span>.instance.view.wt.wtScrollbars.vertical.clone.wtTable.holder.parentNode);
-      <span class="hljs-keyword">break</span>;
-      <span class="hljs-keyword">case</span> <span class="hljs-string">'left'</span>:
-      cssTransformOffset = Handsontable.Dom.getCssTransform(<span class="hljs-keyword">this</span>.instance.view.wt.wtScrollbars.horizontal.clone.wtTable.holder.parentNode);
-      <span class="hljs-keyword">break</span>;
-      <span class="hljs-keyword">case</span> <span class="hljs-string">'corner'</span>:
-      cssTransformOffset = Handsontable.Dom.getCssTransform(<span class="hljs-keyword">this</span>.instance.view.wt.wtScrollbars.corner.clone.wtTable.holder.parentNode);
-      <span class="hljs-keyword">break</span>;
-      }
+  switch(editorSection) {
+    case 'top':
+      cssTransformOffset = Handsontable.Dom.getCssTransform(this.instance.view.wt.wtScrollbars.vertical.clone.wtTable.holder.parentNode);
+      break;
+    case 'left':
+      cssTransformOffset = Handsontable.Dom.getCssTransform(this.instance.view.wt.wtScrollbars.horizontal.clone.wtTable.holder.parentNode);
+      break;
+    case 'corner':
+      cssTransformOffset = Handsontable.Dom.getCssTransform(this.instance.view.wt.wtScrollbars.corner.clone.wtTable.holder.parentNode);
+      break;
+  }
+  var selectStyle = this.select.style;
 
-      <span class="hljs-keyword">var</span> selectStyle = <span class="hljs-keyword">this</span>.select.style;
+  if (cssTransformOffset && cssTransformOffset !== -1) {
+    selectStyle[cssTransformOffset[0]] = cssTransformOffset[1];
+  } else {
+    Handsontable.Dom.resetCssTransform(this.select);
+  }
 
-      <span class="hljs-keyword">if</span>(cssTransformOffset &amp;&amp; cssTransformOffset != -<span
-        class="hljs-number">1</span>) {
-      selectStyle[cssTransformOffset[<span class="hljs-number">0</span>]] = cssTransformOffset[<span
-        class="hljs-number">1</span>];
-      } <span class="hljs-keyword">else</span> {
-      Handsontable.Dom.resetCssTransform(<span class="hljs-keyword">this</span>.select);
-      }
+  selectStyle.height = height + 'px';
+  selectStyle.minWidth = width + 'px';
+  selectStyle.top = tdOffset.top - rootOffset.top + 'px';
+  selectStyle.left = tdOffset.left - rootOffset.left + 'px';
+  selectStyle.margin = '0px';
+  selectStyle.display = '';
 
-      selectStyle.height = height + <span class="hljs-string">'px'</span>;
-      selectStyle.minWidth = width + <span class="hljs-string">'px'</span>;
-      selectStyle.top = tdOffset.top - rootOffset.top + <span class="hljs-string">'px'</span>;
-      selectStyle.left = tdOffset.left - rootOffset.left + <span class="hljs-string">'px'</span>;
-      selectStyle.margin = <span class="hljs-string">'0px'</span>;
-      selectStyle.display = <span class="hljs-string">''</span>;
+  this.instance.addHook('beforeKeyDown', onBeforeKeyDown);
+};
 
-      <span class="hljs-keyword">this</span>.instance.addHook(<span class="hljs-string">'beforeKeyDown'</span>,
-      onBeforeKeyDown);
-      };
-
-      SelectEditor.prototype.checkEditorSection = <span class="hljs-function"><span
-        class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-      <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.row &lt; <span
-        class="hljs-keyword">this</span>.instance.getSettings().fixedRowsTop) {
-      <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.col &lt; <span
-        class="hljs-keyword">this</span>.instance.getSettings().fixedColumnsLeft) {
-      <span class="hljs-keyword">return</span> <span class="hljs-string">'corner'</span>;
-      } <span class="hljs-keyword">else</span> {
-      <span class="hljs-keyword">return</span> <span class="hljs-string">'top'</span>;
-      }
-      } <span class="hljs-keyword">else</span> {
-      <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.col &lt; <span
-        class="hljs-keyword">this</span>.instance.getSettings().fixedColumnsLeft) {
-      <span class="hljs-keyword">return</span> <span class="hljs-string">'left'</span>;
-      }
-      }
-      };
-    </code></pre>
+SelectEditor.prototype.checkEditorSection = function() {
+  if (this.row < this.instance.getSettings().fixedRowsTop) {
+    if (this.col < this.instance.getSettings().fixedColumnsLeft) {
+      return 'corner';
+    } else {
+      return 'top';
+    }
+  } else {
+    if (this.col < this.instance.getSettings().fixedColumnsLeft) {
+      return 'left';
+    }
+  }
+};
+</code></pre>
     <p>Go ahead and test it!</p>
     <h2 id="registering-an-editor">Registering an editor</h2>
     <p>When you create an editor, a good idea is to assign it an alias that will refer to this particular editor class.
@@ -789,32 +699,23 @@
       <li><code>editorClass</code> - a class that will be represented by <code>editorName</code></li>
     </ul>
     <p>If you&#39;d like to register <code>SelectEditor</code> under alias <code>select</code> you have to call:</p>
-    <pre><code class="lang-javascript">Handsontable.editors.registerEditor(<span class="hljs-string">'select'</span>,
-      SelectEditor);
-    </code></pre>
+    <pre><code class="lang-javascript">Handsontable.editors.registerEditor('select', SelectEditor);</code></pre>
     <p>Choose aliases wisely. If you register your editor under name that is already registered, the target class will be
       overwritten:</p>
-    <pre><code class="lang-javascript">Handsontable.editors.registerEditor(<span class="hljs-string">'text'</span>,
-      MyNewTextEditor);
+    <pre><code class="lang-javascript">Handsontable.editors.registerEditor('text', MyNewTextEditor);
 
-      <span
-        class="hljs-comment">//Now 'text' alias points to MyNewTextEditor class, not Handsontable.editors.TextEditor</span>
-    </code></pre>
+// Now 'text' alias points to MyNewTextEditor class, not Handsontable.editors.TextEditor</code></pre>
     <p>So, unless you intentionally want to overwrite an existing alias, try to choose a unique name. A good practice is
       prefixing your aliases with some custom name (for example your GitHub username) to minimize the possibility of name
       collisions.
       This is especially important if you want to publish your editor, because you never know aliases has been
       registered by the user who uses your editor.</p>
-    <pre><code class="lang-javascript"> Handsontable.editors.registerEditor(<span class="hljs-string">'select'</span>,
-      SelectEditor);
+    <pre><code class="lang-javascript">Handsontable.editors.registerEditor('select', SelectEditor);
 
-      <span class="hljs-comment">//Someone might already registered such alias</span>
-    </code></pre>
-    <pre><code class="lang-javascript"> Handsontable.editors.registerEditor(<span
-      class="hljs-string">'psmolenski.select'</span>, SelectEditor);
+// Someone might already registered such alias</code></pre>
+    <pre><br><code class="lang-javascript">Handsontable.editors.registerEditor('my.select', SelectEditor);
 
-      <span class="hljs-comment">//That's better.</span>
-    </code></pre>
+// That's better.</code></pre>
     <h2 id="preparing-editor-for-publication">Preparing editor for publication</h2>
     <p>If you plan to publish your editor or just want to keep your code nice and clean (as we all do :) there are 3 simple
       steps
@@ -823,15 +724,12 @@
     <p>Put your code in some kind of module, to avoid polluting global namespace. You can use AMD, CommonJS or any other
       module
       pattern, but the easiest way to isolate your code is to use plain immediately invoked function expression (IIFE).</p>
-    <pre><code class="lang-javascript">(<span class="hljs-function"><span class="hljs-keyword">function</span><span
-      class="hljs-params">(Handsontable)</span></span>{
+    <pre><code class="lang-javascript">(function(Handsontable){
+  var CustomEditor = Handsontable.editors.BaseEditor.prototype.extend();
 
-      <span class="hljs-keyword">var</span> CustomEditor = Handsontable.editors.BaseEditor.prototype.extend();
+  // ...rest of the editor code
 
-      <span class="hljs-comment">//...rest of the editor code</span>
-
-      })(Handsontable);
-    </code></pre>
+})(Handsontable);</code></pre>
     <p>Passing <code>Handsontable</code> namespace as argument is optional (as it is defined globally), but it&#39;s a good
       practice to use as
       few global objects as possible, to make modularisation and dependency management easier.</p>
@@ -841,35 +739,27 @@
       add your editor to a special namespace called <code>Handsontable.editors</code>. This way you can use your editor
       during table definition
       and other users will have an easy access to your editor, in case they would like to extend it.</p>
-    <pre><code class="lang-javascript">(<span class="hljs-function"><span class="hljs-keyword">function</span><span
-      class="hljs-params">(Handsontable)</span></span>{
+    <pre><code class="lang-javascript">(function(Handsontable){
+  var CustomEditor = Handsontable.editors.BaseEditor.prototype.extend();
 
-      <span class="hljs-keyword">var</span> CustomEditor = Handsontable.editors.BaseEditor.prototype.extend();
+  // ...rest of the editor code
 
-      <span class="hljs-comment">//...rest of the editor code</span>
+  // And at the end
+  Handsontable.editors.CustomEditor = CustomEditor;
 
-      <span class="hljs-comment">//And at the end</span>
-      Handsontable.editors.CustomEditor = CustomEditor;
-
-      })(Handsontable);
-    </code></pre>
+})(Handsontable);</code></pre>
     <p>From now on, you can use <code>CustomEditor</code> like so:</p>
-    <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> container = <span class="hljs-built_in">document</span>.getElementById(<span
-      class="hljs-string">'container'</span>);
-      <span class="hljs-keyword">var</span> hot = <span class="hljs-keyword">new</span> Handsontable(container, {
-      data: someData,
-      columns: [
-      {
+    <pre><code class="lang-javascript">var container = document.getElementById('container');
+var hot = new Handsontable(container, {
+  data: someData,
+  columns: [
+    {
       editor: Handsontable.editors.CustomEditor
-      }
-      ]
-
-      });
-    </code></pre>
+    }
+  ]
+}); </code></pre>
     <p>Extending your <code>CustomEditor</code> is also easy.</p>
-    <pre><code class="lang-javascript">
-      <span class="hljs-keyword">var</span> AnotherEditor = Handsontable.editors.CustomEditor.prototype.extend();
-    </code></pre>
+    <pre><code class="lang-javascript">var AnotherEditor = Handsontable.editors.CustomEditor.prototype.extend();</code></pre>
     <p>Keep in mind, that there is no restrictions on the name you choose, but choose wisely and do not overwrite existing
       editors. Try to keep the names unique.</p>
     <p>//TODO: add link to section Registering editors</p>
@@ -877,20 +767,17 @@
     <p>The final touch is to register your editor under some alias, so that users can easily refer to it without the need
       to now the actual class name. See Registering editor for details.</p>
     <p>To sum up, a well prepared editor should look like this:</p>
-    <pre><code class="lang-javascript">(<span class="hljs-function"><span class="hljs-keyword">function</span><span
-      class="hljs-params">(Handsontable)</span></span>{
+    <pre><code class="lang-javascript">(function(Handsontable){
+  var CustomEditor = Handsontable.editors.BaseEditor.prototype.extend();
 
-      <span class="hljs-keyword">var</span> CustomEditor = Handsontable.editors.BaseEditor.prototype.extend();
+  // ...rest of the editor code
 
-      <span class="hljs-comment">//...rest of the editor code</span>
+  // Put editor in dedicated namespace
+  Handsontable.editors.CustomEditor = CustomEditor;
 
-      <span class="hljs-comment">//Put editor in dedicated namespace</span>
-      Handsontable.editors.CustomEditor = CustomEditor;
+  // Register alias
+  Handsontable.editors.registerEditor('theBestEditor', CustomEditor);
 
-      <span class="hljs-comment">//Register alias</span>
-      Handsontable.editors.registerEditor(<span class="hljs-string">'theBestEditor'</span>, CustomEditor);
-
-      })(Handsontable);
-    </code></pre>
+})(Handsontable);</code></pre>
   </div>
 </div>

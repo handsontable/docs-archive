@@ -14,8 +14,8 @@
   <div class="index-list">
     <p><strong>This page shows ways to configure columns or cells to be read only:</strong></p>
     <ul>
-      <li><a href="#columns">Read-only columns</a></li>
-      <li><a href="#cells">Read-only specific cells</a></li>
+      <li><a href="#page-columns">Read-only columns</a></li>
+      <li><a href="#page-cells">Read-only specific cells</a></li>
     </ul>
   </div>
 
@@ -23,7 +23,7 @@
     <a href="https://github.com/handsontable/docs/edit/feature/master/tutorials/read-only.html" class="edit-doc" target="_blank">
       Edit on GitHub
     </a>
-    <h3>Read-only columns</h3>
+    <h3 id="page-columns">Read-only columns</h3>
     <p>In many usage cases, you will need to configure a certain column to be read only. This column will be
       available for keyboard navigation and CTRL+C. Only editing and pasting data will be disabled.</p>
     <p>To make a column read-only, declare it in the <code>columns</code> setting. You can also define a special
@@ -73,7 +73,7 @@
   </div>
 
   <div class="example-container clearfix head-gap" name="cells">
-    <h3>Read-only specific cells</h3>
+    <h3 id="page-cells">Read-only specific cells</h3>
     <p>This example makes cells that contain the word "Nissan" read only.</p>
     <p>It forces all cells to be rendered by <code>myReadonlyRenderer</code>, which will decide whether a cell is
       really read only by checking its <code>readOnly</code> property.</p>

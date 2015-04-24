@@ -102,26 +102,23 @@
     </p>
     <p>Then pass a reference to that div and load some data if you wish:</p>
     <pre>
-      <code class="javascript">
-        &lt;script&gt;
-          var data = [
-            ["", "Kia", "Nissan", "Toyota", "Honda"],
-            ["2008", 10, 11, 12, 13],
-            ["2009", 20, 11, 14, 13],
-            ["2010", 30, 15, 12, 13]
-          ];
+      <code class="javascript">var data = [
+  ["", "Kia", "Nissan", "Toyota", "Honda"],
+  ["2008", 10, 11, 12, 13],
+  ["2009", 20, 11, 14, 13],
+  ["2010", 30, 15, 12, 13]
+];
 
-          var container = document.getElementById('hot');
-          var hot = new Handsontable(container,
-            {
-              data: data,
-              minSpareRows: 1,
-              rowHeades: true,
-              colHeaders: true,
-              contextMenu: true
-            });
-        &lt;/script&gt;
-      </code>
+var container = document.getElementById('hot');
+var hot = new Handsontable(container,
+  {
+    data: data,
+    minSpareRows: 1,
+    rowHeades: true,
+    colHeaders: true,
+    contextMenu: true
+  });
+</code>
     </pre>
     <strong>Voilà!</strong>
     <p>Your Handsontable is now running and displaying exemplary data. In the above example we decided to

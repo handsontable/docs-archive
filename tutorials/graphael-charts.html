@@ -43,23 +43,23 @@
       </div>
       <script data-jsfiddle="example1">
         var data = [
-              ['Nissan', 2009, 'black'],
-              ['Nissan', 2006, 'blue'],
-              ['Chrysler', 2004, 'yellow'],
-              ['Volvo', 2012, 'white'],
-              ['Nissan', 2006, 'blue'],
-              ['Chevrolet', 2004, 'yellow'],
-              ['Volvo', 2012, "red"],
-              ['Ford', 2006, 'yellow'],
-              ['Chevrolet', 2004, 'yellow'],
-              ['Ford', 2012, 'yellow']
-            ],
-            container = document.getElementById('example1'),
-            r = Raphael('graphael-example', 250, 250),
-            chartData = [],
-            activeColumn = 0,
-            lastChange = null,
-            hot;
+            ['Nissan', 2009, 'black'],
+            ['Nissan', 2006, 'blue'],
+            ['Chrysler', 2004, 'yellow'],
+            ['Volvo', 2012, 'white'],
+            ['Nissan', 2006, 'blue'],
+            ['Chevrolet', 2004, 'yellow'],
+            ['Volvo', 2012, "red"],
+            ['Ford', 2006, 'yellow'],
+            ['Chevrolet', 2004, 'yellow'],
+            ['Ford', 2012, 'yellow']
+          ],
+          container = document.getElementById('example1'),
+          r = Raphael('graphael-example', 250, 250),
+          chartData = [],
+          activeColumn = 0,
+          lastChange = null,
+          hot;
 
         hot = new Handsontable(container, {
           data: data,

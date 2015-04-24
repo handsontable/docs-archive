@@ -3,9 +3,9 @@
   <div class="index-list">
     <p><strong>On this page:</strong></p>
     <ul>
-      <li><a href="#cell">Rendering custom HTML in cells</a></li>
-      <li><a href="#header">Rendering custom HTML in header</a></li>
-      <li><a href="#dropdown">Changing cell type from a dropdown menu in cell header</a></li>
+      <li><a href="#page-cell">Rendering custom HTML in cells</a></li>
+      <li><a href="#page-header">Rendering custom HTML in header</a></li>
+      <li><a href="#page-dropdown">Changing cell type from a dropdown menu in cell header</a></li>
     </ul>
   </div>
 
@@ -13,7 +13,7 @@
     <a href="https://github.com/handsontable/docs/edit/feature/master/tutorials/custom-renderers.html" class="edit-doc" target="_blank">
       Edit on GitHub
     </a>
-    <h3>Rendering custom HTML in cells</h3>
+    <h3 id="page-cell">Rendering custom HTML in cells</h3>
     <p>This example shows how to use custom cell renderers to display HTML content in a cell.
       This is a very powerful feature. Just remember to escape any HTML code that could be used for XSS
       attacks. In the below configuration:</p>
@@ -125,7 +125,7 @@
   </div>
 
   <div class="example-container clearfix head-gap" name="header">
-    <h3>Rendering custom HTML in header</h3>
+    <h3 id="page-header">Rendering custom HTML in header</h3>
 
     <p>You can also put HTML into row and column headers. If you need to attach events to DOM elements like the checkbox below, just remember to identify the element
       by class name, not by id. This is because row and column headers are duplicated in the DOM tree and id
@@ -205,7 +205,7 @@
   </div>
 
   <div class="example-container clearfix head-gap" name="dropdown">
-    <h3>Changing cell type from a dropdown menu in cell header</h3>
+    <h3 id="page-dropdown">Changing cell type from a dropdown menu in cell header</h3>
 
     <p>This example makes use of a plugin hook to add a custom dropdown menu to the cell header</p>
 
