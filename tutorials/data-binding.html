@@ -3,9 +3,9 @@
   <div class="index-list">
     <p>On this page:</p>
     <ul>
-      <li><a href="#reference">Understand binding as a reference</a></li>
-      <li><a href="#rendering">Change data without rendering changes</a></li>
-      <li><a href="#clone">Clone data before saving it</a></li>
+      <li><a href="#page-reference">Understand binding as a reference</a></li>
+      <li><a href="#page-rendering">Change data without rendering changes</a></li>
+      <li><a href="#page-clone">Clone data before saving it</a></li>
     </ul>
   </div>
 
@@ -13,7 +13,7 @@
     <a href="https://github.com/handsontable/docs/edit/feature/master/tutorials/data-binding.html" class="edit-doc" target="_blank">
       Edit on GitHub
     </a>
-    <h3>Understand binding as a reference</h3>
+    <h3 id="page-reference">Understand binding as a reference</h3>
     <p>Handsontable binds to your data source (array or object) by reference. Therefore, all the data entered in
       the grid will alter the original data source. In complex applications, you may have a purpose to
       change data source programmatically (outside of
@@ -60,7 +60,7 @@
   </div>
 
   <div class="example-container clearfix head-gap" name="rendering">
-    <h3>Change data without rendering changes</h3>
+    <h3 id="page-rendering">Change data without rendering changes</h3>
     <p>In case you want to keep separate working copy of data for Handsontable, it is suggested to clone the data
       source before loading it into Handsontable. This can be done with <code>JSON.parse(JSON.stringify(data))</code>
       or some other deep-cloning function.</p>
@@ -102,7 +102,7 @@
   </div>
 
   <div class="example-container clearfix head-gap" name="clone">
-    <h3>Clone data before saving it</h3>
+    <h3 id="page-clone">Clone data before saving it</h3>
     <p>In a similar way, you may find it useful to clone data before saving it.
       That would be useful to make programmatic changes that would be saved to server but kept not visible to
       the user.</p>

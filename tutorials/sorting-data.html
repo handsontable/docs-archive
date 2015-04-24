@@ -69,44 +69,41 @@
     </ul>
     <p>As all settings, <code>columnSorting</code> can be altered during the lifetime of a table, using <code>updateSettings()</code> method.</p>
     <p>Examples:</p>
-    <pre><code class="lang-javascript"><span class="hljs-comment">//enables the plugin, but does not sort the table</span>
-      <span class="hljs-keyword">var</span> exampleContainer = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'example'</span>);
-      <span class="hljs-keyword">var</span> hot = <span class="hljs-keyword">new</span> Handsontable(exampleContainer, {
-      columnSorting: <span class="hljs-literal">true</span>
-      });
+    <pre><code class="lang-javascript">// enables the plugin, but does not sort the table
+var exampleContainer = document.getElementById('example');
+var hot = new Handsontable(exampleContainer, {
+  columnSorting: true
+});
 
-      <span class="hljs-comment">//enables the plugin and sort the table by the values from the first column in ascending order</span>
-      <span class="hljs-keyword">var</span> exampleContainer = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'example'</span>);
-      <span class="hljs-keyword">var</span> hot = <span class="hljs-keyword">new</span> Handsontable(exampleContainer, {
-      columnSorting: {
-      column: <span class="hljs-number">0</span>
-      }
-      });
+// enables the plugin and sort the table by the values from the first column in ascending order
+var exampleContainer = document.getElementById('example');
+  var hot = new Handsontable(exampleContainer, {
+    columnSorting: {
+    column: 0
+  }
+});
 
-      <span class="hljs-comment">//enables the plugin and sort the table by the values from the first column in descending order</span>
-      <span class="hljs-keyword">var</span> exampleContainer = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'example'</span>);
-      <span class="hljs-keyword">var</span> hot = <span class="hljs-keyword">new</span> Handsontable(exampleContainer, {
-      columnSorting: {
-      column: <span class="hljs-number">0</span>
-      sortOrder: <span class="hljs-literal">false</span>
-      }
-      });
+// enables the plugin and sort the table by the values from the first column in descending order
+var exampleContainer = document.getElementById('example');
+var hot = new Handsontable(exampleContainer, {
+  columnSorting: {
+    column: 0
+    sortOrder: false
+  }
+});
 
-      <span class="hljs-comment">//diables plugin</span>
-      hot.updateSettings({
-      columnSorting: <span class="hljs-literal">false</span>
-      });
-    </code></pre>
+// diables plugin
+hot.updateSettings({
+  columnSorting: false
+});</code></pre>
     <h3 id="how-to-determine-if-sorting-is-enabled">How to determine if sorting is enabled</h3>
     <p>To check whether sorting has been enabled for a particular Handsontable instance, use <code>sortingEnabled</code> property.</p>
-<pre><code class="lang-javascript">hot.sortingEnabled ? doSomething() : doSomethingElse();
-</code></pre>
+<pre><code class="lang-javascript">hot.sortingEnabled ? doSomething() : doSomethingElse();</code></pre>
     <p>The fact that column sorting has been enabled, does not imply, that the table content is sorted. To check whether a table has been sorted you can check the <code>sortColumn</code> property. If table instance has this property defined then it has been sorted. The value of <code>sortColumn</code> is the index of a column by which the table has been sorted. Additionally, you can check sorting order using <code>sortOrder</code> property. If <code>sortOrder</code> is <code>true</code>, then the order is ascending, otherwise, the order is descending.</p>
     <p>Simple function, which checks whether the table has been sorted could look like this:</p>
-    <pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isSorted</span><span class="hljs-params">(hotInstance)</span></span>{
-      <span class="hljs-keyword">return</span> hotInstance.sortingEnabled &amp;&amp; <span class="hljs-keyword">typeof</span> hotInstance.sortColumn != <span class="hljs-string">'undefined'</span>;
-      }
-    </code></pre>
+    <pre><code class="lang-javascript">function isSorted(hotInstance) {
+  return hotInstance.sortingEnabled &#x26;&#x26; typeof hotInstance.sortColumn != &#x27;undefined&#x27;;
+}</code></pre>
     <h3 id="how-to-sort-a-table">How to sort a table</h3>
     <p>There are 3 ways you can sort a table:</p>
     <ul>
@@ -122,10 +119,10 @@
       <li><code>order: Boolean</code> - defines the order of sorting (<code>true</code> for ascending, <code>false</code> for descending). This arguments is optional. If it&#39;s not specified, the default order is ascending.</li>
     </ul>
     <p>Example:</p>
-    <pre><code class="lang-javascript"><span class="hljs-keyword">if</span> (hot.sortingEnabled) {
-      hot.sort(<span class="hljs-number">0</span>, <span class="hljs-literal">false</span>); <span class="hljs-comment">//will sort table using values from the first column in descending order</span>
-      }
-    </code></pre>
+    <pre><code class="lang-javascript">if (hot.sortingEnabled) {
+  // will sort table using values from the first column in descending order
+  hot.sort(0, false);
+}</code></pre>
     <h3 id="rows-indices-translation">Rows indices translation</h3>
     <p>The main task of column sorting plugin is mapping the data source rows indices to displayed rows indices and vice versa. The indices of displayed rows are called <em>logical indices</em> and the indices in datasource array are called <em>physical indices</em>. In general, every logical index has a corresponding physical index. </p>
     <p>Most of the time, this whole mapping logic takes place under the hood and you don&#39;t have to bother even remembering it, because a vast majority of important operations and functions is interested only in physical indices. For example, if the cell value changes, the <code>afterChange</code> event is triggered. All event listeners will receive a row index of the row, where the change took place. This will be the physical index of the modified row. Same scheme applies to other events. </p>
@@ -133,8 +130,7 @@
     <p>However, sometimes you might need to know which physical row is displayed as the first logical row and the other way around. To do so, you have to use <code>sortIndex</code> an extra property, which is being added to Handsontable instance, when column sorting plugin is enabled. </p>
     <p><code>sortIndex</code> is a 2D array which maps indices of visible rows (logical indices) to indices of rows stored in datasource (physical indices). </p>
     <p>Example: My table is sorted. I have changed row 4 and I want to know which row in data source got updated. So I want to get the physical index, having the logical index. This is the code I have to write:</p>
-    <pre><code class="lang-javascript">physicalIndex = instance.sortIndex[logicalIndex][<span class="hljs-number">0</span>];
-    </code></pre>
+    <pre><code class="lang-javascript">physicalIndex = instance.sortIndex[logicalIndex][0];</code></pre>
     <p>The revers mapping is a bit more complicated, but is also possible. In fact, <code>columnSorting</code> plugin has two dedicated methods which translates logical indices to physical and vice versa (called <code>translateRow()</code> and <code>untranslateRow()</code>) but they are currently inaccessible from the global scope.</p>
     <p>Click on a column header to sort. Only the table view is sorted. The data source remains in the original order.
       For an in depth documentation of column sorting plugin see the

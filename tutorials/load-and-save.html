@@ -131,15 +131,20 @@
       </ul>
   </div>
 
-  <div class="example-container clearfix">
-    <h3 id="using">Why should I use persistentState rather than regular LocalStorage API?</h3>
-    <p>The main reason behind using <code>persistentState</code> hooks rather than regular LocalStorage API is
-      that it ensures separation of data stored by multiple Handsontable instances. In other words,
-      if you have two (or more) instances of Handsontable on one page, data saved by one instance won't
-      be accessible by the second instance. Those two instances can store data under the same <code>key</code> and no
-      data would be overwritten.</p>
-    <p><strong>Important notice:</strong> in order for the data separation to work properly,
-      make sure that each instance of Handsontable has a unique <code>id</code>.</p>
+        <dt>persistentStateLoad (<code>key: String</code>, <code>valuePlaceholder: Object</code>)</dt>
+        <dd>Loads <code>value</code>, saved under given <code>key</code>, form browser local storage. The loaded <code>value</code> will be saved in <code>valuePlaceholder.value</code> (this is due to specific behaviour of <code>PluginHooks.execute()</code> method). If no value have been saved under <code>key</code> <code>valuePlaceholder.value</code> will be <code>undefined</code>.</dd>
+
+        <dt>persistentStateReset (<code>key: String</code>)</dt>
+        <dd>Clears the value saved under <code>key</code>. If no <code>key</code> is given, all values associated with table will be cleared.</dd>
+      </dl>
+      <h3>Why should I use <code>persistentState</code> rather than regular LocalStorage API?</h3>
+      <p>The main reason behind using <code>persistentState</code> hooks rather than regular LocalStorage API is
+        that it ensures separation of data stored by multiple Handsontable instances. In other words,
+        if you have two (or more) instances of Handsontable on one page, data saved by one instance won't be
+        accessible by the second instance. Those two instances can store data under the same key and
+        no data would be overwritten.</p>
+      <p><strong>In order for the data separation to work properly, make sure that each instance
+        of Handsontable has a unique <code>id</code>.</strong></p>
   </div>
 </div>
 

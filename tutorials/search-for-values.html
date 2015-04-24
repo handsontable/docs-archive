@@ -28,14 +28,16 @@
       The first is a string passed to <code>query()</code> method. The second is a value returned by <code>getDataAtCell()</code>.
       The <code>queryMethod</code> function should return <code>true</code> if there is a match.</p>
     <p>The default <code>queryMethod</code> is dead simple:</p>
-    <code class="lang-javascript hljs">
-    Handsontable.Search.DEFAULT_QUERY_METHOD = function (query, value) {
-    if (typeof query == 'undefined' || query == null || !query.toLowerCase || query.length == 0){
+    <pre>
+      <code class="lang-javascript">Handsontable.Search.DEFAULT_QUERY_METHOD = function (query, value) {
+  if (typeof query == 'undefined' || query == null || !query.toLowerCase || query.length === 0) {
     return false;
-    }
-    return value.toString().toLowerCase().indexOf(query.toLowerCase()) != -1;
-    };
-    </code>
+  }
+
+  return value.toString().toLowerCase().indexOf(query.toLowerCase()) !== -1;
+};
+      </code>
+    </pre>
     <p>If you want to change the <code>queryMethod</code>, use <code>queryMethod</code> option.
       You can also pass the <code>queryMethod</code> as the third argument of <code>query()</code> method.
       To change the <code>queryMethod</code> globally, use
@@ -50,17 +52,17 @@
     <p>The default <code>callback</code> is responsible for setting the <code>isSearchResult</code> property,
       so if you want to preserve this functionality, be sure to invoke <code>Handsontable.Search.DEFAULT_CALLBACK</code>
       inside your custom <code>callback</code>.</p>
-    <code class="lang-javascript hljs">
-    Handsontable.Search.DEFAULT_CALLBACK = function (instance, row, col, data, testResult) {
-    instance.getCellMeta(row, col).isSearchResult = testResult;
-    };
-    </code>
+    <pre>
+      <code class="lang-javascript">Handsontable.Search.DEFAULT_CALLBACK = function(instance, row, col, data, testResult) {
+  instance.getCellMeta(row, col).isSearchResult = testResult;
+};</code>
+    </pre>
     <p>Find the following examples below:</p>
     <ul>
-      <li><a href="#simplest-use-case">Simplest use case</a></li>
-      <li><a href="#custom-search-result-class">Custom search result class</a></li>
-      <li><a href="#custom-query-method">Custom query method</a></li>
-      <li><a href="#custom-callback">Custom callback</a></li>
+      <li><a href="#page-simplest-use-case">Simplest use case</a></li>
+      <li><a href="#page-custom-search-result-class">Custom search result class</a></li>
+      <li><a href="#page-custom-query-method">Custom query method</a></li>
+      <li><a href="#page-custom-callback">Custom callback</a></li>
     </ul>
   </div>
 
@@ -68,7 +70,7 @@
     <a href="https://github.com/handsontable/docs/edit/feature/master/tutorials/search-of-values.html" class="edit-doc" target="_blank">
       Edit on GitHub
     </a>
-    <h3>Simplest use case</h3>
+    <h3 id="page-simplest-use-case">Simplest use case</h3>
 
     <div data-jsfiddle="example1">
       <input id='search_field' type="search" placeholder="Search" />
@@ -121,7 +123,7 @@
   </div>
 
   <div class="example-container clearfix head-gap" name="custom-search-result-class">
-    <h3>Custom search result class</h3>
+    <h3 id="page-custom-search-result-class">Custom search result class</h3>
     <div data-jsfiddle="example2">
       <input id='search_field2' type="search" placeholder="Search" />
       <div id="example2" class="hot"></div>
@@ -145,30 +147,31 @@
             ["Nissan", 2013, "blue", "blue"],
             ["Chrysler", 2014, "yellow", "black"],
             ["Volvo", 2015, "white", "gray"]
-          ]
-          , example2 = document.getElementById("example2");
+          ],
+          example2 = document.getElementById("example2"),
+          hot2, searchFiled2;
 
-        var hot2 = new Handsontable(example2,{
+        hot2 = new Handsontable(example2,{
           data: data,
           colHeaders: true,
           search: {
             searchResultClass: 'customClass'
           }
         });
+        searchFiled2 = document.getElementById('search_field2');
 
-        var searchFiled2 = document.getElementById('search_field2');
         Handsontable.Dom.addEvent(searchFiled2,'keyup', function (event) {
           var queryResult = hot2.search.query(this.value);
+
           console.log(queryResult);
           hot2.render();
         });
-
       </script>
     </div>
   </div>
 
   <div class="example-container clearfix head-gap" name="custom-query-method">
-    <h3>Custom query method</h3>
+    <h3 id="page-custom-query-method">Custom query method</h3>
 
     <div data-jsfiddle="example3">
       <input id='search_field3' type="search" placeholder="Search" />
@@ -193,36 +196,35 @@
             ["Nissan", 2013, "blue", "blue"],
             ["Chrysler", 2014, "yellow", "black"],
             ["Volvo", 2015, "white", "gray"]
-          ]
-          , example3 = document.getElementById("example3");
+          ],
+          example3 = document.getElementById("example3"),
+          hot3, searchFiled3;
 
-        var onlyExactMatch = function (queryStr, value) {
+        function onlyExactMatch(queryStr, value) {
           return queryStr.toString() === value.toString();
         };
 
-        var hot3 = new Handsontable(example3,{
+        hot3 = new Handsontable(example3,{
           data: data,
           colHeaders: true,
           search: {
             queryMethod: onlyExactMatch
           }
         });
+        searchFiled3 = document.getElementById('search_field3');
 
-        var searchFiled3 = document.getElementById('search_field3');
-        Handsontable.Dom.addEvent(searchFiled3,'keyup', function (event) {
-
+        Handsontable.Dom.addEvent(searchFiled3,'keyup', function(event) {
           var queryResult = hot3.search.query(this.value);
 
           console.log(queryResult);
 
           hot3.render();
         });
-
       </script>
     </div>
   </div>
   <div class="example-container clearfix head-gap" name="custom-callback">
-    <h3>Custom callback</h3>
+    <h3 id="page-custom-callback">Custom callback</h3>
 
     <div data-jsfiddle="example4">
       <input id='search_field4' type="search" placeholder="Search" />
@@ -248,39 +250,38 @@
             ["Nissan", 2013, "blue", "blue"],
             ["Chrysler", 2014, "yellow", "black"],
             ["Volvo", 2015, "white", "gray"]
-          ]
-          , example4 = document.getElementById("example4");
+          ],
+          example4 = document.getElementById("example4"),
+          hot4, searchFiled4, resultCount,
+          searchResultCount = 0;
 
-        var searchResultCount = 0;
-
-        var searchResultCounter = function (instance, row, col, value, result) {
-
+        function searchResultCounter(instance, row, col, value, result) {
           Handsontable.Search.DEFAULT_CALLBACK.apply(this, arguments);
 
           if (result) {
             searchResultCount++;
           }
-        };
+        }
 
-        var hot4 = new Handsontable(example4,{
+        hot4 = new Handsontable(example4,{
           data: data,
           colHeaders: true,
           search: {
             callback: searchResultCounter
           }
         });
+        searchFiled4 = document.getElementById('search_field4');
+        resultCount = document.getElementById('resultCount');
 
-        var searchFiled4 = document.getElementById('search_field4');
-        var resultCount = document.getElementById('resultCount');
+        Handsontable.Dom.addEvent(searchFiled4, 'keyup', function(event) {
+          var queryResult;
 
-        Handsontable.Dom.addEvent(searchFiled4, 'keyup', function (event) {
           searchResultCount = 0;
-          var queryResult = hot4.search.query(this.value);
+          queryResult = hot4.search.query(this.value);
           console.log(queryResult);
           resultCount.innerText = searchResultCount.toString();
           hot4.render();
         });
-
       </script>
     </div>
   </div>

@@ -16,10 +16,10 @@
   <div class="index-list">
     <p>This page explains how to use and configure right-click context menu with Handsontable:</p>
     <ul>
-      <li><a href="#default">Context menu with default options</a></li>
-      <li><a href="#specific">Context menu with specific options</a></li>
-      <li><a href="#custom">Context menu with fully custom configuration</a></li>
-      <li><a href="#copy-paste">Context menu with copy-paste option</a></li>
+      <li><a href="#page-default">Context menu with default options</a></li>
+      <li><a href="#page-specific">Context menu with specific options</a></li>
+      <li><a href="#page-custom">Context menu with fully custom configuration</a></li>
+      <li><a href="#page-copy-paste">Context menu with copy-paste option</a></li>
     </ul>
   </div>
 
@@ -27,7 +27,7 @@
     <a href="https://github.com/handsontable/docs/edit/feature/master/tutorials/context-menu.html" class="edit-doc" target="_blank">
       Edit on GitHub
     </a>
-    <h3>Context menu with default options</h3>
+    <h3 id="page-default">Context menu with default options</h3>
     <p>To run the basic configuration of the Context Menu, just set the contextMenu option to true.</p>
     <p>From version 0.11, context menu also works for row and column headers. When the context menu for the row
       header is opened, the column options are disabled. Likewise, when the context menu for the column header is opened,
@@ -50,7 +50,8 @@
         </button>
       </div>
       <script data-jsfiddle="example1">
-        var example1 = document.getElementById('example1'),
+        var
+          example1 = document.getElementById('example1'),
           settings1,
           hot1;
 
@@ -66,7 +67,7 @@
   </div>
 
   <div class="example-container clearfix head-gap" name="specific">
-    <h3>Context menu with specific options</h3>
+    <h3  id="page-specific">Context menu with specific options</h3>
     <p>You can limit options available in the context menu using contextMenu option as an array of strings:</p>
     <ul>
       <li>row_above</li>
@@ -103,20 +104,24 @@
         </button>
       </div>
       <script data-jsfiddle="example2">
-        var example2 = document.getElementById('example2');
-        var settings2 = {
+        var
+          example2 = document.getElementById('example2'),
+          settings2,
+          hot2;
+
+        settings2 = {
           data: getData(),
           rowHeaders: true,
           colHeaders: true,
           contextMenu: ['row_above', 'row_below', 'remove_row']
         };
-        var hot2 = new Handsontable(example2, settings2);
+        hot2 = new Handsontable(example2, settings2);
       </script>
     </div>
   </div>
 
   <div class="example-container clearfix head-gap" name="custom">
-    <h3>Context menu with fully custom configuration</h3>
+    <h3 id="page-custom">Context menu with fully custom configuration</h3>
     <p>For greatest configurability, you use contextMenu option as a configuration object as described in <a
       href="http://medialize.github.com/jQuery-contextMenu/docs.html" target="_blank">jQuery contextMenu documentation</a>.</p>
     <p>This example shows how to set <strong>custom text</strong>, how to <strong>disable</strong>
@@ -139,21 +144,24 @@
         </button>
       </div>
       <script data-jsfiddle="example3">
-        var example3 = document.getElementById('example3');
-        var settings3 = {
+        var
+          example3 = document.getElementById('example3'),
+          settings3,
+          hot3;
+
+        settings3 = {
           data: getData(),
           rowHeaders: true,
           colHeaders: true
         };
-
-        var hot3 = new Handsontable(example3,settings3);
+        hot3 = new Handsontable(example3, settings3);
 
         hot3.updateSettings({
           contextMenu: {
             callback: function (key, options) {
               if (key === 'about') {
                 setTimeout(function () {
-                  //timeout is used to make sure the menu collapsed before alert is shown
+                  // timeout is used to make sure the menu collapsed before alert is shown
                   alert("This is a context menu with default and custom options mixed");
                 }, 100);
               }
@@ -161,8 +169,8 @@
             items: {
               "row_above": {
                 disabled: function () {
-                  //if first row, disable this option
-                  return (hot3.getSelected()[0]===0)
+                  // if first row, disable this option
+                  return hot3.getSelected()[0] === 0;
                 }
               },
               "row_below": {},
@@ -170,8 +178,8 @@
               "remove_row": {
                 name: 'Remove this row, ok?',
                 disabled: function () {
-                  //if first row, disable this option
-                  return  (hot3.getSelected()[0] === 0)
+                  // if first row, disable this option
+                  return hot3.getSelected()[0] === 0
                 }
               },
               "hsep2": "---------",
@@ -184,7 +192,7 @@
   </div>
 
   <div class="example-container clearfix head-gap" name="copy-paste">
-    <h3>Copy-paste configuration</h3>
+    <h3 id="page-copy-paste">Copy-paste configuration</h3>
     <p>Copy and Paste feature are available in Handsontable by default, but only as key shortcuts (<code>Ctrl (Cmd) + C</code> and <code>Ctrl (Cmd) + V</code> respectively).<br>
       This plugin makes them available also as a clickable options in the context menu. Unfortunately, due to the browser's security restrictions,
       Handsontable is forced to use a third-party flash-based library. We chose to use
@@ -201,17 +209,17 @@
     <ul>
       <li><code>true</code> - if the <code>ZeroClipboard.swf</code> file is placed in the same directory as the <code>ZeroClipboard.js</code>, or</li>
       <li>
-        <code>
-        { <br/>
-          swfPath: [path to the swf file],  <br/>
-          }
-        </code>
+        <code>{swfPath: [path to the swf file]}</code>
       </li>
     </ul>
 
     <div data-jsfiddle="example4">
       <div id="example4" class="hot"></div>
     </div>
+
+    <script src="/bower_components/zeroclipboard/dist/ZeroClipboard.min.js"></script>
+    <br>
+    <pre><code class="html">&#x3C;script src=&#x22;/bower_components/zeroclipboard/dist/ZeroClipboard.min.js&#x22;&#x3E;&#x3C;/script&#x3E;</code></pre>
 
     <div class="codeLayout">
       <div class="buttons">
@@ -226,16 +234,17 @@
         </button>
       </div>
       <script data-jsfiddle="example4">
-        var container = document.getElementById('example4'),
-          hot1;
+        var
+          example4 = document.getElementById('example4'),
+          hot4;
 
-        hot1 = new Handsontable(container, {
+        hot4 = new Handsontable(example4, {
           data: getData(),
           rowHeaders: true,
           colHeaders: true,
           contextMenu: true,
           contextMenuCopyPaste: {
-            swfPath: 'swf/ZeroClipboard.swf'
+            swfPath: '/bower_components/zeroclipboard/dist/ZeroClipboard.swf'
           }
         });
       </script>

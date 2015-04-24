@@ -3,9 +3,9 @@
 <div class="index-list">
   <p>This page shows how to configure Handsontable column stretching:</p>
   <ul>
-    <li><a href="#last">StretchH <code>last</code> column</a></li>
-    <li><a href="#stretch">StretchH <code>all</code> columns</a></li>
-    <li><a href="#none">StretchH <code>none</code> (default)</a></li>
+    <li><a href="#page-last">StretchH <code>last</code> column</a></li>
+    <li><a href="#page-stretch">StretchH <code>all</code> columns</a></li>
+    <li><a href="#page-none">StretchH <code>none</code> (default)</a></li>
   </ul>
 </div>
 
@@ -13,7 +13,7 @@
   <a href="https://github.com/handsontable/docs/edit/feature/master/tutorials/stretching.html" class="edit-doc" target="_blank">
     Edit on GitHub
   </a>
-  <h3>StretchH <code>last</code> column</h3>
+  <h3 id="page-last">StretchH <code>last</code> column</h3>
   <p>The following example creates a table with vertical scrollbar by specifying
     only the container height and <code>overflow: hidden</code> in CSS.
     The last column is stretched using <code>stretchH: 'last'</code> option.</p>
@@ -51,7 +51,7 @@
 </div>
 
 <div class="example-container clearfix head-gap" name="stretch">
-  <h3>StretchH <code>all</code> columns</h3>
+  <h3 id="page-stretch">StretchH <code>all</code> columns</h3>
   <p>If the table content is not as wide as the container width, the table will be stretched to the container
     width. The default horizontal stretch model is to stretch the last column only (by using <code>stretchH:
       'last'</code> option).</p>
@@ -91,7 +91,7 @@
 </div>
 
 <div class="example-container clearfix head-gap" name="none">
-  <h3>StretchH <code>none</code> (default)</h3>
+  <h3 id="page-none">StretchH <code>none</code> (default)</h3>
 
   <div data-jsfiddle="example3" class="scroll-container">
     <div id="example3" class="hot"></div>
