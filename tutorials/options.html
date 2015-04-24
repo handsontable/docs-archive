@@ -49,11 +49,25 @@
     <p>The above notation will result in all TDs being <em>read only</em>, except for first column TDs which will be <em>editable</em>, except for the TD in top left corner which will still be <em>read only</em>.</p>
     <h3 id="the-cascading-configuration-model">The Cascading Configuration model</h3>
     <h5 id="1-constructor">1. Constructor</h5>
-    <p>Configuration options that are provided using first-level <code>Handsontable(container, {option: &quot;value&quot;})</code> and <code>updateSettings</code> method.</p>
+    <p>Configuration options that are provided using first-level</p>
+    <pre><code class="lang-javascript">new Handsontable(container, {
+  option: 'value'
+});</code></pre>
+    <p>and <code>updateSettings</code> method.</p>
     <h5 id="2-columns">2. Columns</h5>
-    <p>Configuration options that are provided using second-level object <code>Handsontable(container, {columns: {option: &quot;value&quot;}]})</code></p>
+    <p>Configuration options that are provided using second-level object</p>
+    <pre><code class="lang-javascript">new Handsontable(container, {
+  columns: {
+    option: 'value'
+  }
+});</code></pre>
     <h5 id="3-cells">3. Cells</h5>
-    <p>Configuration options that are provided using second-level function <code>Handsontable(container, {cells: function: (row, col, prop){ /* ... */}})</code></p>
+    <p>Configuration options that are provided using second-level function</p>
+<pre><code class="lang-javascript">new Handsontable(container, {
+  cells: function(row, col, prop) {
+
+  }
+});</code></pre>
     <h3 id="architecture-performance">Architecture performance</h3>
     <p>The Cascading Configuration model is based on prototypal inheritance. It is much faster and memory efficient compared to the previous model that used jQuery extend. See: <a href="http://jsperf.com/extending-settings">http://jsperf.com/extending-settings</a></p>
   </div>

@@ -33,16 +33,16 @@
     <div class="index-list">
       <p><strong>On this page you’ll find out how to get through:</strong></p>
       <ul>
-        <li><a href="#install">Installing Handsontable</a></li>
-        <li><a href="#initialize">Basic initialization</a></li>
-        <li><a href="#update">Updating</a></li>
-        <li><a href="#nextsteps">Next steps</a></li>
+        <li><a href="#page-install">Installing Handsontable</a></li>
+        <li><a href="#page-initialize">Basic initialization</a></li>
+        <li><a href="#page-update">Updating</a></li>
+        <li><a href="#page-next-steps">Next steps</a></li>
       </ul>
     </div>
   </div>
 
   <div class="example-container clearfix" name="install">
-    <h3>Installing Handsontable</h3>
+    <h3 id="page-install">Installing Handsontable</h3>
     <p>There are many ways to install Handsontable but if you just want to play with it instantly,
       see our <a href="http://jsfiddle.net/js_ziggle/hU6Kz/3228/" target="_blank">JSFiddle demo</a>.
     </p>
@@ -51,7 +51,7 @@
         <p><strong>A recommended way to install Handsontable is through
           <a href="http://bower.io" target="_blank">Bower package manager</a> using command:</strong>
           <p>
-            <code>bower install Handsontable --save</code>
+            <code>bower install handsontable --save</code>
           </p>
           <p>Bower manages all dependencies so you can just sit back and wait.
           After Handsontable is downloaded, embed the code to your project – all the files you will
@@ -93,7 +93,7 @@
     </ol>
   </div>
   <div class="example-container clearfix" name="initialize">
-    <h3>Basic initialization</h3>
+    <h3 id="page-initialize">Basic initialization</h3>
     <p>If you bundled all together, then it’s time to play with Handsontable a bit.
       Start by creating a container holding the grid:
     </p>
@@ -109,41 +109,40 @@
   ["2010", 30, 15, 12, 13]
 ];
 
-var container = document.getElementById('hot');
-var hot = new Handsontable(container,
-  {
-    data: data,
-    minSpareRows: 1,
-    rowHeades: true,
-    colHeaders: true,
-    contextMenu: true
-  });
+var container = ;
+var hot = new Handsontable(container, {
+  data: data,
+  minSpareRows: 1,
+  rowHeaders: true,
+  colHeaders: true,
+  contextMenu: true
+});
 </code>
     </pre>
     <strong>Voilà!</strong>
     <p>Your Handsontable is now running and displaying exemplary data. In the above example we decided to
-      use only a few <a href="Handsontable.Options.html">Options</a> to make our table more functional but
+      use only a few <a href="Options.html">Options</a> to make our table more functional but
       you can play with more of them.
     </p>
   </div>
   <div class="example-container clearfix" name="update">
-    <h3>Updating</h3>
+    <h3 id="page-update">Updating</h3>
     <p>To update Handsontable, first do backup of the whole directory
       in case of problems. Then use
       <a href="http://bower.io/docs/api/#install" target="_blank">Bower command</a>:</p>
-    <p><code>bower install handsontable</code></p>
+    <p><code>bower update handsontable</code></p>
     <p>That will update only Handsontable leaving other dependencies untouched.</p>
   </div>
   <div class="example-container clearfix" name="nextsteps">
-    <h3>Next steps</h3>
+    <h3  id="page-next-steps">Next steps</h3>
     <p>Learning curve of Handsontable may be a bit steep for some of you,
       that’s why we prepared guides covering most popular topics. We suggest to read them first:</p>
     <ul>
-      <li><a href="tutorial-data-sources.html">How to connect to my data source?</a></li>
-      <li><a href="tutorial-load-and-save.html">How to load and save data?</a></li>
-      <li><a href="tutorial-custom-renderers.html">How to create a custom HTML inside a cell or header?</a></li>
-      <li><a href="tutorial-data-validation.html">How to validate data?</a></li>
-      <li><a href="tutorial-search-for-values.html">How to search for values within a spreadsheet?</a></li>
+      <li><a href="/tutorial-data-sources.html">How to connect to my data source?</a></li>
+      <li><a href="/tutorial-load-and-save.html">How to load and save data?</a></li>
+      <li><a href="/demo-custom-renderers.html">How to create a custom HTML inside a cell or header?</a></li>
+      <li><a href="/demo-data-validation.html">How to validate data?</a></li>
+      <li><a href="/demo-search-for-values.html">How to search for values within a spreadsheet?</a></li>
     </ul>
   </div>
 </div>

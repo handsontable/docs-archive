@@ -3,8 +3,8 @@
   <div class="index-list">
     <p>On this page:</p>
     <ul>
-      <li><a href="#onchange">Saving data using onChange callback</a></li>
-      <li><a href="#saving">Saving data locally</a></li>
+      <li><a href="#page-onchange">Saving data using onChange callback</a></li>
+      <li><a href="#page-saving">Saving data locally</a></li>
     </ul>
   </div>
 
@@ -12,7 +12,7 @@
     <a href="https://github.com/handsontable/docs/edit/feature/master/tutorials/load-and-save.html" class="edit-doc" target="_blank">
       Edit on GitHub
     </a>
-    <h3>Saving data using onChange callback</h3>
+    <h3 id="page-onchange">Saving data using onChange callback</h3>
     <p>Use the <strong>onChange</strong> callback to track changes made in the table. In the example below,
       <code>ajax</code> is used to load and save grid data. Note that this is just a mockup.
       Nothing is actually saved. You have to implement the server-side part by yourself.</p>
@@ -105,29 +105,29 @@
   </div>
 
   <div class="example-container clearfix head-gap" name="onchange">
-      <h3>Saving data locally</h3>
-      <p>You can save any sort of data in local storage in to preserve table state between page reloads.
-        In order to enable data storage mechanism, <code>persistantState</code> option must be set to <code>true</code>
-        (you can set it either during Handsontable initialization or using the <code>updateSettings</code> method).
-        When <code>persistentState</code> is enabled it exposes 3 hooks:</p>
-      <dl>
-        <dt>persistentStateSave (<code>key: String</code>, <code>value: Mixed</code>)</dt>
-        <dd>Saves <code>value</code> under given <code>key</code> in browser local storage.</dd>
+    <h3 id="page-saving">Saving data locally</h3>
+    <p>You can save any sort of data in local storage in to preserve table state between page reloads.
+      In order to enable data storage mechanism, <code>persistantState</code> option must be set to <code>true</code>
+      (you can set it either during Handsontable initialization or using the <code>updateSettings</code> method).
+      When <code>persistentState</code> is enabled it exposes 3 hooks:</p>
+    <dl>
+      <dt>persistentStateSave (<code>key: String</code>, <code>value: Mixed</code>)</dt>
+      <dd>Saves <code>value</code> under given <code>key</code> in browser local storage.</dd>
 
-        <dt>persistentStateLoad (<code>key: String</code>, <code>valuePlaceholder: Object</code>)</dt>
-        <dd>Loads <code>value</code>, saved under given <code>key</code>, form browser local storage. The loaded <code>value</code> will be saved in <code>valuePlaceholder.value</code> (this is due to specific behaviour of <code>PluginHooks.execute()</code> method). If no value have been saved under <code>key</code> <code>valuePlaceholder.value</code> will be <code>undefined</code>.</dd>
+      <dt>persistentStateLoad (<code>key: String</code>, <code>valuePlaceholder: Object</code>)</dt>
+      <dd>Loads <code>value</code>, saved under given <code>key</code>, form browser local storage. The loaded <code>value</code> will be saved in <code>valuePlaceholder.value</code> (this is due to specific behaviour of <code>PluginHooks.execute()</code> method). If no value have been saved under <code>key</code> <code>valuePlaceholder.value</code> will be <code>undefined</code>.</dd>
 
-        <dt>persistentStateReset (<code>key: String</code>)</dt>
-        <dd>Clears the value saved under <code>key</code>. If no <code>key</code> is given, all values associated with table will be cleared.</dd>
-      </dl>
-      <h3>Why should I use <code>persistentState</code> rather than regular LocalStorage API?</h3>
-      <p>The main reason behind using <code>persistentState</code> hooks rather than regular LocalStorage API is
-        that it ensures separation of data stored by multiple Handsontable instances. In other words,
-        if you have two (or more) instances of Handsontable on one page, data saved by one instance won't be
-        accessible by the second instance. Those two instances can store data under the same key and
-        no data would be overwritten.</p>
-      <p><strong>In order for the data separation to work properly, make sure that each instance
-        of Handsontable has a unique <code>id</code>.</strong></p>
+      <dt>persistentStateReset (<code>key: String</code>)</dt>
+      <dd>Clears the value saved under <code>key</code>. If no <code>key</code> is given, all values associated with table will be cleared.</dd>
+    </dl>
+    <h3>Why should I use <code>persistentState</code> rather than regular LocalStorage API?</h3>
+    <p>The main reason behind using <code>persistentState</code> hooks rather than regular LocalStorage API is
+      that it ensures separation of data stored by multiple Handsontable instances. In other words,
+      if you have two (or more) instances of Handsontable on one page, data saved by one instance won't be
+      accessible by the second instance. Those two instances can store data under the same key and
+      no data would be overwritten.</p>
+    <p><strong>In order for the data separation to work properly, make sure that each instance
+      of Handsontable has a unique <code>id</code>.</strong></p>
   </div>
 </div>
 
