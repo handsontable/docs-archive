@@ -43,7 +43,6 @@
       individually. For more details see <a
         href="/tutorial-setting-options.html#page-config">How cascading
         configuration works</a>.</p>
-    <p>//TODO: add link to registering editors</p>
     <p>The value of <code>editor</code> property can be either a string representing an editor (such as &#39;text&#39;,
       &#39;autocomplete&#39;, &#39;checkbox&#39; etc.),
       or an editor class. <code>EditorManager</code> will then get an instance of editor class and the first very important
@@ -284,8 +283,7 @@ PasswordEditor.prototype.createElements = function () {
   this.TEXTAREA_PARENT.appendChild(this.TEXTAREA);
 };</code></pre>
     <p>That&#39;s it! You can now use your new editor:</p>
-    <pre><code class="lang-js">var container = document.getElementById('container');
-var hot = new Handsontable(container, {
+    <pre><code class="lang-js">var hot = new Handsontable(document.getElementById('container'), {
   data: someData,
   columns: [
     {
@@ -394,8 +392,7 @@ var hot = new Handsontable(container, {
       display the list, it would be
       empty.</p>
     <p>We want to be able to define an option list like so:</p>
-    <pre><code class="lang-js">var container = document.getElementById('container');
-var hot = new Handsontable(container, {
+    <pre><code class="lang-js">var hot = new Handsontable(document.getElementById('container'), {
   data: someData,
   columns: [
     {
@@ -514,8 +511,7 @@ SelectEditor.prototype.close = function() {
     <pre><code class="lang-javascript">/*
  * PLACE EDITOR CODE HERE
  */
-var container = document.getElementById('container');
-var hot = new Handsontable(container, {
+var hot = new Handsontable(document.getElementById('container'), {
   data: someData,
   columns: [
     {},
@@ -749,8 +745,7 @@ SelectEditor.prototype.checkEditorSection = function() {
 
 })(Handsontable);</code></pre>
     <p>From now on, you can use <code>CustomEditor</code> like so:</p>
-    <pre><code class="lang-javascript">var container = document.getElementById('container');
-var hot = new Handsontable(container, {
+    <pre><code class="lang-javascript">var hot = new Handsontable(document.getElementById('container'), {
   data: someData,
   columns: [
     {
