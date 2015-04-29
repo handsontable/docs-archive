@@ -39,9 +39,9 @@
     <p>Currently, the following tasks are available for building Handsontable:</p>
     <ul>
       <li><code>grunt</code> - runs a single build</li>
+      <li><code>grunt build</code> - runs a single build but without code quality checking</li>
       <li><code>grunt jshint</code> - checks code quality</li>
-      <li><code>grunt watch</code> - watches for changes in source directory and runs a build when a change is observed
-      </li>
+      <li><code>grunt watch</code> - watches for changes in source directory and runs a build when a change is observed. For faster rebuild when a change is observed watcher triggers task which builds files without minify.</li>
       <li><code>grunt --force default watch</code> - runs a single build and then watches for changes</li>
       <li><code>grunt test</code> - runs a single build followed by Jasmine test suite executed in PhantomJS.
       </li>
