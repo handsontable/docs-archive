@@ -28,7 +28,7 @@
       "description": "JavaScript data grid editor. Excel-like grid editing with HTML & JavaScript",
       "keyword": "data grid"
     },
-    "linenums": false
+    "linenums": true
   },
   "markdown": {
     "parser": "gfm",

@@ -13,12 +13,6 @@ $(function () {
       $el.find('li').each(function (i, v) {
         var $item = $(v);
 
-        if ($item.hasClass('api-reference')) {
-          $item.show();
-
-          return;
-        }
-
         if ($item.data('name') && regexp.test($item.find("a").first().text())) {
           $item.show();
           $item.closest('.itemMembers').show();
@@ -27,7 +21,7 @@ $(function () {
           $item.parents('.sublist').show();
         }
       });
-      if ($('.sublist:not([style*="display: none"])').length) {
+      if ($('.sublist:not([style*="display: none"]), .tutorial:not([style*="display: none"])').length) {
         $notFound.hide();
       } else {
         $notFound.show();
