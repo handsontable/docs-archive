@@ -435,6 +435,14 @@ body {
   list-style-type: decimal;
   margin-bottom: 5px;
 }
+.main article.source-code ol li {
+  font-weight: 100;
+  font-size: 13px;
+  line-height: 1;
+}
+.main article ol.linenums {
+  margin-left: 15px;
+}
 .main article ul > li {
   margin-bottom: 5px;
   list-style-type: square;

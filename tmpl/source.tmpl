@@ -1,8 +1,11 @@
 <?js
   var data = obj;
 ?>
+<script>
+  var disableHighlight = true;
+</script>
 <section>
-  <article>
+  <article class="source-code">
     <pre class="prettyprint source <?js= env.conf.templates.linenums ? 'linenums' : '' ?>"><code><?js= data.code ?></code></pre>
   </article>
 </section>
