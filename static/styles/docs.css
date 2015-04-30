@@ -1,3 +1,7 @@
+body {
+  /* prevent wrapper->body margin collapsing */
+  padding-top: 0.1px;
+}
 #wrapper {
   margin-top: 5rem;
   z-index: 1;
