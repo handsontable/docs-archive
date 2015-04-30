@@ -179,6 +179,15 @@
     }
   }
 
+  .sublist.not-found {
+    display: none;
+    text-align: center;
+
+    .header {
+      margin: 16px 12px 12px;
+    }
+  }
+
 }
 
 .main {
@@ -363,6 +372,7 @@
     margin-top: 20px;
     padding-top: 5px;
     border-top: 1px solid #e1e1e1;
+    z-index: -1;
 
     .inherited {
       display: inline-block;

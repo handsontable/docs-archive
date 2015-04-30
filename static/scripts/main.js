@@ -3,11 +3,12 @@ $(function () {
   $('#search').on('keyup', function () {
     var value = $(this).val(),
       $el = $('.navigation'),
+      $notFound = $('.sublist.not-found'),
       regexp;
 
     if (value) {
       regexp = new RegExp(value, 'i');
-      $el.find('li, .itemMembers, .subheader').hide();
+      $el.find('li, .itemMembers, .subheader, .sublist').hide();
 
       $el.find('li').each(function (i, v) {
         var $item = $(v);
@@ -23,10 +24,16 @@ $(function () {
           $item.closest('.itemMembers').show();
           $item.closest('.item').show();
           $item.parents('.item').prevAll('p').first().show();
+          $item.parents('.sublist').show();
         }
       });
+      if ($('.sublist:not([style*="display: none"])').length) {
+        $notFound.hide();
+      } else {
+        $notFound.show();
+      }
     } else {
-      $el.find('.item, .sub-item, .itemMembers li, .subheader').show();
+      $el.find('.item, .sub-item, .itemMembers li, .subheader, .sublist').show();
       $el.find('.item .itemMembers').hide();
     }
 
