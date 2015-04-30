@@ -1,29 +1,34 @@
 (function() {
-    var counter = 0;
-    var numbered;
-    var source = document.getElementsByClassName('prettyprint source');
+  var counter = 0,
+    numbered,
+    source,
+    linenums;
 
-    if (source && source[0]) {
-        var linenums = config.linenums;
+  source = document.getElementsByClassName('prettyprint source');
 
-        if (linenums) {
-            source = source[0].getElementsByTagName('ol')[0];
+  if (source && source[0]) {
+    linenums = config.linenums;
 
-            numbered = Array.prototype.slice.apply(source.children);
-            numbered = numbered.map(function(item) {
-                counter++;
-                item.id = 'line' + counter;
-            });
-        } else {
-            source = source[0].getElementsByTagName('code')[0];
+    if (linenums) {
+      source = source[0].getElementsByTagName('ol')[0];
 
-            numbered = source.innerHTML.split('\n');
-            numbered = numbered.map(function(item) {
-                counter++;
-                return '<span id="line' + counter + '"></span>' + item;
-            });
+      if (source) {
+        Array.prototype.slice.apply(source.children).map(function(item) {
+          counter ++;
+          item.id = 'line' + counter;
+        });
+      }
+    } else {
+      source = source[0].getElementsByTagName('code')[0];
 
-            source.innerHTML = numbered.join('\n');
-        }
+      numbered = source.innerHTML.split('\n');
+      numbered = numbered.map(function(item) {
+        counter ++;
+
+        return '<span id="line' + counter + '"></span>' + item;
+      });
+
+      source.innerHTML = numbered.join('\n');
     }
+  }
 })();
