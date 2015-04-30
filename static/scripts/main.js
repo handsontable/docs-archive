@@ -35,6 +35,7 @@ $(function () {
     } else {
       $el.find('.item, .sub-item, .itemMembers li, .subheader, .sublist').show();
       $el.find('.item .itemMembers').hide();
+      $notFound.hide();
     }
 
     $el.find('.list').scrollTop(0);
