@@ -3,6 +3,11 @@
   var self = this;
 ?>
 <dt>
+  <?js if (data.meta) {?>
+    <div class="tag-source">
+      <?js= self.linkto(meta.filename) ?>, <?js= self.linkto(meta.filename, 'line ' + meta.lineno, null, 'line' + meta.lineno) ?>
+    </div>
+  <?js } ?>
   <div class="nameContainer<?js if (data.inherited) { ?>inherited<?js } ?>">
     <h4 class="name" id="<?js= id ?>">
       <?js if (data.inherited || data.inherits) { ?>
@@ -12,12 +17,6 @@
         <?js= data.attribs + (kind === 'class' ? 'new ' : '') + (data.scope === 'static' ? longname : name) + (kind !== 'event' ? data.signature : '') ?>
       <?js } ?>
     </h4>
-
-    <?js if (data.meta) {?>
-      <div class="tag-source">
-        <?js= self.linkto(meta.filename) ?>, <?js= self.linkto(meta.filename, 'line ' + meta.lineno, null, 'line' + meta.lineno) ?>
-      </div>
-    <?js } ?>
   </div>
 
   <?js if (data.summary) { ?>
