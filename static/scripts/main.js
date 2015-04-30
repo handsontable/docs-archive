@@ -178,3 +178,30 @@ function buildBreadcrumbs() {
 
   return breadcrumbs;
 }
+
+window.requestAnimFrame = (function(){
+  return  window.requestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||
+    window.mozRequestAnimationFrame ||
+    function(callback) {
+      window.setTimeout(callback, 1000 / 60);
+    };
+})();
+
+// Ugly fix for dropdown menu
+function dropdownLoop() {
+  $('.dropdown').each(function(index, element) {
+    var btnStyle = element.previousElementSibling.style,
+      boxShadowStyle = btnStyle.boxShadow,
+      clipStyle = $(element).css('clip');
+
+    if (clipStyle === 'auto') {
+      btnStyle.boxShadow = '0 1px 0 #4B96E0 inset, -1px 0 0 #4B96E0 inset, 1px 0 0 #4B96E0 inset';
+
+    } else if (boxShadowStyle !== 'none') {
+      btnStyle.boxShadow = 'none';
+    }
+  });
+  requestAnimFrame(dropdownLoop);
+}
+dropdownLoop();
