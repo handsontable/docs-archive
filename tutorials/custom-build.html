@@ -18,7 +18,8 @@
       tasks that are defined in
       <a href="https://github.com/handsontable/handsontable/blob/master/Gruntfile.js" target="_blank">Gruntfile.js</a>.
     </p>
-    <p>During the build process, the source files located in directory <code>src/*</code> are transformed into output files:</p>
+    <p>During the build process, the source files located in the <code>src/*</code> directory are transformed
+      into output files:</p>
     <ul>
       <li><code>./dist/handsontable.js</code></li>
       <li><code>./dist/handsontable.css</code></li>
@@ -29,7 +30,7 @@
       <li><code>./dist/handsontable.full.min.js</code></li>
       <li><code>./dist/handsontable.full.min.css</code></li>
     </ul>
-    <p>It is advised that you never modify the above files but rather make changes in the <code>src/</code>
+    <p>It is advised that you never modify the above-mentioned files but rather make changes in the <code>src/</code>
       directory and then run a proper build. This is especially important if you want to contribute
       your changes back to Handsontable using a pull request.</p>
   </div>
@@ -39,7 +40,7 @@
     <p>Currently, the following tasks are available for building Handsontable:</p>
     <ul>
       <li><code>grunt</code> - runs a single build</li>
-      <li><code>grunt jshint</code> - checks code quality</li>
+      <li><code>grunt jshint</code> - quality-checking</li>
       <li><code>grunt watch</code> - watches for changes in source directory and runs a build when a change is observed
       </li>
       <li><code>grunt --force default watch</code> - runs a single build and then watches for changes</li>
@@ -55,9 +56,9 @@
       <li>Install Node.js (available for Windows, Mac and Linux). This will also install NPM (Node Package Manager) that
         handles all the dependencies. Handsontable was tested with Node.js >=0.10 and npm >=1.4
       </li>
-      <li>Clone Handsontable repository on your local disk and go to the directory where you cloned it.</li>
-      <li>Install Grunt CLI as a global NPM module (<code>npm install -g grunt-cli</code>). More details about that
-        you can find on <a href="http://gruntjs.com/getting-started" target="_blank">Grunt - Getting Started</a>.</li>
+      <li>Clone the Handsontable repository on your local disk and go to the directory where you cloned it.</li>
+      <li>Install Grunt CLI as a global NPM module (<code>npm install -g grunt-cli</code>). More details can be found on
+        <a href="http://gruntjs.com/getting-started" target="_blank">Grunt - Getting Started</a>.</li>
       <li>Run <code>npm install</code> to download all the dependencies defined in <code>package.json</code>. The
         dependencies will be downloaded into a new directory <code>node_modules</code>, that is ignored by Git.
       </li>
@@ -69,7 +70,8 @@
   <div class="example-container clearfix" name="customizing">
     <h3 id="page-customizing">Creating a custom package</h3>
     <p>For more advanced users we prepared a tool called <code>hot-builder</code>.
-      By this tool you can customize Handsontable by excluding or including plugins. To install hot-builder globally run:</p>
+      With this tool you can customize Handsontable by excluding or including plugins.
+      To install hot-builder globally run:</p>
     <p><code>npm install hot-builder -g</code></p>
     <p>Then to build Handsontable run:</p>
     <p><code>hot-builder build --output-dir hot-dist</code></p>
