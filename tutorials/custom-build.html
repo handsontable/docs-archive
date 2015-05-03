@@ -10,7 +10,7 @@
   </div>
 
   <div class="example-container clearfix" name="building">
-    <a href="https://github.com/handsontable/docs/edit/master/tutorials/custom-build.html" class="edit-doc" target="_blank">
+    <a href="https://github.com/handsontable/docs/edit/develop/tutorials/custom-build.html" class="edit-doc" target="_blank">
       Edit on GitHub
     </a>
 
@@ -40,9 +40,9 @@
     <p>Currently, the following tasks are available for building Handsontable:</p>
     <ul>
       <li><code>grunt</code> - runs a single build</li>
+      <li><code>grunt build</code> - runs a single build but without code quality checking</li>
       <li><code>grunt jshint</code> - quality-checking</li>
-      <li><code>grunt watch</code> - watches for changes in source directory and runs a build when a change is observed
-      </li>
+      <li><code>grunt watch</code> - watches for changes in source directory and runs a build when a change is observed. For faster rebuild when a change is observed watcher triggers task which builds files without minify.</li>
       <li><code>grunt --force default watch</code> - runs a single build and then watches for changes</li>
       <li><code>grunt test</code> - runs a single build followed by Jasmine test suite executed in PhantomJS.
       </li>
@@ -65,7 +65,7 @@
       <li><strong>Run <code>grunt</code> to make your first build!</strong></li>
     </ol>
     <p>If all is working correctly, you should see something like this:</p>
-    <img src="/images/running-1.jpg" alt="Running your first build" />
+    <img width="822" height="660" src="/images/grunt-build.png" alt="Running your first build" />
   </div>
   <div class="example-container clearfix" name="customizing">
     <h3 id="page-customizing">Creating a custom package</h3>
@@ -77,8 +77,9 @@
     <p><code>hot-builder build --output-dir hot-dist</code></p>
     <p>Select all necessary plugins in your terminal and press Enter.
       If it works correctly, you should see something like this:</p>
-    <p><img src="/images/customizing-1.jpg" alt="Creating a custom package" /></p>
-    <p><img src="/images/customizing-2.jpg" alt="Creating a custom package" /></p>
+    <p><img width="822" height="164" src="/images/hot-builder-ui.png" alt="Creating a custom package" /></p>
+    <p>And after selecting modules you should see something like this:</p>
+    <p><img width="822" height="532" src="/images/hot-builder-results.png" alt="Creating a custom package" /></p>
     <p>For further details, check out <a href="https://github.com/handsontable/hot-builder" target="_blank">the project page</a>.</p>
   </div>
 </div>

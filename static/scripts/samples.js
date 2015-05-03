@@ -348,7 +348,9 @@ function ajax(url, method, params, callback) {
   }
 
   contentLoaded(window, function (event) {
-    init();
+    if (typeof disableHighlight === 'undefined' || !disableHighlight) {
+      init();
+    }
   });
 
 })();

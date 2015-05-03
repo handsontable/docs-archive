@@ -1,7 +1,7 @@
 <div class="static-content">
 
   <div class="example-container clearfix">
-    <a href="https://github.com/handsontable/docs/edit/master/tutorials/cell-function.html" class="edit-doc" target="_blank">
+    <a href="https://github.com/handsontable/docs/edit/develop/tutorials/cell-function.html" class="edit-doc" target="_blank">
       Edit on GitHub
     </a>
     <p>With every cell in the Handsontable there are 3 associated functions:</p>
@@ -47,7 +47,7 @@
       </li>
     </ul>
     <p>Before deciding to attach an event listener in cell renderer make sure, that there is no <a
-      href="https://github.com/handsontable/handsontable/wiki/Events">Handsontable event</a> that suits your needs. Using
+      href="/Hooks.html">Handsontable event</a> that suits your needs. Using
       <em>Handsontable events</em> system is the safest way to respond to user actions.</p>
     <p>If you did&#39;t find a suitable <em>Handsontable event</em> put the cell content into a wrapping <code>
       &lt;div&gt;</code>, attach the event listener to the wrapper and then put it into the table cell.</p>
@@ -90,8 +90,7 @@
       <li><code>Handsontable.NumericValidator</code></li>
     </ul>
     <p>so instead of writing</p>
-    <pre><code class="lang-javascript">var container = document.getElementById('container');
-var hot = new Handsontable(container, {
+    <pre><code class="lang-javascript">var hot = new Handsontable(document.getElementById('container'), {
   columns: [
     {
       renderer: Handsontable.NumericRenderer,
@@ -101,8 +100,7 @@ var hot = new Handsontable(container, {
   ]
 });</code></pre>
     <p>you can simply write</p>
-    <pre><code class="lang-javascript">var container = document.getElementById('container');
-var hot = new Handsontable(container, {
+    <pre><code class="lang-javascript">var hot = new Handsontable(document.getElementById('container'), {
   columns: [
     {
       type: 'numeric'
@@ -128,8 +126,7 @@ var hot = new Handsontable(container, {
     <h3 id="precedence">Precedence</h3>
     <p>It is possible to define the <code>type</code> option together with options such as <code>renderer</code>, <code>editor</code>
       or <code>validator</code>. Lets look at this example:</p>
-    <pre><code class="lang-javascript">var container = document.getElementById('container');
-var hot = new Handsontable(container, {
+    <pre><code class="lang-javascript">var hot = new Handsontable(document.getElementById('container'), {
   columns: [
   {
     type: 'numeric',
@@ -140,8 +137,7 @@ var hot = new Handsontable(container, {
     <p>We defined the <code>type</code> for all cells in a column to be <code>numeric</code>. Besides that, we also defined
       a validator function directly. In Handsontable, cell functions defined directly always take precedence over functions
       associated with cell type, so the above configuration is equivalent to:</p>
-    <pre><code class="lang-javascript">var container = document.getElementById('container');
-var hot = new Handsontable(container, {
+    <pre><code class="lang-javascript">var hot = new Handsontable(document.getElementById('container'), {
   columns: [
     {
       renderer: Handsontable.NumericRenderer,
@@ -151,8 +147,7 @@ var hot = new Handsontable(container, {
   ]
 });</code></pre>
     <p>There is one more way you can define the configuration using types:</p>
-    <pre><code class="lang-javascript">var container = document.getElementById('container');
-var hot = new Handsontable(container, {
+    <pre><code class="lang-javascript">var hot = new Handsontable(document.getElementById('container'), {
   validator: customValidator, // validator function defined elsewhere
   columns: [
     {
@@ -162,7 +157,7 @@ var hot = new Handsontable(container, {
   ]
 });</code></pre>
     <p>We take advantage of the <a
-      href="https://github.com/handsontable/handsontable/wiki/Options#how-does-cascading-configuration-work">cascade
+      href="/tutorial-setting-options.html#page-config">cascade
       configuration</a> and define a table with two columns, with <code>validator</code> set to <code>customValidator</code>
       function. We also set <code>type</code> of the first column to <code>password</code>. <code>Password</code> cell type
       does not define a validator function:</p>
@@ -173,8 +168,7 @@ validator: undefined</code></pre>
       than the <code>validator: customValidator</code>, cell functions associated with the <code>password</code> type takes
       precedence over the functions defined on the higher level of configuration. Therefore, the equivalent configuration
       is:</p>
-    <pre><code class="lang-javascript">var container = document.getElementById('container');
-var hot = new Handsontable(container, {
+    <pre><code class="lang-javascript">var hot = new Handsontable(document.getElementById('container'), {
   columns: [
     {
       renderer: Handsontable.PasswordRenderer,
@@ -200,8 +194,7 @@ cellProperties.validator; // get cell validator</code></pre>
     <p>However, you have to remember that <code>getCellMeta()</code> return cell properties &quot;as they are&quot;, which
       means that if you use cell type to set cell functions, instead of defining functions directly those cell functions
       will be <code>undefined</code>:</p>
-    <pre><code class="lang-javascript">var container = document.getElementById('container');
-var hot = new Handsontable(container, {
+    <pre><code class="lang-javascript">var hot = new Handsontable(document.getElementById('container'), {
   columns: [
     {
       type: 'numeric'

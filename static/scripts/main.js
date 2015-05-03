@@ -3,31 +3,33 @@ $(function () {
   $('#search').on('keyup', function () {
     var value = $(this).val(),
       $el = $('.navigation'),
+      $notFound = $('.sublist.not-found'),
       regexp;
 
     if (value) {
       regexp = new RegExp(value, 'i');
-      $el.find('li, .itemMembers, .subheader').hide();
+      $el.find('li, .itemMembers, .subheader, .sublist').hide();
 
       $el.find('li').each(function (i, v) {
         var $item = $(v);
-
-        if ($item.hasClass('api-reference')) {
-          $item.show();
-
-          return;
-        }
 
         if ($item.data('name') && regexp.test($item.find("a").first().text())) {
           $item.show();
           $item.closest('.itemMembers').show();
           $item.closest('.item').show();
           $item.parents('.item').prevAll('p').first().show();
+          $item.parents('.sublist').show();
         }
       });
+      if ($('.sublist:not([style*="display: none"]), .tutorial:not([style*="display: none"])').length) {
+        $notFound.hide();
+      } else {
+        $notFound.show();
+      }
     } else {
-      $el.find('.item, .sub-item, .itemMembers li, .subheader').show();
+      $el.find('.item, .sub-item, .itemMembers li, .subheader, .sublist').show();
       $el.find('.item .itemMembers').hide();
+      $notFound.hide();
     }
 
     $el.find('.list').scrollTop(0);
@@ -176,3 +178,30 @@ function buildBreadcrumbs() {
 
   return breadcrumbs;
 }
+
+window.requestAnimFrame = (function(){
+  return  window.requestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||
+    window.mozRequestAnimationFrame ||
+    function(callback) {
+      window.setTimeout(callback, 1000 / 60);
+    };
+})();
+
+// Ugly fix for dropdown menu
+function dropdownLoop() {
+  $('.dropdown').each(function(index, element) {
+    var btnStyle = element.previousElementSibling.style,
+      boxShadowStyle = btnStyle.boxShadow,
+      clipStyle = $(element).css('clip');
+
+    if (clipStyle === 'auto') {
+      btnStyle.boxShadow = '0 1px 0 #4B96E0 inset, -1px 0 0 #4B96E0 inset, 1px 0 0 #4B96E0 inset';
+
+    } else if (boxShadowStyle !== 'none') {
+      btnStyle.boxShadow = 'none';
+    }
+  });
+  requestAnimFrame(dropdownLoop);
+}
+dropdownLoop();

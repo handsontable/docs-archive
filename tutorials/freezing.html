@@ -1,7 +1,7 @@
 <div class="static-content">
 
   <div class="example-container clearfix">
-    <a href="https://github.com/handsontable/docs/edit/master/tutorials/freezing.html" class="edit-doc" target="_blank">
+    <a href="https://github.com/handsontable/docs/edit/develop/tutorials/freezing.html" class="edit-doc" target="_blank">
       Edit on GitHub
     </a>
     <p>In order to manually freeze a column (in another words - make it fixed), you need to set the <code>manualColumnFreeze</code>
@@ -26,10 +26,12 @@
         </button>
       </div>
       <script data-jsfiddle="example1">
-        var myData = Handsontable.helper.createSpreadsheetData(200, 100);
-        var container = document.getElementById('example1');
+        var
+          myData = Handsontable.helper.createSpreadsheetData(200, 100),
+          container = document.getElementById('example1'),
+          hot;
 
-        var ht = new Handsontable(container, {
+        hot = new Handsontable(container, {
           data: myData,
           rowHeaders: true,
           colHeaders: true,
@@ -37,7 +39,6 @@
           contextMenu: true,
           manualColumnFreeze: true
         });
-
       </script>
     </div>
   </div>

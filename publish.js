@@ -21,7 +21,7 @@ function find(spec) {
 
 function tutoriallink(node) {
   if(node.external) {
-    return '<a class="external" href="' + node.external + '">' + node.name + '</a>';
+    return '<a class="external" href="' + node.external + '">' + node.title + '</a>';
   } else if(node.demo || (node.parent && node.parent.demo)) {
     return helper.toTutorial(node.name, null, { tag: 'em', classname: 'disabled', prefix: 'Demo: ' }).replace('tutorial-','demo-');
   } else {

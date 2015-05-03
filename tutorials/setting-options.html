@@ -10,37 +10,29 @@
   </div>
 
   <div class="example-container clearfix">
-    <a href="https://github.com/handsontable/docs/edit/master/tutorials/setting-options.html" class="edit-doc" target="_blank">
+    <a href="https://github.com/handsontable/docs/edit/develop/tutorials/setting-options.html" class="edit-doc" target="_blank">
       Edit on GitHub
     </a>
     <h3 id="page-options">Introduction to cell options</h3>
     <p>Any constructor or column option may be overwritten for a particular cell (row/column combination),
       using <code>cell</code> array passed to the Handsontable constructor. Example:</p>
-    <pre>
-      <code>
-        var hot = new Handsontable(document.getElementById('example'), {
-          cell: [
-            {row: 0, col: 0, readOnly: true}
-          ]
-        });
-      </code>
-    </pre>
+    <pre><code>var hot = new Handsontable(document.getElementById('example'), {
+  cell: [
+    {row: 0, col: 0, readOnly: true}
+  ]
+});</code></pre>
     <p>Or using cells function property to the Handsontable constructor. Example:</p>
-    <pre>
-      <code>
-        var hot = new Handsontable(document.getElementById('example'), {
-          cells: function (row, col, prop) {
-            var cellProperties = {}
+    <pre><code>var hot = new Handsontable(document.getElementById('example'), {
+  cells: function (row, col, prop) {
+    var cellProperties = {}
 
-            if (row === 0 &#x26;&#x26; col === 0) {
-                cellProperties.readOnly = true;
-            }
+    if (row === 0 &#x26;&#x26; col === 0) {
+      cellProperties.readOnly = true;
+    }
 
-            return cellProperties;
-          }
-        })
-      </code>
-    </pre>
+    return cellProperties;
+  }
+})</code></pre>
   </div>
 
   <div class="example-container clearfix head-gap">
@@ -48,27 +40,23 @@
     <p>Since Handsontable 0.9 we use Cascading Configuration, which is fast way to provide configuration
       options for the whole table, its columns and particular cells.</p>
     <p>Consider the following example:</p>
-    <pre>
-      <code>
-        var hot = new Handsontable(document.getElementById('example'), {
-          readOnly: true,
-          columns: [
-            {readOnly: false},
-            {},
-            {}
-          ],
-          cells: function (row, col, prop) {
-            var cellProperties = {}
+    <pre><code>var hot = new Handsontable(document.getElementById('example'), {
+  readOnly: true,
+  columns: [
+    {readOnly: false},
+    {},
+    {}
+  ],
+  cells: function (row, col, prop) {
+    var cellProperties = {}
 
-            if (row === 0 &#x26;&#x26; col === 0) {
-              cellProperties.readOnly = true;
-            }
+    if (row === 0 &#x26;&#x26; col === 0) {
+      cellProperties.readOnly = true;
+    }
 
-            return cellProperties;
-          }
-        });
-      </code>
-    </pre>
+    return cellProperties;
+  }
+});</code></pre>
     <p>The above notation will result in all TDs being read only, except for first column TDs
       which will be editable, except for the TD in top left corner which will still be read only.</p>
   </div>

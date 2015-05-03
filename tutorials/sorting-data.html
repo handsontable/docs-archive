@@ -52,7 +52,7 @@
   </script>
 
   <div class="example-container clearfix">
-    <a href="https://github.com/handsontable/docs/edit/master/tutorials/sorting-data.html" class="edit-doc" target="_blank">
+    <a href="https://github.com/handsontable/docs/edit/develop/tutorials/sorting-data.html" class="edit-doc" target="_blank">
       Edit on GitHub
     </a>
     <h3 id="how-the-sorting-works">How the sorting works</h3>
@@ -70,29 +70,26 @@
     <p>As all settings, <code>columnSorting</code> can be altered during the lifetime of a table, using <code>updateSettings()</code> method.</p>
     <p>Examples:</p>
     <pre><code class="lang-javascript">// enables the plugin, but does not sort the table
-var exampleContainer = document.getElementById('example');
-var hot = new Handsontable(exampleContainer, {
+var hot = new Handsontable(document.getElementById('example'), {
   columnSorting: true
 });
 
 // enables the plugin and sort the table by the values from the first column in ascending order
-var exampleContainer = document.getElementById('example');
-  var hot = new Handsontable(exampleContainer, {
-    columnSorting: {
+var hot = new Handsontable(document.getElementById('example'), {
+  columnSorting: {
     column: 0
   }
 });
 
 // enables the plugin and sort the table by the values from the first column in descending order
-var exampleContainer = document.getElementById('example');
-var hot = new Handsontable(exampleContainer, {
+var hot = new Handsontable(document.getElementById('example'), {
   columnSorting: {
     column: 0
     sortOrder: false
   }
 });
 
-// diables plugin
+// disable plugin
 hot.updateSettings({
   columnSorting: false
 });</code></pre>
@@ -102,7 +99,7 @@ hot.updateSettings({
     <p>The fact that column sorting has been enabled, does not imply, that the table content is sorted. To check whether a table has been sorted you can check the <code>sortColumn</code> property. If table instance has this property defined then it has been sorted. The value of <code>sortColumn</code> is the index of a column by which the table has been sorted. Additionally, you can check sorting order using <code>sortOrder</code> property. If <code>sortOrder</code> is <code>true</code>, then the order is ascending, otherwise, the order is descending.</p>
     <p>Simple function, which checks whether the table has been sorted could look like this:</p>
     <pre><code class="lang-javascript">function isSorted(hotInstance) {
-  return hotInstance.sortingEnabled &#x26;&#x26; typeof hotInstance.sortColumn != &#x27;undefined&#x27;;
+  return hotInstance.sortingEnabled &#x26;&#x26; typeof hotInstance.sortColumn !== &#x27;undefined&#x27;;
 }</code></pre>
     <h3 id="how-to-sort-a-table">How to sort a table</h3>
     <p>There are 3 ways you can sort a table:</p>
@@ -134,7 +131,7 @@ hot.updateSettings({
     <p>The revers mapping is a bit more complicated, but is also possible. In fact, <code>columnSorting</code> plugin has two dedicated methods which translates logical indices to physical and vice versa (called <code>translateRow()</code> and <code>untranslateRow()</code>) but they are currently inaccessible from the global scope.</p>
     <p>Click on a column header to sort. Only the table view is sorted. The data source remains in the original order.
       For an in depth documentation of column sorting plugin see the
-      <a href="https://github.com/handsontable/handsontable/wiki/Understanding-column-sorting-plugin" target="_blank">
+      <a href="/demo-sorting-data.html" target="_blank">
         Understanding column sorting plugin</a> wiki page.
     </p>
 
@@ -155,7 +152,8 @@ hot.updateSettings({
         </button>
       </div>
       <script data-jsfiddle="example1">
-        var container = document.getElementById('example1'),
+        var
+          container = document.getElementById('example1'),
           hot;
 
         hot = new Handsontable(container, {
@@ -172,7 +170,6 @@ hot.updateSettings({
             {data: 5}
           ]
         });
-
       </script>
     </div>
   </div>

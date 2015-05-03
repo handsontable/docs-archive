@@ -18,7 +18,7 @@
     <?js this.members.tutorials.forEach(function (tutorial) { ?>
       <?js tutorial.children.forEach(function (child) { ?>
         <?js if(child.demo) { return; } ?>
-        <li class="item" data-name="<?js= child.name ?>">
+        <li class="item tutorial" data-name="<?js= child.name ?>">
           <span class="title">
             <a href="#"><?js= child.title ?></a>
           </span>
@@ -194,6 +194,11 @@
         </ul>
       </li>
     <?js }); ?>
+
+    </div>
+    <!-- not found -->
+    <div class="sublist not-found">
+      <p class="header">Nothing found :(</p>
     </div>
   </ul>
 </div>

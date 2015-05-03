@@ -1,17 +1,17 @@
 <div class="static-content">
-  <script src="scripts/removeRow-demo/handsontable.removeRow.js" data-jsfiddle="common"></script>
+  <script src="/scripts/removeRow-demo/handsontable.removeRow.js" data-jsfiddle="common"></script>
   <link rel="stylesheet" href="scripts/removeRow-demo/handsontable.removeRow.css" data-jsfiddle="common">
 
 
   <div class="example-container clearfix">
-    <a href="https://github.com/handsontable/docs/edit/master/tutorials/custom-buttons.html" class="edit-doc" target="_blank">
+    <a href="https://github.com/handsontable/docs/edit/develop/tutorials/custom-buttons.html" class="edit-doc" target="_blank">
       Edit on GitHub
     </a>
     <p>The <strong>alter</strong> method can be used if you want to insert or remove rows and columns using external
       buttons.
       The below example uses the a custom made
       <strong>handsontable.removeRow.js</strong> plugin for that matter. Move your mouse over a row to see it.</p>
-    <p>You can programically select a cell using the <strong>selectCell</strong> method. The below button implements it.</p>
+    <p>You can programmatically select a cell using the <strong>selectCell</strong> method. The below button implements it.</p>
     <p>
       <button class="intext-btn" id="selectFirst">Select first cell</button>
     </p>
@@ -37,7 +37,8 @@
         </button>
       </div>
       <script data-jsfiddle="example1">
-        var data = [
+        var
+          data = [
             ['', 'Kia', 'Nissan', 'Toyota', 'Honda', 'Mazda', 'Ford'],
             ['2012', 10, 11, 12, 13, 15, 16],
             ['2013', 10, 11, 12, 13, 15, 16],

@@ -4,6 +4,11 @@
 @colorLink: #037BD2;
 @colorBgNavi: #f2f2f2;
 
+body {
+  /* prevent wrapper->body margin collapsing */
+  padding-top: 0.1px;
+}
+
 .font-description () {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 }
@@ -179,6 +184,15 @@
     }
   }
 
+  .sublist.not-found {
+    display: none;
+    text-align: center;
+
+    .header {
+      margin: 16px 12px 12px;
+    }
+  }
+
 }
 
 .main {
@@ -327,7 +341,16 @@
   }
 
   .tag-source {
-    font-size: 14px;
+    position: absolute;
+    top: 17px;
+    right: 0;
+    font-size: 10px;
+    a {
+      color: #037BD2;
+    }
+  }
+  dt {
+    position: relative;
   }
   dt.tag-source {
     margin-top: 5px;
@@ -363,6 +386,7 @@
     margin-top: 20px;
     padding-top: 5px;
     border-top: 1px solid #e1e1e1;
+    z-index: -1;
 
     .inherited {
       display: inline-block;
@@ -373,16 +397,6 @@
       margin-right: 5px;
       a {
         color: #fff;
-      }
-    }
-
-    .tag-source {
-      position: absolute;
-      top: 17px;
-      right: 0;
-      font-size: 10px;
-      a {
-        color: #037BD2;
       }
     }
 
@@ -502,6 +516,14 @@
     ol > li {
       list-style-type: decimal;
       margin-bottom: 5px;
+    }
+    &.source-code ol li {
+      font-weight: 100;
+      font-size: 14px;
+      line-height: 1;
+    }
+    ol.linenums {
+      margin-left: 15px;
     }
 
     ul > li {
