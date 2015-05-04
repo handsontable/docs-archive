@@ -1,0 +1,334 @@
+<div class="static-content">
+
+  <div class="index-list">
+    <p>This page shows how to use Handsontable with various data sources:</p>
+    <ul>
+      <li><a href="#page-array">Array data source</a></li>
+      <li><a href="#page-array-hidden">Array data source with hidden columns</a></li>
+      <li><a href="#page-object">Object data source</a></li>
+      <li><a href="#page-nested">Object data source with column mapping (nested)</a></li>
+      <li><a href="#page-data-schema">Object data source with custom data schema</a></li>
+      <li><a href="#page-property-schema">Function data source and schema</a></li>
+    </ul>
+    <p><strong>Please take note that Handsontable will change the original data source.</strong></p>
+  </div>
+
+  <div class="example-container clearfix" name="array">
+    <a href="https://github.com/handsontable/docs/edit/develop/tutorials/data-sources.html" class="edit-doc" target="_blank">
+      Edit on GitHub
+    </a>
+    <h3 id="page-array">Array data source</h3>
+    <p>The most popular way of binding data with Handsontable is to use <strong>array of arrays</strong>.</p>
+
+    <div data-jsfiddle="example1">
+      <div id="example1" class="hot"></div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example1">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example1" data-instance="hot1"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example1">
+        var
+          data = [
+            ['', 'Kia', 'Nissan', 'Toyota', 'Honda', 'Mazda', 'Ford'],
+            ['2012', 10, 11, 12, 13, 15, 16],
+            ['2013', 10, 11, 12, 13, 15, 16],
+            ['2014', 10, 11, 12, 13, 15, 16],
+            ['2015', 10, 11, 12, 13, 15, 16],
+            ['2016', 10, 11, 12, 13, 15, 16]
+          ],
+          container1 = document.getElementById('example1'),
+          hot1;
+
+        hot1 = new Handsontable(container1, {
+          data: data,
+          startRows: 5,
+          startCols: 5,
+          colHeaders: true,
+          minSpareRows: 1
+        });
+      </script>
+    </div>
+  </div>
+
+  <div class="example-container clearfix head-gap" name="array-hidden">
+    <h3 id="page-array-hidden">Array data source with hidden columns</h3>
+    <p>Let's say, you want the same data source, but without the <strong>Kia</strong> column:</p>
+
+    <div data-jsfiddle="example2">
+      <div id="example2" class="hot"></div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example2">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example2" data-instance="hot2"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example2">
+        var
+          hiddenData = [
+            ['', 'Kia', 'Nissan', 'Toyota', 'Honda', 'Mazda', 'Ford'],
+            ['2012', 10, 11, 12, 13, 15, 16],
+            ['2013', 10, 11, 12, 13, 15, 16],
+            ['2014', 10, 11, 12, 13, 15, 16],
+            ['2015', 10, 11, 12, 13, 15, 16],
+            ['2016', 10, 11, 12, 13, 15, 16]
+          ],
+          container = document.getElementById('example2'),
+          hot2;
+
+        hot2 = new Handsontable(container, {
+          data: hiddenData,
+          colHeaders: true,
+          minSpareRows: 1,
+          columns: [
+            {data: 0},
+            {data: 2},
+            {data: 3},
+            {data: 4},
+            {data: 5},
+            {data: 6}
+          ]
+        });
+      </script>
+    </div>
+  </div>
+
+  <div class="example-container clearfix head-gap" name="object">
+    <h3 id="page-object">Object data source</h3>
+    <p>You can use <strong>array of objects</strong> as a data source.</p>
+
+    <div data-jsfiddle="example3">
+      <div id="example3" class="hot"></div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example3">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example3" data-instance="hot3"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example3">
+        var
+          objectData = [
+            {id: 1, name: 'Ted Right', address: ''},
+            {id: 2, name: 'Frank Honest', address: ''},
+            {id: 3, name: 'Joan Well', address: ''},
+            {id: 4, name: 'Gail Polite', address: ''},
+            {id: 5, name: 'Michael Fair', address: ''},
+          ],
+          container3 = document.getElementById('example3'),
+          hot3;
+
+        hot3 = new Handsontable(container3, {
+          data: objectData,
+          colHeaders: true,
+          minSpareRows: 1
+        });
+      </script>
+    </div>
+  </div>
+
+  <div class="example-container clearfix head-gap" name="nested">
+    <h3 id="page-nested">Object data source with column mapping (nested)</h3>
+    <p>Some people have nested objects. They can also be used at the data source with a little bit of column
+      mapping. The mapping is done using the <strong>columns</strong> option.</p>
+
+    <div data-jsfiddle="example4">
+      <div id="example4" class="hot"></div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example4">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example4" data-instance="hot4"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example4">
+        var
+          nestedObjects = [
+            {id: 1, name: {first: "Ted", last: "Right"}, address: ""},
+            {id: 2, address: ""}, // HOT will create missing properties on demand
+            {id: 3, name: {first: "Joan", last: "Well"}, address: ""}
+          ],
+          container4 = document.getElementById('example4'),
+          hot4;
+
+        hot4 = new Handsontable(container4, {
+          data: nestedObjects,
+          colHeaders: true,
+          columns: [
+            {data: 'id'},
+            {data: 'name.first'},
+            {data: 'name.last'},
+            {data: 'address'}
+          ],
+          minSpareRows: 1
+        });
+      </script>
+    </div>
+  </div>
+
+  <div class="example-container clearfix head-gap" name="dataschema">
+    <h3 id="page-data-schema">Object data source with custom data schema</h3>
+    <p>When you use object data binding, Handsontable needs to know the data structure to create when you add a new
+      row. If your data source contains at least one row, Handsontable will figure out the data structure based on the
+      first row.</p>
+    <p>In case you want to start with an empty data source, you will need to provide the <strong>dataSchema</strong>
+      option that contains the data structure for any new row added to the grid.
+      The below example shows custom data schema with an empty data source:</p>
+
+    <div data-jsfiddle="example5">
+      <div id="example5" class="hot"></div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example5">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example5" data-instance="hot5"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example5">
+        var
+          container = document.getElementById('example5'),
+          hot5;
+
+        hot5 = new Handsontable(container, {
+          data: [],
+          dataSchema: {id: null, name: {first: null, last: null}, address: null},
+          startRows: 5,
+          startCols: 4,
+          colHeaders: ['ID', 'First Name', 'Last Name', 'Address'],
+          columns: [
+            {data: 'id'},
+            {data: 'name.first'},
+            {data: 'name.last'},
+            {data: 'address'}
+          ],
+          minSpareRows: 1
+        });
+      </script>
+    </div>
+  </div>
+
+  <div class="example-container clearfix head-gap" name="propertyschema">
+    <h3 id="page-property-schema">Function data source and schema</h3>
+    <p>
+      If your <strong>dataSchema</strong> is actually a constructor of an
+      object that doesn't directly expose its members, like a Backbone.js
+      model, you can specify functions for the <strong>data</strong> member
+      of each <strong>columns</strong> item.
+    </p>
+    <p>The below example shows a small example of using such objects:</p>
+
+    <div data-jsfiddle="example6">
+      <div id="example6" class="hot"></div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example6">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example6" data-instance="hot6"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example6">
+        var
+          container6 = document.getElementById('example6'),
+          hot6;
+
+        hot6 = new Handsontable(container6, {
+          data: [
+            model({id: 1, name: 'Ted Right', address: ''}),
+            model({id: 2, name: 'Frank Honest', address: ''}),
+            model({id: 3, name: 'Joan Well', address: ''}),
+            model({id: 4, name: 'Gail Polite', address: ''}),
+            model({id: 5, name: 'Michael Fair', address: ''})
+          ],
+          dataSchema: model,
+          colHeaders: ['ID', 'Name', 'Address'],
+          columns: [
+            {data: property('id')},
+            {data: property('name')},
+            {data: property('address')}
+          ],
+          minSpareRows: 1
+        });
+
+        function model(opts) {
+          var
+            _pub = {},
+            _priv = {
+              "id": undefined,
+              "name": undefined,
+              "address": undefined
+            };
+
+          for (var i in opts) {
+            if (opts.hasOwnProperty(i)) {
+              _priv[i] = opts[i];
+            }
+          }
+
+          _pub.attr = function (attr, val) {
+            if (typeof val === 'undefined') {
+              window.console && console.log("\t\tGET the", attr, "value of", _pub);
+              return _priv[attr];
+            }
+            window.console && console.log("SET the", attr, "value of", _pub);
+            _priv[attr] = val;
+
+            return _pub;
+          };
+
+          return _pub;
+        }
+
+        function property(attr) {
+          return function (row, value) {
+            return row.attr(attr, value);
+          }
+        }
+      </script>
+    </div>
+  </div>
+</div>

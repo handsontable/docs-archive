@@ -1,0 +1,145 @@
+<div class="static-content">
+
+  <div class="index-list">
+    <p>On this page:</p>
+    <ul>
+      <li><a href="#page-onchange">Saving data using onChange callback</a></li>
+      <li><a href="#page-saving">Saving data locally using persistentState</a></li>
+      <li><a href="#page-using">Why should I use persistentState rather than regular LocalStorage API?</a></li>
+    </ul>
+  </div>
+
+  <div class="example-container clearfix">
+    <a href="https://github.com/handsontable/docs/edit/develop/tutorials/load-and-save.html" class="edit-doc" target="_blank">
+      Edit on GitHub
+    </a>
+    <h3 id="page-onchange">Saving data using onChange callback</h3>
+    <p>Use the <strong>onChange</strong> callback to track changes made in the table. In the example below,
+      <code>ajax</code> is used to load and save grid data. Note that this is just a mockup.
+      Nothing is actually saved. You have to implement the server-side part by yourself.</p>
+
+    <div data-jsfiddle="example1" class="ajax-container">
+      <div class="controls">
+        <button name="load" id="load" class="intext-btn">Load</button>
+        <button name="save" id="save" class="intext-btn">Save</button>
+        <label><input type="checkbox" name="autosave" id="autosave" checked="checked" autocomplete="off">Autosave</label>
+      </div>
+      <pre id="example1console" class="console">Click "Load" to load data from server</pre>
+      <div id="example1" class="hot"></div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="dump" name="dump" data-dump="#example1" data-instance="hot"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example1">
+        var
+          $$ = function(id) {
+            return document.getElementById(id);
+          },
+          container = $$('example1'),
+          exampleConsole = $$('example1console'),
+          autosave = $$('autosave'),
+          load = $$('load'),
+          save = $$('save'),
+          autosaveNotification,
+          hot;
+
+        hot = new Handsontable(container, {
+          startRows: 8,
+          startCols: 6,
+          rowHeaders: true,
+          colHeaders: true,
+          afterChange: function (change, source) {
+            if (source === 'loadData') {
+              return; //don't save this change
+            }
+            if (!autosave.checked) {
+              return;
+            }
+            clearTimeout(autosaveNotification);
+            ajax('scripts/json/save.json', 'GET', JSON.stringify({data: change}), function (data) {
+              exampleConsole.innerText  = 'Autosaved (' + change.length + ' ' + 'cell' + (change.length > 1 ? 's' : '') + ')';
+              autosaveNotification = setTimeout(function() {
+                exampleConsole.innerText ='Changes will be autosaved';
+              }, 1000);
+            });
+          }
+        });
+
+        Handsontable.Dom.addEvent(load, 'click', function() {
+          ajax('scripts/json/load.json', 'GET', '', function(res) {
+            var data = JSON.parse(res.response);
+
+            hot.loadData(data.data);
+            exampleConsole.innerText = 'Data loaded';
+          });
+        });
+
+        Handsontable.Dom.addEvent(save, 'click', function() {
+          // save all cell's data
+          ajax('scripts/json/save.json', 'GET', JSON.stringify({data: hot.getData()}), function (res) {
+            var response = JSON.parse(res.response);
+
+            if (response.result === 'ok') {
+              exampleConsole.innerText = 'Data saved';
+            }
+            else {
+              exampleConsole.innerText = 'Save error';
+            }
+          });
+        });
+
+        Handsontable.Dom.addEvent(autosave, 'click', function() {
+          if (autosave.checked) {
+            exampleConsole.innerText = 'Changes will be autosaved';
+          }
+          else {
+            exampleConsole.innerText ='Changes will not be autosaved';
+          }
+        });
+      </script>
+    </div>
+  </div>
+
+  <div class="example-container clearfix head-gap">
+      <h3 id="page-saving">Saving data locally</h3>
+      <p>You can save any sort of data in local storage in to preserve table state between page reloads.
+        In order to enable data storage mechanism, <code>persistentState</code> option must be set to <code>true</code>
+        (you can set it either during Handsontable initialization or using the updateSettings method).</p>
+      <p>When <code>persistentState</code> is enabled it exposes 3 hooks:</p>
+      <ul>
+        <li>
+          <p><strong>persistentStateSave</strong> (<code>key: String</code>, <code>value: Mixed</code>)</p>
+          <p>Saves <code>value</code> under given <code>key</code> in browser local storage.</p>
+        </li>
+        <li>
+          <p><strong>persistentStateLoad</strong> (<code>key: String</code>, <code>valuePlaceholder: Object</code>)</p>
+          <p>Loads <code>value</code>, saved under given <code>key</code>, form browser local storage. The loaded <code>value</code>
+            will be saved in <code>valuePlaceholder.value</code> (this is due to specific behaviour of <code>PluginHooks.execute()</code>
+            method). If no value have been saved under <code>key</code> <code>valuePlaceholder.value</code> will be
+            <code>undefined</code>.</p>
+        </li>
+        <li>
+          <p><strong>persistentStateReset</strong> (<code>key: String</code>)</p>
+          <p>Clears the value saved under key. If no <code>key</code> is given, all values associated
+            with table will be cleared.</p>
+        </li>
+      </ul>
+  </div>
+  <div>
+      <h3 id="page-using">Why should I use <code>persistentState</code> rather than regular LocalStorage API?</h3>
+      <p>The main reason behind using <code>persistentState</code> hooks rather than regular LocalStorage API is
+        that it ensures separation of data stored by multiple Handsontable instances. In other words,
+        if you have two (or more) instances of Handsontable on one page, data saved by one instance won't be
+        accessible by the second instance. Those two instances can store data under the same key and
+        no data would be overwritten.</p>
+      <p><strong>In order for the data separation to work properly, make sure that each instance
+        of Handsontable has a unique <code>id</code>.</strong></p>
+  </div>
+</div>
+

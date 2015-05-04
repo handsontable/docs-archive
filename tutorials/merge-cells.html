@@ -1,0 +1,48 @@
+<div class="static-content">
+
+  <div class="example-container clearfix">
+    <a href="https://github.com/handsontable/docs/edit/develop/tutorials/merge-cells.html" class="edit-doc" target="_blank">
+      Edit on GitHub
+    </a>
+    <p>To enable the merge cells feature, set the <code>mergeCells</code> option to be <code>true</code> or an
+      array. To initialize Handsontable with predefined merged cells, provide merged cells details in form of an
+      array: <code>mergeCells: [{row: 1, col: 1, rowspan: 2, colspan: 2}]</code></p>
+
+    <div data-jsfiddle="example1" class="scroll-container">
+      <div id="example1" class="hot"></div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example1">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example1" data-instance="hot"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example1">
+        var
+          container = document.getElementById('example1'),
+          hot;
+
+        hot = new Handsontable(container, {
+          data: Handsontable.helper.createSpreadsheetData(100, 18),
+          colWidths: [47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47],
+          rowHeaders: true,
+          colHeaders: true,
+          contextMenu: true,
+          mergeCells: [
+            {row: 1, col: 1, rowspan: 3, colspan: 3},
+            {row: 3, col: 4, rowspan: 2, colspan: 2},
+            {row: 5, col: 6, rowspan: 3, colspan: 3}
+          ]
+        });
+      </script>
+    </div>
+  </div>
+</div>
+

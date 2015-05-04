@@ -1,0 +1,148 @@
+<div class="static-content">
+
+  <div class="example-container clearfix">
+    <a href="https://github.com/handsontable/docs/edit/develop/tutorials/quick-start.html" class="edit-doc" target="_blank">
+      Edit on GitHub
+    </a>
+    <div data-alert class="alert-box secondary">
+      <strong><i class="fa fa-check-square-o"></i> Would you like to help us improve Handsontable?</strong>
+        <a href="https://handsoncode.typeform.com/to/zyIUVu" target="_blank">
+          Fill out the 3-minute survey to do that right away.</a>
+      <a href="#" class="close">&times;</a>
+    </div>
+    <p>
+      <strong>Handsontable</strong> is a JavaScript component for creating Excel-like spreadsheets in modern web apps.
+        Its virtual rendering engine allows you to play with large amounts of data without worrying about performance issues.
+        You will also find it easy to learn and use, however if you get stuck with something, don't hesitate to ask on
+      <a href="https://groups.google.com/forum/#!forum/handsontable" target="_blank">Google Group</a>
+        or <a href="https://github.com/handsontable/handsontable" target="_blank">open a relevant issue</a>.
+    </p>
+    <p>
+      This documentation is organized into different categories. If you are new to Handsontable then start
+      from the <strong>Getting started</strong> section that will give you a good idea on what Handsontable is and what powers it has.
+      In the next step read the <a href="/tutorial-overview.html">overview</a> of the Developer Guide which shows how to dive
+      into more complicated topics. Handsontable doesn't require high programming skills but if you need
+      any custom modifications you may need assistance from someone more experienced in JavaScript.
+    </p>
+    <p>
+      <strong>We consider Handsontable as work in progress so
+        <a href="https://groups.google.com/forum/#!forum/handsontable" target="_blank">your feedback</a>
+      is highly appreciated.</strong>
+    </p>
+    <hr />
+    <div class="index-list">
+      <p><strong>On this page you’ll find out how to get through:</strong></p>
+      <ul>
+        <li><a href="#page-install">Installing Handsontable</a></li>
+        <li><a href="#page-initialize">Basic initialization</a></li>
+        <li><a href="#page-update">Updating</a></li>
+        <li><a href="#page-next-steps">Next steps</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="example-container clearfix" name="install">
+    <h3 id="page-install">Installing Handsontable</h3>
+    <p>There are many ways to install Handsontable but if you just want to play with it instantly,
+      see our <a href="http://jsfiddle.net/js_ziggle/hU6Kz/3228/" target="_blank">JSFiddle demo</a>.
+    </p>
+    <ol>
+      <li>
+        <p><strong>A recommended way to install Handsontable is through
+          <a href="http://bower.io" target="_blank">Bower package manager</a> using the following command:</strong>
+          <p>
+            <code>bower install handsontable --save</code>
+          </p>
+          <p>Bower manages all dependencies so you can just sit back and wait.
+          After Handsontable is downloaded, embed the code to your project – you will find all the files in the
+            <code>/dist</code> directory, therefore your code probably looks like:</p>
+          <ul>
+            <li>
+              <code>&lt;script src="/dist/handsontable.full.js"&gt;&lt;/script&gt;</code>
+            </li>
+            <li>
+              <code>&lt;link rel="stylesheet" media="screen" href="/dist/handsontable.full.css"&gt;</code>
+            </li>
+          </ul>
+        </p>
+      </li>
+      <li>
+        <p><a href="https://github.com/handsontable/handsontable/archive/master.zip">Download Handsontable</a> from GitHub
+          directly as a ZIP file. Note that by doing that you’ll need to manage all dependencies by yourself:</p>
+          <ul>
+            <li><a href="http://numeraljs.com" target="_blank">Numeral.js</a> and
+              <a href="http://momentjs.com" target="_blank">Moment.js</a> if you use a
+              <a href="/tutorial-date.html">date picker</a> in your project</li>
+            <li><a href="http://zeroclipboard.org/" target="_blank">ZeroClipboard</a> for a copy-paste functionality</li>
+          </ul>
+      </li>
+      <li>
+        <p>Embed the latest, full distribution of the library that includes all dependencies
+          and is served from our directory. Note that requires our servers to be up and running.</p>
+        <ul>
+          <li>
+            <code>&lt;script src="http://handsontable.com/dist/handsontable.full.js"&gt;&lt;/script&gt;</code>
+          </li>
+          <li>
+            <code>&lt;link rel="stylesheet" media="screen" href="http://handsontable.com/dist/handsontable.full.css"&gt;</code>
+          </li>
+        </ul>
+      </li>
+      <li>For further hacking the project or building a custom Handsontable, see the
+        <a href="/tutorial-custom-build.html">Custom Build</a> page.</li>
+    </ol>
+  </div>
+  <div class="example-container clearfix" name="initialize">
+    <h3 id="page-initialize">Basic initialization</h3>
+    <p>If you bundled all together, then it’s time to play with Handsontable a bit.
+      Start by creating a container holding the grid:
+    </p>
+    <p>
+      <code>&lt;div id="hot"&gt;&lt;/div&gt;</code>
+    </p>
+    <p>Then pass a reference to that div and load some data if you wish:</p>
+    <pre>
+      <code class="javascript">var data = [
+  ["", "Ford", "Volvo", "Toyota", "Honda"],
+  ["2014", 10, 11, 12, 13],
+  ["2015", 20, 11, 14, 13],
+  ["2016", 30, 15, 12, 13]
+];
+
+var container = document.getElementById('example');
+var hot = new Handsontable(container, {
+  data: data,
+  minSpareRows: 1,
+  rowHeaders: true,
+  colHeaders: true,
+  contextMenu: true
+});
+</code>
+    </pre>
+    <strong>Voilà!</strong>
+    <p>Your Handsontable is now running and displaying exemplary data. In the above example we decided to
+      use only a few <a href="/Options.html">Options</a> to make our table more functional but
+      you can play with more of them.
+    </p>
+  </div>
+  <div class="example-container clearfix" name="update">
+    <h3 id="page-update">Updating</h3>
+    <p>To update Handsontable, first do a backup of the whole directory
+      in case of problems. Then use the following
+      <a href="http://bower.io/docs/api/#update" target="_blank">Bower command</a>:</p>
+    <p><code>bower update handsontable</code></p>
+    <p>That will update only Handsontable, leaving other dependencies untouched..</p>
+  </div>
+  <div class="example-container clearfix" name="nextsteps">
+    <h3  id="page-next-steps">Next steps</h3>
+    <p>The learning curve of Handsontable may be a bit steep for some of you,
+      that’s why we prepared guides covering most popular topics. We suggest to read them first:</p>
+    <ul>
+      <li><a href="/tutorial-data-sources.html">How to connect to my data source?</a></li>
+      <li><a href="/tutorial-load-and-save.html">How to load and save data?</a></li>
+      <li><a href="/demo-custom-renderers.html">How to create a custom HTML inside a cell or header?</a></li>
+      <li><a href="/demo-data-validation.html">How to validate data?</a></li>
+      <li><a href="/demo-search-for-values.html">How to search for values within a spreadsheet?</a></li>
+    </ul>
+  </div>
+</div>

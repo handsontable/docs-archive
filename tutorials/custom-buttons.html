@@ -1,0 +1,80 @@
+<div class="static-content">
+  <script src="/scripts/removeRow-demo/handsontable.removeRow.js" data-jsfiddle="common"></script>
+  <link rel="stylesheet" href="scripts/removeRow-demo/handsontable.removeRow.css" data-jsfiddle="common">
+
+
+  <div class="example-container clearfix">
+    <a href="https://github.com/handsontable/docs/edit/develop/tutorials/custom-buttons.html" class="edit-doc" target="_blank">
+      Edit on GitHub
+    </a>
+    <p>The <strong>alter</strong> method can be used if you want to insert or remove rows and columns using external
+      buttons.
+      The below example uses the a custom made
+      <strong>handsontable.removeRow.js</strong> plugin for that matter. Move your mouse over a row to see it.</p>
+    <p>You can programmatically select a cell using the <strong>selectCell</strong> method. The below button implements it.</p>
+    <p>
+      <button class="intext-btn" id="selectFirst">Select first cell</button>
+    </p>
+    <div class="checklist">
+      <label><input type="checkbox" id="rowHeaders" checked="checked" autocomplete="off"> Show row headers</label>
+      <label><input type="checkbox" id="colHeaders" checked="checked" autocomplete="off"> Show col headers</label>
+    </div>
+
+    <div data-jsfiddle="example1">
+      <div id="example1" class="hot"></div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example1">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example1" data-instance="hot"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example1">
+        var
+          data = [
+            ['', 'Kia', 'Nissan', 'Toyota', 'Honda', 'Mazda', 'Ford'],
+            ['2012', 10, 11, 12, 13, 15, 16],
+            ['2013', 10, 11, 12, 13, 15, 16],
+            ['2014', 10, 11, 12, 13, 15, 16],
+            ['2015', 10, 11, 12, 13, 15, 16],
+            ['2016', 10, 11, 12, 13, 15, 16]
+          ],
+          container = document.getElementById('example1'),
+          selectFirst = document.getElementById('selectFirst'),
+          rowHeaders = document.getElementById('rowHeaders'),
+          colHeaders = document.getElementById('colHeaders'),
+          hot;
+
+        hot = new Handsontable(container, {
+          rowHeaders: true,
+          colHeaders: true,
+          outsideClickDeselects: false,
+          removeRowPlugin: true
+        });
+        hot.loadData(data);
+
+        Handsontable.Dom.addEvent(selectFirst, 'click', function () {
+          hot.selectCell(0,0);
+        });
+        Handsontable.Dom.addEvent(rowHeaders, 'click', function () {
+          hot.updateSettings({
+            rowHeaders: this.checked
+          });
+        });
+        Handsontable.Dom.addEvent(colHeaders, 'click', function () {
+          hot.updateSettings({
+            colHeaders: this.checked
+          });
+        });
+      </script>
+    </div>
+  </div>
+</div>
+

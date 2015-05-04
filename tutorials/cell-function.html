@@ -1,0 +1,219 @@
+<div class="static-content">
+
+  <div class="example-container clearfix">
+    <a href="https://github.com/handsontable/docs/edit/develop/tutorials/cell-function.html" class="edit-doc" target="_blank">
+      Edit on GitHub
+    </a>
+    <p>With every cell in the Handsontable there are 3 associated functions:</p>
+    <ul>
+      <li>renderer</li>
+      <li>editor</li>
+      <li>validator</li>
+    </ul>
+    <p>Each of those functions is responsible for a different cell behavior. You can define them separately or use a <a
+      href="#cell-type">cell type</a> to define all three at once. We will now discuss the purpose of the aforementioned
+      functions in details. </p>
+    <h2 id="renderer">Renderer</h2>
+    <p>Handsontable does not display the values stored in the datasource directly. Instead, every time a value from data
+      source needs to be displayed in a table cell, it is passed to the cell <code>renderer</code> function together with
+      the table cell object of type <code>HTMLTableCellElement</code> (DOM node) and a few other useful information.</p>
+    <p><code>Renderer</code> is expected to format the passed value and place it as a content of the cell object. <code>Renderer</code>
+      can also alter the cell class list, i.e. it can add a <code>htInvalid</code> class to let the user know, that the
+      displayed value is invalid. </p>
+    <h3 id="native-cell-renderers">Native cell renderers</h3>
+    <p>Handsontable comes with 5 predefined renderers that you can extend, when writing your own renderers. </p>
+    <ul>
+      <li><code>TextRenderer</code></li>
+      <li><code>NumericRenderer</code></li>
+      <li><code>AutocompleteRenderer</code></li>
+      <li><code>CheckboxRenderer</code></li>
+      <li><code>PasswordRenderer</code></li>
+    </ul>
+    <p><code>TextRenderer</code> is the default renderer for all cells. If you write your own renderer, you will most likely
+      want run this renderer at some point, as it handles things like marking cell as <em>read only</em> or <em>invalid</em>,
+      however calling <code>TextRenderer</code> is not obligatory.</p>
+    <h3 id="adding-event-listeners-in-cell-renderer-function">Adding event listeners in cell renderer function</h3>
+    <p>If you are writing an advanced cell renderer and you want to add some custom behavior after a certain user action
+      (i.e. after user hover a mouse pointer over a cell) you might be tempted to add an event listener directly to table
+      cell node passed as an argument to the <code>renderer</code> function. Unfortunately, this will almost always cause
+      you trouble and you will end up with either performance issues or having the listeners attached to the wrong cell.</p>
+    <p>This is because Handsontable:</p>
+    <ul>
+      <li>calls <code>renderer</code> functions multiple times per cell - this can lead to having multiple copies of the
+        same event listener attached to a cell
+      </li>
+      <li>reuses table cell nodes during table scrolling and adding/removing new rows/columns - this can lead to having
+        event listeners attached to the wrong cell
+      </li>
+    </ul>
+    <p>Before deciding to attach an event listener in cell renderer make sure, that there is no <a
+      href="/Hooks.html">Handsontable event</a> that suits your needs. Using
+      <em>Handsontable events</em> system is the safest way to respond to user actions.</p>
+    <p>If you did&#39;t find a suitable <em>Handsontable event</em> put the cell content into a wrapping <code>
+      &lt;div&gt;</code>, attach the event listener to the wrapper and then put it into the table cell.</p>
+    <p>//TODO: example </p>
+    <h3 id="performance">Performance</h3>
+    <p>Cell renderers are called separately for every displayed cell, during every table render. Table can be rendered
+      multiple times during its lifetime (after table scroll, after table sorting, after cell edit etc.), therefore you
+      should keep your <code>renderer</code> functions as simple and fast as possible or you might experience a performance
+      drop, especially when dealing with large sets of data.</p>
+    <h3 id="renerer-templates">Renerer templates</h3>
+    <p>//TODO: write about cellProperty.rendererTemplate</p>
+    <h2 id="editor">Editor</h2>
+    <p>Cell editors are the most complex cell functions. We have prepared a [[separate page|Custom-cell-editor]] explaining
+      how cell edit works and how to write your own cell editor.</p>
+    <h2 id="validator">Validator</h2>
+    <p>Cell validator can be either a function or a regular expression. A cell is considered valid, when the validator
+      function calls a <code>callback</code> (passed as one of the <code>validator</code> arguments) with <code>true</code>
+      or the validation regex <a
+        href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test">test()</a>
+      method returns <code>true</code>. Because the validity of a value is determined only by the argument that is passed to
+      <code>callback</code>, <code>validator</code> function can be synchronous or asynchronous.</p>
+    <p>Contrary to <code>renderer</code> and <code>editor</code> functions, the <code>validator</code> function doesn&#39;t
+      have to be defined for each cell. If the <code>validator</code> function is not defined, then a cell value is always
+      valid.</p>
+    <h2 id="cell-type">Cell type</h2>
+    <p>As we mentioned before, there are 3 functions associated with every table cell: <code>renderer</code>,
+      <code>editor</code> and (optionally) <code>validator</code>. Most of the time, those function are strongly connected
+      to each other. For example if you want to store a date in a cell, you will most likely use a renderer which will
+      display the date using appropriate formatting (<code>dd/mm/yyy</code>, <code>yyy-mm-dd</code> etc.). You will also use
+      an editor, which will display a calendar instead of the default text input, so user could easily pick the right date.
+      Finally, you might want to check if the value entered by a user is valid.</p>
+    <p>Manually defining those functions for cells or columns would be tedious, so to simplify the configuration,
+      Handsontable introduced <em>cell types</em>.</p>
+    <p>Cell type is represented by a string i.e. <code>&quot;text&quot;</code>, <code>&quot;numeric&quot;</code>, <code>
+      &quot;date&quot;</code>. Each string is internally mapped to functions associated with this type. For example <code>
+      &quot;numeric&quot;</code> type is associated with functions:</p>
+    <ul>
+      <li><code>Handsontable.NumericRenderer</code></li>
+      <li><code>Handsontable.editors.TextEditor</code></li>
+      <li><code>Handsontable.NumericValidator</code></li>
+    </ul>
+    <p>so instead of writing</p>
+    <pre><code class="lang-javascript">var hot = new Handsontable(document.getElementById('container'), {
+  columns: [
+    {
+      renderer: Handsontable.NumericRenderer,
+      editor: Handsontable.editors.TextEditor,
+      validator: Handsontable.NumericValidator
+    }
+  ]
+});</code></pre>
+    <p>you can simply write</p>
+    <pre><code class="lang-javascript">var hot = new Handsontable(document.getElementById('container'), {
+  columns: [
+    {
+      type: 'numeric'
+    }
+  ]
+});</code></pre>
+    <p>When Handsontable encounters a cell with <code>type</code> option defined, it checks to which cell functions this
+      type refers and use them.</p>
+    <h3 id="native-types">Native types</h3>
+    <p>Handsontable comes with 9 types:</p>
+    <ul>
+      <li><code>text</code></li>
+      <li><code>numeric</code></li>
+      <li><code>date</code></li>
+      <li><code>checkbox</code></li>
+      <li><code>password</code></li>
+      <li><code>select</code></li>
+      <li><code>dropdown</code></li>
+      <li><code>autocomplete</code></li>
+      <li><code>handsontable</code></li>
+    </ul>
+    <p><code>text</code> cell type is the default type.</p>
+    <h3 id="precedence">Precedence</h3>
+    <p>It is possible to define the <code>type</code> option together with options such as <code>renderer</code>, <code>editor</code>
+      or <code>validator</code>. Lets look at this example:</p>
+    <pre><code class="lang-javascript">var hot = new Handsontable(document.getElementById('container'), {
+  columns: [
+  {
+    type: 'numeric',
+    validator: customValidator // validator function defined elsewhere
+  }
+]
+});</code></pre>
+    <p>We defined the <code>type</code> for all cells in a column to be <code>numeric</code>. Besides that, we also defined
+      a validator function directly. In Handsontable, cell functions defined directly always take precedence over functions
+      associated with cell type, so the above configuration is equivalent to:</p>
+    <pre><code class="lang-javascript">var hot = new Handsontable(document.getElementById('container'), {
+  columns: [
+    {
+      renderer: Handsontable.NumericRenderer,
+      editor: Handsontable.editors.TextEditor,
+      validator: customValidator
+    }
+  ]
+});</code></pre>
+    <p>There is one more way you can define the configuration using types:</p>
+    <pre><code class="lang-javascript">var hot = new Handsontable(document.getElementById('container'), {
+  validator: customValidator, // validator function defined elsewhere
+  columns: [
+    {
+      type: 'password'
+    },
+    {}
+  ]
+});</code></pre>
+    <p>We take advantage of the <a
+      href="/tutorial-setting-options.html#page-config">cascade
+      configuration</a> and define a table with two columns, with <code>validator</code> set to <code>customValidator</code>
+      function. We also set <code>type</code> of the first column to <code>password</code>. <code>Password</code> cell type
+      does not define a validator function:</p>
+    <pre><code class="lang-javascript">renderer: Handsontable.PasswordRenderer,
+editor: Handsontable.editors.PasswordEditor,
+validator: undefined</code></pre>
+    <p>Because <code>type: &#39;password&#39;</code> is a more specific configuration for the cells in the first column,
+      than the <code>validator: customValidator</code>, cell functions associated with the <code>password</code> type takes
+      precedence over the functions defined on the higher level of configuration. Therefore, the equivalent configuration
+      is:</p>
+    <pre><code class="lang-javascript">var hot = new Handsontable(document.getElementById('container'), {
+  columns: [
+    {
+      renderer: Handsontable.PasswordRenderer,
+      editor: Handsontable.editors.PasswordEditor,
+      validator: undefined
+    }
+    {
+      renderer: Handsontable.TextRenderer, // text cell type is the default one
+      editor: Handsontable.editors.TextEditor, // text cell type is the default one
+      validator: customValidator
+    }
+  ]
+});</code></pre>
+    <h2 id="cell-functions-getters">Cell functions getters</h2>
+    <p>If, for some reason, you have to get the <code>renderer</code>, <code>editor</code> or <code>validator</code>
+      function of specific cell you can use standard <code>getCellMeta(row, col)</code> method to get all properties of
+      particular cell and then refer to cell functions like so:</p>
+    <pre><code class="lang-javascript">var cellProperties = $('#container').handsontable('getCellMeta', 0, 0);
+// get cell properties for cell [0, 0]
+cellProperties.renderer; // get cell renderer
+cellProperties.editor; // get cell editor
+cellProperties.validator; // get cell validator</code></pre>
+    <p>However, you have to remember that <code>getCellMeta()</code> return cell properties &quot;as they are&quot;, which
+      means that if you use cell type to set cell functions, instead of defining functions directly those cell functions
+      will be <code>undefined</code>:</p>
+    <pre><code class="lang-javascript">var hot = new Handsontable(document.getElementById('container'), {
+  columns: [
+    {
+      type: 'numeric'
+    }
+  ]
+});
+
+var cellProperties = hot.getCellMeta(0, 0); // get cell properties for cell [0, 0]
+cellProperties.renderer; // undefined
+cellProperties.editor; // undefined
+cellProperties.validator; // undefined
+cellProperties.type; // "numeric"</code></pre>
+    <p>To get the actual cell function use appropriate <em>cell function getter</em>:</p>
+    <ul>
+      <li><code>getCellRenderer(row, col)</code></li>
+      <li><code>getCellEditor(row, col)</code></li>
+      <li><code>getCellValidator(row, col)</code></li>
+    </ul>
+    <p>Those functions will always return an appropriate value, regardless of whether cell functions have been defined
+      directly or using a cell type.</p>
+  </div>
+</div>

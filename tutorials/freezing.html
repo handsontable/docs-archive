@@ -1,0 +1,46 @@
+<div class="static-content">
+
+  <div class="example-container clearfix">
+    <a href="https://github.com/handsontable/docs/edit/develop/tutorials/freezing.html" class="edit-doc" target="_blank">
+      Edit on GitHub
+    </a>
+    <p>In order to manually freeze a column (in another words - make it fixed), you need to set the <code>manualColumnFreeze</code>
+      config item to <code>true</code> in Handsontable initialization. When the Manual Column Freeze plugin is enabled, you can freeze any non-fixed column and unfreeze any
+      fixed column in your Handsontable instance using the Context Menu.</p>
+    <p><strong>Note:</strong> to properly use this plugin, you need to have the Context Menu plugin enabled.</p>
+
+    <div data-jsfiddle="example1" class="scroll-container fixed-container">
+      <div id="example1" class="hot"></div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example1">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example1" data-instance="hot"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example1">
+        var
+          myData = Handsontable.helper.createSpreadsheetData(200, 100),
+          container = document.getElementById('example1'),
+          hot;
+
+        hot = new Handsontable(container, {
+          data: myData,
+          rowHeaders: true,
+          colHeaders: true,
+          fixedColumnsLeft: 2,
+          contextMenu: true,
+          manualColumnFreeze: true
+        });
+      </script>
+    </div>
+  </div>
+</div>
+

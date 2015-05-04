@@ -1,0 +1,46 @@
+<div class="static-content">
+
+  <div class="example-container clearfix">
+    <a href="https://github.com/handsontable/docs/edit/develop/tutorials/moving.html" class="edit-doc" target="_blank">
+      Edit on GitHub
+    </a>
+    <p>To enable these features, use settings <code>manualColumnMove: true</code> and <code>manualRowMove: true</code></p>
+    <p>The draggable move handle appears:</p>
+    <ul>
+      <li>in the right part of the column header,</li>
+      <li>in the top part of the row header.</li>
+    </ul>
+
+    <div data-jsfiddle="example1" class="scroll-container">
+      <div id="example1" class="hot"></div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example1">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example1" data-instance="hot"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example1">
+        var
+          example1 = document.getElementById('example1'),
+          hot;
+
+        hot = new Handsontable(example1, {
+          data: Handsontable.helper.createSpreadsheetData(200, 20),
+          rowHeaders: true,
+          colHeaders: true,
+          manualColumnMove: true,
+          manualRowMove: true
+        });
+      </script>
+    </div>
+  </div>
+</div>
+
