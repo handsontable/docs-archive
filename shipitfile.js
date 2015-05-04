@@ -23,7 +23,7 @@ module.exports = function (shipit) {
   shipit.on('published', function() {
     var current = shipit.config.deployTo + '/current';
 
-    shipit.remote('cd ' + current + ' && npm install').then(function() {
+    shipit.remote('cd ' + current + ' && npm install --production').then(function() {
       return shipit.remote('cd ' + current + ' && bower install --config.interactive=false -F');
 
     }).then(function() {
