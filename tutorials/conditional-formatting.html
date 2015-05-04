@@ -15,7 +15,7 @@
     </ol>
 
     <div data-jsfiddle="example1">
-      <div id="example1" class="hot"></div>
+      <div id="example1" class="hot1"></div>
     </div>
 
     <div class="codeLayout">
@@ -30,6 +30,11 @@
           Dump data to console
         </button>
       </div>
+      <style data-jsfiddle="common">
+        .make-me-red {
+          color: #f00;
+        }
+      </style>
       <script data-jsfiddle="example1">
         var data = [
             ['', 'Kia', 'Nissan', 'Toyota', 'Honda'],
@@ -53,7 +58,7 @@
           // if row contains negative number
           if (parseInt(value, 10) < 0) {
             // add class "negative"
-            td.className = 'c-red';
+            td.className = 'make-me-red';
           }
 
           if (!value || value === '') {
