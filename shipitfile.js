@@ -8,7 +8,7 @@ module.exports = function (shipit) {
       workspace: '/tmp/docs.handsontable.com',
       deployTo: '/home/httpd/docs.handsontable.com',
       repositoryUrl: 'https://github.com/handsontable/docs.git',
-      branch: 'develop',
+      branch: 'master',
       ignores: ['.git', 'node_modules'],
       rsync: ['--force', '--delete', '--delete-excluded', '-I', '--stats', '--chmod=ug=rwX,o=r'],
       keepReleases: 3,
