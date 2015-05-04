@@ -140,6 +140,21 @@ module.exports = function (grunt) {
       }
     },
 
+    robotstxt: {
+      dist: {
+        dest: DOCS_PATH + '/',
+        policy: [
+          {
+            ua: '*',
+            allow: '/'
+          },
+          {
+            host: 'docs.handsontable.com'
+          }
+        ]
+      }
+    },
+
     gitclone: {
       handsontable: {
         options: {
@@ -193,7 +208,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', 'Generate documentation for Handsontable', function () {
     var hotPackage;
 
-    grunt.task.run('less', 'copy', 'bowercopy');
+    grunt.task.run('less', 'copy', 'bowercopy', 'robotstxt');
 
     hotPackage = grunt.file.readJSON(HOT_SRC_PATH + '/package.json');
     grunt.config.set('jsdoc.docs.options.query', querystring.stringify({
@@ -203,14 +218,15 @@ module.exports = function (grunt) {
     grunt.task.run('jsdoc');
   });
 
+  grunt.loadNpmTasks('grunt-bowercopy');
   grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-exec');
-  grunt.loadNpmTasks('grunt-open');
   grunt.loadNpmTasks('grunt-git');
   grunt.loadNpmTasks('grunt-jsdoc');
-  grunt.loadNpmTasks('grunt-bowercopy');
+  grunt.loadNpmTasks('grunt-open');
+  grunt.loadNpmTasks('grunt-robots-txt');
 };

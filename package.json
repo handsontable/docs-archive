@@ -20,6 +20,7 @@
     "grunt-exec": "~0.4.6",
     "grunt-git": "^0.3.4",
     "grunt-jsdoc": "^0.5.8",
+    "grunt-robots-txt": "0.3.0",
     "jsdoc": "git://github.com/jsdoc3/jsdoc.git"
   },
   "devDependencies": {
