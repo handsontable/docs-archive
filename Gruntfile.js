@@ -155,6 +155,13 @@ module.exports = function (grunt) {
       }
     },
 
+    sitemap: {
+      dist: {
+        pattern: ['generated/*.html', '!generated/tutorial-40*.html'],
+        siteRoot: 'generated/'
+      }
+    },
+
     gitclone: {
       handsontable: {
         options: {
@@ -216,6 +223,8 @@ module.exports = function (grunt) {
     }));
 
     grunt.task.run('jsdoc');
+
+    grunt.task.run('sitemap');
   });
 
   grunt.loadNpmTasks('grunt-bowercopy');
@@ -229,4 +238,5 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-jsdoc');
   grunt.loadNpmTasks('grunt-open');
   grunt.loadNpmTasks('grunt-robots-txt');
+  grunt.loadNpmTasks('grunt-sitemap');
 };

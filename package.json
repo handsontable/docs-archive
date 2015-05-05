@@ -21,7 +21,8 @@
     "grunt-git": "^0.3.4",
     "grunt-jsdoc": "^0.5.8",
     "grunt-robots-txt": "~0.3.0",
-    "jsdoc": "git://github.com/jsdoc3/jsdoc.git"
+    "jsdoc": "git://github.com/jsdoc3/jsdoc.git",
+    "grunt-sitemap": "1.2.1"
   },
   "devDependencies": {
     "grunt": "~0.4.5",
