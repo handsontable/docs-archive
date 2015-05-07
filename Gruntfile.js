@@ -39,6 +39,7 @@ module.exports = function (grunt) {
           HOT_SRC_PATH + '/src/**/*.js',
           'tutorials/INDEX.md',
           '!' + HOT_SRC_PATH + '/src/**/*.spec.js',
+          '!' + HOT_SRC_PATH + '/src/3rdparty/walkontable/src/**/*.js',
           '!' + HOT_SRC_PATH + '/src/3rdparty/walkontable/test/**/*.js',
           '!' + HOT_SRC_PATH + '/src/intro.js',
           '!' + HOT_SRC_PATH + '/src/outro.js',
