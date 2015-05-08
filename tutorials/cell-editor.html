@@ -384,12 +384,19 @@ PasswordEditor.prototype.createElements = function () {
 }</code></pre>
     <p>Task two: <strong>DONE</strong></p>
     <h4 id="populating-select-with-options">Populating <code>&lt;select&gt;</code> with options</h4>
+<<<<<<< HEAD
     <p>In the previous step we implemented a function that crates <code>&lt;select&gt;</code> input and attaches it to DOM.
       You've probably noticed
       that we haven't written any code that would create <code>&lt;option&gt;</code> elements, therefore if we would
       display the list, it would be
       empty.</p>
     <p>We want to be able to define an option list like so:</p>
+=======
+    <p>In the previous step we implemented a function that creates the <code>&lt;select&gt;</code> input and attaches it to the DOM.
+      You probably noticed that we haven&#39;t written any code that would create the <code>&lt;option&gt;</code> elements, therefore if we
+      displayed the list, it would be empty.</p>
+    <p>We want to be able to define an option list like this:</p>
+>>>>>>> c73a08268af5d4cd9aeaeb4fc8697e2701fe1d00
     <pre><code class="lang-js">var hot = new Handsontable(document.getElementById('container'), {
   data: someData,
   columns: [
@@ -400,11 +407,9 @@ PasswordEditor.prototype.createElements = function () {
   ]
 });</code></pre>
     <p>There is no (easy) way to get to the value of <code>selectOptions</code>. Even if we could get to this array we could
-      only populate
-      list with options once, what if we have more than one column using <code>SelectEditor</code> and each of them has it's
-      own option list.
-      It's even possible that two cells in the same column can have different option lists (cascade configuration -
-      remember?)
+      only populate the list with options once, if we do this in the 'init' function.
+      What if we have more than one column using <code>SelectEditor</code> and each of them has it&#39;s own option list?
+      It's even possible that two cells in the same column can have different option lists (cascade configuration - remember?)
       It's clear that we have to find a better place for the code that creates items for our list.</p>
     <p> We are left with two places <code>prepare()</code> and <code>open()</code>. The latter one is simpler to implement,
       but as we previously stated,
