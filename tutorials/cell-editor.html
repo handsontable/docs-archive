@@ -6,16 +6,14 @@
       Edit on GitHub
     </a>
     <p>Handsontable separates the process of displaying the cell value from the process of changing the value.
-      Renderers are responsible for presenting the data and Editors helps altering it. As render has only one simple task:
+      Renderers are responsible for presenting the data and Editors for altering it. As a renderer has only one simple task:
       <em>get actual value of the cell and return its representation as a HTML code</em> they can be a single function.
       Editors, however, need to handle user input (that is, mouse and keyboard events),
       validate data and behave according to validation results, so putting all those functionalities into a single function
-      wouldn&#39;t be a good idea. That&#39;s why Handsontable editors are represented by editor classes.</p>
+      wouldn't be a good idea. That's why Handsontable editors are represented by editor classes.</p>
     <p>Since Handsontable 0.10.0 we have rewritten most of the editors module to make it (hopefully) more understandable,
-      predictable
-      and easier to extend. This tutorial will give you a comprehensive knowledge about how the whole process of cell
-      edition works,
-      how Handsontable Core manages editors, how editor life cycle looks like and finally, how to create your own
+      predictable and easier to extend. This tutorial will give you a comprehensive understanding of how the whole process of cell
+      editing works, how Handsontable Core manages editors, how editor life cycle looks like and finally - how to create your own
       editors.</p>
     <h2 id="editormanager">EditorManager</h2>
     <p><code>Handsontable.EditorManager</code> is a class responsible for handling all editors available in Handsontable. If
@@ -43,8 +41,8 @@
       individually. For more details see <a
         href="/tutorial-setting-options.html#page-config">How cascading
         configuration works</a>.</p>
-    <p>The value of <code>editor</code> property can be either a string representing an editor (such as &#39;text&#39;,
-      &#39;autocomplete&#39;, &#39;checkbox&#39; etc.),
+    <p>The value of <code>editor</code> property can be either a string representing an editor (such as 'text',
+      'autocomplete', 'checkbox' etc.),
       or an editor class. <code>EditorManager</code> will then get an instance of editor class and the first very important
       thing to remember is:
       <strong>there is always one instance of certain editor class in a single table</strong>, in other words each editor
@@ -68,7 +66,7 @@
       <li>double clicking cell</li>
       <li>pressing <kbd>F2</kbd></li>
     </ul>
-    <p>If any of those events is triggered, <code>EditorManager</code> calls editor&#39;s <code>beginEditing()</code>
+    <p>If any of those events is triggered, <code>EditorManager</code> calls editor's <code>beginEditing()</code>
       method, which should display the editor.</p>
     <h4 id="closing-editor">Closing editor</h4>
     <p>When editor is opened the <code>EditorManager</code> waits for user event that should end cell edition. Those events
@@ -84,20 +82,20 @@
       <li>pressing <kbd>HOME</kbd>, <kbd>END</kbd> (saved changes)</li>
       <li>pressing <kbd>PAGE_UP</kbd>, <kbd>PAGE_DOWN</kbd> (saved changes)</li>
     </ul>
-    <p>If any of those events is triggered, <code>EditorManager</code> calls editor&#39;s <code>finishEditing()</code>
+    <p>If any of those events is triggered, <code>EditorManager</code> calls editor's <code>finishEditing()</code>
       method, which should try to save changes
       (unless <kbd>ESC</kbd> key has been pressed) and close the editor.</p>
     <h3 id="overriding-editormanager-default-behaviour">Overriding EditorManager default behaviour</h3>
     <p>You may want to change the default events that causes editor to open or close. For example, your editor might use
       <kbd>ARROW_UP</kbd> and <kbd>ARROW_DOWN</kbd> events to perform some actions (for example
       increasing or decreasing cell value)
-      and you don&#39;t want <code>EditorManager</code> to close the editor when user press those keys. That&#39;s why
+      and you don't want <code>EditorManager</code> to close the editor when user press those keys. That's why
       <code>EditorManager</code> runs <code>beforeKeyDown</code>
       hook before processing user events. If you register a listener for <code>beforeKeyDown</code>, that call <code>stopImmediatePropagation()</code>
-      on <code>event</code> object <code>EditorManager</code> won perform its default action. More on overriding <code>EditorManager</code>&#39;s
+      on <code>event</code> object <code>EditorManager</code> won perform its default action. More on overriding <code>EditorManager</code>'s
       behaviour in section
       &quot;SelectEditor - creating editor from scratch&quot;.</p>
-    <p>You should now have a better understanding on how <code>EditorManager</code> works. Let&#39;s go a bit deeper and see
+    <p>You should now have a better understanding on how <code>EditorManager</code> works. Let's go a bit deeper and see
       what methods every
       editor class must implement and what those methods do.</p>
     <h2 id="baseeditor">BaseEditor</h2>
@@ -108,7 +106,7 @@
     <h3 id="common-methods">Common methods</h3>
     <p>Common methods, are methods implemented by <code>BaseEditor</code> class. They contain some core logic that every
       editor should have.
-      Most of the time, you shouldn&#39;t bother with those methods.
+      Most of the time, you shouldn't bother with those methods.
       However, if you are creating some more complex editors, you might want to override some of the common methods, in
       which case you should always
       invoke the original method and then perform other operations, specific to your editor.</p>
@@ -129,14 +127,14 @@ CustomEditor.prototype.prepare = function(row, col, prop, td, originalValue, cel
     </h4>
     <p>Prepares editor to be displayed for given cell. Sets most of the instance properties.</p>
     <p>Returns: <code>undefined</code></p>
-    <h4 id="beginediting-initialvalue-string-optional-">beginEditing(initialValue: &#39;String&#39; <em>[optional]</em> )
+    <h4 id="beginediting-initialvalue-string-optional-">beginEditing(initialValue: 'String' <em>[optional]</em> )
     </h4>
     <p>Sets editor value to <code>initialValue</code>. If <code>initialValue</code> is undefined, the editor value is set to
       original cell value.
       Calls <code>open()</code> method internally.</p>
     <p>Returns: <code>undefined</code></p>
     <h4 id="finishediting-reverttooriginal-boolean-optional-ctrldown-boolean-optional-callback-function-">
-      finishEditing(revertToOriginal: &#39;Boolean&#39; <em>[optional]</em>, ctrlDown: <code>Boolean</code>
+      finishEditing(revertToOriginal: 'Boolean' <em>[optional]</em>, ctrlDown: <code>Boolean</code>
       <em>[optional]</em>, callback: <code>Function</code>)</h4>
     <p>Tries to finish cell edition. Calls <code>saveValue()</code> and <code>discardEditor()</code> internally.
       If <code>revertToOriginal</code> is set to <code>true</code> cell value is being set to its original value (from
@@ -162,7 +160,7 @@ CustomEditor.prototype.prepare = function(row, col, prop, td, originalValue, cel
     <h4 id="extend-">extend()</h4>
     <p>Returns: <code>Function</code> - a class function that inherits from the current class. The <code>prototype</code>
       methods of the returned class can be safely
-      overwritten, without a danger of altering parent&#39;s <code>prototype</code>.</p>
+      overwritten, without a danger of altering the parent's <code>prototype</code>.</p>
     <p><strong>Example</strong> - inheriting from <code>BaseEditor</code> and overriding its method</p>
     <pre><code class="lang-js">var CustomEditor = Handsontable.editors.BaseEditor.prototype.extend();
 
@@ -182,14 +180,14 @@ CustomEditor.prototype.beginEditing = function() {};</code></pre>
     <p>Method called when new instance of editor class is created. That happens at most once per table instance, as all used
       editors as <strong>singletons</strong> within table instance. You should use this methods to perform tasks which
       results can be reused
-      during editor&#39;s lifecycle. The most common operation is creating HTML structure of editor.</p>
+      during editor's lifecycle. The most common operation is creating HTML structure of editor.</p>
     <p>Method does not need to return any value.</p>
     <h4 id="getvalue-">getValue()</h4>
     <p>Method should act return the current editor value, that is value that should be saved as a new cell value.</p>
-    <h4 id="setvalue-newvalue-mixed-">setValue(newValue: &#39;Mixed&#39;)</h4>
+    <h4 id="setvalue-newvalue-mixed-">setValue(newValue: 'Mixed')</h4>
     <p>Method should set editor value to <code>newValue</code>.</p>
     <p><strong>Example</strong>
-      Let&#39;s say we are implementing a DateEditor, which helps selecting date, by displaying a calendar.
+      Let's say we are implementing a DateEditor, which helps selecting date, by displaying a calendar.
       <code>getValue()</code> and <code>setValue()</code> method could work like so:</p>
     <pre><code class="lang-js">CalendarEditor.prototype.getValue = function() {
   return calendar.getDate(); // returns currently selected date, for example "2013/09/15"
@@ -221,7 +219,7 @@ CalendarEditor.prototype.setValue = function(newValue) {
     <h3 id="common-editor-properties">Common editor properties</h3>
     <p>All of the undermentioned properties are available in editor instance through <code>this</code> object (e.g. <code>this.instance</code>).
     </p>
-    <h4 id="instance-object-handsontable-core-">instance `Object:Handsontable.Core&#39;</h4>
+    <h4 id="instance-object-handsontable-core-">instance `Object:Handsontable.Core'</h4>
     <p>The instance of Handsontable to which this editor object belongs. Set in class constructor, immutable thorough the
       whole lifecycle of editor.</p>
     <h4 id="row-number-">row <code>Number</code></h4>
@@ -233,10 +231,10 @@ CalendarEditor.prototype.setValue = function(newValue) {
       Updated on every <code>prepare()</code> method call.</p>
     <h4 id="td-htmltablecellnode-">TD <code>HTMLTableCellNode</code></h4>
     <p>Node object of active cell. Updated on every <code>prepare()</code> method call.</p>
-    <h4 id="cellproperties-object-">cellProperties &#39;Object&#39;</h4>
+    <h4 id="cellproperties-object-">cellProperties 'Object'</h4>
     <p>An object representing active cell properties. Updated on every <code>prepare()</code> method call.</p>
     <h2 id="how-to-create-a-custom-editor-">How to create a custom editor?</h2>
-    <p>Now you now all the philosophy behind Handsontable editors and you&#39;re ready to write your own editor.
+    <p>Now you now all the philosophy behind Handsontable editors and you're ready to write your own editor.
       Basically, you can build a new editor from scratch, by creating a new editor class, which inherits form <code>BaseEditor</code>,
       or
       if you just want to enhance an existing editor, you can extend its class and override only a few of its methods.</p>
@@ -246,7 +244,7 @@ CalendarEditor.prototype.setValue = function(newValue) {
       We will also create a <code>PasswordEditor</code> which works exactly like regular <code>TextEditor</code> except that
       it displays a password
       input instead of textarea.</p>
-    <p>Let&#39;s begin with <code>PasswordEditor</code> as it is a bit easier.</p>
+    <p>Let's begin with <code>PasswordEditor</code> as it is a bit easier.</p>
     <h3 id="-passwordeditor-extending-an-existing-editor"><code>PasswordEditor</code> - extending an existing editor</h3>
     <p><code>TextEditor</code> is the most complex editor available in Handsontable by default. It displays a <code>&lt;textarea&gt;</code>
       which automatically
@@ -260,7 +258,7 @@ CalendarEditor.prototype.setValue = function(newValue) {
       input have the same API, so all we
       have to do is replace the code responsible for creating HTML elements. If you take a look at TextEditor
       <code>init()</code> method,
-      you&#39;ll notice that it calls internal <code>createElements()</code> method, which creates <code>
+      you'll notice that it calls internal <code>createElements()</code> method, which creates <code>
         &lt;textarea&gt;</code> node and append it to DOM during
       editor initialization - BINGO!.</p>
     <p>Here is the code</p>
@@ -282,7 +280,7 @@ PasswordEditor.prototype.createElements = function () {
   Handsontable.Dom.empty(this.TEXTAREA_PARENT);
   this.TEXTAREA_PARENT.appendChild(this.TEXTAREA);
 };</code></pre>
-    <p>That&#39;s it! You can now use your new editor:</p>
+    <p>That's it! You can now use your new editor:</p>
     <pre><code class="lang-js">var hot = new Handsontable(document.getElementById('container'), {
   data: someData,
   columns: [
@@ -296,11 +294,11 @@ PasswordEditor.prototype.createElements = function () {
   ]
 });</code></pre>
     <p>Wow, that was easy. Just a few lines of code and everything works.
-      Let&#39;s try something more complex, let&#39;s build new editor from the ground up.</p>
+      Let's try something more complex, let's build new editor from the ground up.</p>
     <h3 id="-selecteditor-creating-editor-from-scratch"><code>SelectEditor</code> - creating editor from scratch</h3>
-    <p>We&#39;re going to build a full featured editor, that lets user choose a cell value from predefined list of options,
+    <p>We're going to build a full featured editor, that lets user choose a cell value from predefined list of options,
       using
-      standard <code>&lt;select&gt;</code> input. As an extra feature, we&#39;ll add an ability to change currently selected
+      standard <code>&lt;select&gt;</code> input. As an extra feature, we'll add an ability to change currently selected
       option with <kbd>ARROW_UP</kbd>
       and <kbd>ARROW_DOWN</kbd> keys.</p>
     <p>Things to do:</p>
@@ -319,12 +317,12 @@ PasswordEditor.prototype.createElements = function () {
       </li>
       <li>Override the default <code>EditorManager</code> behaviour, so that pressing <kbd>ARROW_UP</kbd> and
         <kbd>ARROW_DOWN</kbd> keys
-        won&#39;t close the editor, but instead change the currently selected value.
+        won't close the editor, but instead change the currently selected value.
       </li>
       <li>Register editor.</li>
     </ol>
     <h4 id="creating-new-editor">Creating new editor</h4>
-    <p>That&#39;s probably the easiest part. All we have to do is call <code>BaseEditor.prototype.extend()</code> function
+    <p>That's probably the easiest part. All we have to do is call <code>BaseEditor.prototype.extend()</code> function
       which will return
       a new function class that inherits from <code>BaseEditor</code>.</p>
     <pre><code class="lang-js">var SelectEditor = Handsontable.editors.BaseEditor.prototype.extend();</code></pre>
@@ -345,12 +343,12 @@ PasswordEditor.prototype.createElements = function () {
         href="http://en.wikipedia.org/wiki/Singleton_pattern">Singleton pattern</a> for details).</p>
     <p><code>prepare()</code> method is called every time user selects a cell that has this particular editor class set as
       <code>editor</code> property.
-      So, if whe set <code>SelectEditor</code> as editor for an entire column, then selecting any cell in this column will
+      So, if we set <code>SelectEditor</code> as editor for an entire column, then selecting any cell in this column will
       invoke <code>prepare()</code>
       method of <code>SelectEditor</code>. In other words, this method can be called hundreds of times during table life,
       especially when
       working with large data. Another important aspect of <code>prepare()</code> is that it should not display the editor
-      (its <code>open&#39;s</code> job).
+      (it's <code>open's</code> job).
       Displaying editor is triggered by user event such as pressing <kbd>ENTER</kbd>, <kbd>F2</kbd>
       or double clicking a cell,
       so there is some time between calling <code>prepare()</code> and actually displaying the editor. Nevertheless,
@@ -365,7 +363,7 @@ PasswordEditor.prototype.createElements = function () {
       input is somewhere in
       <code>init()</code> method. DOM manipulation is considered to be quite expensive (regarding the resource consumption)
       operation, so
-      it&#39;s best to perform it once and reuse the produced HTML nodes throughout the life of editor.</p>
+      it's best to perform it once and reuse the produced HTML nodes throughout the life of editor.</p>
     <pre><code class="lang-js">SelectEditor.prototype.init = function() {
   // Create detached node, add CSS class and make sure its not visible
   this.select = document.createElement('SELECT');
@@ -387,8 +385,8 @@ PasswordEditor.prototype.createElements = function () {
     <p>Task two: <strong>DONE</strong></p>
     <h4 id="populating-select-with-options">Populating <code>&lt;select&gt;</code> with options</h4>
     <p>In the previous step we implemented a function that crates <code>&lt;select&gt;</code> input and attaches it to DOM.
-      You&#39;ve probably noticed
-      that we haven&#39;t written any code that would create <code>&lt;option&gt;</code> elements, therefore if we would
+      You've probably noticed
+      that we haven't written any code that would create <code>&lt;option&gt;</code> elements, therefore if we would
       display the list, it would be
       empty.</p>
     <p>We want to be able to define an option list like so:</p>
@@ -403,18 +401,18 @@ PasswordEditor.prototype.createElements = function () {
 });</code></pre>
     <p>There is no (easy) way to get to the value of <code>selectOptions</code>. Even if we could get to this array we could
       only populate
-      list with options once, what if we have more than one column using <code>SelectEditor</code> and each of them has it&#39;s
+      list with options once, what if we have more than one column using <code>SelectEditor</code> and each of them has it's
       own option list.
-      It&#39;s even possible that two cells in the same column can have different option lists (cascade configuration -
+      It's even possible that two cells in the same column can have different option lists (cascade configuration -
       remember?)
-      It&#39;s clear that we have to find a better place for the code that creates items for our list.</p>
+      It's clear that we have to find a better place for the code that creates items for our list.</p>
     <p> We are left with two places <code>prepare()</code> and <code>open()</code>. The latter one is simpler to implement,
       but as we previously stated,
       <code>open()</code> should work as fast as possible and creating <code>&lt;option&gt;</code> nodes and attaching them
       to DOM might be time consuming,
       if <code>selectOptions</code> contains long list of options. Therefore, <code>prepare()</code> seems to be a safer
       place to do this kind of work.
-      The only thing to keep in mind is that we should always invoke <code>BaseEditor&#39;s</code> original method when
+      The only thing to keep in mind is that we should always invoke <code>BaseEditor's</code> original method when
       overriding <code>prepare()</code>.
       <code>BaseEditor.prototype.prepare()</code> sets some important properties, which are used by other editor methods.
     </p>
@@ -498,7 +496,7 @@ SelectEditor.prototype.close = function() {
       <code>prepare()</code>. Secondly, before
       displaying the list, we sets its <code>height</code> and <code>min-width</code> so that it matches the size of
       corresponding cell.
-      It&#39;s an optional step, but without it the editor will have different sizes depending on the browser. Probably a
+      It's an optional step, but without it the editor will have different sizes depending on the browser. Probably a
       good idea
       would be also to limit the maximum height of <code>&lt;select&gt;</code>. Finally, as the <code>&lt;select&gt;</code>
       has been appended to the end of the
@@ -523,22 +521,22 @@ var hot = new Handsontable(document.getElementById('container'), {
 });</code></pre>
     <h4 id="use-kbd-arrow_up-kbd-and-kbd-arrow_down-kbd-to-change-selected-value">Use <kbd>ARROW_UP</kbd> and
       <kbd>ARROW_DOWN</kbd> to change selected value</h4>
-    <p>We know that our editor works, but let&#39;s add one more tweak to it. Currently, when editor is opened and user
+    <p>We know that our editor works, but let's add one more tweak to it. Currently, when editor is opened and user
       presses
       <kbd>ARROW_UP</kbd> or <kbd>ARROW_DOWN</kbd> editor closes and the selection moves one cell up
-      or down. Wouldn&#39;t
+      or down. Wouldn't
       it be nice, if pressing up and down arrow keys changed the currently selected value? User could navigate to the cell,
       hit
       <kbd>ENTER</kbd>, choose the desired value and save changes by hitting <kbd>ENTER</kbd> again.
       It would be possible to
       work with the table without even laying your hand on a mouse. Sounds pretty good, but how to override the default
       behaviour?
-      After all, it&#39;s the <code>EditorManager</code> who decides when to close the editor.</p>
-    <p>Don&#39;t worry. Although, you don&#39;t have a direct access to <code>EditorManager</code> instance, you can still
+      After all, it's the <code>EditorManager</code> who decides when to close the editor.</p>
+    <p>Don't worry. Although, you don't have a direct access to <code>EditorManager</code> instance, you can still
       override its behaviour.
       Before <code>EditorManager</code> starts to process keyboard events it triggers <code>beforeKeyDown</code> hook. If
       any of the listening functions
-      invoke <code>stopImmediatePropagation()</code> method on an <code>event</code> object <code>EditorManager</code> won&#39;t
+      invoke <code>stopImmediatePropagation()</code> method on an <code>event</code> object <code>EditorManager</code> won't
       process this event any further. Therefore,
       all we have to do is register a <code>beforeKeyDown</code> listener function that checks whether <kbd>ARROW_UP</kbd>
       or <kbd>ARROW_DOWN</kbd>
@@ -546,11 +544,11 @@ var hot = new Handsontable(document.getElementById('container'), {
         &lt;select&gt;</code> list accordingly.</p>
     <p>The thing that we need to keep in mind is that our listener should work only, when our editor is opened. We want to
       preserve
-      the default behaviour for other editors, as well as when no editor is opened. That&#39;s why the most reasonable place
+      the default behaviour for other editors, as well as when no editor is opened. That's why the most reasonable place
       to
       register our listener would be the <code>open()</code> method and the <code>close()</code> method should contain code
       that will remove our listener.</p>
-    <p>Here&#39;s how the listener function could look like:</p>
+    <p>Here's how the listener function could look like:</p>
     <pre><code class="lang-javascript">var onBeforeKeyDown = function(event) {
   var instance = this; // context of listener function is always set to Handsontable.Core instance
   var editor = instance.getActiveEditor();
@@ -616,7 +614,7 @@ SelectEditor.prototype.close = function() {
   this.instance.removeHook('beforeKeyDown', onBeforeKeyDown);
 };</code></pre>
     <p>Additionally, due to the recent change in the positioning of the overlays (fixed columns, rows, headers etc.) we need
-      to set the css transform property. We&#39;ll use the <code>Handsontable.Dom</code>&#39;s <code>getCssTransform</code>
+      to set the css transform property. We'll use the <code>Handsontable.Dom</code>'s <code>getCssTransform</code>
       and <code>resetCssTransform</code> to get the correct values:</p>
     <pre><code class="lang-javascript">SelectEditor.prototype.open = function() {
   var width = Handsontable.Dom.outerWidth(this.TD);
@@ -682,19 +680,19 @@ SelectEditor.prototype.checkEditorSection = function() {
       <li><code>checkbox</code> for <code>Handsontable.editors.CheckboxEditor</code></li>
       <li><code>handsontable</code> for <code>Handsontable.editors.HandsontableEditor</code></li>
     </ul>
-    <p>It gives users a convenient way for defining which editor should be use when changing value of certain cells. User
-      doesn&#39;t
-      need to know which class is responsible for displaying the editor, he does not even need to know that there is any
-      class
-      at all. What is more, you can change the class associated with an alias without a need to change code that defines a
-      table.</p>
+    <p>It gives users a convenient way for defining which editor should
+      be use when changing value of certain cells. User doesn't need to
+      know which class is responsible for displaying the editor, he does
+      not even need to know that there is any class at all. What is
+      more, you can change the class associated with an alias without a
+      need to change code that defines a table.</p>
     <p>To register your own alias use <code>Handsontable.editors.registerEditor()</code> function. It takes two arguments:
     </p>
     <ul>
       <li><code>editorName</code> - a string representing an editor</li>
       <li><code>editorClass</code> - a class that will be represented by <code>editorName</code></li>
     </ul>
-    <p>If you&#39;d like to register <code>SelectEditor</code> under alias <code>select</code> you have to call:</p>
+    <p>If you'd like to register <code>SelectEditor</code> under alias <code>select</code> you have to call:</p>
     <pre><code class="lang-javascript">Handsontable.editors.registerEditor('select', SelectEditor);</code></pre>
     <p>Choose aliases wisely. If you register your editor under name that is already registered, the target class will be
       overwritten:</p>
@@ -726,11 +724,11 @@ SelectEditor.prototype.checkEditorSection = function() {
   // ...rest of the editor code
 
 })(Handsontable);</code></pre>
-    <p>Passing <code>Handsontable</code> namespace as argument is optional (as it is defined globally), but it&#39;s a good
+    <p>Passing <code>Handsontable</code> namespace as argument is optional (as it is defined globally), but it's a good
       practice to use as
       few global objects as possible, to make modularisation and dependency management easier.</p>
     <h3 id="add-editor-to-dedicated-namespace">Add editor to dedicated namespace</h3>
-    <p>Code enclosed in IIFE cannot be accessed from outside, unless it&#39;s intentionally exposed. To keep things well
+    <p>Code enclosed in IIFE cannot be accessed from outside, unless it's intentionally exposed. To keep things well
       organized
       add your editor to a special namespace called <code>Handsontable.editors</code>. This way you can use your editor
       during table definition
