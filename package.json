@@ -21,10 +21,13 @@
     "grunt-git": "^0.3.4",
     "grunt-jsdoc": "^0.5.8",
     "grunt-robots-txt": "~0.3.0",
+    "grunt-sitemap": "1.2.1",
     "jsdoc": "git://github.com/jsdoc3/jsdoc.git",
-    "grunt-sitemap": "1.2.1"
+    "minimist": "^1.1.1",
+    "semver": "^4.3.4"
   },
   "devDependencies": {
+    "git-repo-info": "^1.1.1",
     "grunt": "~0.4.5",
     "grunt-contrib-connect": "^0.10.1",
     "grunt-contrib-watch": "^0.6.1",

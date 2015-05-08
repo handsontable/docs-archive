@@ -1,6 +1,10 @@
 
+var getRepoInfo = require('git-repo-info');
+
 module.exports = function (shipit) {
   require('shipit-deploy')(shipit);
+
+  var gitInfo = getRepoInfo();
 
   shipit.initConfig({
     production: {
@@ -8,7 +12,7 @@ module.exports = function (shipit) {
       workspace: '/tmp/docs.handsontable.com',
       deployTo: '/home/httpd/docs.handsontable.com',
       repositoryUrl: 'https://github.com/handsontable/docs.git',
-      branch: 'master',
+      branch: gitInfo.branch,
       ignores: ['.git', 'node_modules'],
       rsync: ['--force', '--delete', '--delete-excluded', '-I', '--stats', '--chmod=ug=rwX'],
       keepReleases: 3,
@@ -17,6 +21,9 @@ module.exports = function (shipit) {
   });
 
   shipit.task('test', function() {
+
+    console.log(getRepoInfo());
+
     shipit.remote('pwd');
   });
 

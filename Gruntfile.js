@@ -15,22 +15,30 @@
  * See http://gruntjs.com/getting-started for more information about Grunt
  */
 
-var fs = require('fs');
+var argv = require('minimist')(process.argv.slice(2));
 
 module.exports = function (grunt) {
   var
     DOCS_PATH = 'generated',
     HOT_SRC_PATH = 'src/handsontable',
-    HOT_BRANCH = 'master',
+    HOT_DEFAULT_BRANCH = 'master',
     HOT_REPO = 'https://github.com/handsontable/handsontable.git',
     querystring = require('querystring');
+
+
+  function getHotBranch() {
+    var hotVersion = argv['hot-version'];
+
+    return hotVersion ? (hotVersion === 'latest' ? HOT_DEFAULT_BRANCH : hotVersion) : HOT_DEFAULT_BRANCH;
+  }
+
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
     clean: {
       dist: [DOCS_PATH],
-      release: [DOCS_PATH, HOT_SRC_PATH, 'bower_components', 'node_modules']
+      source: [HOT_SRC_PATH]
     },
 
     jsdoc: {
@@ -166,19 +174,9 @@ module.exports = function (grunt) {
     gitclone: {
       handsontable: {
         options: {
-          branch: HOT_BRANCH,
+          branch: HOT_DEFAULT_BRANCH,
           repository: HOT_REPO,
           directory: HOT_SRC_PATH,
-          verbose: true
-        }
-      }
-    },
-
-    gitpull: {
-      handsontable: {
-        options: {
-          branch: HOT_BRANCH,
-          cwd: HOT_SRC_PATH,
           verbose: true
         }
       }
@@ -191,12 +189,13 @@ module.exports = function (grunt) {
     'watch'
   ]);
 
+
   grunt.registerTask('default', 'Create documentation for Handsontable', function () {
     var timer;
 
     grunt.task.run('update-hot');
 
-    timer = setInterval(function () {
+    timer = setInterval(function() {
       if (!grunt.file.isFile(HOT_SRC_PATH + '/package.json')) {
         return;
       }
@@ -206,11 +205,10 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('update-hot', 'Update Handsontable repository', function () {
-    if (fs.existsSync(HOT_SRC_PATH)) {
-      grunt.task.run('gitpull');
-    } else {
-      grunt.task.run('gitclone');
-    }
+    grunt.config.set('gitclone.handsontable.options.branch', getHotBranch());
+
+    grunt.task.run('clean:source');
+    grunt.task.run('gitclone');
   });
 
   grunt.registerTask('build', 'Generate documentation for Handsontable', function () {
@@ -224,7 +222,6 @@ module.exports = function (grunt) {
     }));
 
     grunt.task.run('jsdoc');
-
     grunt.task.run('sitemap');
   });
 

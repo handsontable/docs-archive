@@ -17,13 +17,14 @@
     <!-- Tutorials -->
     <?js this.members.tutorials.forEach(function (tutorial) { ?>
       <?js tutorial.children.forEach(function (child) { ?>
-        <?js if(child.demo) { return; } ?>
-        <li class="item tutorial" data-name="<?js= child.name ?>">
+        <?js if (child.disabled || child.demo) { return; } ?>
+        <li class="item tutorial" data-a="<?js= child.since ?>" data-name="<?js= child.name ?>">
           <span class="title">
             <a href="#"><?js= child.title ?></a>
           </span>
           <ul class="members itemMembers">
             <?js child.children.forEach(function (c) { ?>
+              <?js if (c.disabled) { return; } ?>
               <li class="sub-item" data-name="<?js= c.name ?>"><?js= self.tutoriallink(c)?></li>
             <?js }); ?>
           </ul>
@@ -33,20 +34,21 @@
   <div class="sublist demos">
     <p class="header">Demos</p>
       <?js this.members.tutorials.forEach(function (tutorial) { ?>
-      <?js tutorial.children.forEach(function (child) { ?>
-        <?js if(!child.demo) { return; } ?>
-      <li class="item" data-name="<?js= child.name ?>">
+        <?js tutorial.children.forEach(function (child) { ?>
+          <?js if (child.disabled || !child.demo) { return; } ?>
+          <li class="item" data-a="<?js= child.since ?>" data-name="<?js= child.name ?>">
             <span class="title">
               <a href="#"><?js= child.title ?></a>
             </span>
-        <ul class="members itemMembers">
-          <?js child.children.forEach(function (c) { ?>
-          <li class="sub-item" data-name="<?js= c.name ?>"><?js= self.tutoriallink(c) ?></li>
-          <?js }); ?>
-        </ul>
-      </li>
+            <ul class="members itemMembers">
+              <?js child.children.forEach(function (c) { ?>
+                <?js if (c.disabled) { return; } ?>
+                <li class="sub-item" data-name="<?js= c.name ?>"><?js= self.tutoriallink(c) ?></li>
+              <?js }); ?>
+            </ul>
+          </li>
+        <?js }); ?>
       <?js }); ?>
-      <?js }) ?>
   </div>
   <div class="sublist api">
     <p class="header">API Reference</p>
