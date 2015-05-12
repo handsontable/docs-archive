@@ -16,6 +16,17 @@
  */
 
 var argv = require('minimist')(process.argv.slice(2));
+var GitHubApi = require('github');
+var fs = require('fs');
+var path = require('path');
+
+var github = new GitHubApi({
+  version: '3.0.0',
+  timeout: 5000,
+  headers: {
+    'user-agent': 'Handsontable'
+  }
+});
 
 module.exports = function (grunt) {
   var
@@ -200,6 +211,7 @@ module.exports = function (grunt) {
         return;
       }
       clearInterval(timer);
+      grunt.task.run('generate-doc-versions');
       grunt.task.run('build');
     }, 50);
   });
@@ -209,6 +221,27 @@ module.exports = function (grunt) {
 
     grunt.task.run('clean:source');
     grunt.task.run('gitclone');
+  });
+
+  grunt.registerTask('generate-doc-versions', 'Generate documentation for Handsontable', function () {
+    var done = this.async();
+
+    github.repos.getBranches({
+      user: 'handsontable',
+      repo: 'docs',
+      per_page: 100
+    }, function(err, resp) {
+      var validBranches;
+
+      validBranches = resp.filter(function(branch) {
+        return branch.name.match(/^\d{1,2}\.\d{1,2}\.x$/) ? true : false;
+
+      }).map(function(branch) {
+        return branch.name;
+      });
+
+      fs.writeFile(path.join(DOCS_PATH, 'scripts', 'doc-versions.js'), 'var docVersions = ' + JSON.stringify(validBranches), done);
+    });
   });
 
   grunt.registerTask('build', 'Generate documentation for Handsontable', function () {

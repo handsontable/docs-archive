@@ -44,7 +44,7 @@
   <?js if (env.conf.templates) { ?>
       var config = <?js= JSON.stringify(env.conf.templates) ?>;
   <?js } ?>
-      var hotVersion = "<?js= env.opts.query.version ?>";
+      var hotVersion = "<?js= env.opts.query.branch ?>";
   </script>
 
 </head>
@@ -132,6 +132,7 @@
   <script src="/scripts/foundation/foundation.min.js"></script>
   <script src="/scripts/linenumber.js"></script>
   <script src="/scripts/samples.js"></script>
+  <script src="/scripts/doc-versions.js"></script>
   <script src="/scripts/main.js"></script>
   <script>
     jQuery(document).foundation();

@@ -123,6 +123,10 @@ $(function () {
   }
 });
 
+function onDocVersionChange(element) {
+  location.href = location.href.replace(/\/\d{1,2}\.\d{1,2}\.x\//, '/' + element.value + '/');
+}
+
 function buildBreadcrumbs() {
   var $activeLink = $('.active-link').eq(0),
     $activeLinkParent = $activeLink.parent(),
@@ -136,6 +140,20 @@ function buildBreadcrumbs() {
   var makeSpan = function (content) {
     return '<span>' + content + '</span>';
   };
+  var makeHotVersion = function (hotVersion) {
+    var options = docVersions.map(function(version) {
+      if (version === hotVersion) {
+        return '<option selected value="' + version + '">' + version + '</option>';
+      }
+
+      return '<option value="' + version + '">' + version + '</option>';
+    });
+    return '<span>' +
+      '<select class="hot-chooser" onchange="onDocVersionChange(this)" selected="' + hotVersion + '">' +
+      options.join('') +
+      '</select>' +
+      '</span>';
+  };
 
   // links
   docsLink = document.createElement('a');
@@ -146,7 +164,7 @@ function buildBreadcrumbs() {
     var filename = $('.page-title').data('filename').replace(/\.[a-z]+$/, '');
 
     breadcrumbs = docsLink.outerHTML
-      + makeSpan(hotVersion)
+      + makeHotVersion(hotVersion)
       + makeSpan("Source: " + filename);
 
   } else if ($activeLink.parents("div.sublist.api").size() > 0) {
@@ -159,7 +177,7 @@ function buildBreadcrumbs() {
     $header = $item.prevAll('p.header').eq(0);
 
     breadcrumbs = docsLink.outerHTML
-      + makeSpan(hotVersion)
+      + makeHotVersion(hotVersion)
       + makeSpan($header.text())
       + makeSpan($subheader.text())
       + makeSpan($item.attr('data-name'))
@@ -171,7 +189,7 @@ function buildBreadcrumbs() {
     $item = $item.find('.title a');
 
     breadcrumbs = docsLink.outerHTML
-      + makeSpan(hotVersion)
+      + makeHotVersion(hotVersion)
       + makeSpan($item.text())
       + makeSpan($activeLink.text());
   }
