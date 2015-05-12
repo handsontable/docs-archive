@@ -524,7 +524,11 @@ exports.publish = function(taffyData, opts, tutorials) {
     var tutorialData = {
       title: title,
       header: tutorial.title,
-      content: tutorial.parse(),
+      content: _.template(tutorial.parse(), null, {
+        evaluate: /<\?js([\s\S]+?)\?>/g,
+        interpolate: /<\?js=([\s\S]+?)\?>/g,
+        escape: /<\?js~([\s\S]+?)\?>/g
+      })(env.opts.query),
       children: tutorial.children,
       filename: filename
     };
