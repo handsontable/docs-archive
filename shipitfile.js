@@ -58,6 +58,9 @@ module.exports = function (shipit) {
       return shipit.remote('cd ' + current + ' && grunt build');
 
     }).then(function() {
+      return shipit.remote('cd ' + current + ' && grunt generate-doc-versions');
+
+    }).then(function() {
       return new Promise(function(resolve, reject) {
         github.releases.listReleases({
           owner: 'handsontable',
