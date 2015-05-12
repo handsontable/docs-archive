@@ -231,7 +231,7 @@ module.exports = function (grunt) {
       repo: 'docs',
       per_page: 100
     }, function(err, resp) {
-      var validBranches;
+      var validBranches, content;
 
       validBranches = resp.filter(function(branch) {
         return branch.name.match(/^\d{1,2}\.\d{1,2}\.x$/) ? true : false;
@@ -239,8 +239,9 @@ module.exports = function (grunt) {
       }).map(function(branch) {
         return branch.name;
       });
+      content = 'docVersions && docVersions(' + JSON.stringify(validBranches) + ')';
 
-      fs.writeFile(path.join(DOCS_PATH, 'scripts', 'doc-versions.js'), 'var docVersions = ' + JSON.stringify(validBranches), done);
+      fs.writeFile(path.join(DOCS_PATH, 'scripts', 'doc-versions.js'), content, done);
     });
   });
 

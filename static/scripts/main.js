@@ -127,6 +127,12 @@ function onDocVersionChange(element) {
   location.href = location.href.replace(/\/\d{1,2}\.\d{1,2}\.x\//, '/' + element.value + '/');
 }
 
+var _docVersions = [];
+
+function docVersions(docVersions) {
+  _docVersions = docVersions;
+}
+
 function buildBreadcrumbs() {
   var $activeLink = $('.active-link').eq(0),
     $activeLinkParent = $activeLink.parent(),
@@ -141,7 +147,7 @@ function buildBreadcrumbs() {
     return '<span>' + content + '</span>';
   };
   var makeHotVersion = function (hotVersion) {
-    var options = docVersions.map(function(version) {
+    var options = _docVersions.map(function(version) {
       if (version === hotVersion) {
         return '<option selected value="' + version + '">' + version + '</option>';
       }
