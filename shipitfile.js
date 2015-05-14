@@ -1,22 +1,13 @@
 
-var getRepoInfo = require('git-repo-info');
-var GitHubApi = require('github');
-var Promise = require('bluebird');
-var fs = require('fs');
+var copyObject = require('copy-object');
+var gitHelper = require('./git-helper');
 
-var github = new GitHubApi({
-  version: '3.0.0',
-  timeout: 5000,
-  headers: {
-    'user-agent': 'Handsontable'
-  }
-});
 
 module.exports = function (shipit) {
   require('shipit-deploy')(shipit);
 
   var
-    gitInfo = getRepoInfo(),
+    gitInfo = gitHelper.getLocalInfo(),
     config = {
       servers: '142.4.202.189',
       workspace: '/tmp/docs.handsontable.com/' + gitInfo.branch,
@@ -30,11 +21,13 @@ module.exports = function (shipit) {
 
   shipit.initConfig({
     production: (function() {
+      config = copyObject(config);
       config.deployTo = '/home/httpd/docs.handsontable.com/' + gitInfo.branch;
 
       return config;
     }()),
     development: (function() {
+      config = copyObject(config);
       config.deployTo = '/home/httpd/dev-docs.handsontable.com/' + gitInfo.branch;
 
       return config;
@@ -61,28 +54,15 @@ module.exports = function (shipit) {
       return shipit.remote('cd ' + current + ' && grunt generate-doc-versions');
 
     }).then(function() {
-      return new Promise(function(resolve, reject) {
-        github.releases.listReleases({
-          owner: 'handsontable',
-          repo: 'handsontable',
-          page: 1,
-          per_page: 1
-        }, function(err, resp) {
-          if (err) {
-            // Don't brake cli chain call
-            return resolve(err);
-          }
-          resolve(resp);
-        });
-      });
+      return gitHelper.getHotLatestRelease();
 
-    }).then(function(resp) {
-      if (!resp.length) {
+    }).then(function(objectInfo) {
+      if (!objectInfo) {
         console.warn('Error retrieving latest hot version from github.');
 
         return;
       }
-      var latestHot = resp[0].tag_name.split('.').splice(0, 2).join('.') + '.x';
+      var latestHot = objectInfo.tag_name.split('.').splice(0, 2).join('.') + '.x';
 
       return shipit.remote('cd ' + shipit.config.deployTo + '/../ && echo "' + latestHot + '" > latestHot');
     });

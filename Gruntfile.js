@@ -15,18 +15,10 @@
  * See http://gruntjs.com/getting-started for more information about Grunt
  */
 
-var argv = require('minimist')(process.argv.slice(2));
-var GitHubApi = require('github');
 var fs = require('fs');
+var gitHelper = require('./git-helper');
 var path = require('path');
 
-var github = new GitHubApi({
-  version: '3.0.0',
-  timeout: 5000,
-  headers: {
-    'user-agent': 'Handsontable'
-  }
-});
 
 module.exports = function (grunt) {
   var
@@ -35,13 +27,6 @@ module.exports = function (grunt) {
     HOT_DEFAULT_BRANCH = 'master',
     HOT_REPO = 'https://github.com/handsontable/handsontable.git',
     querystring = require('querystring');
-
-
-  function getHotBranch() {
-    var hotVersion = argv['hot-version'];
-
-    return hotVersion ? (hotVersion === 'latest' ? HOT_DEFAULT_BRANCH : hotVersion) : HOT_DEFAULT_BRANCH;
-  }
 
 
   grunt.initConfig({
@@ -217,29 +202,23 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('update-hot', 'Update Handsontable repository', function () {
-    grunt.config.set('gitclone.handsontable.options.branch', getHotBranch());
+    var done = this.async();
 
-    grunt.task.run('clean:source');
-    grunt.task.run('gitclone');
+    gitHelper.getHotLatestRelease('~' + gitHelper.getLocalInfo().branch.replace('x', '0-beta')).then(function(objectInfo) {
+      grunt.config.set('gitclone.handsontable.options.branch', objectInfo.tag_name);
+      grunt.log.write('Cloning Handsontable v' + objectInfo.tag_name);
+
+      grunt.task.run('clean:source');
+      grunt.task.run('gitclone');
+      done();
+    });
   });
 
   grunt.registerTask('generate-doc-versions', 'Generate documentation for Handsontable', function () {
     var done = this.async();
 
-    github.repos.getBranches({
-      user: 'handsontable',
-      repo: 'docs',
-      per_page: 100
-    }, function(err, resp) {
-      var validBranches, content;
-
-      validBranches = resp.filter(function(branch) {
-        return branch.name.match(/^\d{1,2}\.\d{1,2}\.x$/) ? true : false;
-
-      }).map(function(branch) {
-        return branch.name;
-      });
-      content = 'docVersions && docVersions(' + JSON.stringify(validBranches) + ')';
+    gitHelper.getDocsVersions().then(function(branches) {
+      var content = 'docVersions && docVersions(' + JSON.stringify(branches) + ')';
 
       fs.writeFile(path.join(DOCS_PATH, 'scripts', 'doc-versions.js'), content, done);
     });
