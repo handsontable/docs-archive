@@ -15,6 +15,7 @@
  * See http://gruntjs.com/getting-started for more information about Grunt
  */
 
+var argv = require('minimist')(process.argv.slice(2));
 var fs = require('fs');
 var gitHelper = require('./git-helper');
 var path = require('path');
@@ -28,6 +29,12 @@ module.exports = function (grunt) {
     HOT_REPO = 'https://github.com/handsontable/handsontable.git',
     querystring = require('querystring');
 
+
+  function getHotBranch() {
+    var hotVersion = argv['hot-version'];
+
+    return hotVersion ? (hotVersion === 'latest' ? HOT_DEFAULT_BRANCH : hotVersion) : HOT_DEFAULT_BRANCH;
+  }
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -202,16 +209,11 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('update-hot', 'Update Handsontable repository', function () {
-    var done = this.async();
+    grunt.config.set('gitclone.handsontable.options.branch', getHotBranch());
+    grunt.log.write('Cloning Handsontable v' + getHotBranch());
 
-    gitHelper.getHotLatestRelease('~' + gitHelper.getLocalInfo().branch.replace('x', '0-beta')).then(function(objectInfo) {
-      grunt.config.set('gitclone.handsontable.options.branch', objectInfo.tag_name);
-      grunt.log.write('Cloning Handsontable v' + objectInfo.tag_name);
-
-      grunt.task.run('clean:source');
-      grunt.task.run('gitclone');
-      done();
-    });
+    grunt.task.run('clean:source');
+    grunt.task.run('gitclone');
   });
 
   grunt.registerTask('generate-doc-versions', 'Generate documentation for Handsontable', function () {
