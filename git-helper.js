@@ -67,7 +67,7 @@ exports.getDocsVersions = function getDocsVersions() {
       var branches;
 
       branches = resp.filter(function(branch) {
-        return branch.name.match(/^\d{1,2}\.\d{1,2}\.x$/) ? true : false;
+        return branch.name.match(/^\d{1,5}\.\d{1,5}\.\d{1,5}(\-(beta|alpha)(\d+)?)$/) ? true : false;
 
       }).map(function(branch) {
         return branch.name;
