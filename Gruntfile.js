@@ -222,6 +222,7 @@ module.exports = function (grunt) {
     gitHelper.getDocsVersions().then(function(branches) {
       var content = 'docVersions && docVersions(' + JSON.stringify(branches) + ')';
 
+      grunt.log.write('The following versions found: ' + branches.join(', '));
       fs.writeFile(path.join(DOCS_PATH, 'scripts', 'doc-versions.js'), content, done);
     });
   });
