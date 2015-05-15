@@ -234,8 +234,7 @@ module.exports = function (grunt) {
 
     hotPackage = grunt.file.readJSON(HOT_SRC_PATH + '/package.json');
     grunt.config.set('jsdoc.docs.options.query', querystring.stringify({
-      version: hotPackage.version,
-      branch: hotPackage.version.split('.').splice(0, 2).join('.') + '.x'
+      version: hotPackage.version
     }));
 
     grunt.task.run('jsdoc');
