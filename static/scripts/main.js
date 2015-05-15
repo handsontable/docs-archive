@@ -124,7 +124,7 @@ $(function () {
 });
 
 function onDocVersionChange(element) {
-  location.href = location.href.replace(/\/\d\.\d\.\d(\-(beta|alpha)(\d+)?)?\//, '/' + element.value + '/');
+  location.href = location.href.replace(/\/\d+\.\d+\.\d+(\-(beta|alpha)(\d+)?)?\//, '/' + element.value + '/');
 }
 
 var _docVersions = [];
