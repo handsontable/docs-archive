@@ -228,17 +228,21 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('build', 'Generate documentation for Handsontable', function () {
+    var done = this.async();
     var hotPackage;
 
-    grunt.task.run('less', 'copy', 'bowercopy', 'robotstxt');
+    gitHelper.getHotLatestRelease().then(function(info) {
+      grunt.task.run('less', 'copy', 'bowercopy', 'robotstxt');
 
-    hotPackage = grunt.file.readJSON(HOT_SRC_PATH + '/package.json');
-    grunt.config.set('jsdoc.docs.options.query', querystring.stringify({
-      version: hotPackage.version
-    }));
+      hotPackage = grunt.file.readJSON(HOT_SRC_PATH + '/package.json');
+      grunt.config.set('jsdoc.docs.options.query', querystring.stringify({
+        version: hotPackage.version,
+        latestVersion: info.tag_name
+      }));
 
-    grunt.task.run('jsdoc');
-    grunt.task.run('sitemap');
+      grunt.task.run('jsdoc');
+      grunt.task.run('sitemap');
+    });
   });
 
   grunt.loadNpmTasks('grunt-bowercopy');

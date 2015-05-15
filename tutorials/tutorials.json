@@ -134,8 +134,8 @@
           "freezing": {
             "title": "Columns freezing"
           },
-          "moving": {
-            "title": "Columns moving"
+          "moving-rows-and-columns": {
+            "title": "Columns and rows moving"
           },
           "highlighting-current": {
             "title": "Highlighting current"

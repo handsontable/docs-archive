@@ -147,13 +147,29 @@ function buildBreadcrumbs() {
     return '<span>' + content + '</span>';
   };
   var makeHotVersion = function (hotVersion) {
-    var options = _docVersions.map(function(version) {
-      if (version === hotVersion) {
-        return '<option selected value="' + version + '">' + version + '</option>';
-      }
+    var lastVersion = null;
 
-      return '<option value="' + version + '">' + version + '</option>';
+    var options = _docVersions.reverse().map(function(version) {
+      var minorMajor = version.split('.').splice(0, 2).join('.'),
+        option = '';
+
+      if (lastVersion !== minorMajor) {
+        if (lastVersion !== null) {
+          option += '</optgroup>';
+        }
+        option += '<optgroup label="' + minorMajor + '.x">';
+      }
+      if (version === hotVersion) {
+        option += '<option selected value="' + version + '">' + version + '</option>';
+      } else {
+        option += '<option value="' + version + '">' + version + '</option>';
+      }
+      lastVersion = minorMajor;
+
+      return option;
     });
+    options.push('</optgroup>');
+
     return '<span>' +
       '<select class="hot-chooser" onchange="onDocVersionChange(this)" selected="' + hotVersion + '">' +
       options.join('') +
