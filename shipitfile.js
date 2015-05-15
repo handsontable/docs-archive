@@ -68,9 +68,8 @@ module.exports = function (shipit) {
 
         return;
       }
-      var latestHot = objectInfo.tag_name.split('.').splice(0, 2).join('.') + '.x';
 
-      return shipit.remote('cd ' + shipit.config.deployTo + '/../ && echo "' + latestHot + '" > latestHot');
+      return shipit.remote('cd ' + shipit.config.deployTo + '/../ && echo "' + objectInfo.tag_name + '" > latestHot');
 
     }).then(function() {
       shipit.start(['deploy:publish', 'deploy:clean']);
