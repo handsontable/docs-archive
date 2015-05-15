@@ -242,6 +242,7 @@ module.exports = function (grunt) {
 
       grunt.task.run('jsdoc');
       grunt.task.run('sitemap');
+      done();
     });
   });
 
