@@ -153,8 +153,7 @@ function ajax(url, method, params, callback) {
         }
         keys.push(runfiddle);
 
-        var index = window.location.href.lastIndexOf("/") + 1;
-        var baseUrl = window.location.href.substr(0, index);
+        var baseUrl = location.protocol + '//' + location.host;
 
         var tags = [];
         var css = '';
