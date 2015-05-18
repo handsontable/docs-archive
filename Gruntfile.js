@@ -33,7 +33,7 @@ module.exports = function (grunt) {
   function getHotBranch() {
     var hotVersion = argv['hot-version'];
 
-    return hotVersion ? (hotVersion === 'latest' ? HOT_DEFAULT_BRANCH : hotVersion) : HOT_DEFAULT_BRANCH;
+    return hotVersion ? (hotVersion === 'latest' ? HOT_DEFAULT_BRANCH : hotVersion) : gitHelper.getLocalInfo().branch;
   }
 
   grunt.initConfig({
@@ -220,7 +220,7 @@ module.exports = function (grunt) {
     var done = this.async();
 
     gitHelper.getDocsVersions().then(function(branches) {
-      var content = 'docVersions && docVersions(' + JSON.stringify(branches) + ')';
+      var content = 'docVersions && docVersions(' + JSON.stringify(branches.reverse()) + ')';
 
       grunt.log.write('The following versions found: ' + branches.join(', '));
       fs.writeFile(path.join(DOCS_PATH, 'scripts', 'doc-versions.js'), content, done);

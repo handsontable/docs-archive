@@ -137,11 +137,11 @@ function docVersions(docVersions) {
 }
 
 function getLatestHOTStableVersion() {
-  var stable = _docVersions.reverse().filter(function(version) {
+  var stable = _docVersions.filter(function(version) {
     return version.match(/\d+\.\d+\.\d+/) ? true : false;
   });
 
-  return stable.length ? stable[0] : _docVersions.reverse()[0];
+  return stable.length ? stable[0] : _docVersions[0];
 }
 
 function buildBreadcrumbs() {
@@ -169,7 +169,7 @@ function buildBreadcrumbs() {
   var makeHotVersion = function (hotVersion) {
     var lastVersion = null;
 
-    var options = _docVersions.reverse().map(function(version) {
+    var options = _docVersions.map(function(version) {
       var minorMajor = version.split('.').splice(0, 2).join('.'),
         option = '';
 
