@@ -123,14 +123,25 @@ $(function () {
   }
 });
 
-function onDocVersionChange(element) {
-  location.href = location.href.replace(/\/\d+\.\d+\.\d+(\-(beta|alpha)(\d+)?)?\//, '/' + element.value + '/');
+function getDocUrl(docVersion) {
+  return location.href.replace(/\/\d+\.\d+\.\d+(\-(beta|alpha)(\d+)?)?\//, '/' + docVersion + '/');
+}
+function goTo(href) {
+  location.href = href;
 }
 
 var _docVersions = [];
 
 function docVersions(docVersions) {
   _docVersions = docVersions;
+}
+
+function getLatestHOTStableVersion() {
+  var stable = _docVersions.reverse().filter(function(version) {
+    return version.match(/\d+\.\d+\.\d+/) ? true : false;
+  });
+
+  return stable.length ? stable[0] : _docVersions.reverse()[0];
 }
 
 function buildBreadcrumbs() {
@@ -145,6 +156,15 @@ function buildBreadcrumbs() {
 
   var makeSpan = function (content) {
     return '<span>' + content + '</span>';
+  };
+  var makeLatestLink = function (hotVersion) {
+    var stableVersion = getLatestHOTStableVersion();
+
+    if (stableVersion === hotVersion) {
+      return '';
+    }
+
+    return '<a class="hot-latest" href="' + getDocUrl(stableVersion) + '">switch into latest stable version</a>';
   };
   var makeHotVersion = function (hotVersion) {
     var lastVersion = null;
@@ -171,7 +191,7 @@ function buildBreadcrumbs() {
     options.push('</optgroup>');
 
     return '<span>' +
-      '<select class="hot-chooser" onchange="onDocVersionChange(this)" selected="' + hotVersion + '">' +
+      '<select class="hot-chooser" onchange="goTo(getDocUrl(this.value))" selected="' + hotVersion + '">' +
       options.join('') +
       '</select>' +
       '</span>';
@@ -187,7 +207,8 @@ function buildBreadcrumbs() {
 
     breadcrumbs = docsLink.outerHTML
       + makeHotVersion(hotVersion)
-      + makeSpan("Source: " + filename);
+      + makeSpan("Source: " + filename)
+      + makeLatestLink(hotVersion);
 
   } else if ($activeLink.parents("div.sublist.api").size() > 0) {
     $subtitle = $activeLinkParent.prevAll('span.subtitle').eq(0).filter(function () {
@@ -204,7 +225,8 @@ function buildBreadcrumbs() {
       + makeSpan($subheader.text())
       + makeSpan($item.attr('data-name'))
       + makeSpan($subtitle.text())
-      + makeSpan($activeLink.text());
+      + makeSpan($activeLink.text())
+      + makeLatestLink(hotVersion);
 
   } else {
     $item = $activeLink.parents('li.item').eq(0);
@@ -213,7 +235,8 @@ function buildBreadcrumbs() {
     breadcrumbs = docsLink.outerHTML
       + makeHotVersion(hotVersion)
       + makeSpan($item.text())
-      + makeSpan($activeLink.text());
+      + makeSpan($activeLink.text())
+      + makeLatestLink(hotVersion);
   }
 
   return breadcrumbs;
