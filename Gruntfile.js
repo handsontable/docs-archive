@@ -15,22 +15,33 @@
  * See http://gruntjs.com/getting-started for more information about Grunt
  */
 
+var argv = require('minimist')(process.argv.slice(2));
 var fs = require('fs');
+var gitHelper = require('./git-helper');
+var path = require('path');
+
 
 module.exports = function (grunt) {
   var
     DOCS_PATH = 'generated',
     HOT_SRC_PATH = 'src/handsontable',
-    HOT_BRANCH = 'master',
+    HOT_DEFAULT_BRANCH = 'master',
     HOT_REPO = 'https://github.com/handsontable/handsontable.git',
     querystring = require('querystring');
+
+
+  function getHotBranch() {
+    var hotVersion = argv['hot-version'];
+
+    return hotVersion ? (hotVersion === 'latest' ? HOT_DEFAULT_BRANCH : hotVersion) : gitHelper.getLocalInfo().branch;
+  }
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
     clean: {
       dist: [DOCS_PATH],
-      release: [DOCS_PATH, HOT_SRC_PATH, 'bower_components', 'node_modules']
+      source: [HOT_SRC_PATH]
     },
 
     jsdoc: {
@@ -170,19 +181,9 @@ module.exports = function (grunt) {
     gitclone: {
       handsontable: {
         options: {
-          branch: HOT_BRANCH,
+          branch: HOT_DEFAULT_BRANCH,
           repository: HOT_REPO,
           directory: HOT_SRC_PATH,
-          verbose: true
-        }
-      }
-    },
-
-    gitpull: {
-      handsontable: {
-        options: {
-          branch: HOT_BRANCH,
-          cwd: HOT_SRC_PATH,
           verbose: true
         }
       }
@@ -194,6 +195,7 @@ module.exports = function (grunt) {
     'open',
     'watch'
   ]);
+
 
   grunt.registerTask('default', 'Create documentation for Handsontable', function () {
     var timer;
