@@ -6,7 +6,6 @@
         "title": "Getting started",
         "children": {
           "quick-start": {
-            "since": "*",
             "title": "Quick start"
           },
           "custom-build": {
@@ -14,15 +13,12 @@
             "title": "Custom build"
           },
           "features": {
-            "since": "*",
             "title": "Features"
           },
           "compatibility": {
-            "since": "*",
             "title": "Compatibility"
           },
           "seven-principles": {
-            "since": "*",
             "title": "Seven principles"
           }
         }
