@@ -9,6 +9,7 @@
             "title": "Quick start"
           },
           "custom-build": {
+            "since": ">=0.15.0-beta1",
             "title": "Custom build"
           },
           "features": {
@@ -129,8 +130,8 @@
           "freezing": {
             "title": "Columns freezing"
           },
-          "moving": {
-            "title": "Columns moving"
+          "moving-rows-and-columns": {
+            "title": "Columns and rows moving"
           },
           "highlighting-current": {
             "title": "Highlighting current"

@@ -1,12 +1,12 @@
 <div class="static-content">
-  <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js" data-jsfiddle="common"></script>
+  <script type="text/javascript" src="/<?js= version ?>/bower_components/bootstrap/dist/js/bootstrap.min.js" data-jsfiddle="common"></script>
   <!--<link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" data-jsfiddle="common">-->
   <!--<link rel="stylesheet" media="screen" href="/styles/handsontable.bootstrap.css" data-jsfiddle="common">-->
 
 
 
   <div class="example-container clearfix">
-    <a href="https://github.com/handsontable/docs/edit/develop/tutorials/bootstrap.html" class="edit-doc" target="_blank">
+    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/bootstrap.html" class="edit-doc" target="_blank">
       Edit on GitHub
     </a>
     <p>This page demonstrate example of using Handsontable with
@@ -68,9 +68,11 @@
         for (i = 0, len = table.length; i < len; i++) {
           var tableInstance = table[i];
           var isMaster = !!findAncestor(tableInstance, 'ht_master');
+
           Handsontable.Dom.addClass(tableInstance, 'table');
           Handsontable.Dom.addClass(tableInstance, 'table-hover');
           Handsontable.Dom.addClass(tableInstance, 'table-striped');
+
           if (isMaster) {
             Handsontable.Dom.addClass(tableInstance, 'table-bordered');
           }

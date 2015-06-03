@@ -52,7 +52,7 @@
   </script>
 
   <div class="example-container clearfix">
-    <a href="https://github.com/handsontable/docs/edit/develop/tutorials/sorting-data.html" class="edit-doc" target="_blank">
+    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/sorting-data.html" class="edit-doc" target="_blank">
       Edit on GitHub
     </a>
     <h3 id="how-the-sorting-works">How the sorting works</h3>
@@ -131,7 +131,7 @@ hot.updateSettings({
     <p>The revers mapping is a bit more complicated, but is also possible. In fact, <code>columnSorting</code> plugin has two dedicated methods which translates logical indices to physical and vice versa (called <code>translateRow()</code> and <code>untranslateRow()</code>) but they are currently inaccessible from the global scope.</p>
     <p>Click on a column header to sort. Only the table view is sorted. The data source remains in the original order.
       For an in depth documentation of column sorting plugin see the
-      <a href="/demo-sorting-data.html">Understanding column sorting plugin</a> wiki page.
+      <a href="/<?js= version ?>/demo-sorting-data.html">Understanding column sorting plugin</a> wiki page.
     </p>
 
     <div data-jsfiddle="example1" class="scroll-container">

@@ -736,6 +736,20 @@ nav,
   margin: 0 0.45rem;
   font-size: 12px;
 }
+.breadcrumbs select.hot-chooser {
+  height: 25px;
+  padding: 0 0 0 10px;
+  margin: -6px 0;
+  display: inline;
+  width: 115px;
+  font-size: 12px;
+}
+.breadcrumbs .hot-latest {
+  float: right;
+}
+.breadcrumbs .hot-latest:before {
+  content: "";
+}
 /* Static pages */
 .static-content {
   position: relative;

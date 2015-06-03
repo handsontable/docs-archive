@@ -1,20 +1,20 @@
 <div class="static-content">
 
   <div class="example-container clearfix">
-    <a href="https://github.com/handsontable/docs/edit/develop/tutorials/data-validation.html" class="edit-doc" target="_blank">
+    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/data-validation.html" class="edit-doc" target="_blank">
       Edit on GitHub
     </a>
     <p>Use the <strong>validator</strong> (see <a
-      href="/Options.html">options page</a>) method to easily
+      href="/<?js= version ?>/Options.html">options page</a>) method to easily
       validate synchronous or asynchronous changes to a cell. If you
       need more control, <strong>beforeValidate</strong> and <strong>afterValidate</strong> plugin hooks are available (see <a
-        href="/Hooks.html">hooks page</a>).
+        href="/<?js= version ?>/Hooks.html">hooks page</a>).
     In the below example, <code>email_validator_fn</code> is an async validator that resolves after 1000 ms.
     </p>
-    <p>Use the <strong>allowInvalid</strong> option (see <a href="/Options.html">options page</a>) to define if the
+    <p>Use the <strong>allowInvalid</strong> option (see <a href="/<?js= version ?>/Options.html">options page</a>) to define if the
       grid should accept input that does not validate.
       If you need to modify the input (e.g. censor bad words, uppercase first letter), use the plugin hook <strong>beforeChange</strong>
-      (see <a href="/Hooks.html">hooks page</a>).
+      (see <a href="/<?js= version ?>/Hooks.html">hooks page</a>).
     </p>
 
     <div data-jsfiddle="example1">
@@ -23,6 +23,7 @@
 
     <p>Callback console: <code>[[row, col, oldValue, newValue], ...]</code></p>
     <p>Edit the above grid to see callback</p>
+    <pre id="example1console" class="console"></pre>
 
     <div class="codeLayout">
       <div class="buttons">

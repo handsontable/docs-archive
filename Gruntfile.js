@@ -15,22 +15,33 @@
  * See http://gruntjs.com/getting-started for more information about Grunt
  */
 
+var argv = require('minimist')(process.argv.slice(2));
 var fs = require('fs');
+var gitHelper = require('./git-helper');
+var path = require('path');
+
 
 module.exports = function (grunt) {
   var
     DOCS_PATH = 'generated',
     HOT_SRC_PATH = 'src/handsontable',
-    HOT_BRANCH = 'master',
+    HOT_DEFAULT_BRANCH = 'master',
     HOT_REPO = 'https://github.com/handsontable/handsontable.git',
     querystring = require('querystring');
+
+
+  function getHotBranch() {
+    var hotVersion = argv['hot-version'];
+
+    return hotVersion ? (hotVersion === 'latest' ? HOT_DEFAULT_BRANCH : hotVersion) : gitHelper.getLocalInfo().branch;
+  }
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
     clean: {
       dist: [DOCS_PATH],
-      release: [DOCS_PATH, HOT_SRC_PATH, 'bower_components', 'node_modules']
+      source: [HOT_SRC_PATH]
     },
 
     jsdoc: {
@@ -44,7 +55,13 @@ module.exports = function (grunt) {
           '!' + HOT_SRC_PATH + '/src/intro.js',
           '!' + HOT_SRC_PATH + '/src/outro.js',
           // temp fix for file using arrow function - waiting for jsdoc support
-          '!' + HOT_SRC_PATH + '/src/plugins/contextMenuCopyPaste/contextMenuCopyPaste.js'
+          '!' + HOT_SRC_PATH + '/src/plugins/contextMenuCopyPaste/contextMenuCopyPaste.js',
+          '!' + HOT_SRC_PATH + '/src/plugins/columnSorting/columnSorting.js',
+          '!' + HOT_SRC_PATH + '/src/plugins/multipleSelectionHandles/multipleSelectionHandles.js',
+          '!' + HOT_SRC_PATH + '/src/plugins/touchScroll/touchScroll.js',
+          '!' + HOT_SRC_PATH + '/src/plugins/comments/comments.js',
+          '!' + HOT_SRC_PATH + '/src/plugins/comments/commentEditor.js',
+          '!' + HOT_SRC_PATH + '/src/eventManager.js'
         ],
         jsdoc: 'node_modules/.bin/' + (/^win/.test(process.platform) ? 'jsdoc.cmd' : 'jsdoc'),
         options: {
@@ -166,19 +183,9 @@ module.exports = function (grunt) {
     gitclone: {
       handsontable: {
         options: {
-          branch: HOT_BRANCH,
+          branch: HOT_DEFAULT_BRANCH,
           repository: HOT_REPO,
           directory: HOT_SRC_PATH,
-          verbose: true
-        }
-      }
-    },
-
-    gitpull: {
-      handsontable: {
-        options: {
-          branch: HOT_BRANCH,
-          cwd: HOT_SRC_PATH,
           verbose: true
         }
       }
@@ -191,41 +198,58 @@ module.exports = function (grunt) {
     'watch'
   ]);
 
+
   grunt.registerTask('default', 'Create documentation for Handsontable', function () {
     var timer;
 
     grunt.task.run('update-hot');
 
-    timer = setInterval(function () {
+    timer = setInterval(function() {
       if (!grunt.file.isFile(HOT_SRC_PATH + '/package.json')) {
         return;
       }
       clearInterval(timer);
+      grunt.task.run('generate-doc-versions');
       grunt.task.run('build');
     }, 50);
   });
 
   grunt.registerTask('update-hot', 'Update Handsontable repository', function () {
-    if (fs.existsSync(HOT_SRC_PATH)) {
-      grunt.task.run('gitpull');
-    } else {
-      grunt.task.run('gitclone');
-    }
+    grunt.config.set('gitclone.handsontable.options.branch', getHotBranch());
+    grunt.log.write('Cloning Handsontable v' + getHotBranch());
+
+    grunt.task.run('clean:source');
+    grunt.task.run('gitclone');
+  });
+
+  grunt.registerTask('generate-doc-versions', 'Generate documentation for Handsontable', function () {
+    var done = this.async();
+
+    gitHelper.getDocsVersions().then(function(branches) {
+      var content = 'docVersions && docVersions(' + JSON.stringify(branches.reverse()) + ')';
+
+      grunt.log.write('The following versions found: ' + branches.join(', '));
+      fs.writeFile(path.join(DOCS_PATH, 'scripts', 'doc-versions.js'), content, done);
+    });
   });
 
   grunt.registerTask('build', 'Generate documentation for Handsontable', function () {
+    var done = this.async();
     var hotPackage;
 
-    grunt.task.run('less', 'copy', 'bowercopy', 'robotstxt');
+    gitHelper.getHotLatestRelease().then(function(info) {
+      grunt.task.run('less', 'copy', 'bowercopy', 'robotstxt');
 
-    hotPackage = grunt.file.readJSON(HOT_SRC_PATH + '/package.json');
-    grunt.config.set('jsdoc.docs.options.query', querystring.stringify({
-      version: hotPackage.version
-    }));
+      hotPackage = grunt.file.readJSON(HOT_SRC_PATH + '/package.json');
+      grunt.config.set('jsdoc.docs.options.query', querystring.stringify({
+        version: hotPackage.version,
+        latestVersion: info.tag_name
+      }));
 
-    grunt.task.run('jsdoc');
-
-    grunt.task.run('sitemap');
+      grunt.task.run('jsdoc');
+      grunt.task.run('sitemap');
+      done();
+    });
   });
 
   grunt.loadNpmTasks('grunt-bowercopy');
