@@ -59,6 +59,8 @@ module.exports = function (grunt) {
           '!' + HOT_SRC_PATH + '/src/plugins/columnSorting/columnSorting.js',
           '!' + HOT_SRC_PATH + '/src/plugins/multipleSelectionHandles/multipleSelectionHandles.js',
           '!' + HOT_SRC_PATH + '/src/plugins/touchScroll/touchScroll.js',
+          '!' + HOT_SRC_PATH + '/src/plugins/comments/comments.js',
+          '!' + HOT_SRC_PATH + '/src/plugins/comments/commentEditor.js',
           '!' + HOT_SRC_PATH + '/src/eventManager.js'
         ],
         jsdoc: 'node_modules/.bin/' + (/^win/.test(process.platform) ? 'jsdoc.cmd' : 'jsdoc'),
