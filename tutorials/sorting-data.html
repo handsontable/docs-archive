@@ -108,7 +108,7 @@ hot.updateSettings({
       <li>by clicking on the table header</li>
       <li>invoking the <code>sort()</code> method</li>
     </ul>
-    <p>The first possibility has been discussed in &lt;a href=&quot;#how-to-enable-the-plugin&quot;&gt;How to enable the plugin&lt;/a&gt; section.</p>
+    <p>The first possibility has been discussed in <a href="#how-to-enable-the-plugin">How to enable the plugin</a> section.</p>
     <p>The second option is probably the most popular one. If the plugin is enabled, clicking on column header causes table to be sorted by the corresponding values in ascending order. As usual, if you click the header again, the order will switch to descending.</p>
     <p>The last recommended way of sorting the table is using the <code>sort()</code> method. When <code>columnSorting</code> plugin is enabled, it exposes a new method in Handsontable instance, called <code>sort()</code>. The method accepts 2 arguments: <code>column</code> and <code>order</code>. </p>
     <ul>
@@ -132,6 +132,13 @@ hot.updateSettings({
     <p>Click on a column header to sort. Only the table view is sorted. The data source remains in the original order.
       For an in depth documentation of column sorting plugin see the
       <a href="/<?js= version ?>/demo-sorting-data.html">Understanding column sorting plugin</a> wiki page.
+    </p>
+    <h3 id="sorting-indicator">Sorting indicator</h3>
+    <p>
+      Since <code>0.15.0-beta3</code> it is possible to enable a sorting indicator to the sortable columns. To do that, you need to add a <code>sortIndicator</code> setting:</p>
+      <pre><code>sortIndicator: true</code></pre>
+    <p>Note, that you can enable this option for either the entire table (when setting it in the main config object) or for certain columns only (when using it in the <code>columns</code> array))<br>
+    The following example has this feature enabled.<br>
     </p>
 
     <div data-jsfiddle="example1" class="scroll-container">
@@ -167,7 +174,8 @@ hot.updateSettings({
             {data: 1},
             {data: 6},
             {data: 5}
-          ]
+          ],
+          sortIndicator: true
         });
       </script>
     </div>
