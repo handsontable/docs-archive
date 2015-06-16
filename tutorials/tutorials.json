@@ -168,6 +168,9 @@
           },
           "read-only": {
             "title": "Read only"
+          },
+          "disable-cell-editing": {
+            "title": "Disable cell editing"
           }
         }
       },

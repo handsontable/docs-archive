@@ -1,0 +1,126 @@
+<div class="static-content">
+
+  <script data-jsfiddle="common">
+    function getCarData() {
+      return [
+        {car: 'Nissan', year: 2012, chassis: 'black', bumper: 'black'},
+        {car: 'Nissan', year: 2013, chassis: 'blue', bumper: 'blue'},
+        {car: 'Chrysler', year: 2014, chassis: 'yellow', bumper: 'black'},
+        {car: 'Volvo', year: 2015, chassis: 'white', bumper: 'gray'}
+      ];
+    }
+  </script>
+
+  <div class="index-list">
+    <p><strong>This page shows ways to configure columns or cells to be not editable:</strong></p>
+    <ul>
+      <li><a href="#page-columns">Not editable columns</a></li>
+      <li><a href="#page-cells">Not editable specific cells</a></li>
+    </ul>
+  </div>
+
+  <div class="example-container clearfix" name="columns">
+    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/disable-cell-editing.html" class="edit-doc" target="_blank">
+      Edit on GitHub
+    </a>
+    <h3 id="page-columns">Not editable columns</h3>
+    <p>In many cases, you will need to configure a certain column to be not editable. Making columns not
+      editable doesn’t change it’s behaviour. It is still available for keyboard navigation, CTRL+C and CTRL+V
+      functionalities and so on.</p>
+    <p>To make a column not editable, declare it in the <code>columns</code> setting. You can also define a special
+      renderer function that will dim the <code>editor</code> value.</p>
+
+    <div data-jsfiddle="example1">
+      <div id="example1" class="hot"></div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example1">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example1" data-instance="hot1"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example1">
+        var
+          container1 = document.getElementById('example1'),
+          hot1;
+
+        hot1 = new Handsontable(container1, {
+          data: getCarData(),
+          colHeaders: ['Car', 'Year', 'Chassis color', 'Bumper color'],
+          columns: [
+            {
+              data: 'car',
+              editor: false
+            },
+            {
+              data: 'year',
+              editor: 'numeric'
+            },
+            {
+              data: 'chassis',
+              editor: 'text'
+            },
+            {
+              data: 'bumper',
+              editor: 'text'
+            }
+          ]
+        });
+      </script>
+    </div>
+  </div>
+
+  <div class="example-container clearfix head-gap" name="cells">
+    <h3 id="page-cells">Not editable specific cells</h3>
+    <p>This example makes cells that contain the word "Nissan" not editable.</p>
+    <p>In cells property we decide whether a cell is editable by changing its <code>editor</code> property.</p>
+
+    <div data-jsfiddle="example2">
+      <div id="example2" class="hot"></div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example2">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example2" data-instance="hot2"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example2">
+        var
+          container2 = document.getElementById('example2'),
+          hot2;
+
+        hot2 = new Handsontable(container2, {
+          data: getCarData(),
+          colHeaders: ['Car', 'Year', 'Chassis color', 'Bumper color']
+        });
+        hot2.updateSettings({
+          cells: function (row, col, prop) {
+            var cellProperties = {};
+
+            if (hot2.getData()[row][prop] === 'Nissan') {
+              cellProperties.editor = false;
+            } else {
+              cellProperties.editor = 'text';
+            }
+
+            return cellProperties;
+          }
+        })
+      </script>
+    </div>
+  </div>
+</div>
