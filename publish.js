@@ -201,16 +201,26 @@ function attachModuleSymbols(doclets, modules) {
  * @return {string} The HTML for the navigation sidebar.
  */
 function buildNav(members) {
-  var nav = {
+  var
+    nav = {
       core: [],
-      plugins: [],
+      plugins: {},
       utils: []
     },
+    registeredNames = [],
     push;
 
   push = function push(object) {
+    if (registeredNames.indexOf(object.longname) > -1) {
+      return;
+    }
+    registeredNames.push(object.longname);
+
     if ( object.isPlugin ) {
-      nav.plugins.push(object);
+      if (!nav.plugins[object.plugin]) {
+        nav.plugins[object.plugin] = [];
+      }
+      nav.plugins[object.plugin].push(object);
 
     } else if ( object.isUtil ) {
       nav.utils.push(object);
@@ -223,10 +233,12 @@ function buildNav(members) {
     _.each(members.namespaces, function (v) {
       push({
         isPlugin: v.plugin ? 1 : 0,
+        plugin: v.plugin,
         isUtil: v.util ? 1 : 0,
         type: 'namespace',
         longname: v.longname,
         name: v.name,
+        filename: v.meta.filename,
         members: find({
           kind: 'member',
           memberof: v.longname
@@ -251,10 +263,12 @@ function buildNav(members) {
     _.each(members.classes, function (v) {
       push({
         isPlugin: v.plugin ? 1 : 0,
+        plugin: v.plugin,
         isUtil: v.util ? 1 : 0,
         type: 'class',
         longname: v.longname,
         name: v.name,
+        filename: v.meta.filename,
         members: find({
           kind: 'member',
           memberof: v.longname

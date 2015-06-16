@@ -5,7 +5,7 @@
 @colorBgNavi: #f2f2f2;
 
 body {
-  /* prevent wrapper->body margin collapsing */
+  /* prevent wrapper->body margin collapsing 11*/
   padding-top: 0.1px;
 }
 
@@ -93,11 +93,40 @@ body {
         content: "\f08e";
       }
     }
+    &.multiple {
+      .extensible:not(.group-title) {
+        margin: 10px 0 10px 16px;
+        display: none;
+
+        &:before {
+          content: "-";
+          color: #B5B5B5;
+          font-size: 17px;
+          position: absolute;
+          top: -5px;
+          left: -11px;
+        }
+      }
+      .itemMembers {
+        margin-left: 1.4rem;
+      }
+    }
     .title {
       cursor: pointer;
       position: relative;
       display: block;
       font-size: 0.8em;
+
+      &.extensible a:after {
+        content: "\f107";
+        font-family: FontAwesome;
+        color: #B5B5B5;
+        font-size: 17px;
+        position: absolute;
+        top: -3px;
+        right: 4px;
+      }
+
       a {
         padding-bottom: 6px;
         display: block;
@@ -106,15 +135,6 @@ body {
         cursor: default;
         &:hover {
           color: #454545;
-        }
-        &:after {
-          content: "\f107";
-          font-family: FontAwesome;
-          color: #B5B5B5;
-          font-size: 17px;
-          position: absolute;
-          top: -3px;
-          right: 4px;
         }
       }
       .static {

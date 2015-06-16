@@ -4,6 +4,7 @@ exports.defineTags = function(dictionary) {
     mustHaveValue: false,
     mustNotHaveValue: true,
     isNamespace: false,
+
     onTagged: function(doclet, tag) {
       doclet.util = "util";
     }

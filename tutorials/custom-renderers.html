@@ -302,7 +302,7 @@
           type: 'numeric',
           columns: columns,
 
-          afterGetColHeader: function (col, TH) {
+          afterGetColHeader: function(col, TH) {
             var instance = this,
               menu = buildMenu(columns[col].type),
               button = buildButton();
@@ -314,6 +314,9 @@
                 setColumnType(col, event.target.data['colType'], instance);
               }
             });
+            if (TH.firstChild.lastChild.nodeName === 'BUTTON') {
+              TH.firstChild.removeChild(TH.firstChild.lastChild);
+            }
             TH.firstChild.appendChild(button);
             TH.style['white-space'] = 'normal';
           },

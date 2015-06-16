@@ -59,8 +59,6 @@ module.exports = function (grunt) {
           '!' + HOT_SRC_PATH + '/src/plugins/columnSorting/columnSorting.js',
           '!' + HOT_SRC_PATH + '/src/plugins/multipleSelectionHandles/multipleSelectionHandles.js',
           '!' + HOT_SRC_PATH + '/src/plugins/touchScroll/touchScroll.js',
-          '!' + HOT_SRC_PATH + '/src/plugins/comments/comments.js',
-          '!' + HOT_SRC_PATH + '/src/plugins/comments/commentEditor.js',
           '!' + HOT_SRC_PATH + '/src/renderers/checkboxRenderer.js',
           '!' + HOT_SRC_PATH + '/src/eventManager.js'
         ],
@@ -243,8 +241,8 @@ module.exports = function (grunt) {
 
       hotPackage = grunt.file.readJSON(HOT_SRC_PATH + '/package.json');
       grunt.config.set('jsdoc.docs.options.query', querystring.stringify({
-        version: hotPackage.version,
-        latestVersion: info.tag_name
+        version: '0.15.0' || hotPackage.version,
+        latestVersion: '0.15.0' || info.tag_name
       }));
 
       grunt.task.run('jsdoc');

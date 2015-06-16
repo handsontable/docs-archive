@@ -1,5 +1,5 @@
 body {
-  /* prevent wrapper->body margin collapsing */
+  /* prevent wrapper->body margin collapsing 11*/
   padding-top: 0.1px;
 }
 #wrapper {
@@ -81,11 +81,35 @@ body {
   font: normal normal normal 10px/1 FontAwesome;
   content: "\f08e";
 }
+.navigation li.item.multiple .extensible:not(.group-title) {
+  margin: 10px 0 10px 16px;
+  display: none;
+}
+.navigation li.item.multiple .extensible:not(.group-title):before {
+  content: "-";
+  color: #B5B5B5;
+  font-size: 17px;
+  position: absolute;
+  top: -5px;
+  left: -11px;
+}
+.navigation li.item.multiple .itemMembers {
+  margin-left: 1.4rem;
+}
 .navigation li.item .title {
   cursor: pointer;
   position: relative;
   display: block;
   font-size: 0.8em;
+}
+.navigation li.item .title.extensible a:after {
+  content: "\f107";
+  font-family: FontAwesome;
+  color: #B5B5B5;
+  font-size: 17px;
+  position: absolute;
+  top: -3px;
+  right: 4px;
 }
 .navigation li.item .title a {
   padding-bottom: 6px;
@@ -96,15 +120,6 @@ body {
 }
 .navigation li.item .title a:hover {
   color: #454545;
-}
-.navigation li.item .title a:after {
-  content: "\f107";
-  font-family: FontAwesome;
-  color: #B5B5B5;
-  font-size: 17px;
-  position: absolute;
-  top: -3px;
-  right: 4px;
 }
 .navigation li.item .title .static {
   display: block;

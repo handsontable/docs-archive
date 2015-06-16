@@ -1,93 +1,41 @@
 $(function () {
+  jQuery.fx.off = true;
+
   // Search Items
-  $('#search').on('keyup', function () {
-    var value = $(this).val(),
-      $el = $('.navigation'),
-      $notFound = $('.sublist.not-found'),
-      regexp;
-
-    if (value) {
-      regexp = new RegExp(value, 'i');
-      $el.find('li, .itemMembers, .subheader, .sublist').hide();
-
-      $el.find('li').each(function (i, v) {
-        var $item = $(v);
-
-        if ($item.data('name') && regexp.test($item.find("a").first().text())) {
-          $item.show();
-          $item.closest('.itemMembers').show();
-          $item.closest('.item').show();
-          $item.parents('.item').prevAll('p').first().show();
-          $item.parents('.sublist').show();
-        }
-      });
-      if ($('.sublist:not([style*="display: none"]), .tutorial:not([style*="display: none"])').length) {
-        $notFound.hide();
-      } else {
-        $notFound.show();
-      }
-    } else {
-      $el.find('.item, .sub-item, .itemMembers li, .subheader, .sublist').show();
-      $el.find('.item .itemMembers').hide();
-      $notFound.hide();
-    }
-
-    $el.find('.list').scrollTop(0);
-  });
+  $('#search').on('keyup', onSearchKeyUp);
 
   // Toggle when click an item element
   $('.navigation').on('click', '.title', function (event) {
+    var title = $(this);
+    var target = $(event.target);
+
     if (event.target.getAttribute('href') === '#') {
-      $(this).parent().find('.itemMembers').toggle();
+      if (target.parent().hasClass('group-title')) {
+        var els = title.parent().find('.title.extensible:not(.group-title)');
+
+        if (els.eq(0).css('display') === 'none') {
+          title.parent().find('.title.extensible:not(.group-title)').css('display', 'block');
+        } else {
+          title.parent().find('.title.extensible:not(.group-title)').css('display', 'none');
+          title.parent().find('.itemMembers').hide();
+        }
+
+      } else if (target.parent().hasClass('extensible')) {
+        title.parent().find('.itemMembers[data-list-id=' + (title.data('list-id') || title.parent().data('name')) + ']').toggle();
+      }
     }
+    event.preventDefault();
 
     return false;
   });
+  $('.navigation a:not(.link-header)').on('click', function() {
+    setTimeout(updateNav, 100);
+  });
 
-  // Show an item related a current documentation automatically
-  var filename = $('.page-title').data('filename').replace(/\.[a-z]+$/, '');
-  var $currentItem = $('.navigation .item[data-name="' + filename + '"]:eq(0)');
-  var $currentSubItem = $('.navigation .sub-item[data-name="' + filename + '"]:eq(0)');
   var $current;
 
-  //get the current method element
-  var urlElement = window.location.href.split('/');
-  urlElement = urlElement[urlElement.length - 1].replace('.html', '');
-  var $currentMethod = $currentItem.find('li[data-name="' + urlElement + '"]:eq(0)');
-
-  if ($currentItem.length) {
-    $currentItem
-      //.remove()
-      //.prependTo('.navigation .list')
-      //.show()
-      .find('.itemMembers')
-      .show();
-    $current = $currentItem;
-  } else if ($currentSubItem.length) {
-    $currentSubItem
-      .parent('.itemMembers')
-      .show();
-    $current = $currentSubItem;
-  }
-  if ($currentMethod.length) {
-    $current = $currentMethod;
-  }
-
-  // Add the 'active-link' class to the active page
-  if ($currentSubItem.length) {
-    $currentSubItem.find('a').first().addClass('active-link');
-  }
-
-  // Add the 'active-link' class to the active method
-  if ($currentMethod.length) {
-    $currentMethod.find('a').first().addClass('active-link');
-  }
-
-  var breadcrumbs = buildBreadcrumbs();
-  $('div.breadcrumbs').eq(0).html(breadcrumbs);
-
   // Auto resizing on navigation
-  var _onResize = function () {
+  function _onResize() {
     var height = $(window).height() - 118,
       $el = $('.navigation');
 
@@ -97,10 +45,14 @@ $(function () {
     if ($current) {
       $('.navigation').find('ul.list').first().scrollTop($current.position().top);
     }
-  };
-
+  }
   $(window).on('resize', _onResize);
   _onResize();
+
+  $current = updateNav(true);
+
+  var breadcrumbs = buildBreadcrumbs();
+  $('div.breadcrumbs').eq(0).html(breadcrumbs);
 
   // disqus code
   if (config.disqus) {
@@ -122,6 +74,100 @@ $(function () {
     });
   }
 });
+
+function updateNav(scroll) {
+  // Show an item related a current documentation automatically
+  var filename = $('.page-title').data('filename').replace(/\.[a-z]+$/, '');
+  var $currentItem = $('.navigation .item[data-name="' + filename + '"]:not(.multiple):eq(0), .navigation .item .extensible[data-name="' + filename + '"]:eq(0)');
+  var $currentSubItem = $('.navigation .sub-item[data-name="' + filename + '"]:eq(0)');
+  var $current;
+
+  //get the current method element
+  var urlElement = window.location.href.split('/');
+  urlElement = urlElement[urlElement.length - 1].replace('.html', '');
+  var $currentMethod = $currentItem.find('li[data-name="' + urlElement + '"]:eq(0)');
+
+  if ($currentItem.length) {
+    if ($currentItem.eq(0).hasClass('inner')) {
+      $currentItem.eq(0).parent().find('.title.extensible:not(.group-title)').css('display', 'block');
+      $currentItem.eq(0).parent().find('.itemMembers[data-list-id=' + filename + ']').css('display', 'block');
+      $currentMethod = $currentItem.eq(0).parent().find('.itemMembers[data-list-id=' + filename + '] li[data-name="' + urlElement + '"]:eq(0)');
+    } else {
+      $currentItem
+        .find('.itemMembers')
+        .show();
+    }
+    $current = $currentItem;
+
+  } else if ($currentSubItem.length) {
+    $currentSubItem
+      .parent('.itemMembers')
+      .show();
+    $current = $currentSubItem;
+  }
+  if ($currentMethod.length) {
+    $current = $currentMethod;
+  }
+  $('.navigation a').removeClass('active-link');
+
+  // Add the 'active-link' class to the active page
+  if ($currentSubItem.length) {
+    $currentSubItem.find('a').first().addClass('active-link');
+  }
+
+  // Add the 'active-link' class to the active method
+  if ($currentMethod.length) {
+    $currentMethod.find('a').first().addClass('active-link');
+  }
+
+  // Scroll to the currently selected element
+  if (scroll && $current) {
+    setTimeout(function() {
+      var scrollableNav = $('.navigation').find('ul.list').first();
+
+      scrollableNav.scrollTop(scrollableNav.prop('scrollTop') + $current.position().top);
+    }, 20);
+  }
+
+  return $current;
+}
+
+function onSearchKeyUp() {
+  var value = $(this).val(),
+    $el = $('.navigation'),
+    $notFound = $('.sublist.not-found'),
+    regexp;
+
+  if (value) {
+    regexp = new RegExp(value, 'i');
+    $el.find('li, .itemMembers, .subheader, .sublist, .title.inner').hide();
+
+    $el.find('li').each(function (i, v) {
+      var $item = $(v);
+
+      if ($item.data('name') && !$item.hasClass('multiple') && regexp.test($item.find("a").first().text())) {
+        $item.show();
+
+        $item.closest('.itemMembers').show();
+        $item.closest('.itemMembers').prevAll('.inner').eq(0).css('display', 'block');
+        $item.closest('.item').show();
+        $item.parents('.item').prevAll('p').first().show();
+        $item.parents('.sublist').show();
+      }
+    });
+    if ($('.sublist:not([style*="display: none"]), .tutorial:not([style*="display: none"])').length) {
+      $notFound.hide();
+    } else {
+      $notFound.show();
+    }
+  } else {
+    $el.find('.item, .sub-item, .itemMembers li, .subheader, .sublist').show();
+    $el.find('.item .itemMembers').hide();
+    $notFound.hide();
+  }
+
+  $el.find('.list').scrollTop(0);
+}
 
 function getDocUrl(docVersion) {
   return location.href.replace(/\/\d+\.\d+\.\d+(\-(beta|alpha)(\d+)?)?\//, '/' + docVersion + '/');
@@ -203,7 +249,7 @@ function buildBreadcrumbs() {
   docsLink.href = '/';
   docsLink.text = 'Documentation';
 
-  if ($('.source').size() > 0) {
+  if ($('.source').size() > 0 || !$activeLink.length) {
     var filename = $('.page-title').data('filename').replace(/\.[a-z]+$/, '');
 
     breadcrumbs = docsLink.outerHTML

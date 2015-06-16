@@ -18,11 +18,11 @@
     <?js this.members.tutorials.forEach(function (tutorial) { ?>
       <?js tutorial.children.forEach(function (child) { ?>
         <?js if (child.disabled || child.demo) { return; } ?>
-        <li class="item tutorial" data-a="<?js= child.since ?>" data-name="<?js= child.name ?>">
-          <span class="title">
-            <a href="#"><?js= child.title ?></a>
+        <li class="item tutorial" data-name="<?js= child.name ?>">
+          <span class="title extensible">
+            <a class="link-header" href="#"><?js= child.title ?></a>
           </span>
-          <ul class="members itemMembers">
+          <ul class="members itemMembers" data-list-id="<?js= child.longname ?>">
             <?js child.children.forEach(function (c) { ?>
               <?js if (c.disabled) { return; } ?>
               <li class="sub-item" data-name="<?js= c.name ?>"><?js= self.tutoriallink(c)?></li>
@@ -36,11 +36,11 @@
       <?js this.members.tutorials.forEach(function (tutorial) { ?>
         <?js tutorial.children.forEach(function (child) { ?>
           <?js if (child.disabled || !child.demo) { return; } ?>
-          <li class="item" data-a="<?js= child.since ?>" data-name="<?js= child.name ?>">
-            <span class="title">
-              <a href="#"><?js= child.title ?></a>
+          <li class="item" data-name="<?js= child.name ?>">
+            <span class="title extensible">
+              <a class="link-header" href="#"><?js= child.title ?></a>
             </span>
-            <ul class="members itemMembers">
+            <ul class="members itemMembers" data-list-id="<?js= child.longname ?>">
               <?js child.children.forEach(function (c) { ?>
                 <?js if (c.disabled) { return; } ?>
                 <li class="sub-item" data-name="<?js= c.name ?>"><?js= self.tutoriallink(c) ?></li>
@@ -60,13 +60,13 @@
         <p class="subheader">Core</p>
       <?js } ?>
       <li class="item" data-name="<?js= item.longname ?>">
-        <span class="title">
-          <a href="#"><?js= item.longname ?></a>
+        <span class="title extensible" data-list-id="<?js= item.longname ?>">
+          <a class="link-header" href="#"><?js= item.longname ?></a>
           <?js if (item.type === 'namespace') { ?>
             <span class="static">static</span>
           <?js } ?>
         </span>
-        <ul class="members itemMembers">
+        <ul class="members itemMembers" data-list-id="<?js= item.longname ?>">
           <?js if (item.members.length) { ?>
             <span class="subtitle">Members</span>
             <?js item.members.forEach(function (v) { ?>
@@ -74,7 +74,7 @@
             <?js }); ?>
           <?js } ?>
         </ul>
-        <ul class="typedefs itemMembers">
+        <ul class="typedefs itemMembers" data-list-id="<?js= item.longname ?>">
           <?js if (item.typedefs.length) { ?>
             <span class="subtitle">Typedefs</span>
             <?js item.typedefs.forEach(function (v) { ?>
@@ -82,7 +82,7 @@
             <?js }); ?>
           <?js } ?>
         </ul>
-        <ul class="methods itemMembers">
+        <ul class="methods itemMembers" data-list-id="<?js= item.longname ?>">
           <?js if (item.methods.length) { ?>
             <span class="subtitle">Methods</span>
             <?js item.methods.forEach(function (v) { ?>
@@ -90,7 +90,7 @@
             <?js }); ?>
           <?js } ?>
         </ul>
-        <ul class="events itemMembers">
+        <ul class="events itemMembers" data-list-id="<?js= item.longname ?>">
           <?js if (item.events.length) { ?>
             <span class="subtitle">Events</span>
             <?js item.events.forEach(function (v) { ?>
@@ -102,50 +102,68 @@
     <?js }); ?>
 
     <!-- Plugins -->
-    <?js this.nav.plugins.forEach(function (item) { ?>
+    <?js var pluginsPool = this.nav.plugins; ?>
+    <?js Object.keys(pluginsPool).forEach(function(pluginName) { ?>
+      <?js var plugins = pluginsPool[pluginName]; ?>
+
       <?js if (!pluginHeader) { ?>
         <?js pluginHeader = true; ?>
         <p class="subheader">Plugins</p>
       <?js } ?>
-      <li class="item" data-name="<?js= item.longname ?>">
-        <span class="title">
-          <a href="#"><?js= item.longname ?></a>
+
+      <li class="item <?js= plugins.length > 1 ? 'multiple' : '' ?>" data-name="<?js= pluginName ?>">
+        <?js if (plugins.length > 1) { ?>
+          <span class="title group-title extensible">
+            <a class="link-header" href="#"><?js= pluginName ?></a>
+          </span>
+        <?js } ?>
+
+      <?js plugins.forEach(function(item, index) { ?>
+
+        <?js if (plugins.length > 1) { ?>
+          <span class="title extensible inner" data-name="<?js= item.longname ?>" data-list-id="<?js= item.longname ?>">
+        <?js } else { ?>
+          <span class="title extensible" data-list-id="<?js= item.longname ?>">
+        <?js } ?>
+          <a class="link-header" href="#"><?js= item.longname ?></a>
           <?js if (item.type === 'namespace') { ?>
             <span class="static">static</span>
           <?js } ?>
         </span>
-        <ul class="members itemMembers">
-          <?js if (item.members.length) { ?>
-            <span class="subtitle">Members</span>
-            <?js item.members.forEach(function (v) { ?>
-              <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
-            <?js }); ?>
-          <?js } ?>
-        </ul>
-        <ul class="typedefs itemMembers">
-          <?js if (item.typedefs.length) { ?>
-            <span class="subtitle">Typedefs</span>
-            <?js item.typedefs.forEach(function (v) { ?>
-              <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
-            <?js }); ?>
-          <?js } ?>
-        </ul>
-        <ul class="methods itemMembers">
-          <?js if (item.methods.length) { ?>
-            <span class="subtitle">Methods</span>
-            <?js item.methods.forEach(function (v) { ?>
-              <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
-            <?js }); ?>
-          <?js } ?>
-        </ul>
-        <ul class="events itemMembers">
-          <?js if (item.events.length) { ?>
-            <span class="subtitle">Events</span>
-            <?js item.events.forEach(function (v) { ?>
-              <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
-            <?js }); ?>
-          <?js } ?>
-        </ul>
+          <ul class="members itemMembers" data-list-id="<?js= item.longname ?>">
+            <?js if (item.members.length) { ?>
+              <span class="subtitle">Members</span>
+              <?js item.members.forEach(function (v) { ?>
+                <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
+              <?js }); ?>
+            <?js } ?>
+          </ul>
+          <ul class="typedefs itemMembers" data-list-id="<?js= item.longname ?>">
+            <?js if (item.typedefs.length) { ?>
+              <span class="subtitle">Typedefs</span>
+              <?js item.typedefs.forEach(function (v) { ?>
+                <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
+              <?js }); ?>
+            <?js } ?>
+          </ul>
+          <ul class="methods itemMembers" data-list-id="<?js= item.longname ?>">
+            <?js if (item.methods.length) { ?>
+              <span class="subtitle">Methods</span>
+              <?js item.methods.forEach(function (v) { ?>
+                <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
+              <?js }); ?>
+            <?js } ?>
+          </ul>
+          <ul class="events itemMembers" data-list-id="<?js= item.longname ?>">
+            <?js if (item.events.length) { ?>
+              <span class="subtitle">Events</span>
+              <?js item.events.forEach(function (v) { ?>
+                <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
+              <?js }); ?>
+            <?js } ?>
+          </ul>
+
+      <?js }); ?>
       </li>
     <?js }); ?>
 
@@ -156,13 +174,13 @@
         <p class="subheader">Utils</p>
       <?js } ?>
       <li class="item" data-name="<?js= item.longname ?>">
-        <span class="title">
-          <a href="#"><?js= item.longname ?></a>
+        <span class="title extensible" data-list-id="<?js= item.longname ?>">
+          <a class="link-header" href="#"><?js= item.longname ?></a>
           <?js if (item.type === 'namespace') { ?>
             <span class="static">static</span>
           <?js } ?>
         </span>
-        <ul class="members itemMembers">
+        <ul class="members itemMembers" data-list-id="<?js= item.longname ?>">
           <?js if (item.members.length) { ?>
             <span class="subtitle">Members</span>
             <?js item.members.forEach(function (v) { ?>
@@ -170,7 +188,7 @@
             <?js }); ?>
           <?js } ?>
         </ul>
-        <ul class="typedefs itemMembers">
+        <ul class="typedefs itemMembers" data-list-id="<?js= item.longname ?>">
           <?js if (item.typedefs.length) { ?>
             <span class="subtitle">Typedefs</span>
             <?js item.typedefs.forEach(function (v) { ?>
@@ -178,7 +196,7 @@
             <?js }); ?>
           <?js } ?>
         </ul>
-        <ul class="methods itemMembers">
+        <ul class="methods itemMembers" data-list-id="<?js= item.longname ?>">
           <?js if (item.methods.length) { ?>
             <span class="subtitle">Methods</span>
             <?js item.methods.forEach(function (v) { ?>
@@ -186,7 +204,7 @@
             <?js }); ?>
           <?js } ?>
         </ul>
-        <ul class="events itemMembers">
+        <ul class="events itemMembers" data-list-id="<?js= item.longname ?>">
           <?js if (item.events.length) { ?>
             <span class="subtitle">Events</span>
             <?js item.events.forEach(function (v) { ?>
