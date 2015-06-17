@@ -71,6 +71,16 @@ exports.getDocsVersions = function getDocsVersions() {
 
       }).map(function(branch) {
         return branch.name;
+
+      }).sort(function(a, b) {
+        if (semver.gt(a, b)) {
+          return -1;
+        }
+        if (semver.lt(a, b)) {
+          return 1;
+        }
+
+        return 0;
       });
 
       resolve(branches);
