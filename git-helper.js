@@ -74,10 +74,10 @@ exports.getDocsVersions = function getDocsVersions() {
 
       }).sort(function(a, b) {
         if (semver.gt(a, b)) {
-          return -1;
+          return 1;
         }
         if (semver.lt(a, b)) {
-          return 1;
+          return -1;
         }
 
         return 0;
