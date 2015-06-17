@@ -29,6 +29,7 @@ module.exports = function (shipit) {
     development: (function() {
       config = copyObject(config);
       config.deployTo = '/home/httpd/dev-docs.handsontable.com/' + gitInfo.branch;
+      config.keepReleases = 1;
 
       return config;
     }())
