@@ -23,11 +23,15 @@
     <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/disable-cell-editing.html" class="edit-doc" target="_blank">
       Edit on GitHub
     </a>
-    <h3 id="page-columns">Not editable columns</h3>
-    <p>In many cases, you will need to configure a certain column to be not editable. Making columns not
-      editable doesn’t change it’s behaviour. It is still available for keyboard navigation, CTRL+C and CTRL+V
-      functionalities and so on.</p>
-    <p>To make a column not editable, declare it in the <code>columns</code> setting. You can also define a special
+    <h3>Read-only cells vs non-editable cells</h3>
+    <p>Editable cells behave like any other cells apart from preventing you from manually changing their values.
+      You are still allowed to copy-paste or drag-to-fill the data. There is no additional CSS class added.</p>
+
+    <h3 id="page-columns">Non-editable columns</h3>
+    <p>In many cases you will need to configure a certain column to be non-editable. Doing it does not change its basic
+      behaviour (apart from editing), which means you are still available to use keyboard navigation,
+      CTRL+C and CTRL+V functionalities, drag-to-fill etc.</p>
+    <p>To make a column non-editable, declare it in the <code>columns</code> setting. You can also define a special
       renderer function that will dim the <code>editor</code> value.</p>
 
     <div data-jsfiddle="example1">
@@ -78,9 +82,9 @@
   </div>
 
   <div class="example-container clearfix head-gap" name="cells">
-    <h3 id="page-cells">Not editable specific cells</h3>
-    <p>This example makes cells that contain the word "Nissan" not editable.</p>
-    <p>In cells property we decide whether a cell is editable by changing its <code>editor</code> property.</p>
+    <h3 id="page-cells">Non-editable specific cells</h3>
+    <p>The following example shows the table with non-editable cells containing the word “Nissan”.</p>
+    <p>This property of the cell is optional and can be easily set in the configuration of Handsontable.</p>
 
     <div data-jsfiddle="example2">
       <div id="example2" class="hot"></div>
