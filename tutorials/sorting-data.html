@@ -1,0 +1,184 @@
+<div class="static-content">
+
+  <script data-jsfiddle="common">
+    function createBigData() {
+      return [
+        [1, "George Washington", "http://en.wikipedia.org/wiki/George_Washington", "30/04/1789", "4/03/1797", "Independent ", "Virginia"],
+        [2, "John Adams", "http://en.wikipedia.org/wiki/John_Adams", "4/03/1797", "4/03/1801", "Federalist ", "Massachusetts"],
+        [3, "Thomas Jefferson", "http://en.wikipedia.org/wiki/Thomas_Jefferson", "4/03/1801", "4/03/1809", "Democratic-Republican ", "Virginia"],
+        [4, "James Madison", "http://en.wikipedia.org/wiki/James_Madison", "4/03/1809", "4/03/1817", "Democratic-Republican ", "Virginia"],
+        [5, "James Monroe", "http://en.wikipedia.org/wiki/James_Monroe", "4/03/1817", "4/03/1825", "Democratic-Republican ", "Virginia"],
+        [6, "John Quincy Adams", "http://en.wikipedia.org/wiki/John_Quincy_Adams", "4/03/1825", "4/03/1829", "Democratic-Republican/National Republican ", "Massachusetts"],
+        [7, "Andrew Jackson", "http://en.wikipedia.org/wiki/Andrew_Jackson", "4/03/1829", "4/03/1837", "Democratic ", "Tennessee"],
+        [8, "Martin Van Buren", "http://en.wikipedia.org/wiki/Martin_Van_Buren", "4/03/1837", "4/03/1841", "Democratic ", "New York"],
+        [9, "William Henry Harrison", "http://en.wikipedia.org/wiki/William_Henry_Harrison", "4/03/1841", "4/04/1841", "Whig", "Ohio"],
+        [10, "John Tyler", "http://en.wikipedia.org/wiki/John_Tyler", "4/04/1841", "4/03/1845", "Whig", "Virginia"],
+        [11, "James K. Polk", "http://en.wikipedia.org/wiki/James_K._Polk", "4/03/1845", "4/03/1849", "Democratic ", "Tennessee"],
+        [12, "Zachary Taylor", "http://en.wikipedia.org/wiki/Zachary_Taylor", "4/03/1849", "9/07/1850", "Whig", "Louisiana"],
+        [13, "Millard Fillmore", "http://en.wikipedia.org/wiki/Millard_Fillmore", "9/07/1850", "4/03/1853", "Whig", "New York"],
+        [14, "Franklin Pierce", "http://en.wikipedia.org/wiki/Franklin_Pierce", "4/03/1853", "4/03/1857", "Democratic ", "New Hampshire"],
+        [15, "James Buchanan", "http://en.wikipedia.org/wiki/James_Buchanan", "4/03/1857", "4/03/1861", "Democratic ", "Pennsylvania"],
+        [16, "Abraham Lincoln", "http://en.wikipedia.org/wiki/Abraham_Lincoln", "4/03/1861", "15/04/1865", "Republican/National Union", "Illinois"],
+        [17, "Andrew Johnson", "http://en.wikipedia.org/wiki/Andrew_Johnson", "15/04/1865", "4/03/1869", "Democratic/National Union", "Tennessee"],
+        [18, "Ulysses S. Grant", "http://en.wikipedia.org/wiki/Ulysses_S._Grant", "4/03/1869", "4/03/1877", "Republican ", "Ohio"],
+        [19, "Rutherford B. Hayes", "http://en.wikipedia.org/wiki/Rutherford_B._Hayes", "4/03/1877", "4/03/1881", "Republican ", "Ohio"],
+        [20, "James A. Garfield", "http://en.wikipedia.org/wiki/James_A._Garfield", "4/03/1881", "19/09/1881", "Republican ", "Ohio"],
+        [21, "Chester A. Arthur", "http://en.wikipedia.org/wiki/Chester_A._Arthur", "19/09/1881", "4/03/1885", "Republican ", "New York"],
+        [22, "Grover Cleveland", "http://en.wikipedia.org/wiki/Grover_Cleveland", "4/03/1885", "4/03/1889", "Democratic ", "New York"],
+        [23, "Benjamin Harrison", "http://en.wikipedia.org/wiki/Benjamin_Harrison", "4/03/1889", "4/03/1893", "Republican ", "Indiana"],
+        [24, "Grover Cleveland (2nd term)", "http://en.wikipedia.org/wiki/Grover_Cleveland", "4/03/1893", "4/03/1897", "Democratic ", "New York"],
+        [25, "William McKinley", "http://en.wikipedia.org/wiki/William_McKinley", "4/03/1897", "14/9/1901", "Republican ", "Ohio"],
+        [26, "Theodore Roosevelt", "http://en.wikipedia.org/wiki/Theodore_Roosevelt", "14/9/1901", "04/03/09", "Republican ", "New York"],
+        [27, "William Howard Taft", "http://en.wikipedia.org/wiki/William_Howard_Taft", "04/03/09", "04/03/13", "Republican ", "Ohio"],
+        [28, "Woodrow Wilson", "http://en.wikipedia.org/wiki/Woodrow_Wilson", "04/03/13", "04/03/21", "Democratic ", "New Jersey"],
+        [29, "Warren G. Harding", "http://en.wikipedia.org/wiki/Warren_G._Harding", "04/03/21", "02/08/23", "Republican ", "Ohio"],
+        [30, "Calvin Coolidge", "http://en.wikipedia.org/wiki/Calvin_Coolidge", "02/08/23", "04/03/29", "Republican ", "Massachusetts"],
+        [31, "Herbert Hoover", "http://en.wikipedia.org/wiki/Herbert_Hoover", "04/03/29", "04/03/33", "Republican ", "Iowa"],
+        [32, "Franklin D. Roosevelt", "http://en.wikipedia.org/wiki/Franklin_D._Roosevelt", "04/03/33", "12/04/45", "Democratic", "New York"],
+        [33, "Harry S. Truman", "http://en.wikipedia.org/wiki/Harry_S._Truman", "12/04/45", "20/01/53", "Democratic", "Missouri"],
+        [34, "Dwight D. Eisenhower", "http://en.wikipedia.org/wiki/Dwight_D._Eisenhower", "20/01/53", "20/01/61", "Republican ", "Texas"],
+        [35, "John F. Kennedy", "http://en.wikipedia.org/wiki/John_F._Kennedy", "20/01/61", "22/11/63", "Democratic", "Massachusetts"],
+        [36, "Lyndon B. Johnson", "http://en.wikipedia.org/wiki/Lyndon_B._Johnson", "22/11/63", "20/01/69", "Democratic", "Texas"],
+        [37, "Richard Nixon", "http://en.wikipedia.org/wiki/Richard_Nixon", "20/01/69", "09/08/74", "Republican", "California"],
+        [38, "Gerald Ford", "http://en.wikipedia.org/wiki/Gerald_Ford", "09/08/74", "20/01/77", "Republican", "Michigan"],
+        [39, "Jimmy Carter", "http://en.wikipedia.org/wiki/Jimmy_Carter", "20/01/77", "20/01/81", "Democratic ", "Georgia"],
+        [40, "Ronald Reagan", "http://en.wikipedia.org/wiki/Ronald_Reagan", "20/01/81", "20/01/89", "Republican ", "California"],
+        [41, "George H. W. Bush", "http://en.wikipedia.org/wiki/George_H._W._Bush", "20/01/89", "20/01/93", "Republican ", "Texas"],
+        [42, "Bill Clinton", "http://en.wikipedia.org/wiki/Bill_Clinton", "20/01/93", "20/01/01", "Democratic ", "Arkansas"],
+        [43, "George W. Bush", "http://en.wikipedia.org/wiki/George_W._Bush", "20/01/01", "20/01/09", "Republican ", "Texas"],
+        [44, "Barack Obama", "http://en.wikipedia.org/wiki/Barack_Obama", "20/01/09", "Incumbent ", "  Democratic   ", "Illinois"]
+      ]
+    }
+  </script>
+
+  <div class="example-container clearfix">
+    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/sorting-data.html" class="edit-doc" target="_blank">
+      Edit on GitHub
+    </a>
+    <h3 id="how-the-sorting-works">How the sorting works</h3>
+    <p>If you want to sort data in your datasource array, you can simply invoke an <code>Array.prototype.sort()</code> function and call <code>render()</code> function to refresh the table. You don&#39;t need any plugin for this. However, this operations alters the structure of the datasource, and in many cases you want to leave the datasource intact, while displaying its content in a specified order. Here&#39;s where column sorting plugin comes in handy.</p>
+    <p>Column sorting plugin works as a proxy between the datasource and the Handsontable rendering module. It can map indices of displayed rows (called logical indices) to the indices of corresponding rows in datasource (called physical indices) and vice versa. This way you can alter the order of rows which are being presented to user, without changing the datasource internal structure.</p>
+    <p>This simple mechanism gives you a lot of flexibility, but it also introduces a few pitfalls if the developer is not full aware of the way plugin works.</p>
+    <h3 id="how-to-enable-the-plugin">How to enable the plugin</h3>
+    <p>The property which is responsible for enabling and configuring the column sorting is called <code>columnSorting</code> (pretty unexpected, huh :P ). The value of this property can be either a <code>Boolean</code> or an <code>Object</code>. </p>
+    <p>If the <code>columnSorting</code> is of type <code>Boolean</code>, then <code>true</code> means the plugin is enabled and <code>false</code> means the plugin is disabled. The important thing to remember is that enabling the plugin using <code>true</code> does not sort the table content right away. The table has to be sorted either by a user or programmatically.</p>
+    <p>If the <code>columnSorting</code> is an <code>Object</code>, then it means that the plugin is enabled and configured according to the properties passed in the <code>configObject</code>. The <code>configObject</code> can be used to set the initial sorting parameters, which are: </p>
+    <ul>
+      <li><code>column : Number</code> - this index of column, by which you want to sorter the table.</li>
+      <li><code>sortOrder : Boolean</code>  - defines the order of sorting (<code>true</code> for ascending, <code>false</code> for descending). This arguments is optional. If it&#39;s not specified, the default order is ascending.</li>
+    </ul>
+    <p>As all settings, <code>columnSorting</code> can be altered during the lifetime of a table, using <code>updateSettings()</code> method.</p>
+    <p>Examples:</p>
+    <pre><code class="lang-javascript">// enables the plugin, but does not sort the table
+var hot = new Handsontable(document.getElementById('example'), {
+  columnSorting: true
+});
+
+// enables the plugin and sort the table by the values from the first column in ascending order
+var hot = new Handsontable(document.getElementById('example'), {
+  columnSorting: {
+    column: 0
+  }
+});
+
+// enables the plugin and sort the table by the values from the first column in descending order
+var hot = new Handsontable(document.getElementById('example'), {
+  columnSorting: {
+    column: 0
+    sortOrder: false
+  }
+});
+
+// disable plugin
+hot.updateSettings({
+  columnSorting: false
+});</code></pre>
+    <h3 id="how-to-determine-if-sorting-is-enabled">How to determine if sorting is enabled</h3>
+    <p>To check whether sorting has been enabled for a particular Handsontable instance, use <code>sortingEnabled</code> property.</p>
+<pre><code class="lang-javascript">hot.sortingEnabled ? doSomething() : doSomethingElse();</code></pre>
+    <p>The fact that column sorting has been enabled, does not imply, that the table content is sorted. To check whether a table has been sorted you can check the <code>sortColumn</code> property. If table instance has this property defined then it has been sorted. The value of <code>sortColumn</code> is the index of a column by which the table has been sorted. Additionally, you can check sorting order using <code>sortOrder</code> property. If <code>sortOrder</code> is <code>true</code>, then the order is ascending, otherwise, the order is descending.</p>
+    <p>Simple function, which checks whether the table has been sorted could look like this:</p>
+    <pre><code class="lang-javascript">function isSorted(hotInstance) {
+  return hotInstance.sortingEnabled &#x26;&#x26; typeof hotInstance.sortColumn !== &#x27;undefined&#x27;;
+}</code></pre>
+    <h3 id="how-to-sort-a-table">How to sort a table</h3>
+    <p>There are 3 ways you can sort a table:</p>
+    <ul>
+      <li>using <code>columnSorting</code> property</li>
+      <li>by clicking on the table header</li>
+      <li>invoking the <code>sort()</code> method</li>
+    </ul>
+    <p>The first possibility has been discussed in <a href="#how-to-enable-the-plugin">How to enable the plugin</a> section.</p>
+    <p>The second option is probably the most popular one. If the plugin is enabled, clicking on column header causes table to be sorted by the corresponding values in ascending order. As usual, if you click the header again, the order will switch to descending.</p>
+    <p>The last recommended way of sorting the table is using the <code>sort()</code> method. When <code>columnSorting</code> plugin is enabled, it exposes a new method in Handsontable instance, called <code>sort()</code>. The method accepts 2 arguments: <code>column</code> and <code>order</code>. </p>
+    <ul>
+      <li><code>column : Number</code> - argument is the index of column, by which you want to sorter the table. This argument is required.</li>
+      <li><code>order: Boolean</code> - defines the order of sorting (<code>true</code> for ascending, <code>false</code> for descending). This arguments is optional. If it&#39;s not specified, the default order is ascending.</li>
+    </ul>
+    <p>Example:</p>
+    <pre><code class="lang-javascript">if (hot.sortingEnabled) {
+  // will sort table using values from the first column in descending order
+  hot.sort(0, false);
+}</code></pre>
+    <h3 id="rows-indices-translation">Rows indices translation</h3>
+    <p>The main task of column sorting plugin is mapping the data source rows indices to displayed rows indices and vice versa. The indices of displayed rows are called <em>logical indices</em> and the indices in datasource array are called <em>physical indices</em>. In general, every logical index has a corresponding physical index. </p>
+    <p>Most of the time, this whole mapping logic takes place under the hood and you don&#39;t have to bother even remembering it, because a vast majority of important operations and functions is interested only in physical indices. For example, if the cell value changes, the <code>afterChange</code> event is triggered. All event listeners will receive a row index of the row, where the change took place. This will be the physical index of the modified row. Same scheme applies to other events. </p>
+    <p>On the other hand, each time a cell renderer is invoked, the row index that is being passed to the renderer function is always a logical row index, because the logic of the renderer should correspond to parameters of the displayed row, instead of the parameters of the actual row in datasource.</p>
+    <p>However, sometimes you might need to know which physical row is displayed as the first logical row and the other way around. To do so, you have to use <code>sortIndex</code> an extra property, which is being added to Handsontable instance, when column sorting plugin is enabled. </p>
+    <p><code>sortIndex</code> is a 2D array which maps indices of visible rows (logical indices) to indices of rows stored in datasource (physical indices). </p>
+    <p>Example: My table is sorted. I have changed row 4 and I want to know which row in data source got updated. So I want to get the physical index, having the logical index. This is the code I have to write:</p>
+    <pre><code class="lang-javascript">physicalIndex = instance.sortIndex[logicalIndex][0];</code></pre>
+    <p>The revers mapping is a bit more complicated, but is also possible. In fact, <code>columnSorting</code> plugin has two dedicated methods which translates logical indices to physical and vice versa (called <code>translateRow()</code> and <code>untranslateRow()</code>) but they are currently inaccessible from the global scope.</p>
+    <p>Click on a column header to sort. Only the table view is sorted. The data source remains in the original order.
+      For an in depth documentation of column sorting plugin see the
+      <a href="/<?js= version ?>/demo-sorting-data.html">Understanding column sorting plugin</a> wiki page.
+    </p>
+    <h3 id="sorting-indicator">Sorting indicator</h3>
+    <p>
+      Since <code>0.15.0-beta3</code> it is possible to enable a sorting indicator to the sortable columns. To do that, you need to add a <code>sortIndicator</code> setting:</p>
+      <pre><code>sortIndicator: true</code></pre>
+    <p>Note, that you can enable this option for either the entire table (when setting it in the main config object) or for certain columns only (when using it in the <code>columns</code> array))<br>
+    The following example has this feature enabled.<br>
+    </p>
+
+    <div data-jsfiddle="example1" class="scroll-container">
+      <div id="example1" class="hot"></div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example1">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example1" data-instance="hot"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example1">
+        var
+          container = document.getElementById('example1'),
+          hot;
+
+        hot = new Handsontable(container, {
+          data: createBigData(),
+          rowHeaders: true,
+          colHeaders: true,
+          colWidths: [45, 220, 110, 280],
+          columnSorting: true,
+          manualColumnResize: true,
+          columns: [
+            {data: 0},
+            {data: 1},
+            {data: 6},
+            {data: 5}
+          ],
+          sortIndicator: true
+        });
+      </script>
+    </div>
+  </div>
+</div>
+
