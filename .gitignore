@@ -1,0 +1,9 @@
+# files
+.DS_Store
+
+# directoroies
+.idea/*
+node_modules/*
+src/*
+generated/*
+bower_components/*
