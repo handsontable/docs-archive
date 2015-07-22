@@ -401,12 +401,19 @@ body {
 }
 .main table .name {
   width: 110px;
+  vertical-align: middle;
+  text-align: left;
 }
 .main table .type {
   width: 60px;
   color: #aaa;
   font-size: 12px;
-  vertical-align: bottom;
+  vertical-align: middle;
+  text-align: center;
+}
+.main table .default {
+  vertical-align: middle;
+  text-align: center;
 }
 .main table .attributes {
   width: 80px;

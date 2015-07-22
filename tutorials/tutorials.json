@@ -241,7 +241,7 @@
           "custom-buttons": {
             "title": "Custom buttons"
           },
-          "comments": {
+          "cell-comments": {
             "title": "Comments"
           }
         }
