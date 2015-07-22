@@ -1,0 +1,82 @@
+<div class="static-content">
+  <!--<script src="/<?js= version ?>/bower_components/numeraljs/numeral.js"></script>-->
+  <script src="/<?js= version ?>/bower_components/numeraljs/languages/de.js" data-jsfiddle="common"></script>
+
+  <script data-jsfiddle="common">
+    function getCarData() {
+      return [
+        {car: "Mercedes A 160", year: 2011, price_usd: 7000, price_eur: 7000},
+        {car: "Citroen C4 Coupe", year: 2012, price_usd: 8330, price_eur: 8330},
+        {car: "Audi A4 Avant", year: 2013, price_usd: 33900, price_eur: 33900},
+        {car: "Opel Astra", year: 2014, price_usd: 5000, price_eur: 5000},
+        {car: "BMW 320i Coupe", year: 2015, price_usd: 30500, price_eur: 30500}
+      ];
+    }
+  </script>
+
+  <div class="example-container clearfix">
+    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/numeric.html" class="edit-doc" target="_blank">
+      Edit on GitHub
+    </a>
+    <p>By default, Handsontable treats all cell values as <code>string</code> type. This is because <code>&lt;textarea&gt;</code>
+      returns a string as its value. In many cases you will prefer cell values to be treated as <code>number</code> type.
+      This allows to format numbers nicely and sort them correctly.</p>
+    <p>To trigger the Numeric cell type, use the option <code>type: 'numeric'</code> in <code>columns</code> array
+      or <code>cells</code> function Numeric cell type uses <a href="http://numeraljs.com/" target="_blank">Numeral.js</a> as the formatting library.
+      Head over to their website to learn about the formatting syntax.</p>
+    <p>To use number formatting style valid for your language (i18n), load language definition to Numeral.js. See
+      "Languages" section in <a href="http://numeraljs.com/" target="_blank">Numeral.js docs</a> for more info.</p>
+
+    <div  data-jsfiddle="example1">
+      <div id="example1" class="hot"></div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example1">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example1" data-instance="hot"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example1">
+        var
+          container = document.getElementById('example1'),
+          hot;
+
+        hot = new Handsontable(container, {
+          data: getCarData(),
+          colHeaders: ['Car', 'Year', 'Price ($)', 'Price (€)'],
+          columns: [
+            {
+              data: 'car'
+              // 1nd column is simple text, no special options here
+            },
+            {
+              data: 'year',
+              type: 'numeric'
+            },
+            {
+              data: 'price_usd',
+              type: 'numeric',
+              format: '$0,0.00',
+              language: 'en' // this is the default locale, set up for USD
+            },
+            {
+              data: 'price_eur',
+              type: 'numeric',
+              format: '0,0.00 $',
+              language: 'de' // i18n: use this for EUR (German)
+              // more locales available on numeraljs.com
+            }
+          ]
+        });
+      </script>
+    </div>
+  </div>
+</div>
+
