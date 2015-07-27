@@ -1,10 +1,4 @@
 <div class="static-content">
-  <script type="text/javascript" src="/<?js= version ?>/bower_components/bootstrap/dist/js/bootstrap.min.js" data-jsfiddle="common"></script>
-  <!--<link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" data-jsfiddle="common">-->
-  <!--<link rel="stylesheet" media="screen" href="/styles/handsontable.bootstrap.css" data-jsfiddle="common">-->
-
-
-
   <div class="example-container clearfix">
     <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/bootstrap.html" class="edit-doc" target="_blank">
       Edit on GitHub
@@ -14,70 +8,11 @@
     </p>
     <p>Please note that before you add Bootstrap classes like <code>table</code>, <code>table-hover</code>, <code>table-striped</code>
       etc. you should reset some of Bootstrap styles. You can use file <a
-      href="https://github.com/handsontable/handsontable/blob/master/plugins/bootstrap/handsontable.bootstrap.css" target="_blank">
-      plugins/bootstrap/handsontable.bootstrap.css</a> for that purpose.</p>
+        href="https://github.com/handsontable/handsontable/blob/master/plugins/bootstrap/handsontable.bootstrap.css" target="_blank">
+        plugins/bootstrap/handsontable.bootstrap.css</a> for that purpose.</p>
 
     <div data-jsfiddle="example1" class="scroll-container bootstrap-container">
-      <div id="example1" class="hot"></div>
-    </div>
-
-    <div class="codeLayout">
-      <div class="buttons">
-        <button class="jsFiddleLink" data-runfiddle="example1">
-          <i class="fa fa-jsfiddle"></i>
-          Edit in jsFiddle
-        </button>
-        <button class="dump" name="dump" data-dump="#example1" data-instance="hot"
-                title="Print current data source to console">
-          <i class="fa fa-terminal"></i>
-          Dump data to console
-        </button>
-      </div>
-      <script data-jsfiddle="example1">
-        var cols = 40,
-            rows = 30,
-            i, j, len,
-            data2 = [];
-
-        for (i = 0; i < rows; i++) {
-          data2[i] = [];
-          for (j = 0; j < cols; j++) {
-            data2[i].push(j + 1);
-          }
-        }
-
-        var container2 = document.getElementById('example1'),
-            hot;
-
-        hot = new Handsontable(container2, {
-          data: data2,
-          colHeaders: true,
-          rowHeaders: true
-        });
-
-        var ex = document.getElementById('example1');
-        table = ex.querySelectorAll('table');
-
-        function findAncestor(el, cls) {
-          while ((el = el.parentElement) && !el.classList.contains(cls)) {
-            return el;
-          }
-
-        }
-
-        for (i = 0, len = table.length; i < len; i++) {
-          var tableInstance = table[i];
-          var isMaster = !!findAncestor(tableInstance, 'ht_master');
-
-          Handsontable.Dom.addClass(tableInstance, 'table');
-          Handsontable.Dom.addClass(tableInstance, 'table-hover');
-          Handsontable.Dom.addClass(tableInstance, 'table-striped');
-
-          if (isMaster) {
-            Handsontable.Dom.addClass(tableInstance, 'table-bordered');
-          }
-        }
-      </script>
+      <iframe width="100%" height="320" src="//jsfiddle.net/jx4myuye/3/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
     </div>
   </div>
 </div>
