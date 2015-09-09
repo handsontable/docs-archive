@@ -65,7 +65,7 @@ module.exports = function (shipit) {
 
     }).then(function(objectInfo) {
       if (!objectInfo) {
-        console.warn('Error retrieving latest hot version from github.');
+        console.warn('Error retrieving the latest hot version from github.');
 
         return;
       }

@@ -3,6 +3,7 @@ $(function () {
 
   // Search Items
   $('#search').on('keyup', onSearchKeyUp);
+  document.querySelector('#search').focus();
 
   // Toggle when click an item element
   $('.navigation').on('click', '.title', function (event) {
