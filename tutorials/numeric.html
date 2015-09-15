@@ -22,7 +22,7 @@
       returns a string as its value. In many cases you will prefer cell values to be treated as <code>number</code> type.
       This allows to format numbers nicely and sort them correctly.</p>
     <p>To trigger the Numeric cell type, use the option <code>type: 'numeric'</code> in <code>columns</code> array
-      or <code>cells</code> function Numeric cell type uses <a href="http://numeraljs.com/" target="_blank">Numeral.js</a> as the formatting library.
+      or <code>cells</code> function. Make sure your cell values are numbers and not strings as Handsontable will not parse strings to numbers. Numeric cell type uses <a href="http://numeraljs.com/" target="_blank">Numeral.js</a> as the formatting library.
       Head over to their website to learn about the formatting syntax.</p>
     <p>To use number formatting style valid for your language (i18n), load language definition to Numeral.js. See
       "Languages" section in <a href="http://numeraljs.com/" target="_blank">Numeral.js docs</a> for more info.</p>
@@ -51,6 +51,7 @@
         hot = new Handsontable(container, {
           data: getCarData(),
           colHeaders: ['Car', 'Year', 'Price ($)', 'Price (€)'],
+          columnSorting : true,
           columns: [
             {
               data: 'car'
