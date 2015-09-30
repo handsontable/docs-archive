@@ -12,16 +12,32 @@
     }
   </script>
 
-  <div class="example-container clearfix">
-    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/checkbox.html" class="edit-doc" target="_blank">
-      Edit on GitHub
-    </a>
-    <p>If you have cells that contains only 2 possible values, you can use <code>checkbox</code> type.
-      Data in such cells will be rendered as checkbox
+  <div class="index-list">
+    <p>This page shows how to configure Handsontable with Checkbox cell type, which can be helpfull when you have
+      cells that contains only 2 possible values. You will find here:</p>
+    <ul>
+      <li><a href="#default">Checkbox true/false values</a></li>
+      <li><a href="#template">Checkbox template</a></li>
+      <li><a href="#labels">Checkbox labels</a></li>
+    </ul>
+  </div>
+
+  <div>
+    <p>Data in such cells will be rendered as checkbox
       and can be easily changed by checking/unchecking the checkbox.</p>
     <p>Checking and unchecking can be performed using mouse or by pressing <kbd>SPACE</kbd>.
       You can change the state of multiple cells at once.
       Simply select cells you want to change and press <kbd>SPACE</kbd></p>
+  </div>
+
+  <div class="example-container clearfix">
+    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/checkbox.html" class="edit-doc" target="_blank">
+      Edit on GitHub
+    </a>
+    <h3 id="default">Checkbox true/false values</h3>
+
+    <p>This is default usage scenario when columns data have <code>true</code> or <code>false</code> value and we want to
+    display ony checkboxes.</p>
 
     <div data-jsfiddle="example1">
         <div id="example1" class="hot"></div>
@@ -65,7 +81,7 @@
   </div>
 
   <div class="example-container clearfix head-gap">
-    <h3>Checkbox template</h3>
+    <h3 id="template">Checkbox template</h3>
 
     <p>If you want use other values than <code>true</code> and <code>false</code>,
       you have to provide this information using <code>checkedTemplate</code> and
@@ -93,21 +109,78 @@
 
         var hot2 = new Handsontable(example2, {
           data: getCarData(),
-          colHeaders: ["Car model", "Year of manufacture", "Comes in black"],
+          colHeaders: ['Car model', 'Year of manufacture', 'Comes in black'],
           columns: [
             {
-              data: "car"
+              data: 'car'
             },
             {
-              data: "year",
+              data: 'year',
               type: 'numeric'
             },
             {
-              data: "comesInBlack",
-              type: "checkbox",
+              data: 'comesInBlack',
+              type: 'checkbox',
               checkedTemplate: 'yes',
               uncheckedTemplate: 'no'
             }
+          ]
+        });
+      </script>
+    </div>
+  </div>
+
+  <div class="example-container clearfix head-gap">
+    <h3 id="labels">Checkbox labels</h3>
+
+    <p>
+      If you want to add label to the checkbox you can use <code>label</code> option. With this option you can declare
+      where label will be injected (before or after checkbox element) and from what data source label text will be updated.
+    </p>
+
+    <div data-jsfiddle="example3">
+      <div id="example3" class="hot"></div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example3">
+          <i class="fa fa-jsfiddle"></i>
+          Edit in jsFiddle
+        </button>
+        <button class="dump" name="dump" data-dump="#example3" data-instance="hot3" title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example3">
+        var example3 = document.getElementById('example3');
+
+        var hot3 = new Handsontable(example3, {
+          data: getCarData(),
+          colHeaders: ['Car model', 'Accepted', 'Comes in black'],
+          columns: [
+            {
+              data: 'car'
+            },
+            {
+              data: 'available',
+              type: 'checkbox',
+              label: {
+                position: 'after',
+                property: 'car' // Read value from row object
+              },
+            },
+            {
+              data: 'comesInBlack',
+              type: 'checkbox',
+              checkedTemplate: 'yes',
+              uncheckedTemplate: 'no',
+              label: {
+                position: 'before',
+                value: 'In black? '
+              },
+            },
           ]
         });
       </script>
