@@ -64,13 +64,13 @@ $(function () {
 
       dsq.type = 'text/javascript';
       dsq.async = true;
-      dsq.src = 'http://' + disqusShortname + '.disqus.com/embed.js';
+      dsq.src = '//' + disqusShortname + '.disqus.com/embed.js';
 
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
       s = document.createElement('script');
       s.async = true;
       s.type = 'text/javascript';
-      s.src = 'http://' + disqusShortname + '.disqus.com/count.js';
+      s.src = '//' + disqusShortname + '.disqus.com/count.js';
       document.getElementsByTagName('BODY')[0].appendChild(s);
     });
   }
