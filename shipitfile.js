@@ -9,7 +9,7 @@ module.exports = function (shipit) {
   var
     gitInfo = gitHelper.getLocalInfo(),
     config = {
-      servers: '142.4.202.189',
+      servers: 'deploy@142.4.202.189:22022',
       workspace: '/tmp/docs.handsontable.com/' + gitInfo.branch,
       repositoryUrl: 'https://github.com/handsontable/docs.git',
       branch: gitInfo.branch,
