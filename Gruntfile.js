@@ -76,10 +76,10 @@ module.exports = function (grunt) {
       }
     },
 
-    less: {
+    sass: {
       dist: {
-        src: 'less/hot/**/docs.less',
-        dest: 'static/styles/docs.css'
+        src: 'sass/main.scss',
+        dest: 'static/styles/main.css'
       }
     },
 
@@ -128,7 +128,7 @@ module.exports = function (grunt) {
     },
 
     watch: {
-      files: ['tutorials/**', 'less/**', 'static/**', 'tmpl/**'],
+      files: ['tutorials/**', 'sass/**', 'static/**', 'tmpl/**'],
       tasks: [],
       options: {
         debounceDelay: 250
@@ -238,7 +238,7 @@ module.exports = function (grunt) {
     var hotPackage;
 
     gitHelper.getHotLatestRelease().then(function(info) {
-      grunt.task.run('less', 'copy', 'bowercopy', 'robotstxt');
+      grunt.task.run('sass', 'copy', 'bowercopy', 'robotstxt');
 
       hotPackage = grunt.file.readJSON(HOT_SRC_PATH + '/package.json');
       grunt.config.set('jsdoc.docs.options.query', querystring.stringify({
@@ -256,7 +256,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-exec');
   grunt.loadNpmTasks('grunt-git');

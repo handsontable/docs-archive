@@ -1,0 +1,27 @@
+/**
+ * @author: Handsoncode
+ * @description: Notification module
+ */
+
+ .notification {
+    font-size: 0.813em; /* 13px */
+    padding: 15px;
+    margin: 20px 0;
+    color: #FFF;
+    
+    &.error {
+        background: $errorColor;
+    }
+
+    &.info {
+        background: $infoColor;
+    }
+
+    &.success {
+        background: $successColor;
+    }
+
+    &.warning {
+        background: $warningColor;
+    }
+ }

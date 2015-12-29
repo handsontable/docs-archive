@@ -21,7 +21,7 @@
     "grunt-bowercopy": "^1.2.0",
     "grunt-contrib-clean": "~0.4.1",
     "grunt-contrib-copy": "~0.5.0",
-    "grunt-contrib-less": "~0.9.0",
+    "grunt-contrib-sass": "~0.9.0",
     "grunt-exec": "~0.4.6",
     "grunt-git": "^0.3.4",
     "grunt-jsdoc": "^0.5.8",

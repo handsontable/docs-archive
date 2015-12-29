@@ -1,0 +1,58 @@
+<div class="static-content">
+
+  <script data-jsfiddle="common">
+    function getData() {
+      return [
+        ['', 'Kia', 'Nissan', 'Toyota', 'Honda', 'Mazda', 'Ford'],
+        ['2012', 10, 11, 12, 13, 15, 16],
+        ['2013', 10, 11, 12, 13, 15, 16],
+        ['2014', 10, 11, 12, 13, 15, 16],
+        ['2015', 10, 11, 12, 13, 15, 16],
+        ['2016', 10, 11, 12, 13, 15, 16]
+      ];
+    }
+  </script>
+
+  <div class="example-container clearfix">
+    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/comments.html" class="edit-doc" target="_blank">
+      Edit this page
+    </a>
+    <p>With option <code>comments: true</code>, you can add and remove cell coments through the context menu.
+      To initialize Handsontable with predefined comments, provide <code>comment</code> cell property:
+      <code>{row: 1, col: 1, comment: "Test comment"}</code></p>
+
+    <div data-jsfiddle="example1">
+      <div id="example1" class="hot"></div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example1">
+          <i class="fa fa-jsfiddle"></i>
+          Edit
+        </button>
+        <button class="dump" name="dump" data-dump="#example1" data-instance="hot"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example1">
+        var container = document.getElementById('example1'),
+          hot1;
+
+        hot1 = new Handsontable(container, {
+          data: getData(),
+          rowHeaders: true,
+          colHeaders: true,
+          contextMenu: true,
+          comments: true,
+          cell: [
+            {row: 1, col: 1, comment: 'Some comment'},
+            {row: 2, col: 2, comment: 'More comments'}
+          ]
+        });
+      </script>
+    </div>
+  </div>
+</div>

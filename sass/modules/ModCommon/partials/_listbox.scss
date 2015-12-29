@@ -1,0 +1,45 @@
+/**
+ * @author: Handsoncode
+ */
+
+
+[aria-role="menubox"] {
+    @include vertical-align(42px);
+    @include border;
+    position: relative;
+    font-size: 0.938em; /* 15px */
+    min-height: 42px;
+    padding: 0 27px;
+    background: $ultraLightGray;
+
+    select {
+        border: none;
+        background: transparent;
+    }
+
+    svg {
+        @include absolute-top-right(50%, 18px);
+        @include square(11px);
+        margin: -4px 0 0 0;
+        fill: $textColor;
+        z-index: 10;
+    }
+
+    &.large,
+    &.small {
+        text-transform: uppercase;
+    }
+
+    &.large {
+        @include vertical-align(50px);
+        font-size: 0.938em; /* 15px */
+        padding: 0 33px;
+    }
+
+    &.small {
+        @include vertical-align(38px);
+        font-size: 0.813em; /* 13px */
+        padding: 0 28px;
+    }
+   
+}

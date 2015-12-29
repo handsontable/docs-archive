@@ -1,0 +1,36 @@
+/**
+ * @author: Handsoncode
+ */
+
+@mixin transition ($rule...) {
+    -webkit-transition: $rule;
+            transition: $rule;
+}
+
+@mixin  animation ($rule) {
+    -webkit-animation: $rule;
+            animation: $rule;
+}
+
+@mixin  animation-delay ($delay) {
+    -webkit-animation-delay: $delay;
+            animation-delay: $delay;
+}
+
+@mixin keyframes ($name) {
+    @-moz-keyframes $name {
+        @content
+    }
+    @-webkit-keyframes $name {
+        @content
+    }
+    @-o-keyframes $name {
+        @content
+    }
+    @-ms-keyframes $name {
+        @content
+    }
+    @keyframes $name {
+        @content
+    }
+}

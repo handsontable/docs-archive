@@ -1,0 +1,55 @@
+/**
+ * @author: Handsoncode
+ */
+
+@mixin placeholder {
+    ::-webkit-input-placeholder {@content}
+    :-moz-placeholder           {@content}
+    ::-moz-placeholder          {@content}
+    :-ms-input-placeholder      {@content}  
+}
+
+@mixin user-select ($rule: none) {
+    -webkit-user-select: $rule;
+       -moz-user-select: $rule;
+        -ms-user-select: $rule;
+  -webkit-touch-callout: $rule;
+}
+
+/* [ borders ] */
+@mixin border ($color: $borderColor) {
+    border: 1px solid $color;
+}
+
+@mixin border-top ($color: $borderColor) {
+    border-top: 1px solid $color;
+}
+
+@mixin border-bottom ($color: $borderColor) {
+    border-bottom: 1px solid $color;
+}
+
+@mixin border-left ($color: $borderColor) {
+    border-left: 1px solid $color;
+}
+
+@mixin border-side ($color: $borderColor) {
+    border-left: 1px solid $color;
+    border-right: 1px solid $color;
+}
+
+@mixin border-bottom-only ($color: $borderColor) {
+    border: none;
+    border-bottom: 1px solid $color;
+}
+
+@mixin gradient ($start, $end) {
+    background: $start;
+    background: -moz-linear-gradient(top,  $start 0%, $end 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $start), color-stop(100%, $end));
+    background: -webkit-linear-gradient(top,  $start 0%, $end 100%);
+    background: -o-linear-gradient(top,  $start 0%, $end 100%);
+    background: -ms-linear-gradient(top,  $start 0%, $end 100%);
+    background: linear-gradient(to bottom,  $start 0%, $end 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$start', endColorstr='$end',GradientType=0 );
+}

@@ -6,12 +6,9 @@
   var utilHeader = false;
 ?>
 <div class="navigation">
-
   <div class="search">
-    <input id="search" type="text" class="form-control input-sm" placeholder="Search...">
+    <input id="search" type="text" class="form-control input-sm" placeholder="Search">
   </div>
-
-  <!-- <p class="app-name">Handsontable <?js= env.opts.query.version ?></p> -->
 
   <ul class="list">
     <!-- Tutorials -->
@@ -114,7 +111,11 @@
       <li class="item <?js= plugins.length > 1 ? 'multiple' : '' ?>" data-name="<?js= pluginName ?>">
         <?js if (plugins.length > 1) { ?>
           <span class="title group-title extensible">
-            <a class="link-header" href="#"><?js= pluginName ?></a>
+            <a class="link-header" href="#"><?js= pluginName ?>
+              <?js if (plugins[0].isPro) { ?>
+              <sup>PRO</sup>
+              <?js } ?>
+            </a>
           </span>
         <?js } ?>
 
@@ -125,7 +126,11 @@
         <?js } else { ?>
           <span class="title extensible" data-list-id="<?js= item.longname ?>">
         <?js } ?>
-          <a class="link-header" href="#"><?js= item.longname ?></a>
+          <a class="link-header" href="#"><?js= item.longname ?>
+          <?js if (item.isPro) { ?>
+            <sup>PRO</sup>
+          <?js } ?>
+          </a>
           <?js if (item.type === 'namespace') { ?>
             <span class="static">static</span>
           <?js } ?>
@@ -218,7 +223,7 @@
     </div>
     <!-- not found -->
     <div class="sublist not-found">
-      <p class="header">Nothing found :(</p>
+      <p class="header">No results found</p>
     </div>
   </ul>
 </div>

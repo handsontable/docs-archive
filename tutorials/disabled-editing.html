@@ -1,0 +1,130 @@
+<div class="static-content">
+
+  <script data-jsfiddle="common">
+    function getCarData() {
+      return [
+        {car: 'Nissan', year: 2012, chassis: 'black', bumper: 'black'},
+        {car: 'Nissan', year: 2013, chassis: 'blue', bumper: 'blue'},
+        {car: 'Chrysler', year: 2014, chassis: 'yellow', bumper: 'black'},
+        {car: 'Volvo', year: 2015, chassis: 'white', bumper: 'gray'}
+      ];
+    }
+  </script>
+
+  <div class="index-list">
+    <p><strong>This page shows ways to configure columns or cells to be not editable:</strong></p>
+    <ul>
+      <li><a href="#page-columns">Non-editable columns</a></li>
+      <li><a href="#page-cells">Non-editable specific cells</a></li>
+    </ul>
+  </div>
+
+  <div class="example-container clearfix" name="columns">
+    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/disable-cell-editing.html" class="edit-doc" target="_blank">
+      Edit this page
+    </a>
+    <h3>Read-only cells vs non-editable cells</h3>
+    <p>Non-editable cells behave like any other cells apart from preventing you from manually changing their values.
+      You are still allowed to copy-paste or drag-to-fill the data. There is no additional CSS class added.</p>
+
+    <h3 id="page-columns">Non-editable columns</h3>
+    <p>In many cases you will need to configure a certain column to be non-editable. Doing it does not change it's basic
+      behaviour (apart from editing), which means you are still available to use keyboard navigation,
+      CTRL+C and CTRL+V functionalities, drag-to-fill etc.</p>
+    <p>To make a column non-editable, declare it in the <code>columns</code> setting. You can also define a special
+      renderer function that will dim the <code>editor</code> value.</p>
+
+    <div data-jsfiddle="example1">
+      <div id="example1" class="hot"></div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example1">
+          <i class="fa fa-jsfiddle"></i>
+          Edit
+        </button>
+        <button class="dump" name="dump" data-dump="#example1" data-instance="hot1"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example1">
+        var
+          container1 = document.getElementById('example1'),
+          hot1;
+
+        hot1 = new Handsontable(container1, {
+          data: getCarData(),
+          colHeaders: ['Car', 'Year', 'Chassis color', 'Bumper color'],
+          columns: [
+            {
+              data: 'car',
+              editor: false
+            },
+            {
+              data: 'year',
+              editor: 'numeric'
+            },
+            {
+              data: 'chassis',
+              editor: 'text'
+            },
+            {
+              data: 'bumper',
+              editor: 'text'
+            }
+          ]
+        });
+      </script>
+    </div>
+  </div>
+
+  <div class="example-container clearfix head-gap" name="cells">
+    <h3 id="page-cells">Non-editable specific cells</h3>
+    <p>The following example shows the table with non-editable cells containing the word “Nissan”. This property of the
+      cell is optional and can be easily set in the configuration of Handsontable.</p>
+
+    <div data-jsfiddle="example2">
+      <div id="example2" class="hot"></div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example2">
+          <i class="fa fa-jsfiddle"></i>
+          Edit
+        </button>
+        <button class="dump" name="dump" data-dump="#example2" data-instance="hot2"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example2">
+        var
+          container2 = document.getElementById('example2'),
+          hot2;
+
+        hot2 = new Handsontable(container2, {
+          data: getCarData(),
+          colHeaders: ['Car', 'Year', 'Chassis color', 'Bumper color']
+        });
+        hot2.updateSettings({
+          cells: function (row, col, prop) {
+            var cellProperties = {};
+
+            if (hot2.getDataAtRowProp(row, prop) === 'Nissan') {
+              cellProperties.editor = false;
+            } else {
+              cellProperties.editor = 'text';
+            }
+
+            return cellProperties;
+          }
+        })
+      </script>
+    </div>
+  </div>
+</div>

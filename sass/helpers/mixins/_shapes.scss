@@ -1,0 +1,30 @@
+/**
+ * @author: Handsoncode
+ */
+
+@mixin arrow-up ($width, $height, $color){
+    border-left: $width/2 solid transparent;
+    border-right: $width/2 solid transparent;
+    border-bottom: $height solid $color;
+}
+
+@mixin rectangle ($width, $height, $block: false) {
+    @if ($block == true) {
+        display: block;
+    }
+    width: $width;
+    height: $height;
+}
+
+@mixin square ($size, $block: false){
+    @if ($block == true) {
+        display: block;
+    }
+    @include rectangle($size, $size);
+}
+
+@mixin circle ($diameter) {
+    @include square($diameter);
+    display: inline-block;
+    border-radius: 100%;
+}

@@ -1,0 +1,696 @@
+<div class="static-content">
+
+  <div class="example-container clearfix">
+    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/column-summary.html"
+       class="edit-doc" target="_blank">
+      Edit this page
+    </a>
+
+    <p>
+      The Column Summary plugin allows making pre-defined calculations on the cell values and display the results
+      within Handsontable.
+      <br>You can think of this plugin as pre-defined formulas.
+    </p>
+
+    <h4><a href="#basic-setup">The basic setup.</a></h4>
+    <ol>
+      <li><a href="#destination">Setting the destination cell</a></li>
+      <li><a href="#calculation-range">Setting the calculation range</a></li>
+    </ol>
+
+    <h4>Available calculations:</h4>
+    <ol>
+      <li><a href="#sum">Sum</a></li>
+      <li><a href="#min">Min</a></li>
+      <li><a href="#max">Max</a></li>
+      <li><a href="#count">Count</a></li>
+      <li><a href="#average">Average</a></li>
+      <li><a href="#custom">Custom</a></li>
+    </ol>
+
+    <h4>Additional options:</h4>
+    <ol>
+      <li><a href="#force-numeric">Forcing numeric values</a></li>
+      <li><a href="#datatype-errors">Throwing datatype errors</a></li>
+      <li><a href="#read-only">Making destination cells read-only</a></li>
+      <li><a href="#round">Rounding values after the decimal point</a></li>
+    </ol>
+  <br><br>
+    <div data-jsfiddle="example1">
+      <div>
+        <div id="example1" class="hot"></div>
+      </div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example1">
+          <i class="fa fa-jsfiddle"></i>
+          Edit
+        </button>
+        <button class="dump" name="dump" data-dump="#example1" data-instance="hot"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="common" data-dont-display="true">
+        var generateDataObj = function(rows, columns) {
+          var data = [];
+          var number = 0;
+
+          if (!rows) {
+            rows = 3;
+          }
+          if (!columns) {
+            columns = 7;
+          }
+
+          for (var i = 0; i < rows; i++) {
+            data[i] = [];
+            for (var j = 0; j < columns; j++) {
+              data[i][j] = number++;
+            }
+          }
+
+          for (i = 0; i < 2; i++) {
+            data.push([]);
+          }
+
+          return data;
+        };
+      </script>
+      <script data-jsfiddle="example1">
+        var example1 = document.getElementById('example1');
+
+        var hot = new Handsontable(example1, {
+          data: generateDataObj(),
+          colHeaders: true,
+          rowHeaders: true,
+          columnSummary: [
+            {
+              destinationRow: 4,
+              destinationColumn: 1,
+              type: 'min'
+            },
+            {
+              destinationRow: 0,
+              destinationColumn: 3,
+              reversedRowCoords: true,
+              type: 'max'
+            },
+            {
+              destinationRow: 4,
+              destinationColumn: 5,
+              type: 'sum',
+              forceNumeric: true
+            }
+          ]
+        });
+      </script>
+
+    </div>
+
+    <hr>
+
+    <h3 id="basic-setup">Basic setup</h3>
+
+    <p>
+      To initialize the <i>columnSummary</i> plugin, you need to properly set a property in the Handsontable
+      initial config.<br>
+      The <code>columnSummary</code> property should be declared as an array of objects, where each object represents
+      a single <i>endpoint</i> (the "output" cell, or a single calculation). <br>
+
+            <pre>
+    <code class="javascript">columnSummary: [
+  {
+    destinationRow: 2,
+    destinationColumn: 2,
+    type: 'min',
+  // other options...
+  },
+  {
+    destinationRow: 3,
+    destinationColumn: 3,
+    type: 'max',
+    // other options...
+  }
+]</code></pre>
+    </p>
+
+
+
+    <h3 id="destination">Setting the destination cell</h3>
+
+    <p>The columnSummary plugin requires the user to provide the destination coordinates (row and column number) for the cell
+      to display the calculations results in.
+      <br><br>To do that, you need to set two properties in the Handsontable config object:
+    </p>
+
+    <!-- --------- EXAMPLE START ---------- -->
+
+
+    <!--<div class="codeLayout">-->
+      <!--<div class="buttons">-->
+        <!--<button class="jsFiddleLink" data-runfiddle="example1">-->
+          <!--<i class="fa fa-jsfiddle"></i>-->
+          <!--Edit-->
+        <!--</button>-->
+        <!--<button class="dump" name="dump" data-dump="#example1" data-instance="hot"-->
+                <!--title="Print current data source to console">-->
+          <!--<i class="fa fa-terminal"></i>-->
+          <!--Dump data to console-->
+        <!--</button>-->
+      <!--</div>-->
+      <!--<script data-jsfiddle="example1">-->
+
+    <div data-jsfiddle="example-destination">
+      <div>
+        <div id="example-destination" class="hot"></div>
+      </div>
+    </div>
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example-destination">
+          <i class="fa fa-jsfiddle"></i>
+          Edit
+        </button>
+        <button class="dump" name="dump" data-dump="#example-destination" data-instance="hot7"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example-destination">
+        var container = document.getElementById('example-destination');
+
+        var hot7 = new Handsontable(container, {
+          data: generateDataObj(),
+          colHeaders: true,
+          rowHeaders: true,
+          columnSummary: [
+            {
+              destinationRow: 4,
+              destinationColumn: 1,
+              type: 'min'
+            }
+          ]
+        });
+      </script>
+    </div>
+    <!-- ----------- EXAMPLE END ------------- -->
+
+
+
+        <!--<pre><code class="javascript">columnSummary: [-->
+  <!--{-->
+    <!--// This configuration would put the result of the calculation in a cell at coords [2,4].-->
+    <!--destinationRow: 2,-->
+    <!--destinationColumn: 4,-->
+    <!--// ...-->
+  <!--}-->
+<!--]</code></pre>-->
+    <p>If the destination cell should be closer to the bottom of the table, you might find the
+      <code>reversedRowCoords</code> useful.
+      What it does is counting the rows from the <i>bottom</i>, not the top, as it usually does.<br><br>
+      So, for example, defining the plugin like this puts the calculation result in a cell in the 5th column (we're counting from 0) and 2nd row from the bottom of
+      the table.</p>
+
+    <!-- --------- EXAMPLE START ---------- -->
+    <div data-jsfiddle="example-reverse">
+      <div>
+        <div id="example-reverse" class="hot"></div>
+      </div>
+    </div>
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example-reverse">
+          <i class="fa fa-jsfiddle"></i>
+          Edit
+        </button>
+        <button class="dump" name="dump" data-dump="#example-reverse" data-instance="hot1"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example-reverse">
+        var container = document.getElementById('example-reverse');
+
+        var hot1 = new Handsontable(container, {
+          data: generateDataObj(),
+          colHeaders: true,
+          rowHeaders: true,
+          columnSummary: [
+            {
+              destinationRow: 1,
+              destinationColumn: 4,
+              reversedRowCoords: true,
+              type: 'min'
+            }
+          ]
+        });
+      </script>
+    </div>
+    <!-- ----------- EXAMPLE END ------------- -->
+
+            <!--<pre><code class="javascript">columnSummary: [-->
+  <!--{-->
+    <!--destinationRow: 2,-->
+    <!--destinationColumn: 4,-->
+    <!--reversedRowCoords: true-->
+    <!--// ...-->
+  <!--}-->
+<!--]</code></pre>-->
+
+    <h3 id="calculation-range">Setting the calculation range</h3>
+    <p>
+      By default, the plugin makes calculations on data from all rows in the endpoint's destination column. However, you can
+      specify it differently (both column and row-wise).
+      <br><br>
+      The properties responsible for this are <code>ranges</code> and <code>sourceColumn</code>.
+    </p>
+    <ol>
+      <li>
+        <code><b>ranges</b></code> option specifies the row range to make the calculations on. It should be declared as an <i>array of arrays</i>
+        , where each of the arrays represent a single row range. <br><br>
+       For example, this configuration would do the calculations for rows: <code>0</code>, <code>1</code>, <code>2</code>,
+        <code>3</code>, <code>4</code>, <code>6</code>, <code>8</code> and <code>9</code>.
+
+        <!-- --------- EXAMPLE START ---------- -->
+        <div data-jsfiddle="example-range">
+          <div>
+            <div id="example-range" class="hot"></div>
+          </div>
+        </div>
+        <div class="codeLayout">
+          <div class="buttons">
+            <button class="jsFiddleLink" data-runfiddle="example-range">
+              <i class="fa fa-jsfiddle"></i>
+              Edit
+            </button>
+            <button class="dump" name="dump" data-dump="#example-range" data-instance="hot2"
+                    title="Print current data source to console">
+              <i class="fa fa-terminal"></i>
+              Dump data to console
+            </button>
+          </div>
+          <script data-jsfiddle="example-range">
+            var container = document.getElementById('example-range');
+
+            var hot2 = new Handsontable(container, {
+              data: generateDataObj(10, 3),
+              colHeaders: true,
+              rowHeaders: true,
+              columnSummary: [
+                {
+                  ranges: [
+                    [0,4],[6],[8,9]
+                  ],
+                  destinationRow: 0,
+                  destinationColumn: 0,
+                  reversedRowCoords: true,
+                  type: 'sum',
+                  forceNumeric: true
+                }
+              ]
+            });
+          </script>
+        </div>
+        <!-- ----------- EXAMPLE END ------------- -->
+
+      <!--<pre><code class="javascript">columnSummary: [-->
+  <!--{-->
+    <!--// ...-->
+    <!--ranges: [-->
+      <!--[0,4],[6],[8,9]-->
+    <!--]-->
+    <!--// ...-->
+  <!--}-->
+<!--]</code></pre>-->
+      </li><br>
+      <li>
+        <code><b>sourceColumn</b></code> option specifies the column to work on. <br><br>
+        For example, this will make operations on the 3rd column (again, we're counting from 0): <br>
+
+        <!-- --------- EXAMPLE START ---------- -->
+        <div data-jsfiddle="example-sourceColumn">
+          <div>
+            <div id="example-sourceColumn" class="hot"></div>
+          </div>
+        </div>
+        <div class="codeLayout">
+          <div class="buttons">
+            <button class="jsFiddleLink" data-runfiddle="example-sourceColumn">
+              <i class="fa fa-jsfiddle"></i>
+              Edit
+            </button>
+            <button class="dump" name="dump" data-dump="#example-sourceColumn" data-instance="hot3"
+                    title="Print current data source to console">
+              <i class="fa fa-terminal"></i>
+              Dump data to console
+            </button>
+          </div>
+          <script data-jsfiddle="example-sourceColumn">
+            var container = document.getElementById('example-sourceColumn');
+
+            var hot3 = new Handsontable(container, {
+              data: generateDataObj(5, 5),
+              colHeaders: true,
+              rowHeaders: true,
+              columnSummary: [
+                {
+                  sourceColumn: 2,
+                  destinationRow: 0,
+                  destinationColumn: 0,
+                  reversedRowCoords: true,
+                  type: 'sum',
+                  forceNumeric: true
+                }
+              ]
+            });
+          </script>
+        </div>
+        <!-- ----------- EXAMPLE END ------------- -->
+
+        <!--<pre><code class="javascript">columnSummary: [-->
+  <!--{-->
+    <!--// ...-->
+    <!--sourceColumn: 2-->
+  <!--}-->
+<!--]</code></pre>-->
+      </li>
+    </ol>
+    <hr>
+    <h2>Available calculations</h2>
+    <h3 id="sum">Sum</h3>
+    <p>Calculates a sum of values in the specified column and row range.<br><br>
+    Usage:</p>
+    <pre><code class="javascript">columnSummary: [
+  {
+    // ...
+    type: 'sum'
+  }
+]</code></pre>
+
+    <h3 id="min">Min</h3>
+    <p>Finds the lowest value in the specified column and row range.</p>
+    <pre><code class="javascript">columnSummary: [
+  {
+    // ...
+    type: 'min'
+  }
+]</code></pre>
+
+    <h3 id="max">Max</h3>
+    <p>Finds the highest value in the specified column and row range.</p>
+    <pre><code class="javascript">columnSummary: [
+  {
+    // ...
+    type: 'max'
+  }
+]</code></pre>
+
+    <h3 id="count">Count</h3>
+    <p>Counts the non-empty values in the specified column and row range.</p>
+    <pre><code class="javascript">columnSummary: [
+  {
+    // ...
+    type: 'count'
+  }
+]</code></pre>
+
+    <h3 id="average">Average</h3>
+    <p>Counts the average from the values in the specified column and row range.</p>
+    <pre><code class="javascript">columnSummary: [
+  {
+    // ...
+    type: 'average'
+  }
+]</code></pre>
+
+    <h3 id="custom">Custom</h3>
+    <p>Takes a custom function and applies ot to the values in the specified column and row range.</p>
+    <pre><code class="javascript">columnSummary: [
+  {
+    // ...
+    type: 'custom',
+    customFunction: function (endpoint) {
+      // endpoint is an object containing the endpoint data
+
+      // your function
+    }
+  }
+]</code></pre>
+
+    <h3>Example:</h3>
+
+    <!-- --------- EXAMPLE START ---------- -->
+    <div data-jsfiddle="example-calculations">
+      <div>
+        <div id="example-calculations" class="hot"></div>
+      </div>
+    </div>
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example-calculations">
+          <i class="fa fa-jsfiddle"></i>
+          Edit
+        </button>
+        <button class="dump" name="dump" data-dump="#example-calculations" data-instance="hot4"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example-calculations">
+        var container = document.getElementById('example-calculations');
+
+        var hot4 = new Handsontable(container, {
+          data: generateDataObj(5, 7),
+          colHeaders: true,
+          rowHeaders: true,
+          columnSummary: [
+            {
+              destinationRow: 0,
+              destinationColumn: 0,
+              reversedRowCoords: true,
+              type: 'sum',
+              forceNumeric: true
+            },
+            {
+              destinationRow: 0,
+              destinationColumn: 1,
+              reversedRowCoords: true,
+              type: 'min',
+              forceNumeric: true
+            },
+            {
+              destinationRow: 0,
+              destinationColumn: 2,
+              reversedRowCoords: true,
+              type: 'max',
+              forceNumeric: true
+            },
+            {
+              destinationRow: 0,
+              destinationColumn: 3,
+              reversedRowCoords: true,
+              type: 'count',
+              forceNumeric: true
+            },
+            {
+              destinationRow: 0,
+              destinationColumn: 4,
+              reversedRowCoords: true,
+              type: 'average',
+              forceNumeric: true
+            },
+            {
+              destinationRow: 0,
+              destinationColumn: 5,
+              reversedRowCoords: true,
+              type: 'custom',
+              customFunction: function(endpoint) {
+                // this function counts the even values in the column
+
+                var evenCount = 0;
+                var hotInstance = this.hot;
+
+                // helper function
+                function checkRange(rowRange) {
+                  var i = rowRange[1] || rowRange[0];
+                  var counter = 0;
+
+                  do {
+
+                    if (parseInt(hotInstance.getDataAtCell(i, endpoint.sourceColumn), 10)%2 === 0) {
+                      counter++;
+                    }
+
+                    i--;
+                  } while (i >= rowRange[0]);
+                  return counter;
+                }
+
+                // go through all declared ranges
+                for (var r in endpoint.ranges) {
+                  if (endpoint.ranges.hasOwnProperty(r)) {
+                    evenCount += checkRange(endpoint.ranges[r]);
+                  }
+                }
+
+                return evenCount;
+              },
+              forceNumeric: true
+            }
+          ]
+        });
+      </script>
+    </div>
+    <!-- ----------- EXAMPLE END ------------- -->
+
+    <h2>Additional options</h2>
+    <h3 id="force-numeric">Forcing numeric values</h3>
+    <p>
+      If your table doesn't contain only numeric data, you can try to force the values to be numeric in the calculations.
+      For example, <i>9a</i> can be treated as <i>9</i>. To enable this feature, you'll need to set the <code>forceNumeric</code> property to <code>true</code>.
+      <br><br>
+      Enabling this option might sometimes be a good idea, as text-based Handsontable cells stores their contents as strings,
+      which might cause problems with, for example, the <i>sum</i> function.
+      <br><br>
+      By default this option is <strong>disabled</strong>.
+    </p>
+
+    <!-- --------- EXAMPLE START ---------- -->
+    <div data-jsfiddle="example-forceNumeric">
+      <div>
+        <div id="example-forceNumeric" class="hot"></div>
+      </div>
+    </div>
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example-forceNumeric">
+          <i class="fa fa-jsfiddle"></i>
+          Edit
+        </button>
+        <button class="dump" name="dump" data-dump="#example-forceNumeric" data-instance="hot5"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example-forceNumeric">
+        var container = document.getElementById('example-forceNumeric');
+
+        var hot5 = new Handsontable(container, {
+          data: [
+            [0, 1, 2],
+            ['3c', '4', 5],
+            [],[]
+          ],
+          colHeaders: true,
+          rowHeaders: true,
+          columnSummary: [
+            {
+              destinationRow: 0,
+              destinationColumn: 0,
+              reversedRowCoords: true,
+              type: 'sum',
+              forceNumeric: true
+            },
+            {
+              destinationRow: 0,
+              destinationColumn: 1,
+              reversedRowCoords: true,
+              type: 'sum',
+              forceNumeric: true
+            }
+          ]
+        });
+      </script>
+    </div>
+    <!-- ----------- EXAMPLE END ------------- -->
+
+    <h3 id="datatype-errors">Throwing datatype errors</h3>
+    <p>
+      If your table doesn't contain only numeric data, you can either skip the non-numeric entries in the calculation,
+      throw an error or try to parse them to float using the forceNumeric option. <br>
+      If you choose to throw the errors, you need to set the <code>suppressDataTypeErrors</code> property to <code>false</code>.
+      <br><br>
+      By default, <code>suppressDataTypeErrors</code> is set to <code>true</code>.
+    </p>
+        <pre><code class="javascript">columnSummary: [
+  {
+    // ...
+    suppressDataTypeErrors: false
+  }
+]</code></pre>
+
+    <h3 id="read-only">Making the endpoint cells read-only</h3>
+    <p>
+      You can make the the cells with the calculation results read-only by setting the <code>readOnly</code> option to <code>true</code>.
+      <br><br>
+      This option is <code>true</code> by default.
+    </p>
+
+    <h3 id="round">Rounding values after the decimal point</h3>
+    <p>
+      If you wish to round the calculation result to a specific number of digits after the decimal point, you need to
+      use the <code>roundFloat</code> parameter.<br>
+      It's value will result in rounding the result to the appropriate amount of digits.
+    </p>
+
+    <!-- --------- EXAMPLE START ---------- -->
+    <div data-jsfiddle="example-round">
+      <div>
+        <div id="example-round" class="hot"></div>
+      </div>
+    </div>
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example-round">
+          <i class="fa fa-jsfiddle"></i>
+          Edit
+        </button>
+        <button class="dump" name="dump" data-dump="#example-round" data-instance="hot6"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example-round">
+        var container = document.getElementById('example-round');
+
+        var hot6 = new Handsontable(container, {
+          data: [
+            [0.5, 0.5],
+            [0.5, 0.5],
+            [1, 1],
+            [],[]
+          ],
+          colHeaders: true,
+          rowHeaders: true,
+          columnSummary: [
+            {
+              destinationRow: 0,
+              destinationColumn: 0,
+              reversedRowCoords: true,
+              type: 'average'
+            },
+            {
+              destinationRow: 0,
+              destinationColumn: 1,
+              reversedRowCoords: true,
+              type: 'average',
+              roundFloat: 2
+            }
+          ]
+        });
+      </script>
+    </div>
+    <!-- ----------- EXAMPLE END ------------- -->
+
+  </div>
+</div>
+

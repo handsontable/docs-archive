@@ -1,0 +1,38 @@
+/**
+ * @author: Handsoncode
+ */
+
+/* [ brand colors ] */
+$brandBlue: #34A9DC;
+$brandRed: #E87677;
+$brandGreen: #7EC896;
+$brandDeepNavy: #404B5B;
+$brandYellow: #FAD97F;
+
+$brandBlueActive: darken($brandBlue, 8%);
+$brandRedActive: darken($brandRed, 8%);
+$brandGreenActive: darken($brandGreen, 8%);
+
+/* [ shades of grays] */
+$baseGray: #474747;
+$darkGray: #8D8D8D;
+$gray: #CFCFCF;
+$middleGray: #C5C5C5;
+$lightGray: #E3E3E3;
+$ultraLightGray: #F5F5F5;
+
+/* [ functional color ] */
+$textColor: $baseGray;
+$secondTextColor: $darkGray;
+$linkColor: $brandBlue;
+$linkActiveColor: $brandBlueActive;
+$borderColor: $lightGray;
+$inputBorder: $gray;
+$inputFocusBorder: $darkGray;
+$tableBackground: $ultraLightGray;
+$iconColor: $brandDeepNavy;
+
+$errorColor: $brandRed;
+$infoColor: $brandBlue;
+$successColor: $brandGreen;
+$warningColor: $brandYellow;

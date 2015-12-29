@@ -1,0 +1,50 @@
+/**
+ * @author: Handsoncode
+ */
+
+header .logotype {
+    @include absolute-top-left(0, 50%);
+    @include translateX(-50%);
+    text-align: center;
+    width: 100%;
+    padding: 16px 0 10px;
+    background: #FFF;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    z-index: 100;
+
+    /* [ styles only for desktop ] */
+    @media only screen and (min-width: $largeWidth) {
+        @include translateX(0);
+        position: static;
+        padding: 0;
+        width: auto;
+        box-shadow: none;
+        &, > * {
+            float: left;
+        }
+    }
+
+    .brand-logo svg {
+        @include rectangle(151px, 38px);
+        fill: #5d5d5d;
+        display: inline-block;
+        z-index: 100;
+        
+        /* [ styles only for desktop ] */
+        @media only screen and (min-width: $largeWidth) {
+            @include rectangle(187px, 47px);
+            float: left;
+        }
+    }
+
+    .github-star {
+        display: none;
+
+        /* [ styles only for desktop ] */
+        @media only screen and (min-width: $largeWidth) {
+            display: block;
+            margin: 13px 0 0 30px;
+        }
+    }
+
+}
