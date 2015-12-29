@@ -1,7 +1,7 @@
 <div class="static-content">
 
   <div class="index-list">
-    <p>On this page:</p>
+
     <ul>
       <li><a href="#page-onchange">Saving data using onChange callback</a></li>
       <li><a href="#page-saving">Saving data locally using persistentState</a></li>
@@ -11,13 +11,14 @@
 
   <div class="example-container clearfix">
     <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/load-and-save.html" class="edit-doc" target="_blank">
-      Edit on GitHub
+      Edit this page
     </a>
     <h3 id="page-onchange">Saving data using onChange callback</h3>
-    <p>Use the <strong>onChange</strong> callback to track changes made in the table. In the example below,
-      <code>ajax</code> is used to load and save grid data. Note that this is just a mockup.
-      Nothing is actually saved. You have to implement the server-side part by yourself.</p>
-
+    <p>
+      Use the <strong>onChange</strong> callback to track changes made in the table. In the example below,
+      <code>AJAX</code> is used to load and save grid data. Note that this is just a mockup. Nothing is actually saved.
+      You have to implement the server-side part by yourself.
+    </p>
     <div data-jsfiddle="example1" class="ajax-container">
       <div class="controls">
         <button name="load" id="load" class="intext-btn">Load</button>
@@ -108,9 +109,13 @@
 
   <div class="example-container clearfix head-gap">
       <h3 id="page-saving">Saving data locally</h3>
-      <p>You can save any sort of data in local storage in to preserve table state between page reloads.
-        In order to enable data storage mechanism, <code>persistentState</code> option must be set to <code>true</code>
-        (you can set it either during Handsontable initialization or using the updateSettings method).</p>
+      <p>
+        You can save any sort of data in local storage to preserve the table state after
+        page reloads. In order to enable the data storage mechanism, the <code>persistentState</code>
+        option must be set to <code>true</code> (you can set it either during the Handsontable initialization
+        or using the updateSettings method).
+
+      </p>
       <p>When <code>persistentState</code> is enabled it exposes 3 hooks:</p>
       <ul>
         <li>
@@ -132,14 +137,18 @@
       </ul>
   </div>
   <div>
-      <h3 id="page-using">Why should I use <code>persistentState</code> rather than regular LocalStorage API?</h3>
-      <p>The main reason behind using <code>persistentState</code> hooks rather than regular LocalStorage API is
-        that it ensures separation of data stored by multiple Handsontable instances. In other words,
-        if you have two (or more) instances of Handsontable on one page, data saved by one instance won't be
-        accessible by the second instance. Those two instances can store data under the same key and
-        no data would be overwritten.</p>
-      <p><strong>In order for the data separation to work properly, make sure that each instance
-        of Handsontable has a unique <code>id</code>.</strong></p>
+      <h3 id="page-using">Why should I use persistentState rather than regular LocalStorage API?</h3>
+      <p>
+        The main reason behind using <code>persistentState</code> hooks rather than a regular LocalStorage API
+        is that it ensures separation of data stored by multiple Handsontable instances. In other words,
+        if you have two (or more) instances of Handsontable on one page, data saved by one instance
+        will be inaccessible to the second instance. Those two instances can store data under the same
+        key and no data would be overwritten.
+      </p>
+      <p>
+        <strong>In order for the data separation to work properly, make sure that each instance
+        of Handsontable has a unique <code>id</code>.</strong>
+      </p>
   </div>
 </div>
 

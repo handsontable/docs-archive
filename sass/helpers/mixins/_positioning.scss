@@ -1,0 +1,133 @@
+/**
+ * @author: Handsoncode
+ */
+
+@mixin vertical-align ($height, $display:false) {
+    @if unitless($height) and $height!=0  {
+        @warn "$height nie moze przyjmowac samej wartosci, nalezy podac jednostke, wpisana wartosc: #{$height}."
+    }
+    @if ($display == true) {
+        display: block;
+    }
+    height: $height;
+    line-height: $height - 1px;
+    vertical-align: middle;
+}
+
+@mixin absolute-top-left ($top, $left) {
+    @if unitless($top) and $top!=0  {
+        @warn "$top nie moze przyjmowac samej wartosci, nalezy podac jednostke, wpisana wartosc: #{$top}."
+    }
+    @if unitless($left) and $left!=0  {
+        @warn "$left nie moze przyjmowac samej wartosci, nalezy podac jednostke, wpisana wartosc: #{$left}."
+    }
+    position: absolute;
+    top: $top;
+    left: $left;
+}
+
+@mixin absolute-top-right ($top, $right) {
+    @if unitless($top) and $top!=0  {
+        @warn "$top nie moze przyjmowac samej wartosci, nalezy podac jednostke, wpisana wartosc: #{$top}."
+    }
+    @if unitless($right) and $right!=0  {
+        @warn "$right nie moze przyjmowac samej wartosci, nalezy podac jednostke, wpisana wartosc: #{$right}."
+    }
+    position: absolute;
+    top: $top;
+    right: $right;
+}
+
+@mixin absolute-bottom-right ($bottom, $right) {
+    @if unitless($bottom) and $bottom!=0  {
+        @warn "$bottom nie moze przyjmowac samej wartosci, nalezy podac jednostke, wpisana wartosc: #{$bottom}."
+    }
+    @if unitless($right) and $right!=0  {
+        @warn "$right nie moze przyjmowac samej wartosci, nalezy podac jednostke, wpisana wartosc: #{$right}."
+    }
+    position: absolute;
+    right: $right;
+    bottom: $bottom;
+}
+
+@mixin absolute-bottom-left ($bottom, $left) {
+    @if unitless($bottom) and $bottom!=0  {
+        @warn "$bottom nie moze przyjmowac samej wartosci, nalezy podac jednostke, wpisana wartosc: #{$bottom}."
+    }
+    @if unitless($left) and $left!=0  {
+        @warn "$left nie moze przyjmowac samej wartosci, nalezy podac jednostke, wpisana wartosc: #{$left}."
+    }
+    position: absolute;
+    bottom: $bottom;
+    left: $left;
+}
+
+@mixin fixed-top-left ($top, $left) {
+    @if unitless($top) and $top!=0  {
+        @warn "$top nie moze przyjmowac samej wartosci, nalezy podac jednostke, wpisana wartosc: #{$top}."
+    }
+    @if unitless($left) and $left!=0  {
+        @warn "$left nie moze przyjmowac samej wartosci, nalezy podac jednostke, wpisana wartosc: #{$left}."
+    }
+    position: fixed;
+    top: $top;
+    left: $left;
+}
+
+@mixin fixed-top-right ($top, $right) {
+    @if unitless($top) and $top!=0  {
+        @warn "$top nie moze przyjmowac samej wartosci, nalezy podac jednostke, wpisana wartosc: #{$top}."
+    }
+    @if unitless($right) and $right!=0  {
+        @warn "$right nie moze przyjmowac samej wartosci, nalezy podac jednostke, wpisana wartosc: #{$right}."
+    }
+    position: fixed;
+    top: $top;
+    right: $right;
+}
+
+@mixin fixed-bottom-right ($bottom, $right) {
+    @if unitless($bottom) and $bottom!=0  {
+        @warn "$bottom nie moze przyjmowac samej wartosci, nalezy podac jednostke, wpisana wartosc: #{$bottom}."
+    }
+    @if unitless($right) and $right!=0  {
+        @warn "$right nie moze przyjmowac samej wartosci, nalezy podac jednostke, wpisana wartosc: #{$right}."
+    }
+    position: fixed;
+    right: $right;
+    bottom: $bottom;
+}
+
+@mixin fixed-bottom-left ($bottom, $left) {
+    @if unitless($bottom) and $bottom!=0  {
+        @warn "$bottom nie moze przyjmowac samej wartosci, nalezy podac jednostke, wpisana wartosc: #{$bottom}."
+    }
+    @if unitless($left) and $left!=0  {
+        @warn "$left nie moze przyjmowac samej wartosci, nalezy podac jednostke, wpisana wartosc: #{$left}."
+    }
+    position: fixed;
+    bottom: $bottom;
+    left: $left;
+}
+
+@mixin set-pseudo-element ($top, $right, $bottom, $left) {
+    @if $top!='auto' and unitless($top) and $top!=0  {
+        @warn "$top nie moze przyjmowac samej wartosci, nalezy podac jednostke, wpisana wartosc: #{$top}."
+    }
+    @if $right!='auto' and unitless($right) and $right!=0 {
+        @warn "$right nie moze przyjmowac samej wartosci, nalezy podac jednostke, wpisana wartosc: #{$right}."
+    }
+    @if $bottom!='auto' and unitless($bottom) and $bottom!=0 {
+        @warn "$bottom nie moze przyjmowac samej wartosci, nalezy podac jednostke, wpisana wartosc: #{$bottom}."
+    }
+    @if $left!='auto' and unitless($left) and $left!=0 {
+        @warn "$left nie moze przyjmowac samej wartosci, nalezy podac jednostke, wpisana wartosc: #{$left}."
+    }
+    content: '';
+    display: block;
+    position: absolute;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}

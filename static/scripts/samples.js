@@ -306,7 +306,7 @@ function ajax(url, method, params, callback) {
       scriptS.innerHTML = codeS.join('\n');
     }
 
-    var scripts = document.querySelectorAll('.codeLayout script');
+    var scripts = document.querySelectorAll('.codeLayout script:not([data-dont-display])');
     for (var j = 0, lenJ = scripts.length; j < lenJ; j++) {
       var script = scripts[j];
       var pre = document.createElement('PRE');

@@ -1,15 +1,234 @@
 <div class="static-content">
   <div class="example-container clearfix">
     <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/styling.html" class="edit-doc" target="_blank">
-      Edit on GitHub
+      Edit this page
     </a>
-    <div data-alert class="alert-box secondary">
-      <strong>This part of documentation is not ready yet. If you'd like to contribute to this page,
-        <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/mobiles-and-tablets.html" target="_blank">
-          enhance it on GitHub.</a></strong>
-      <a href="#" class="close">&times;</a>
+
+    <div class="index-list">
+      <p>Commonly used styles:</p>
+      <ul>
+        <li><a href="#page-table">Table</a></li>
+        <li><a href="#page-headers">Headers</a></li>
+        <li><a href="#page-corner">Corner</a></li>
+        <li><a href="#page-rows">Rows</a></li>
+        <li><a href="#page-columns">Columns</a></li>
+        <li><a href="#page-cell">Cell</a></li>
+        <li><a href="#page-selection">Selection</a></li>
+        <li><a href="#page-notice">Notice</a></li>
+
+      </ul>
     </div>
-    <p>The appearance of Handsontable can be easily modified via CSS.</p>
+
+    <p>
+      There is very little you can't do with Handsontable. As it doesn't impose any specific theme,
+      you can play with CSS however you like. Keep in mind that Handsontable needs to calculate the
+      width and height of elements inside it to control the scrollbar, so the complex styling rules
+      may affect the performance.
+    </p>
+    <p>
+      Some of the recipes listed below need an additional parent class/id or other modifications
+      to override the default values. Also, the styles might slightly vary depending on your configuration.
+      The below examples were tested with a 10x10 grid with both row and column headers turned on.
+    </p>
+
+    <div class="example-container clearfix">
+     <h3 id="page-table">Table</h3>
+      <p>
+        <strong>Background</strong>
+      </p>
+<pre><code class="lang-css">.ht_master tr td {
+  background-color: #F00;
+}</code></pre>
     </div>
+
+    <div class="example-container clearfix head-gap">
+      <h3 id="page-headers">Headers</h3>
+      <p>
+        <strong>Background</strong>
+      </p>
+<pre><code class="lang-css">/* All headers */
+.handsontable th {
+  background-color: #F00;
+}
+
+/* Row headers */
+.ht_clone_left th {
+  background-color: #F00;
+}
+
+/* Column headers */
+.ht_clone_top th {
+  background-color: #F00;
+}</code></pre>
+      <p>
+        <strong>Borders</strong>
+      </p>
+<pre><code class="lang-css">/* Row headers */
+/* Bottom */
+.ht_clone_top_left_corner th {
+  border-bottom: 1px solid #F00;
+}
+
+/* Left and right */
+.ht_clone_left th {
+  border-right: 1px solid #F00;
+  border-left: 1px solid #F00;
+}
+
+/* Column headers */
+/* Top, bottom and right */
+.ht_clone_top th {
+  border-top: 1px solid #F00;
+  border-right: 1px solid #F00;
+  border-bottom: 1px solid #F00;
+}
+
+/* Left */
+.ht_clone_top_left_corner th {
+  border-right: 1px solid #F00;
+}</code></pre>
+    </div>
+
+    <div class="example-container clearfix head-gap">
+      <h3 id="page-corner">Corner</h3>
+      <p>
+        <strong>Background</strong>
+      </p>
+<pre><code class="lang-css">.ht_clone_top_left_corner th {
+  background-color: #F00;
+}</code></pre>
+      <p>
+        <strong>Borders</strong>
+      </p>
+<pre><code class="lang-css">.ht_clone_top_left_corner th {
+  border: 1px solid #F00;
+}</code></pre>
+    </div>
+
+    <div class="example-container clearfix head-gap">
+      <h3 id="page-rows">Rows</h3>
+      <p>
+        <strong>Background</strong>
+      </p>
+<pre><code class="lang-css">/* Every odd row */
+.ht_master tr:nth-of-type(odd) > td {
+  background-color: #f00;
+}
+
+/* Every even row */
+.ht_master tr:nth-of-type(even) > td {
+  background-color: #f00;
+}
+
+/* Selected row  */
+/* Add a custom class name in the configuration: currentRowClassName: "foo"; */
+.ht_master tr.foo > td {
+  background-color: #f00;
+}
+
+/* Specific row (2) */
+.ht_master tr:nth-child(2) > td {
+  background-color: #f00;
+}</code></pre>
+      <p>
+        <strong>Borders</strong>
+      </p>
+<pre><code class="lang-css">/* Bottom */
+.ht_master tr > td {
+  border-bottom: 1px solid #F00;
+}
+
+/* Right */
+.ht_master tr > td {
+  border-right: 1px solid #F00;
+}</code></pre>
+    </div>
+
+    <div class="example-container clearfix head-gap">
+      <h3 id="page-columns">Columns</h3>
+      <p>
+        <strong>Background</strong>
+      </p>
+<pre><code class="lang-css">/* Every odd column */
+.ht_master tr > td:nth-of-type(odd) {
+  background-color: #f00;
+}
+
+/* Every even column */
+.ht_master tr > td:nth-of-type(even) {
+  background-color: #f00;
+}
+
+/* Selected column  */
+/* Add a custom class name in the configuration: currentColClassName: "foo"; */
+.ht_master tr > td.foo {
+  background-color: #f00;
+}
+
+/* Specific column (B) */
+.ht_master tr > td:nth-child(3) {
+  background-color: #f00;
+}</code></pre>
+    </div>
+
+    <div class="example-container clearfix head-gap">
+      <h3 id="page-cell">Cell</h3>
+      <p>
+        <strong>Background</strong>
+      </p>
+<pre><code class="lang-css">/* Selected cell */
+.ht_master tr > td.current {
+  background-color: #F00;
+}
+
+/* Specific cell (B2) */
+.ht_master tr:nth-child(2) > td:nth-child(3) {
+  background-color: #F00;
+}
+
+/* Edit mode */
+.handsontableInput {
+  background-color: #F00!important;
+}</code></pre>
+    </div>
+
+    <div class="example-container clearfix head-gap">
+      <h3 id="page-selection">Selection</h3>
+      <p>
+        <strong>Background</strong>
+      </p>
+<pre><code class="lang-css">.handsontable td.area {
+  background-color: #F00;
+}</code></pre>
+    </div>
+
+    <div class="example-container clearfix head-gap">
+      <h3 id="page-notice">Notice</h3>
+      <p>
+        Be careful when using Handsontable with popular CSS frameworks.
+        They not only modify the style of all DOM elements, including textareas and inputs,
+        but also add some transition properties which may negatively affect the performance.
+        Make sure you add styles carefully and selectively or use the official Bootstrap integration.
+      </p>
+      <p>
+        The selection border color has been hard-coded. It can be changed using JavaScript, or alternatively
+        you can postscript your CSS values with an (ugly) "!important" rule.
+      </p>
+      <p>
+        <strong>JavaScript</strong>
+      </p>
+<pre><code class="lang-js">var borders = document.querySelectorAll('.handsontable .wtBorder');
+for (var i = 0; i < borders.length; i++) {
+  borders[i].style.backgroundColor = 'red';
+}
+</code></pre>
+      <p>
+        <strong>CSS</strong>
+      </p>
+<pre><code class="lang-css">.wtBorder {
+  background-color: #F00!important;
+}</code></pre>
+    </div>
+
   </div>
 </div>

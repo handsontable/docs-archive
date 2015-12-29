@@ -1,0 +1,101 @@
+<div class="static-content">
+    <div class="example-container clearfix">
+        <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/known-limitations.html"
+           class="edit-doc" target="_blank">
+            Edit this page
+        </a>
+        <p>Although we are working hard on this library, it still has some known shortcomings.
+            Consider this list to make sure there are no potential blockings.
+        </p>
+        <ul>
+            <li>
+                <strong>You are using a beta version</strong>
+                <p>
+                    It's not really named "beta" but you should consider it as such.
+                    Once we are sure it's stable and bullet-proof we will increment the major version number.
+                </p>
+            </li>
+            <li>
+                <strong>Formula support is based on a third-party library</strong>
+                <p>
+                    We use <a href="https://github.com/sutoiku/formula.js/" target="_blank">formula.js</a> to
+                    implement functions. That library is no longer under active development,
+                    but we believe it's reliable enough to be utilized even in its current state.
+                </p>
+            </li>
+            <li>
+                <strong>It is not mobile-friendly (yet)</strong>
+                <p>
+                    Only the basic functionality works with mobile devices, which means you should be able to
+                    display, edit and scroll the grid. We can't guarantee that all the plugins will work as we
+                    don't test Handsontable against mobile browsers.
+                </p>
+            </li>
+            <li>
+                <strong>It is not available via npm/NuGet</strong>
+                <p>
+                    There is no officially supported package in <a href="https://www.npmjs.com" target="_blank">npm</a>
+                    or <a href="http://www.nuget.org" target="_blank">NuGet</a> directories.
+                    To facilitate the installation we usually use <a href="http://bower.io" target="_blank">Bower</a>.
+                </p>
+            </li>
+            <li>
+                <strong>It uses several dependencies</strong>
+                <p>
+                    Our team follows the "proudly found elsewhere" principle which encourages us to make
+                    use of the great work done by other developers. You will probably find the following
+                    open source libraries being utilized by Handsontable:
+                    <ul>
+                        <li>
+                            <strong>numeral.js</strong> (handles numeric data)<br/>
+                            Author: Adam Draper<br/>
+                            License: Open source (MIT)<br/>
+                            <a href="http://adamwdraper.github.com/Numeral-js" target="_blank">http://adamwdraper.github.com/Numeral-js</a>
+                        </li>
+                        <li>
+                            <strong>ZeroClipboard</strong> (allows to copy and paste data using the context menu)<br/>
+                            Author: Jon Rohan, James M. Greene<br/>
+                            License: Open source (MIT)<br/>
+                            <a href="http://zeroclipboard.org" target="_blank">http://zeroclipboard.org</a>
+                        </li>
+                        <li>
+                            <strong>Pikaday</strong> (displays a date picker)<br/>
+                            Author: David Bushell<br/>
+                            License: Open source (BSD & MIT)<br/>
+                            <a href="https://github.com/dbushell/Pikaday" target="_blank">https://github.com/dbushell/Pikaday</a>
+                        </li>
+                        <li>
+                            <strong>moment.js</strong> (parses, validates and displays dates)<br/>
+                            Author: Tim Wood, Tskren Chernev, Moment.js contributors<br/>
+                            License: Open source (MIT)<br/>
+                            <a href="http://momentjs.com" target="_blank">http://momentjs.com</a>
+                        </li>
+                        <li>
+                            <strong>formula.js</strong> (provides syntax and logic for functions)<br/>
+                            Author: Sutoiku, Inc<br/>
+                            License: Open source (MIT)<br/>
+                            <a href="http://stoic.com" target="_blank">http://stoic.com</a>
+                        </li>
+                    </ul>
+                </p>
+            </li>
+            <li>
+                <strong>It is not fully covered by unit tests</strong>
+                <p>
+                    In the current version only a part of the code is covered by unit tests.
+                    We aim to increase that number to at least 90%.
+                </p>
+            </li>
+            <li>
+                <strong>Copy-paste is dependent on Flash</strong>
+                <p>
+                    We use <a href="http://zeroclipboard.org" target="_blank">ZeroClipboard</a> to allow users
+                    copy and paste using the context menu.
+                    That library uses Flash to make it possible. We are seriously considering switching
+                    to <a href="http://www.w3.org/TR/clipboard-apis/" target="_blank">Clipboard API</a>
+                    as soon as it's fully supported by all popular browsers.
+                </p>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,164 @@
+/**
+ * @author: Handsoncode
+ */
+
+header {
+    @include fixed-top-left(0, 0);
+    width: 100%;
+    background: #FFF;
+    z-index: 10000;
+
+    /* [ styles only for desktop ] */
+    @media only screen and (min-width: $largeWidth) {
+        padding: 32px 0 8px;
+    }
+
+    /* [ burger icon trigger 'show menu' ] */
+    label[for="show_menu"] {
+        @include fixed-top-right(26px, 11px);
+        @include rectangle(26px, 18px);
+        text-indent: -100%;
+        display: inline-block;
+        cursor: pointer;
+        z-index: 999999;
+
+        &:hover {
+            &::after {
+                @include transform(rotate(45deg) translate(7px, 7px));
+            }
+
+            &::before {
+                @include transform(rotate(-45deg) translate(5px, -5px));
+            }
+        }
+
+        &::after,
+        &::before {
+            @include transition(all .3s ease);
+            @include rectangle (100%, 1px);
+            background: $linkColor;
+        }
+
+        &::after {
+            @include set-pseudo-element(0, auto, auto, 0);
+        }
+
+        &::before {
+            @include set-pseudo-element(auto, auto, 0, 0);
+        }
+
+        /* [ hide mobile menu trigger on desktop ] */
+        @media only screen and (min-width: $largeWidth) {
+            display: none;
+        }
+    }
+
+    #show_menu {
+        @include fixed-top-left(-10000px, 0);
+
+        &:checked + nav {
+            @include transition(all .3s ease);
+            @include transform(translateY(0));
+            opacity: 1;
+        }
+    }
+
+    nav {
+        @include transform(translateY(-100%));
+        @include fixed-top-left($topMenuHeight, 0);
+        min-height: 100%;
+        max-height: 100%;
+        width: 100%;
+        background: #FFF;
+        opacity: 0;
+
+        /* [ styles only for desktop ] */
+        @media only screen and (min-width: $largeWidth) {
+            @include transform(translateY(0));
+            position: relative;
+            width: auto;
+            top: 3px;
+            float: right;
+            opacity: 1;
+        }
+
+        li {
+            @include border-top;
+            position: relative;
+            display: block;
+            float: left;
+            width: 100%;
+            
+            /* [ styles only for desktop ] */
+            @media only screen and (min-width: $largeWidth) {
+                padding: 0 14px;
+                border: none;
+                width: auto;
+            }
+
+            strong {
+                font-weight: 600;
+            }
+
+            a,
+            label {
+                font-size: 0.923em; /* 12px */
+                display: inline-block;
+                padding: 10px;
+
+                /* [ styles only for desktop ] */
+                @media only screen and (min-width: $largeWidth) {
+                    padding: 12px 0 1px;                    
+                }
+            }
+
+            a {
+                @include border-bottom(transparent);
+                width: 100%;
+                color: inherit;
+        
+                &.active,
+                &:hover,
+                &:focus {
+                    
+                    @media only screen and (min-width: $largeWidth) {
+                        @include border-bottom($middleGray);
+                    }
+                    color: $darkGray;
+                    text-decoration: none;
+                }
+
+                &.active {
+                    cursor: default;
+                }
+            }
+        }
+
+        > ul > li {
+
+            /* [ styles only for desktop ] */
+            @media only screen and (min-width: $largeWidth) {
+                margin-left: 16px;
+                padding-bottom: 19px;
+
+                &:last-of-type:not(:only-of-type){
+                    padding: 0;
+                    margin-left: 36px;
+                }
+            }
+        }
+
+        .btn.small {
+            font-size: 0.923em; /* 12px */
+            display: block;
+            width: 95%;
+            margin: 20px auto;
+
+            /* [ styles only for desktop ] */
+            @media only screen and (min-width: $largeWidth) {
+                width: auto;
+                margin: 0;
+            }
+        }
+    }
+}

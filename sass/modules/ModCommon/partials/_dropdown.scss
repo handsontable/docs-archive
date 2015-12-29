@@ -1,0 +1,101 @@
+/**
+ * @author: Handsoncode
+ */
+
+/* [ component variables ] */
+$dropdownColor: #FFF;
+
+.dropdown {
+
+    /* [ arrow down ] */
+    svg {
+        @include square(10px);
+        fill: currentColor;
+        display: inline-block;
+
+    }
+
+    /* [ dropdown list] */
+    ul {
+        @include transition(all .3s ease);
+        @include transform( translateY(0) scale(.95, .95));
+        max-height: 0;
+        background: $dropdownColor;
+        opacity: 0;
+        overflow: hidden;
+
+        /* [ styles only for desktop ] */
+        @media only screen and (min-width: $largeWidth) {
+            @include absolute-top-right(45px, -20px);
+            @include transform( translateY(-5px) scale(.95, .95));
+            padding: 8px 0;
+            border-radius: 2px;
+            box-shadow: 0 1px 4px 0 rgba(0, 8, 0, .3);
+        }
+
+        li {
+            font-size: inherit;
+            float: none;
+            padding: 10px;
+
+            /* [ styles only for desktop ] */
+            @media only screen and (min-width: $largeWidth) {
+                @include vertical-align(25px, true);
+                padding: 0;
+                margin: 3px 0;
+                &:hover {
+                    background: $ultraLightGray;
+                }
+            }
+        }
+
+        a,
+        a:hover {
+            color: inherit;
+            padding: 0 25px 0 23px;
+            border: none;
+        }
+    }
+
+    &.bottom ul {
+         /* [ styles only for desktop ] */
+        @media only screen and (min-width: $largeWidth) {
+            &::before {
+                @include set-pseudo-element(-7px, auto, auto, 37px);
+                @include arrow-up(14px, 7px, #EAEAEA);
+                z-index: 101;
+            }
+
+            &::after {
+                @include set-pseudo-element(-6px, auto, auto, 38px);
+                @include arrow-up(12px, 7px, $dropdownColor);
+                z-index: 102;
+            }
+        }
+    }
+
+    &:focus,
+    &:hover {
+        @media only screen and (min-width: $largeWidth) {
+            ul {
+                @include transform( translateY(0) scale(1, 1));
+                max-height: 10000px;
+                z-index: 100;
+                overflow: visible;
+                opacity: 1;
+            }
+        }
+    }
+
+    /* [ mobile trigger: show / hide ] */
+    input {
+        @include fixed-top-left(-10000px, 0);
+
+        &:checked + ul {
+            @include transform( translateY(0) scale(1, 1));
+            opacity: 1;
+            max-height: 10000px;
+            z-index: 100;
+        }
+    }
+}

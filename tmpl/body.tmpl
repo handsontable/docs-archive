@@ -1,0 +1,17 @@
+<div id="wrapper">
+    <div class="row">
+        <div class="large-3 medium-3 small-1 columns">
+            <div class="nav-fix">
+                <?js= this.partial('navigation.tmpl', this) ?>
+            </div>
+        </div>
+        <div class="large-9 medium-8 small-1 columns">
+            <div class="main">
+                <h1 class="page-title" data-filename="<?js= filename.replace('tutorial-','') ?>"><?js= title ?></h1>
+                <div class="breadcrumbs"></div>
+                <?js= content ?>
+                <?js= this.partial('footer.tmpl', this) ?>
+            </div>
+        </div>
+    </div>
+</div>

@@ -36,7 +36,7 @@ $(function () {
   var $current;
 
   // Auto resizing on navigation
-  function _onResize() {
+/*  function _onResize() {
     var height = $(window).height() - 118,
       $el = $('.navigation');
 
@@ -48,7 +48,7 @@ $(function () {
     }
   }
   $(window).on('resize', _onResize);
-  _onResize();
+  _onResize();*/
 
   $current = updateNav(true);
 
@@ -204,15 +204,7 @@ function buildBreadcrumbs() {
   var makeSpan = function (content) {
     return '<span>' + content + '</span>';
   };
-  var makeLatestLink = function (hotVersion) {
-    var stableVersion = getLatestHOTStableVersion();
 
-    if (stableVersion === hotVersion) {
-      return '';
-    }
-
-    return '<a class="hot-latest" href="' + getDocUrl(stableVersion) + '">Switch to the latest stable version</a>';
-  };
   var makeHotVersion = function (hotVersion) {
     var lastVersion = null;
 
@@ -247,15 +239,14 @@ function buildBreadcrumbs() {
   // links
   docsLink = document.createElement('a');
   docsLink.href = '/';
-  docsLink.text = 'Documentation';
+  docsLink.text = 'Docs';
 
   if ($('.source').size() > 0 || !$activeLink.length) {
     var filename = $('.page-title').data('filename').replace(/\.[a-z]+$/, '');
 
     breadcrumbs = docsLink.outerHTML
       + makeHotVersion(hotVersion)
-      + makeSpan("Source: " + filename)
-      + makeLatestLink(hotVersion);
+      + makeSpan("Source: " + filename);
 
   } else if ($activeLink.parents("div.sublist.api").size() > 0) {
     $subtitle = $activeLinkParent.prevAll('span.subtitle').eq(0).filter(function () {
@@ -272,8 +263,7 @@ function buildBreadcrumbs() {
       + makeSpan($subheader.text())
       + makeSpan($item.attr('data-name'))
       + makeSpan($subtitle.text())
-      + makeSpan($activeLink.text())
-      + makeLatestLink(hotVersion);
+      + makeSpan($activeLink.text());
 
   } else {
     $item = $activeLink.parents('li.item').eq(0);
@@ -282,8 +272,7 @@ function buildBreadcrumbs() {
     breadcrumbs = docsLink.outerHTML
       + makeHotVersion(hotVersion)
       + makeSpan($item.text())
-      + makeSpan($activeLink.text())
-      + makeLatestLink(hotVersion);
+      + makeSpan($activeLink.text());
   }
 
   return breadcrumbs;
@@ -299,7 +288,7 @@ window.requestAnimFrame = (function(){
 })();
 
 // Ugly fix for dropdown menu
-function dropdownLoop() {
+/*function dropdownLoop() {
   $('.dropdown').each(function(index, element) {
     var btnStyle = element.previousElementSibling.style,
       boxShadowStyle = btnStyle.boxShadow,
@@ -314,4 +303,4 @@ function dropdownLoop() {
   });
   requestAnimFrame(dropdownLoop);
 }
-dropdownLoop();
+dropdownLoop();*/

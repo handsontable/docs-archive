@@ -1,7 +1,7 @@
 <div class="static-content">
 
   <div class="index-list">
-    <p><strong>On this page:</strong></p>
+
     <ul>
       <li><a href="#page-tasks">Grunt tasks</a></li>
       <li><a href="#page-running">Running your first build</a></li>
@@ -11,15 +11,13 @@
 
   <div class="example-container clearfix" name="building">
     <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/custom-build.html" class="edit-doc" target="_blank">
-      Edit on GitHub
+      Edit this page
     </a>
 
-    <p>The build process is done using <a href="http://gruntjs.com/" target="_blank">Grunt</a> and bunch of its
-      tasks that are defined in
+    <p>The build process is using <a href="http://gruntjs.com/" target="_blank">Grunt</a> and bunch of its
+      tasks defined in
       <a href="https://github.com/handsontable/handsontable/blob/master/Gruntfile.js" target="_blank">Gruntfile.js</a>.
-    </p>
-    <p>During the build process, the source files located in the <code>src/*</code> directory are transformed
-      into output files:</p>
+    During this process, the source files located in the <code>src/*</code> directory are transformed into output files:</p>
     <ul>
       <li><code>./dist/handsontable.js</code></li>
       <li><code>./dist/handsontable.css</code></li>
@@ -67,11 +65,12 @@
     <p>If all is working correctly, you should see something like this:</p>
     <img width="822" height="660" src="/images/grunt-build.png" alt="Running your first build" />
   </div>
-  <div class="example-container clearfix" name="customizing">
+  <div class="example-container clearfix head-gap" name="customizing">
     <h3 id="page-customizing">Creating a custom package</h3>
-    <p>For more advanced users we prepared a tool called <code>hot-builder</code>.
-      With this tool you can customize Handsontable by excluding or including plugins.
-      To install hot-builder globally run:</p>
+    <p>This process lets you build a custom package containing only the core engine and selected plugins.
+      It's super useful when you need only a fraction of the spreadsheet's overall functionality or when
+      you have already built a <a href="/<?js= version ?>/tutorial-custom-plugin">custom plugin</a> and want to incorporate it into the base code.
+      For this purpose we prepared a tool called <strong>hot-builder</strong>. To install hot-builder globally, run:</p>
     <p><code>npm install hot-builder -g</code></p>
     <p>Then to build Handsontable run:</p>
     <p><code>hot-builder build --output-dir hot-dist</code></p>

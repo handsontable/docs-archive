@@ -1,0 +1,42 @@
+/**
+ * @author: Handsoncode
+ * @description: Centered headline
+ */
+
+ .headline {
+    @include border-bottom;
+    position: relative;
+    line-height: 1;
+    padding-bottom: 50px;
+
+    .red {
+        color: $brandRed;
+    }
+
+    @media only screen and (min-width: $largeWidth) {
+        padding-bottom: 21px;
+    }
+
+    &.centered {
+        text-align: center;
+        padding: 0;
+        span {
+            @include translate(-50%, -50%);
+            font-weight: 400;
+            text-align:center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            padding: 0 6px;
+            background: #FFF;
+            width: 85%;
+
+            
+
+            @media only screen and (min-width: $largeWidth) {
+                padding: 0 46px;
+                width: auto;
+            }
+        }
+    }
+}

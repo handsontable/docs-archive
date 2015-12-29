@@ -1,0 +1,92 @@
+<div class="static-content">
+
+  <div class="example-container clearfix">
+    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/custom-borders.html" class="edit-doc" target="_blank">
+      Edit this page
+    </a>
+    <p>To enable the custom borders feature, set the <code>customBorders</code> option.
+      It could be set as <code>true</code> or initialized as an array with predefined setup.
+    </p>
+    <p>To initialize Handsontable with predefined custom borders, provide cells coordinates and border styles
+      in form of an array:</p>
+    <ul>
+      <li>with row/col pairs: <code>{row: 2, col: 2, left: { /*...*/ }}</code>
+      </li>
+      <li>or with range details: <code>{range: {from: {row: 1, col: 1}, to:{row: 3, col: 4}}, left: { /*...*/ }}</code>
+      </li>
+    </ul>
+    <p><strong>See full example below:</strong></p>
+
+    <div data-jsfiddle="example1" class="scroll-container fixed-container">
+      <div id="example1" class="hot"></div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example1">
+          <i class="fa fa-jsfiddle"></i>
+          Edit
+        </button>
+        <button class="dump" name="dump" data-dump="#example1" data-instance="hot"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example1">
+        var container = document.getElementById('example1'),
+          hot;
+
+        hot = Handsontable(container, {
+          data: Handsontable.helper.createSpreadsheetData(200, 20),
+          rowHeaders: true,
+          fixedColumnsLeft: 2,
+          fixedRowsTop: 2,
+          colHeaders: true,
+          customBorders: [
+            {
+              range: {
+                from: {
+                  row: 1,
+                  col: 1
+                },
+                to: {
+                  row: 3,
+                  col: 4
+                }
+              },
+              top: {
+                width: 2,
+                color: '#5292F7'
+              },
+              left: {
+                width: 2,
+                color: 'orange'
+              },
+              bottom: {
+                width: 2,
+                color: 'red'
+              },
+              right: {
+                width: 2,
+                color: 'magenta'
+              }
+            },
+            {
+              row: 2,
+              col: 2,
+              left: {
+                width: 2,
+                color: 'red'
+              },
+              right: {
+                width: 1,
+                color: 'green'
+              }
+            }]
+        });
+      </script>
+    </div>
+  </div>
+</div>
+

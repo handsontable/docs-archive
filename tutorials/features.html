@@ -1,247 +1,236 @@
 <div class="static-content">
 <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/features.html" class="edit-doc" target="_blank">
-  Edit on GitHub
+  Edit this page
 </a>
-  <p>Handsontable comprises of the core engine and functional plugins. You can find a complete list of them below:</p>
-  <table class="static-data">
+  <p>
+    Handsontable includes many features and plugins. By "feature" we mean a functionality that provides you with a
+    specific benefit. It can be literally anything, even the smallest thing like the navigation or the binding data
+    capabilities.  A plugin, on the other hand, should be perceived as an internal or external "container" that
+    contains one or more features.
+  </p>
+  <p>
+    Below you will find the most complete list of both open source and Pro features:
+  </p>
+  <h3>Pro features</h3>
+  <table class="static-data features-table">
+      <thead>
+          <tr>
+              <th>Name</th>
+              <th>Description</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td><a href="/pro/<?js= version ?>/demo-bind-rows-headers.html">Binding rows with headers</a></td>
+              <td>
+                Bind rows with headers to lock the row number and always display one beside the other.
+              </td>
+          </tr>
+          <tr>
+            <td><a href="/pro/<?js= version ?>/demo-collapsing-columns.html">Collapsing columns</a></td>
+            <td>
+              Expand and collapse columns to better fit the content.
+            </td>
+          </tr>
+          <tr>
+            <td><a href="/pro/<?js= version ?>/demo-summary-calculations.html">Column summary</a></td>
+            <td>
+              Make pre-defined calculations and display the results in Handsontable.
+            </td>
+          </tr>
+          <tr>
+            <td><a href="/pro/<?js= version ?>/demo-dropdown-menu.html">Dropdown menu</a></td>
+            <td>
+              Add a menu to the heading to enable additional operations for the columns.
+            </td>
+          </tr>
+          <tr>
+            <td><a href="/pro/<?js= version ?>/demo-export-file.html">Export to file</a></td>
+            <td>
+              Export data to a flat file like CSV or a string.
+            </td>
+          </tr>
+          <tr>
+            <td><a href="/pro/<?js= version ?>/demo-filtering.html">Filtering</a></td>
+            <td>
+              Display rows that meet your criteria and hide the rest.
+            </td>
+          </tr>
+          <tr>
+            <td><a href="/pro/<?js= version ?>/demo-gantt-chart.html">Gantt Chart</a></td>
+            <td>
+              Create a simple Gantt Chart using Handsontable.
+            </td>
+          </tr>
+          <tr>
+            <td><a href="/pro/<?js= version ?>/demo-header-tooltips.html">Header tooltips</a></td>
+            <td>
+              Display the header label in a tooltip.
+            </td>
+          </tr>
+          <tr>
+            <td><a href="/pro/<?js= version ?>/demo-hiding-columns.html">Hiding columns</a></td>
+            <td>
+              Hide specific columns and show the rest.
+            </td>
+          </tr>
+          <tr>
+            <td><a href="/pro/<?js= version ?>/demo-hiding-rows.html">Hiding rows</a></td>
+            <td>
+              Hide specific rows and show the rest.
+            </td>
+          </tr>
+          <tr>
+            <td><a href="/pro/<?js= version ?>/demo-nested-headers.html">Nested headers</a></td>
+            <td>
+              Create a nested, hierarchical structure of headers to get your data into groups.
+            </td>
+          </tr>
+          <tr>
+            <td><a href="/pro/<?js= version ?>/demo-trimming-rows.html">Trimming rows</a></td>
+            <td>
+              Exclude specific rows from the rendering process so they won't be displayed.
+            </td>
+          </tr>
+      </tbody>
+  </table>
+  <h3>Free features</h3>
+  <table class="static-data features-table">
     <thead>
       <tr>
-        <th>Category</th>
         <th>Name</th>
         <th>Description</th>
-        <th>Demo</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>Cell feature</td>
-        <td>Drag-down</td>
-        <td>Select and drag the fill handle (small square in the bottom right corner of the cell) across or down to fill more
-          cells with data series
+        <td><a href="/<?js= version ?>/demo-alignment.html">Alignment</a></td>
+        <td>Decide where the content is placed within the cell or a range of cells.</td>
+      </tr>
+      <tr>
+        <td><a href="/<?js= version ?>/demo-autocomplete.html">Autocomplete</a></td>
+        <td>Choose one of the suggested options while typing or entering a custom value.</td>
+      </tr>
+      <tr>
+        <td><a href="/<?js= version ?>/demo-checkbox.html">Checkbox</a></td>
+        <td>Add a checkbox to a cell to indicate binary choices.</td>
+      </tr>
+      <tr>
+        <td><a href="/<?js= version ?>/demo-cell-comments.html">Comments</a></td>
+        <td>Provide an additional note about the cell to help better understand its content.</td>
+      </tr>
+      <tr>
+        <td><a href="/<?js= version ?>/demo-conditional-formatting.html">Conditional formatting</a></td>
+        <td>Define how specific cells are formatted depending on their values.</td>
+      </tr>
+      <tr>
+        <td><a href="/<?js= version ?>/demo-context-menu.html">Context menu</a></td>
+        <td>Invoke a shortcut menu to choose an action related to the selected object.</td>
+      </tr>
+      <tr>
+        <td><a href="/<?js= version ?>/demo-custom-borders.html">Custom borders</a></td>
+        <td>Apply custom border style around cells or range of cells.</td>
+      </tr>
+      <tr>
+        <td><a href="/<?js= version ?>/demo-custom-buttons.html">Custom buttons</a></td>
+        <td>Insert and remove column or row using custom action buttons.</td>
+      </tr>
+      <tr>
+        <td><a href="/<?js= version ?>/demo-custom-renderers.html#cell">Custom HTML</a></td>
+        <td>Display HTML content in a cell or header.</td>
+      </tr>
+      <tr>
+        <td><a href="/<?js= version ?>/demo-data-validation.html.">Data validation</a></td>
+        <td>Control what values can be entered into a cell.</td>
+      </tr>
+      <tr>
+        <td><a href="/<?js= version ?>/demo-date.html">Date</a></td>
+        <td>Use a date picker to select a date.</td>
+      </tr>
+      <tr>
+        <td><a href="/<?js= version ?>/demo-disable-cell-editing.html">Disable cell editing</a></td>
+        <td>Make cell non-editable without changing its appearance and behaviour.</td>
+      </tr>
+      <tr>
+        <td><a href="/<?js= version ?>/demo-drag-down.html">Drag-down</a></td>
+        <td>Drag the fill handle (a square in the bottom right corner of the cell) to fill cells with data series.
         </td>
-        <td><a href="/<?js= version ?>/demo-drag-down.html">Demo</a></td>
       </tr>
       <tr>
-        <td>Cell feature</td>
-        <td>Merge cells</td>
-        <td>Display cells across multiple rows or columns</td>
-        <td><a href="/<?js= version ?>/demo-merge-cells.html">Demo</a></td>
+        <td><a href="/<?js= version ?>/demo-dropdown.html">Dropdown</a></td>
+        <td>Create an advanced dropdown list of choices in a cell.</td>
       </tr>
       <tr>
-        <td>Cell feature</td>
-        <td>Alignment</td>
-        <td>Decide where the content is placed within the cell or a range of cells</td>
-        <td><a href="/<?js= version ?>/demo-alignment.html">Demo</a></td>
+        <td><a href="/<?js= version ?>/demo-fixed-rows-and-columns.html">Fixed rows and columns</a></td>
+        <td>Define which rows or columns are visible while scrolling down or across the table.</td>
       </tr>
       <tr>
-        <td>Cell feature</td>
-        <td>Read-only</td>
-        <td>Lock the cell or a range of cells to disallow altering them</td>
-        <td><a href="/<?js= version ?>/demo-read-only.html">Demo</a></td>
+        <td><a href="/<?js= version ?>/demo-formula-support.html">Formula support</a></td>
+        <td>Use functions to calculate numerical information within a cell or range of cells.</td>
       </tr>
       <tr>
-        <td>Cell feature</td>
-        <td>Disable cell editing</td>
-        <td>Make cell non-editable without changing its appearance and behaviour</td>
-        <td><a href="/<?js= version ?>/demo-disable-cell-editing.html">Demo</a></td>
+        <td><a href="/<?js= version ?>/demo-freezing.html">Freezing</a></td>
+        <td>Create freeze columns to keep them visible while scrolling.</td>
       </tr>
       <tr>
-        <td>Cell type</td>
-        <td>Custom HTML</td>
-        <td>Display HTML content in a cell or header</td>
-        <td><a href="/<?js= version ?>/demo-custom-renderers.html#cell">Demo</a></td>
+        <td><a href="/<?js= version ?>/demo-handsontable.html">Handsontable</a></td>
+        <td>Use Handsontable itself as a custom cell editor.</td>
       </tr>
       <tr>
-        <td>Cell type</td>
-        <td>Numeric</td>
-        <td>Type a custom number format in a cell</td>
-        <td><a href="/<?js= version ?>/demo-numeric.html">Demo</a></td>
+        <td><a href="/<?js= version ?>/demo-highlighting-current.html">Highlighting current</a></td>
+        <td>Indicate the entire active column or row.</td>
       </tr>
       <tr>
-        <td>Cell type</td>
-        <td>Date</td>
-        <td>Use a date picker to select a date</td>
-        <td><a href="/<?js= version ?>/demo-date.html">Demo</a></td>
+        <td><a href="/<?js= version ?>/demo-merge-cells.html">Merge cells</a></td>
+        <td>Display cells across multiple rows or columns.</td>
       </tr>
       <tr>
-        <td>Cell type</td>
-        <td>Checkbox</td>
-        <td>Add a checkbox to a cell to indicate binary choices</td>
-        <td><a href="/<?js= version ?>/demo-checkbox.html">Demo</a></td>
+        <td><a href="/<?js= version ?>/demo-moving-rows-and-columns.html">Moving</a></td>
+        <td>Drag rows or columns to swap them within the table.</td>
       </tr>
       <tr>
-        <td>Cell type</td>
-        <td>Select</td>
-        <td>Create a simple dropdown list of choices in a cell</td>
-        <td><a href="/<?js= version ?>/demo-select.html">Demo</a></td>
+        <td><a href="/<?js= version ?>/demo-numeric.html">Numeric</a></td>
+        <td>Type a custom number format in a cell.</td>
       </tr>
       <tr>
-        <td>Cell type</td>
-        <td>Dropdown</td>
-        <td>Create an advanced dropdown list of choices in a cell</td>
-        <td><a href="/<?js= version ?>/demo-dropdown.html">Demo</a></td>
+        <td><a href="/<?js= version ?>/demo-pagination.html">Pagination</a></td>
+        <td>Limit the number of records being displayed in a single view.</td>
       </tr>
       <tr>
-        <td>Cell type</td>
-        <td>Autocomplete</td>
-        <td>Choose one of the suggested options while typing or entering a custom value</td>
-        <td><a href="/<?js= version ?>/demo-autocomplete.html">Demo</a></td>
+        <td><a href="/<?js= version ?>/demo-password.html">Password</a></td>
+        <td>Use asterisks to mask the value in a cell.</td>
       </tr>
       <tr>
-        <td>Cell type</td>
-        <td>Password</td>
-        <td>Use asterisks to mask the value in a cell</td>
-        <td><a href="/<?js= version ?>/demo-password.html">Demo</a></td>
-      </tr>
-      <tr>
-        <td>Cell type</td>
-        <td>Handsontable</td>
-        <td>Use Handsontable itself as a custom cell editor</td>
-        <td><a href="/<?js= version ?>/demo-handsontable.html">Demo</a></td>
-      </tr>
-      <tr>
-        <td>Rows and columns</td>
-        <td>Fixed rows and columns</td>
-        <td>Define which rows or columns are visible while scrolling down or across the table</td>
-        <td><a href="/<?js= version ?>/demo-fixed-rows-and-columns.html">Demo</a></td>
-      </tr>
-      <tr>
-        <td>Rows and columns</td>
-        <td>Scrollbars</td>
-        <td>Use native scrollbars to navigate within the table</td>
-        <td><a href="/<?js= version ?>/demo-scrollbars.html">Demo</a></td>
-      </tr>
-      <tr>
-        <td>Rows and columns</td>
-        <td>Highlighting rows or columns</td>
-        <td>Indicate the entire active column or row</td>
-        <td><a href="/<?js= version ?>/demo-highlighting-current.html">Demo</a></td>
-      </tr>
-      <tr>
-        <td>Rows and columns</td>
-        <td>Stretching</td>
-        <td>Allow columns to the parent container width</td>
-        <td><a href="/<?js= version ?>/demo-stretching.html">Demo</a></td>
-      </tr>
-      <tr>
-        <td>Rows and columns</td>
-        <td>Resizing</td>
-        <td>Drag the sizing handle to change the size of column or row</td>
-        <td><a href="/<?js= version ?>/demo-resizing.html">Demo</a></td>
-      </tr>
-      <tr>
-        <td>Rows and columns</td>
-        <td>Freezing</td>
-        <td>Create freeze columns to keep them visible while scrolling</td>
-        <td><a href="/<?js= version ?>/demo-freezing.html">Demo</a></td>
-      </tr>
-      <tr>
-        <td>Rows and columns</td>
-        <td>Moving</td>
-        <td>Drag rows or columns to swap them within the table</td>
-        <td><a href="/<?js= version ?>/demo-moving-rows-and-columns.html">Demo</a></td>
-      </tr>
-      <tr>
-        <td>Rows and columns</td>
-        <td>Pre-populating new rows</td>
+        <td><a href="/<?js= version ?>/demo-pre-populating-new-rows.html">Pre-populating new rows</a></td>
         <td>Create empty cells with predefined types or values</td>
-        <td><a href="/<?js= version ?>/demo-pre-populating-new-rows.html">Demo</a></td>
       </tr>
       <tr>
-        <td>Validation</td>
-        <td>Data validation</td>
-        <td>Control what values can be entered into a cell</td>
-        <td><a href="/<?js= version ?>/demo-data-validation.html">Demo</a></td>
+        <td><a href="/<?js= version ?>/demo-read-only.html">Read-only</a></td>
+        <td>Lock the cell or a range of cells to disallow altering them.</td>
       </tr>
       <tr>
-        <td>Navigation</td>
-        <td>Pagination</td>
-        <td>Limited number of records displayed in a single view</td>
-        <td><a href="/<?js= version ?>/demo-pagination.html">Demo</a></td>
+        <td><a href="/<?js= version ?>/demo-resizing.html">Resizing</a></td>
+        <td>Drag the sizing handle to change the size of column or row.</td>
       </tr>
       <tr>
-        <td>Navigation</td>
-        <td>Search for values</td>
-        <td>Search through the content with the search field</td>
-        <td><a href="/<?js= version ?>/demo-search-for-values.html">Demo</a></td>
+        <td><a href="/<?js= version ?>/demo-scrollbars.html">Scrollbars</a></td>
+        <td>Use native scrollbars to navigate within the table.</td>
       </tr>
       <tr>
-        <td>Sorting</td>
-        <td>Sorting data</td>
-        <td>Sort data in ascending or descending order throughout the column</td>
-        <td><a href="/<?js= version ?>/demo-sorting-data.html">Demo</a></td>
+        <td><a href="/<?js= version ?>/demo-search-for-values.html">Search for values</a></td>
+        <td>Search through the content with the search field.</td>
       </tr>
       <tr>
-        <td>Appearance</td>
-        <td>Conditional formatting</td>
-        <td>Define how specific cells are formatted depending on their values</td>
-        <td><a href="/<?js= version ?>/demo-conditional-formatting.html">Demo</a></td>
+        <td><a href="/<?js= version ?>/demo-select.html">Select</a></td>
+        <td>Create a simple dropdown list of choices in a cell.</td>
       </tr>
       <tr>
-        <td>Appearance</td>
-        <td>Custom borders</td>
-        <td>Apply custom border style around cells or range of cells</td>
-        <td><a href="/<?js= version ?>/demo-custom-borders.html">Demo</a></td>
+        <td><a href="/<?js= version ?>/demo-sorting-data.html">Sorting data</a></td>
+        <td>Sort data in ascending or descending order throughout the column.</td>
       </tr>
       <tr>
-        <td>Calculation</td>
-        <td>Formula support</td>
-        <td>Use functions to calculate numerical information within a cell or range of cells</td>
-        <td><a href="/<?js= version ?>/demo-formula-support.html">Demo</a></td>
-      </tr>
-      <tr>
-        <td>Mobile</td>
-        <td>Mobiles and tablets</td>
-        <td>Display and edit data on mobile phones and tablets</td>
-        <td><a href="/<?js= version ?>/demo-mobiles-and-tablets.html">Demo</a></td>
-      </tr>
-      <tr>
-        <td>Utility</td>
-        <td>Context menu</td>
-        <td>Invoke a shortcut menu to choose an action related to the selected object</td>
-        <td><a href="/<?js= version ?>/demo-context-menu.html">Demo</a></td>
-      </tr>
-      <tr>
-        <td>Utility</td>
-        <td>Custom buttons</td>
-        <td>Insert and remove column or row using custom action buttons</td>
-        <td><a href="/<?js= version ?>/demo-custom-buttons.html">Demo</a></td>
-      </tr>
-      <tr>
-        <td>Utility</td>
-        <td>Comments</td>
-        <td>Provide an additional note about the cell to help better understand its content</td>
-        <td><a href="/<?js= version ?>/demo-cell-comments.html">Demo</a></td>
-      </tr>
-      <tr>
-        <td>Integration</td>
-        <td>jQuery</td>
-        <td>Full compatibility with jQuery</td>
-        <td><a href="/<?js= version ?>/demo-jquery.html">Demo</a></td>
-      </tr>
-      <tr>
-        <td>Integration</td>
-        <td>gRaphaël charts</td>
-        <td>Create data visualization using gRaphaël charts</td>
-        <td><a href="/<?js= version ?>/demo-graphael-charts.html">Demo</a></td>
-      </tr>
-      <tr>
-        <td>Integration</td>
-        <td>Chroma.js</td>
-        <td>Create a heatmap for the values in the table</td>
-        <td><a href="/<?js= version ?>/demo-chromajs.html">Demo</a></td>
-      </tr>
-      <tr>
-        <td>Integration</td>
-        <td>Bootstrap</td>
-        <td>Apply Bootstrap's styles into Handsontable</td>
-        <td><a href="/<?js= version ?>/demo-bootstrap.html">Demo</a></td>
-      </tr>
-      <tr>
-        <td>Integration</td>
-        <td>Backbone.js</td>
-        <td>See how Backbone's models and collections can work with Handsontable</td>
-        <td><a href="/<?js= version ?>/demo-backbonejs.html">Demo</a></td>
+        <td><a href="/<?js= version ?>/demo-stretching.html">Stretching</a></td>
+        <td>Allow columns to the parent container width.</td>
       </tr>
     </tbody>
   </table>

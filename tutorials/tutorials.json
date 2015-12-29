@@ -5,29 +5,31 @@
       "getting-started": {
         "title": "Getting started",
         "children": {
-          "quick-start": {
-            "title": "Quick start"
-          },
-          "custom-build": {
-            "since": ">=0.15.0-beta1",
-            "title": "Custom build"
+          "introduction": {
+            "title": "Introduction"
           },
           "features": {
             "title": "Features"
           },
+          "principles": {
+            "title": "Principles"
+          },
+          "licensing": {
+            "title": "Licensing"
+          },
           "compatibility": {
             "title": "Compatibility"
           },
-          "seven-principles": {
-            "title": "Seven principles"
+          "known-limitations": {
+            "title": "Known limitations"
           }
         }
       },
-      "developer-guide": {
-        "title": "Developer guide",
+      "basic-usage": {
+        "title": "Basic usage",
         "children": {
-          "overview": {
-            "title": "Overview"
+          "quick-start": {
+            "title": "Quick start"
           },
           "data-binding": {
             "title": "Data binding"
@@ -41,11 +43,25 @@
           "setting-options": {
             "title": "Setting options"
           },
-          "callbacks": {
-            "title": "Callbacks"
+          "using-callbacks": {
+            "title": "Using callbacks"
           },
           "styling": {
             "title": "Styling"
+          },
+          "keyboard-navigation": {
+            "title": "Keyboard navigation"
+          }
+        }
+      },
+      "developer-guide": {
+        "title": "Developer guide",
+        "children": {
+          "custom-build": {
+            "title": "Custom build"
+          },
+          "custom-plugin": {
+            "title": "Custom plugin"
           },
           "cell-types": {
             "title": "Cell types"
@@ -56,46 +72,54 @@
           "cell-function": {
             "title": "Cell function"
           },
-          "keyboard-shortcuts": {
-            "title": "Keyboard shortcuts"
+          "testing": {
+            "title": "Testing"
+          },
+          "contributing": {
+            "title": "Contributing"
           },
           "performance-tips": {
             "title": "Performance tips"
           },
-          "testing": {
-            "title": "Testing"
-          },
-          "releasing": {
-            "title": "Releasing"
-          },
-          "contributing": {
-            "title": "Contributing"
+          "good-practices": {
+            "title": "Good practices"
           }
         }
       },
-      "resources": {
-        "title": "Resources",
+      "releasing": {
+        "title": "Releasing",
         "children": {
-          "change-log": {
-            "title": "Change log",
-            "external": "https://github.com/handsontable/handsontable/releases"
-          },
           "roadmap": {
-            "title": "Roadmap",
-            "external": "https://trello.com/b/wMvdMvow/handsontable-roadmap-2015"
+            "title": "Roadmap"
           },
-          "milestones": {
-            "title": "Milestones",
-            "external": "https://github.com/handsontable/handsontable/milestones"
+          "release-notes": {
+            "title": "Release notes"
+          }
+        }
+      },
+      "community": {
+        "title": "Community",
+        "children": {
+          "forum": {
+            "title": "Forum",
+            "external": "https://forum.handsontable.com"
           },
-          "licensing": {
-            "title": "Licensing",
-            "external": "https://handsontable.com/licensing.html"
+          "github": {
+            "title": "GitHub",
+            "external": "https://github.com/handsontable/handsontable"
+          },
+          "stackoverflow": {
+            "title": "Stack Overflow",
+            "external": "http://stackoverflow.com/tags/handsontable"
+          },
+          "google-group": {
+            "title": "Google group",
+            "external": "https://groups.google.com/forum/#!forum/handsontable"
           }
         }
       },
       "subprojects": {
-        "title": "Subprojects",
+        "title": "Sub-projects",
         "children": {
           "ngHandsontable": {
             "title": "ngHandsontable",
@@ -104,46 +128,63 @@
           "hot-table": {
             "title": "hot-table",
             "external": "https://github.com/handsontable/hot-table"
-          },
-          "rulejs": {
-            "title": "RuleJS",
-            "external": "https://github.com/handsontable/handsontable-RuleJS"
           }
         }
       },
-      "general-configuration-demos": {
-        "title": "General configuration",
+      "rows-and-columns-demos": {
+        "title": "Rows and columns",
         "demo": true,
         "children": {
-          "fixed-rows-and-columns": {
-            "title": "Fixed rows and columns"
+          "scrolling": {
+            "title": "Scrolling"
+          },
+          "fixing": {
+            "title": "Fixing"
           },
           "resizing": {
-            "title": "Resizing rows and columns"
+            "title": "Resizing"
           },
-          "scrollbars": {
-            "title": "Scrolling rows and columns"
-          },
+          "moving": {
+            "title": "Moving"
+          }
+        }
+      },
+      "rows-only-demos": {
+        "title": "Rows only",
+        "demo": true,
+        "children": {
+          "pre-populating": {
+            "title": "Pre-populating"
+          }
+        }
+      },
+      "columns-only-demos": {
+        "title": "Columns only",
+        "demo": true,
+        "children": {
           "stretching": {
-            "title": "Columns stretching"
+            "title": "Stretching"
           },
           "freezing": {
-            "title": "Columns freezing"
+            "title": "Freezing"
+          }
+        }
+      },
+      "data-operations-demos": {
+        "title": "Data operations",
+        "demo": true,
+        "children": {
+          "sorting": {
+            "title": "Sorting"
           },
-          "moving-rows-and-columns": {
-            "title": "Columns and rows moving"
+          "paginating": {
+            "title": "Paginating"
           },
-          "highlighting-current": {
-            "title": "Highlighting current"
+          "searching": {
+            "title": "Searching"
           },
-          "pre-populating-new-rows": {
-            "title": "Pre-populating new rows"
-          },
-          "sorting-data": {
-            "title": "Sorting data"
-          },
-          "pagination": {
-            "title": "Pagination"
+          "formula-support": {
+            "title": "Formula support"
           }
         }
       },
@@ -157,17 +198,17 @@
           "drag-down": {
             "title": "Drag down"
           },
-          "merge-cells": {
-            "title": "Merge cells"
+          "merged-cells": {
+            "title": "Merged cells"
           },
           "alignment": {
             "title": "Alignment"
           },
           "read-only": {
-            "title": "Read only"
+            "title": "Read-only"
           },
-          "disable-cell-editing": {
-            "title": "Disable cell editing"
+          "disabled-editing": {
+            "title": "Disabled editing"
           }
         }
       },
@@ -204,6 +245,21 @@
           }
         }
       },
+      "utilities-demos": {
+        "title": "Utilities",
+        "demo": true,
+        "children": {
+          "context-menu": {
+            "title": "Context menu"
+          },
+          "custom-buttons": {
+            "title": "Custom buttons"
+          },
+          "comments": {
+            "title": "Comments"
+          }
+        }
+      },
       "appearance-demos": {
         "title": "Appearance",
         "demo": true,
@@ -211,35 +267,14 @@
           "conditional-formatting": {
             "title": "Conditional formatting"
           },
-          "custom-borders": {
-            "title": "Custom borders"
-          }
-        }
-      },
-      "mobiles-and-tablets-demos": {
-        "title": "Mobiles and Tablets",
-        "demo": true,
-        "children": {
+          "customizing-borders": {
+            "title": "Customizing borders"
+          },
+          "highlighting-selection": {
+            "title": "Highlighting selection"
+          },
           "mobiles-and-tablets": {
             "title": "Mobiles and tablets"
-          }
-        }
-      },
-      "utilities-demos": {
-        "title": "Utilities",
-        "demo": true,
-        "children": {
-          "search-for-values": {
-            "title": "Search for values"
-          },
-          "context-menu": {
-            "title": "Context menu"
-          },
-          "custom-buttons": {
-            "title": "Custom buttons"
-          },
-          "cell-comments": {
-            "title": "Comments"
           }
         }
       },
@@ -247,9 +282,6 @@
         "title": "Integrations",
         "demo": true,
         "children": {
-          "formula-support": {
-            "title": "RuleJS (formula support)"
-          },
           "jquery": {
             "title": "jQuery"
           },
