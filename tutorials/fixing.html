@@ -9,8 +9,6 @@
     <p><strong>Note:</strong> You'll need horizontal scrollbars, so just set a container <code>width</code> and <code>overflow:
       hidden</code> in CSS.</p>
 
-    <strong id="positions"></strong>
-
     <div data-jsfiddle="example1" class="scroll-container fixed-container">
       <div id="example1" class="hot"></div>
     </div>
@@ -31,7 +29,6 @@
         var
           myData = Handsontable.helper.createSpreadsheetData(100, 50),
           container = document.getElementById('example1'),
-          positions = document.getElementById('positions'),
           hot;
 
         hot = new Handsontable(container, {
@@ -42,14 +39,6 @@
           fixedRowsTop: 2,
           fixedColumnsLeft: 2
         });
-
-        setInterval(function () {
-          var str = '';
-
-          str += 'RowOffset: ' + hot.rowOffset();
-
-          positions.innerHTML = str;
-        }, 100);
       </script>
     </div>
   </div>
