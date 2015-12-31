@@ -3,6 +3,7 @@
 
 # directoroies
 .idea/*
+.sass-cache/*
 node_modules/*
 src/*
 generated/*
