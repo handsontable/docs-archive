@@ -32,8 +32,9 @@ $(function () {
   $('.navigation a:not(.link-header)').on('click', function() {
     setTimeout(updateNav, 100);
   });
-  $('.pro-switch').on('click', function() {
+  $('.pro-switch').on('click', function(event) {
     goTo(getDocUrl('pro/latest'));
+    event.preventDefault();
   });
   $('.free-switch').on('click', function(event) {
     event.preventDefault();
