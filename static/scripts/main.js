@@ -32,25 +32,14 @@ $(function () {
   $('.navigation a:not(.link-header)').on('click', function() {
     setTimeout(updateNav, 100);
   });
+  $('.pro-switch').on('click', function() {
+    goTo(getDocUrl('pro/latest'));
+  });
+  $('.free-switch').on('click', function(event) {
+    event.preventDefault();
+  });
 
-  var $current;
-
-  // Auto resizing on navigation
-/*  function _onResize() {
-    var height = $(window).height() - 118,
-      $el = $('.navigation');
-
-    $el.height(height).find('.list').height(height - 62);
-
-    // Scroll to the currently selected element
-    if ($current) {
-      $('.navigation').find('ul.list').first().scrollTop($current.position().top);
-    }
-  }
-  $(window).on('resize', _onResize);
-  _onResize();*/
-
-  $current = updateNav(true);
+  updateNav(true);
 
   var breadcrumbs = buildBreadcrumbs();
   $('div.breadcrumbs').eq(0).html(breadcrumbs);
@@ -277,30 +266,3 @@ function buildBreadcrumbs() {
 
   return breadcrumbs;
 }
-
-window.requestAnimFrame = (function(){
-  return  window.requestAnimationFrame ||
-    window.webkitRequestAnimationFrame ||
-    window.mozRequestAnimationFrame ||
-    function(callback) {
-      window.setTimeout(callback, 1000 / 60);
-    };
-})();
-
-// Ugly fix for dropdown menu
-/*function dropdownLoop() {
-  $('.dropdown').each(function(index, element) {
-    var btnStyle = element.previousElementSibling.style,
-      boxShadowStyle = btnStyle.boxShadow,
-      clipStyle = $(element).css('clip');
-
-    if (clipStyle === 'auto') {
-      btnStyle.boxShadow = '0 1px 0 #4B96E0 inset, -1px 0 0 #4B96E0 inset, 1px 0 0 #4B96E0 inset';
-
-    } else if (boxShadowStyle !== 'none') {
-      btnStyle.boxShadow = 'none';
-    }
-  });
-  requestAnimFrame(dropdownLoop);
-}
-dropdownLoop();*/
