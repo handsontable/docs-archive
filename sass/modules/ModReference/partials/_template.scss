@@ -266,6 +266,15 @@ body {
     font-size: 14px;
   }
 
+  h3::before,
+  h4::before {
+    display: block;
+    content: " ";
+    margin-top: -6rem;
+    height: 6rem;
+    visibility: hidden;
+  }
+
   dd {
     font-size: 13px;
     margin-left: 20px;
@@ -474,7 +483,7 @@ body {
     width: 100%;
     margin-bottom: 15px;
     &.params th,
-    &.params td, {
+    &.params td {
       border: 1px solid #e1e1e1;
     }
     th {

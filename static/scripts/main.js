@@ -131,9 +131,9 @@ function onSearchKeyUp() {
 
   if (value) {
     regexp = new RegExp(value, 'i');
-    $el.find('li, .itemMembers, .subheader, .sublist, .title.inner').hide();
+    $el.find('.list li, .itemMembers, .subheader, .sublist, .title.inner').hide();
 
-    $el.find('li').each(function (i, v) {
+    $el.find('.list li').each(function (i, v) {
       var $item = $(v);
 
       if ($item.data('name') && !$item.hasClass('multiple') && regexp.test($item.find("a").first().text())) {
