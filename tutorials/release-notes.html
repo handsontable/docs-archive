@@ -5,6 +5,32 @@
             Edit this page
         </a>
         <div class="example-container clearfix">
+            <h3>0.20.3</h3>
+            <p>Released on 8th of January, 2016</p>
+            <ul>
+                <li>Fixed problems with selecting columns between the table overlays.
+                    (<a href="https://github.com/handsontable/handsontable/issues/3092" target="_blank">#3092</a>)
+                </li>
+                <li>Added a <code>preventOverflow</code> config options, which allows a better control over placing Handsontable inside containers. See the issue thread for more details.
+                    (<a href="https://github.com/handsontable/handsontable/issues/3071" target="_blank">#3071</a>)
+                </li>
+                <li>Fixed issues with keyboard navigation, when the window controls the table's scrollbars.
+                    (<a href="https://github.com/handsontable/handsontable/issues/3070" target="_blank">#3070</a>)
+                </li>
+                <li>Fixed problems with column stretching, when Handsontable was placed inside a narrow container.
+                    (<a href="https://github.com/handsontable/handsontable/issues/3062" target="_blank">#3062</a>)
+                </li>
+                <li>Fixed problems with inserting and removing rows, while the maxRows parameter was defined.
+                    (<a href="https://github.com/handsontable/handsontable/issues/2928" target="_blank">#2928</a>)
+                </li>
+                <li>Fixed problems with overlays getting misaligned after removing rows.
+                </li>
+                <li>
+                    Added a <code>samplingRatio</code> parameter for the <code>autoColumnSize</code> and <code>autoRowSize</code> options. It overrides the default number of column (row) entries being sampled to estimate the column widths (row heights). It can be used, when you encounter column width changing after sorting the data.
+                </li>
+            </ul>
+        </div>
+        <div class="example-container clearfix">
             <h3>0.20.2</h3>
             <p>Released on 4th of December, 2015</p>
             <ul>
