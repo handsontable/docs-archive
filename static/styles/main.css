@@ -2147,6 +2147,7 @@ div.mce_inline_error {
  */
 /* [ component variables ] */
 .dropdown {
+  white-space: nowrap;
   /* [ arrow down ] */
   /* [ dropdown list] */
   /* [ mobile trigger: show / hide ] */ }
@@ -2897,7 +2898,7 @@ body {
     .navigation .search svg {
       width: 8px;
       height: 8px;
-      margin-left: 12px; }
+      margin-left: 6px; }
     .navigation .search input {
       border: 1px solid #C5C5C5;
       width: 75%;
@@ -3038,6 +3039,13 @@ body {
   .main h5 {
     font-weight: bold;
     font-size: 14px; }
+  .main h3::before,
+  .main h4::before {
+    display: block;
+    content: " ";
+    margin-top: -6rem;
+    height: 6rem;
+    visibility: hidden; }
   .main dd {
     font-size: 13px;
     margin-left: 20px; }
