@@ -127,7 +127,8 @@
           var args = _.toArray(arguments).slice(2).concat({at: index}),
             removed = this.models.slice(index, index + howMany);
 
-          this.remove(removed).add.apply(this, args);
+          this.remove(removed);
+          this.add.apply(this, args);
 
           return removed;
         }
