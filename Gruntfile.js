@@ -56,7 +56,6 @@ module.exports = function (grunt) {
           '!' + HOT_SRC_PATH + '/src/outro.js',
           // temp fix for file using arrow function - waiting for jsdoc support
           '!' + HOT_SRC_PATH + '/src/plugins/contextMenuCopyPaste/contextMenuCopyPaste.js',
-          '!' + HOT_SRC_PATH + '/src/plugins/columnSorting/columnSorting.js',
           '!' + HOT_SRC_PATH + '/src/plugins/multipleSelectionHandles/multipleSelectionHandles.js',
           '!' + HOT_SRC_PATH + '/src/plugins/touchScroll/touchScroll.js',
           '!' + HOT_SRC_PATH + '/src/renderers/checkboxRenderer.js',
