@@ -10,20 +10,17 @@
       <ul>
         <li><strong>Backward incompatible change</strong>
           <br>
-          The <code>afterValidate</code> hook will not provide the *visual* row indexes, instead of the *logical* ones. For example, if the first row becomes the seventh row after sorting the table, the <code>afterValidate</code> hook will provide <code>6</code> as the row index.
+          The <code>afterValidate</code> hook will provide the <i>visual</i> row indexes, instead of the <i>logical</i> ones. For example, if the first row becomes the seventh row after sorting the table, the <code>afterValidate</code> hook will provide <code>6</code> as the row index.
 
-          To translate the *visual* row to the *logical* row, you can use the <code>translateRow</code> method of the <code>columnSorting</code> plugin.
-          ```js
-          var logicalRow = hotInstance.getPlugin('columnSorting').translateRow(row);
-          ```
-          Related issue: <a href="https://github.com/handsontable/handsontable/issues/3132" target="_blank">3132</a></li>
-        <li>Added a slight delay to the Context Menu <li>now opening submenus happens after a little timeout. (<a href="https://github.com/handsontable/handsontable/issues/3126" target="_blank">3126</a>)</li></li>
-        <li>Fixed problem with the Context Menu's submenus opening beyond the document, when Context Menu was triggered near the right side of the page. (<a href="https://github.com/handsontable/handsontable/issues/3124" target="_blank">3124</a>)</li>
-        <li>Fixed problem with column sorting not working after horizontally scrolling the table. (<a href="https://github.com/handsontable/handsontable/issues/3014" target="_blank">3014</a>)</li>
-        <li>Fixed problem with the wrong property being passed to the renderer while rendering the ghost table. (<a href="https://github.com/handsontable/handsontable/issues/2830" target="_blank">2830</a>)</li>
-        <li>Fixed problem with <code>null</code> values being added to the spare rows, when using the HTML cell renderer. (<a href="https://github.com/handsontable/handsontable/issues/2816" target="_blank">2816</a>)</li>
-        <li>Fixed extremely slow scrolling in Firefox, happening when the Firefox's *smooth scrolling* feature was enabled. (<a href="https://github.com/handsontable/handsontable/issues/2520" target="_blank">2520</a>)</li>
-        <li>Made the <code>callback</code> argument for the <code>validateCells</code> method optional. (<a href="https://github.com/handsontable/handsontable/issues/933" target="_blank">933</a>)</li>
+          To translate the <i>visual</i> row to the <i>logical</i> row, you can use the <code>translateRow</code> method of the <code>columnSorting</code> plugin (<a href="https://github.com/handsontable/handsontable/issues/3132" target="_blank">#3132</a>).
+          <pre><code class="lang-js">var logicalRow = hotInstance.getPlugin('columnSorting').translateRow(row);</code></pre>
+        <li>Added a slight delay to the Context Menu <li>now opening submenus happens after a little timeout. (<a href="https://github.com/handsontable/handsontable/issues/3126" target="_blank">#3126</a>)</li></li>
+        <li>Fixed problem with the Context Menu's submenus opening beyond the document, when Context Menu was triggered near the right side of the page. (<a href="https://github.com/handsontable/handsontable/issues/3124" target="_blank">#3124</a>)</li>
+        <li>Fixed problem with column sorting not working after horizontally scrolling the table. (<a href="https://github.com/handsontable/handsontable/issues/3014" target="_blank">#3014</a>)</li>
+        <li>Fixed problem with the wrong property being passed to the renderer while rendering the ghost table. (<a href="https://github.com/handsontable/handsontable/issues/2830" target="_blank">#2830</a>)</li>
+        <li>Fixed problem with <code>null</code> values being added to the spare rows, when using the HTML cell renderer. (<a href="https://github.com/handsontable/handsontable/issues/2816" target="_blank">#2816</a>)</li>
+        <li>Fixed extremely slow scrolling in Firefox, happening when the Firefox's *smooth scrolling* feature was enabled. (<a href="https://github.com/handsontable/handsontable/issues/2520" target="_blank">#2520</a>)</li>
+        <li>Made the <code>callback</code> argument for the <code>validateCells</code> method optional. (<a href="https://github.com/handsontable/handsontable/issues/933" target="_blank">#933</a>)</li>
       </ul>
     </div>
     <div class="example-container clearfix">
