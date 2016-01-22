@@ -462,6 +462,8 @@ body {
     margin: 0;
     font-size: 14px;
     counter-reset: codeLine;
+    position: relative;
+    z-index: 300;
 
     .code-line {
       counter-increment: codeLine;
