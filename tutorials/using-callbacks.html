@@ -149,7 +149,7 @@
       $('#check_select_all').click(function () {
         var state = this.checked;
 
-        $('input[type=checkbox]').each(function () {
+        $('#hooksList input[type=checkbox]').each(function () {
           if (state === true) {
             if (this.id === 'check_modifyRow') {
               return; //too much noise in the log
@@ -159,7 +159,7 @@
         });
       });
 
-      $('input[type=checkbox]').click(function () {
+      $('#hooksList input[type=checkbox]').click(function () {
         if (!this.checked) {
           document.getElementById('check_select_all').checked = false;
         }
