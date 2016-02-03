@@ -5,10 +5,92 @@
       Edit this page
     </a>
     <div class="example-container clearfix">
+      <h3>0.22.0</h3>
+      <p>Released on 3th of February, 2016</p>
+      <strong>Backward incompatible change</strong>
+      <br>
+      <p>
+        We're changing the plugin disabling process. Right now it's not available to all plugins, but we'll gradually move towards full consistency.
+      </p>
+      <ul>
+        <li><code>ManualColumnMove</code></li>
+        <li><code>ManualColumnResize</code></li>
+        <li><code>ManualRowMove</code></li>
+        <li><code>ManualRowResize</code></li>
+      </ul>
+
+      <p>Before changes:</p>
+      <pre><code class="lang-js">var hot = new Handsontable(element, {
+  manualRowResize: [100, 200]
+});
+
+hot.updateSettings({
+  manualRowResize: true // This would reset the internal plugin settings, which would result in resetting the row heights.
+});
+</code></pre>
+
+      <p>After changes:</p>
+      <pre><code class="lang-js">var hot = new Handsontable(element, {
+  manualRowResize: [100, 200]
+});
+
+hot.updateSettings({
+  manualRowResize: true // This will NOT reset any previously applied settings.
+});
+
+// To reset the plugin to its initial state, pass an empty array or disable plugin by passing `false`
+hot.updateSettings({
+  manualRowResize: []
+});
+</code></pre>
+
+      <p>Related issue: <a href="https://github.com/handsontable/handsontable/issues/3150" target="_blank">#3150</a></p>
+
+      <p>Before changes:</p>
+      <pre><code>var hot = new Handsontable(element, {
+  columnSorting: {
+    column: 2,
+    sortOrder: true
+  }
+});
+hot.updateSettings({
+  columnSorting: true // This would reset the internal plugin settings, which would result in resetting the sorting state.
+});
+</code></pre>
+
+      <p>After changes:</p>
+      <pre><code>var hot = new Handsontable(element, {
+  columnSorting: {
+    column: 2,
+    sortOrder: true
+  }
+});
+
+hot.updateSettings({
+  columnSorting: true // This will NOT reset any previously applied settings.
+});
+</code></pre>
+
+      <p>To reset the plugin to its initial state, you'll need to disable the plugin and enable it again (or simply set a different sorting using the <code>sort</code> method).
+        Related issue: <a href="https://github.com/handsontable/handsontable/issues/3173" target="_blank">#3173</a></p>
+
+      <ul>
+        <li>Added backend sorting support. To bind your custom sorting action to the Handsontable UI, you can return <code>false</code> from the <code>beforeColumnSort</code> hook. What it does, is stopping the default sorting process, thus allowing you to implement your own solution. (<a href="https://github.com/handsontable/handsontable/issues/3173" target="_blank">#3173</a>)</li>
+        <li>Re-added the <code>registerPlugin</code> method, missing from version 0.20.1. (<a href="https://github.com/handsontable/handsontable/issues/3167" target="_blank">#3167</a>)</li>
+        <li>Fixed issues with manual column resize not working properly when the `stretchH: 'all'` option was enabled. (<a href="https://github.com/handsontable/handsontable/issues/3166" target="_blank">#3166</a>)</li>
+        <li>Fixed problem with misaligned border of the edited cell in the first row. (<a href="https://github.com/handsontable/handsontable/issues/3153" target="_blank">#3153</a>)</li>
+        <li>Added <code>rowHeaderWidth</code> and <code>columnHeaderHeight</code> options, which allow resizing of the headers by either providing the width/height as a number, or an array of widths/heights. (<a href="https://github.com/handsontable/handsontable/issues/2868" target="_blank">#2868</a>)</li>
+        <li>Fixed problem with editing cells with very long content. (<a href="https://github.com/handsontable/handsontable/issues/2855" target="_blank">#2855</a>)</li>
+        <li>Fixed problem with resizing fixed rows/columns. (<a href="https://github.com/handsontable/handsontable/issues/2683" target="_blank">#2683</a>)</li>
+        <li>Documentation updates. (<a href="https://github.com/handsontable/handsontable/issues/3169" target="_blank">#3169</a>)</li>
+      </ul>
+    </div>
+    <div class="example-container clearfix">
       <h3>0.21.0</h3>
       <p>Released on 20th of January, 2016</p>
       <ul>
-        <li><strong>Backward incompatible change</strong>
+        <li>
+          <strong>Backward incompatible change</strong>
           <br>
           The <code>afterValidate</code> hook will provide the <i>visual</i> row indexes, instead of the <i>logical</i> ones. For example, if the first row becomes the seventh row after sorting the table, the <code>afterValidate</code> hook will provide <code>6</code> as the row index.
 
