@@ -48,19 +48,9 @@ module.exports = function (grunt) {
       docs: {
         src: [
           HOT_SRC_PATH + '/src/**/*.js',
-          'tutorials/INDEX.md',
           '!' + HOT_SRC_PATH + '/src/**/*.spec.js',
           '!' + HOT_SRC_PATH + '/src/3rdparty/walkontable/src/**/*.js',
           '!' + HOT_SRC_PATH + '/src/3rdparty/walkontable/test/**/*.js',
-          '!' + HOT_SRC_PATH + '/src/intro.js',
-          '!' + HOT_SRC_PATH + '/src/outro.js',
-          // temp fix for file using arrow function - waiting for jsdoc support
-          '!' + HOT_SRC_PATH + '/src/plugins/contextMenuCopyPaste/contextMenuCopyPaste.js',
-          '!' + HOT_SRC_PATH + '/src/plugins/multipleSelectionHandles/multipleSelectionHandles.js',
-          '!' + HOT_SRC_PATH + '/src/plugins/touchScroll/touchScroll.js',
-          '!' + HOT_SRC_PATH + '/src/renderers/checkboxRenderer.js',
-          '!' + HOT_SRC_PATH + '/src/editors/dateEditor.js',
-          '!' + HOT_SRC_PATH + '/src/eventManager.js'
         ],
         jsdoc: 'node_modules/.bin/' + (/^win/.test(process.platform) ? 'jsdoc.cmd' : 'jsdoc'),
         options: {
