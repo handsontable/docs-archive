@@ -27,6 +27,7 @@
     "grunt-jsdoc": "^0.5.8",
     "grunt-robots-txt": "~0.3.0",
     "grunt-sitemap": "1.2.1",
+    "grunt-env": "0.4.4",
     "jsdoc": "3.4.0",
     "minimist": "^1.1.1",
     "semver": "^4.3.4"

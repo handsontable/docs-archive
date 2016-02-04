@@ -5,7 +5,8 @@
   "plugins": [
     "node_modules/grunt-jsdoc/node_modules/jsdoc/plugins/markdown",
     "plugins/pluginTag",
-    "plugins/utilTag"
+    "plugins/utilTag",
+    "plugins/proTag"
   ],
   "templates": {
     "cleverLinks": true,

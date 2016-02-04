@@ -1,5 +1,10 @@
 # files
 .DS_Store
+.env.json
+
+# compiled files
+static/styles/main.css
+static/styles/main.css.map
 
 # directoroies
 .idea/*

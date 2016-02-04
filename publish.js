@@ -234,6 +234,7 @@ function buildNav(members) {
       push({
         isPlugin: v.plugin ? 1 : 0,
         plugin: v.plugin,
+        isPro: v.pro ? 1 : 0,
         isUtil: v.util ? 1 : 0,
         type: 'namespace',
         longname: v.longname,
@@ -264,6 +265,7 @@ function buildNav(members) {
       push({
         isPlugin: v.plugin ? 1 : 0,
         plugin: v.plugin,
+        isPro: v.pro ? 1 : 0,
         isUtil: v.util ? 1 : 0,
         type: 'class',
         longname: v.longname,
@@ -288,6 +290,15 @@ function buildNav(members) {
       });
     });
   }
+
+  var plugins = nav.plugins;
+
+  nav.plugins = {};
+
+  // Sort plugins alphabetically
+  Object.keys(plugins).sort().forEach(function(pluginName) {
+    nav.plugins[pluginName] = plugins[pluginName];
+  });
 
   return nav;
 }
@@ -319,6 +330,7 @@ exports.publish = function(taffyData, opts, tutorials) {
   view.layout = 'layout.tmpl';
 
   extendTutorialsObj(tutorials, "external");
+  extendTutorialsObj(tutorials, "pro");
   extendTutorialsObj(tutorials, "demo");
   extendTutorialsObj(tutorials, "since");
 
@@ -538,6 +550,7 @@ exports.publish = function(taffyData, opts, tutorials) {
     var tutorialData = {
       title: title,
       header: tutorial.title,
+      pro: tutorial.pro,
       content: _.template(tutorial.parse(), null, {
         evaluate: /<\?js([\s\S]+?)\?>/g,
         interpolate: /<\?js=([\s\S]+?)\?>/g,

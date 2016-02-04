@@ -4,14 +4,30 @@ var GitHubApi = require('github');
 var Promise = require('bluebird');
 var fs = require('fs');
 var semver = require('semver');
+var github;
 
-var github = new GitHubApi({
-  version: '3.0.0',
-  timeout: 5000,
-  headers: {
-    'user-agent': 'Handsontable'
+/**
+ * Setup the Github API helper objects and authenticate them.
+ *
+ * @param {String} githubToken The Github access token.
+ */
+exports.setupGitApi = function setupGitApi(githubToken) {
+  if (github) {
+    return;
   }
-});
+  github = new GitHubApi({
+    version: '3.0.0',
+    timeout: 5000,
+    headers: {
+      'user-agent': 'Handsontable'
+    }
+  });
+
+  github.authenticate({
+    type: 'oauth',
+    token: githubToken
+  });
+};
 
 /**
  * Get information about local repository.

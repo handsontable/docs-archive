@@ -178,7 +178,13 @@ module.exports = function (grunt) {
           verbose: true
         }
       }
-    }
+    },
+
+    env: {
+      build: {
+        src : '.env.json'
+      }
+    },
   });
 
   grunt.registerTask('server', [
@@ -187,10 +193,15 @@ module.exports = function (grunt) {
     'watch'
   ]);
 
+  grunt.registerTask('authenticate-git', ['env:build', 'authenticate-git-internal']);
+  grunt.registerTask('authenticate-git-internal', 'Authenticate Github', function() {
+    gitHelper.setupGitApi(process.env.GITHUB_TOKEN);
+  });
 
-  grunt.registerTask('default', 'Create documentation for Handsontable', function () {
+  grunt.registerTask('default', 'Create documentation for Handsontable', function() {
     var timer;
 
+    grunt.task.run('authenticate-git');
     grunt.task.run('update-hot');
 
     timer = setInterval(function() {
@@ -222,7 +233,8 @@ module.exports = function (grunt) {
     });
   });
 
-  grunt.registerTask('build', 'Generate documentation for Handsontable', function () {
+  grunt.registerTask('build', ['authenticate-git', 'build-internal']);
+  grunt.registerTask('build-internal', 'Generate documentation for Handsontable', function () {
     var done = this.async();
     var hotPackage;
 
@@ -253,4 +265,5 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-open');
   grunt.loadNpmTasks('grunt-robots-txt');
   grunt.loadNpmTasks('grunt-sitemap');
+  grunt.loadNpmTasks('grunt-env');
 };

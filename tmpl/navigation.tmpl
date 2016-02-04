@@ -78,6 +78,7 @@
           <?js if (item.members.length) { ?>
             <span class="subtitle">Members</span>
             <?js item.members.forEach(function (v) { ?>
+              <?js if (v.pro) { return } ?>
               <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
             <?js }); ?>
           <?js } ?>
@@ -86,6 +87,7 @@
           <?js if (item.typedefs.length) { ?>
             <span class="subtitle">Typedefs</span>
             <?js item.typedefs.forEach(function (v) { ?>
+              <?js if (v.pro) { return } ?>
               <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
             <?js }); ?>
           <?js } ?>
@@ -94,6 +96,7 @@
           <?js if (item.methods.length) { ?>
             <span class="subtitle">Methods</span>
             <?js item.methods.forEach(function (v) { ?>
+              <?js if (v.pro) { return } ?>
               <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
             <?js }); ?>
           <?js } ?>
@@ -102,6 +105,7 @@
           <?js if (item.events.length) { ?>
             <span class="subtitle">Events</span>
             <?js item.events.forEach(function (v) { ?>
+              <?js if (v.pro) { return } ?>
               <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
             <?js }); ?>
           <?js } ?>
