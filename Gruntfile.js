@@ -222,7 +222,8 @@ module.exports = function (grunt) {
     grunt.task.run('gitclone');
   });
 
-  grunt.registerTask('generate-doc-versions', 'Generate documentation for Handsontable', function () {
+  grunt.registerTask('generate-doc-versions', ['authenticate-git', 'generate-doc-versions-internal']);
+  grunt.registerTask('generate-doc-versions-internal', 'Generate documentation for Handsontable', function () {
     var done = this.async();
 
     gitHelper.getDocsVersions().then(function(branches) {
