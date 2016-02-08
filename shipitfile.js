@@ -50,7 +50,7 @@ module.exports = function (shipit) {
   shipit.on('updated', function() {
     var path = shipit.releasePath;
 
-    shipit.remote('cd ' + path + ' && npm install --production').then(function() {
+    shipit.remote('cd ' + path + ' && npm set progress=false && npm install --production').then(function() {
       return shipit.remote('cd ' + path + ' && cp ../../../web.env .env.json');
 
     }).then(function() {
