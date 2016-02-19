@@ -90,7 +90,8 @@
         "title": "Releasing",
         "children": {
           "roadmap": {
-            "title": "Roadmap"
+            "title": "Roadmap",
+            "external": "https://trello.com/b/PztR4hpj/handsontable-roadmap-2016"
           },
           "release-notes": {
             "title": "Release notes"
