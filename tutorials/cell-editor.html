@@ -92,7 +92,7 @@
       and you don't want <code>EditorManager</code> to close the editor when user press those keys. That's why
       <code>EditorManager</code> runs <code>beforeKeyDown</code>
       hook before processing user events. If you register a listener for <code>beforeKeyDown</code>, that call <code>stopImmediatePropagation()</code>
-      on <code>event</code> object <code>EditorManager</code> won perform its default action. More on overriding <code>EditorManager</code>'s
+      on <code>event</code> object <code>EditorManager</code> won't perform its default action. More on overriding <code>EditorManager</code>'s
       behaviour in section
       &quot;SelectEditor - creating editor from scratch&quot;.</p>
     <p>You should now have a better understanding on how <code>EditorManager</code> works. Let's go a bit deeper and see
