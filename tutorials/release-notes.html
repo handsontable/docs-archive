@@ -5,6 +5,33 @@
       Edit this page
     </a>
     <div class="example-container clearfix">
+      <h3>0.23.0</h3>
+      <p>Released on 19th of February, 2016</p>
+      <strong>Backward incompatible change</strong>
+      <br>
+      <ul>
+        <li>Refactored the <code>observeChanges</code> plugin. We have removed properties <code>hot.observedData</code> and <code>hot.observeChangesActive</code>. (<a href="https://github.com/handsontable/handsontable/issues/3213" target="_blank">#3213</a>)</li>
+        <li>Added an <code>allowEmpty</code> option (<code>true</code> by default) which unifies the validators' behavior. Now both numeric and date cell types accept empty values. (<a href="https://github.com/handsontable/handsontable/issues/2662" target="_blank">#2662</a>)</li>
+        <li>Fixed shifting cell meta when user wants to insert a new row or a column. (<a href="https://github.com/handsontable/handsontable/issues/1823" target="_blank">#1823</a>)</li>
+      </ul>
+      <br>
+      <strong>Changes</strong>
+      <br>
+      <ul>
+        <li>Added a new functionality for the <code>fillHandle</code> option to prevent creating new rows when dragging down the fill handle. (<a href="https://github.com/handsontable/handsontable/issues/2874" target="_blank">#2874</a>)</li>
+        <li>Fixed a problem with <code>SampleGenerator</code> class which was transforming every value into a string. Because of that the row's height and width were incorrectly calculated. (<a href="https://github.com/handsontable/handsontable/issues/3248" target="_blank">#3248</a>)</li>
+        <li>Fixed calling the sort method not being reflected in the sort indicator. (<a href="https://github.com/handsontable/handsontable/issues/3245" target="_blank">#3245</a>)</li>
+        <li>Fixed the <code>maxDate</code> property which specified in <code>datePickerConfig</code> didn't work in Pikaday. (<a href="https://github.com/handsontable/handsontable/issues/3225" target="_blank">#3225</a>)</li>
+        <li>Fixed <code>AutoColumnSize</code> which wasn't adjusting the columns' width properly when data was pasted into them. (<a href="https://github.com/handsontable/handsontable/issues/3223" target="_blank">#3223</a>)</li>
+        <li>Fixed the scrollbar that jumped back a few pixels causing a "flickering" effect. (<a href="https://github.com/handsontable/handsontable/issues/3204" target="_blank">#3204</a>)</li>
+        <li>Fixed updating ContextMenu items by calling <code>updateSettings</code>. (<a href="https://github.com/handsontable/handsontable/issues/3191" target="_blank">#3191</a>)</li>
+        <li>Fixed the dropdown/context menu issues that caused its wrong rendering when hovered or near the window's edge. (<a href="https://github.com/handsontable/handsontable/issues/3125" target="_blank">#3125</a>)</li>
+        <li>Fixed an issue with two rows being pasted instead of just one inside the Angular 2 application. (<a href="https://github.com/handsontable/handsontable/issues/3123" target="_blank">#3123</a>)</li>
+        <li>Fixed <code>null</code> document.activeElement that was causing an error in Internet Explorer. (<a href="https://github.com/handsontable/handsontable/issues/2705" target="_blank">#2705</a>)</li>
+        <li>Fixed sort indicator showing an incorrect data order. (<a href="https://github.com/handsontable/handsontable/issues/2676" target="_blank">#2676</a>)</li>
+      </ul>
+    </div>
+    <div class="example-container clearfix">
       <h3>0.22.0</h3>
       <p>Released on 3th of February, 2016</p>
       <strong>Backward incompatible change</strong>
