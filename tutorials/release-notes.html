@@ -5,6 +5,36 @@
       Edit this page
     </a>
     <div class="example-container clearfix">
+      <h3>0.24.0</h3>
+      <p>Released on 15th of March, 2016</p>
+      <strong>Backward incompatible change</strong>
+      <br>
+      <ul>
+        <li>
+          Moved the <code>manualColumnPositions</code> and <code>manualRowPositions</code> array from the main HOT instance object to the plugins (<a href="https://github.com/handsontable/handsontable/issues/1823" target="_blank">#3281</a>), and renamed it to:
+      <pre><code class="lang-js">hot.getPlugin('manualColumnMove').columnPositions;
+
+hot.getPlugin('manualRowMove').rowPositions;
+</code></pre>
+        </li>
+      </ul>
+      <br>
+      <strong>Changes</strong>
+      <br>
+      <ul>
+        <li>Added a possibility to define a custom sorting function. For more details, see <code>sortFunction</code> in our docs. (<a href="https://github.com/handsontable/handsontable/issues/3308" target="_blank">#3308</a>)</li>
+        <li>Fixed a problem with an error being thrown when updating the <code>columns</code> property via <code>updateSettings</code>. (<a href="https://github.com/handsontable/handsontable/issues/3297" target="_blank">#3297</a>)</li>
+        <li>Fixed a problem with a wrong column being removed while using the manual column move plugin and undo/redo issues connected with it. (<a href="https://github.com/handsontable/handsontable/issues/3281" target="_blank">#3281</a>)</li>
+        <li>Implemented a cache for getting a length of the dataset. (<a href="https://github.com/handsontable/handsontable/issues/3275" target="_blank">#3275</a>)</li>
+        <li>Fixed a problem with updating the table height braking the table. (<a href="https://github.com/handsontable/handsontable/issues/3255" target="_blank">#3255</a>)</li>
+        <li>Added the time cell type and time validator. (<a href="https://github.com/handsontable/handsontable/issues/3254" target="_blank">#3254</a>)</li>
+        <li>Fixed a glitch when the column-moving handle was flickering. (<a href="https://github.com/handsontable/handsontable/issues/3134" target="_blank">#3134</a>)</li>
+        <li>Fixed a bug with propToCol method returned wrong values after moving the columns. (<a href="https://github.com/handsontable/handsontable/issues/3091" target="_blank">#3091</a>)</li>
+        <li>Fixed a problem with updating the stretchH property. (<a href="https://github.com/handsontable/handsontable/issues/2719" target="_blank">#2719</a>)</li>
+        <li>Added a separate sorting algorithm for the numeric cell type. (<a href="https://github.com/handsontable/handsontable/issues/3318" target="_blank">#3318</a>)</li>
+      </ul>
+    </div>
+    <div class="example-container clearfix">
       <h3>0.23.0</h3>
       <p>Released on 19th of February, 2016</p>
       <strong>Backward incompatible change</strong>
