@@ -5,16 +5,34 @@
       Edit this page
     </a>
     <p>Use the <strong>validator</strong> (see <a
-      href="/<?js= version ?>/Options.html">options page</a>) method to easily
+      href="/<?js= version ?>/Options.html#validator">options page</a>) method to easily
       validate synchronous or asynchronous changes to a cell. If you
       need more control, <strong>beforeValidate</strong> and <strong>afterValidate</strong> plugin hooks are available (see <a
-        href="/<?js= version ?>/Hooks.html">hooks page</a>).
+        href="/<?js= version ?>/Hooks.html#event:beforeValidate">hooks page</a>).
     In the below example, <code>email_validator_fn</code> is an async validator that resolves after 1000 ms.
     </p>
-    <p>Use the <strong>allowInvalid</strong> option (see <a href="/<?js= version ?>/Options.html">options page</a>) to define if the
+    <p>Use the <strong>allowInvalid</strong> option (see <a href="/<?js= version ?>/Options.html#allowInvalid">options page</a>) to define if the
       grid should accept input that does not validate.
       If you need to modify the input (e.g. censor bad words, uppercase first letter), use the plugin hook <strong>beforeChange</strong>
-      (see <a href="/<?js= version ?>/Hooks.html">hooks page</a>).
+      (see <a href="/<?js= version ?>/Hooks.html#event:beforeChange">hooks page</a>).
+    </p>
+    <p>
+      By default all invalid cells are marked by <code>htInvalid</code> CSS class. If you want to change class to another you can basically add
+      the <a href="/<?js= version ?>/Options.html#invalidCellClassName">invalidCellClassName</a> option to Handsontable settings. For example:
+    <pre><code class="lang-js">// For whole table
+...
+invalidCellClassName: 'myInvalidClass',
+...
+
+// For specified columns
+...
+columns: [
+  {data: 'firstName', invalidCellClassName: 'myInvalidClass'},
+  {data: 'lastName', invalidCellClassName: 'myInvalidSecondClass'},
+  {data: 'address'},
+]
+...
+</code></pre>
     </p>
 
     <div data-jsfiddle="example1">
