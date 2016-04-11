@@ -5,6 +5,25 @@
       Edit this page
     </a>
     <div class="example-container clearfix">
+      <h3>0.24.2</h3>
+      <p>Released on 11th of April, 2016</p>
+      <strong>Changes</strong>
+      <br>
+      <ul>
+        <li>Added delegation for the checkbox listeners. (<a href="https://github.com/handsontable/handsontable/issues/3211" target="_blank">#3211</a>)</li>
+        <li>New feature: if you select multiple columns/rows and resize one of them - each of them will get the new width/height. (<a href="https://github.com/handsontable/handsontable/issues/3371" target="_blank">#3371</a>)</li>
+        <li>Fixed problem with date picker automatically changing the time to 12:00. (<a href="https://github.com/handsontable/handsontable/issues/3360" target="_blank">#3360</a>)</li>
+        <li>Fixed problem with date cells, where the table would offset the specified date by the hour difference of the timezone, sometimes resulting in previous day being saved to the dataset. (<a href="https://github.com/handsontable/handsontable/issues/3338" target="_blank">#3338</a>)</li>
+        <li>Moved the <code>afterRender</code> hook to fire after all the rendering-connected operations are finished. (<a href="https://github.com/handsontable/handsontable/issues/3306" target="_blank">#3306</a>)</li>
+        <li>Modified the autocomplete/dropdown editor, so it opens upwards if there is not enough space below the edited cell. (<a href="https://github.com/handsontable/handsontable/issues/3210" target="_blank">#3210</a>)</li>
+        <li>Fixed problem with object datasets containing keys reserved for the <code>Array</code> prototype (like <code>length</code>, for example).. (<a href="https://github.com/handsontable/handsontable/issues/3145" target="_blank">#3145</a>)</li>
+        <li>Fixed problem with <code>stopImmediatePropagation</code> not blocking the <kbd>CTRL</kbd>+<kbd>X</kbd>  action. (<a href="https://github.com/handsontable/handsontable/issues/3011" target="_blank">#3011</a>)</li>
+        <li>Fixed problem with autofill writing data to row headers. (<a href="https://github.com/handsontable/handsontable/issues/3384" target="_blank">#3384</a>)</li>
+        <li>Added the <code>beforeRenderer</code> hook. (<a href="https://github.com/handsontable/handsontable/issues/3389" target="_blank">#3389</a>)</li>
+        <li>Added Handsontable to npm, jspm and NuGet.</li>
+      </ul>
+    </div>
+    <div class="example-container clearfix">
       <h3>0.24.1</h3>
       <p>Released on 16th of March, 2016</p>
       <strong>Changes</strong>
