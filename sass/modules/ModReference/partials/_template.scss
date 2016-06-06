@@ -387,12 +387,13 @@ body {
 
   .tag-source {
     position: absolute;
-    top: 17px;
+    top: 27px;
     right: 0;
     font-size: 10px;
   }
   dt {
     position: relative;
+    overflow: hidden;
   }
   dt.tag-source {
     margin-top: 5px;
