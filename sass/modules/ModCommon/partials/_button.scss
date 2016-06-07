@@ -3,117 +3,128 @@
  */
 
 .btn {
-    @include vertical-align(52px);
-    font-size: 0.938em; /* 15px */
-    font-weight: 600;
-    text-align: center;
-    white-space: nowrap;
-    display: inline-block;
-    width: 100%;
-    padding: 0 27px;
-    border: none;
-    
-    @media only screen and (min-width: $mediumWidth) {
-        @include vertical-align(42px);
-        width: auto;
-    }   
+  @include vertical-align(52px);
+  font-size: 0.938em; /* 15px */
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+  display: inline-block;
+  border-radius: 4px;
+  width: 100%;
+  padding: 0 27px;
+  border: none;
 
+  @media only screen and (min-width: $mediumWidth) {
+    @include vertical-align(42px);
+    width: auto;
+  }
+
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+  }
+
+  &.blue {
+    color: #FFF;
+    background: $linkColor;
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $brandBlueActive;
+    }
+  }
+
+  &.red {
+    color: #FFF;
+    background: $brandRed;
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $brandRedActive;
+    }
+  }
+
+  &.green {
+    color: #FFF;
+    background: $brandGreen;
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $brandGreenActive;
+    }
+  }
+
+  &.gray {
+    color: #FFF;
+    background: $darkGray;
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $darkGrayActive;
+    }
+  }
+
+  &.ghost-blue,
+  &.ghost-red {
+    border: 2px solid currentColor;
+    background: transparent;
+  }
+
+  &.ghost-blue {
+    color: $linkColor;
+
+    &.large {
+      line-height: 55px;
+
+      @media only screen and (min-width: $mediumWidth) {
+        line-height: 45px;
+      }
+    }
 
     &:hover,
     &:focus,
     &:active {
-        text-decoration: none; 
+      color: $brandBlueActive;
+      border-color: currentColor;
     }
+  }
 
-    &.blue {
-        color: #FFF;
-        background: $linkColor;
-        &:hover,
-        &:focus,
-        &:active {
-            background-color: $brandBlueActive;
-        }
-    }
-
-    &.red {
-        color: #FFF;
-        background: $brandRed;
-        &:hover,
-        &:focus,
-        &:active {
-            background-color: $brandRedActive;
-        }
-    }
-
-    &.green {
-        color: #FFF;
-        background: $brandGreen;
-        &:hover,
-        &:focus,
-        &:active {
-            background-color: $brandGreenActive;
-        }
-    }
-
-    &.ghost-blue,
-    &.ghost-red {
-        border: 2px solid currentColor;
-        background: transparent;
-    }
-
-    &.ghost-blue {
-        color: $linkColor;
-
-        &.large {
-            line-height: 55px;
-
-            @media only screen and (min-width: $mediumWidth) {
-                line-height: 45px;
-            }  
-        }
-
-        &:hover,
-        &:focus,
-        &:active {
-            color: $brandBlueActive;
-            border-color: currentColor;
-        }
-    }
-
-    &.ghost-red {
-        color: $brandRed;
-
-        &.large {
-             line-height: 45px;
-        }
-
-        &:hover,
-        &:focus,
-        &:active {
-            color: $brandRedActive;
-            border-color: currentColor;
-        }
-    }
-
-    &.large,
-    &.small {
-        text-transform: uppercase;
-    }
+  &.ghost-red {
+    color: $brandRed;
 
     &.large {
-        @include vertical-align(60px);
-        font-size: 0.938em; /* 15px */
-        padding: 0 33px;
-
-        @media only screen and (min-width: $mediumWidth) {
-            @include vertical-align(50px);
-        }  
+      line-height: 45px;
     }
 
-    &.small {
-        font-size: 0.813em; /* 13px */
-        height: 38px;
-        line-height: 35px;
-        padding: 0 28px;
+    &:hover,
+    &:focus,
+    &:active {
+      color: $brandRedActive;
+      border-color: currentColor;
     }
+  }
+
+  &.large,
+  &.small {
+    text-transform: uppercase;
+  }
+
+  &.large {
+    @include vertical-align(60px);
+    font-size: 0.938em; /* 15px */
+    padding: 0 33px;
+
+    @media only screen and (min-width: $mediumWidth) {
+      @include vertical-align(50px);
+    }
+  }
+
+  &.small {
+    font-size: 0.813em; /* 13px */
+    height: 38px;
+    line-height: 35px;
+    padding: 0 20px;
+  }
 }

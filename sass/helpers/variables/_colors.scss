@@ -9,10 +9,6 @@ $brandGreen: #7EC896;
 $brandDeepNavy: #404B5B;
 $brandYellow: #FAD97F;
 
-$brandBlueActive: darken($brandBlue, 8%);
-$brandRedActive: darken($brandRed, 8%);
-$brandGreenActive: darken($brandGreen, 8%);
-
 /* [ shades of grays] */
 $baseGray: #474747;
 $darkGray: #8D8D8D;
@@ -20,6 +16,15 @@ $gray: #CFCFCF;
 $middleGray: #C5C5C5;
 $lightGray: #E3E3E3;
 $ultraLightGray: #F5F5F5;
+$darkWhite: #f7f7f7;
+
+/* [ active colors ] */
+$brandBlueActive: darken($brandBlue, 8%);
+$brandRedActive: darken($brandRed, 8%);
+$brandGreenActive: darken($brandGreen, 8%);
+$darkGrayActive: darken($darkGray, 8%);
+$lightGrayActive: darken($lightGray, 8%);
+$darkWhiteActive: darken($darkWhite, 8%);
 
 /* [ functional color ] */
 $textColor: $baseGray;

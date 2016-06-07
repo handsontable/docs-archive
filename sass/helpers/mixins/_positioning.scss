@@ -50,6 +50,18 @@
     bottom: $bottom;
 }
 
+@mixin relative-top-left ($top, $left) {
+    @if unitless($top) and $top!=0  {
+        @warn "$top nie moze przyjmowac samej wartosci, nalezy podac jednostke, wpisana wartosc: #{$top}."
+    }
+    @if unitless($left) and $left!=0  {
+        @warn "$left nie moze przyjmowac samej wartosci, nalezy podac jednostke, wpisana wartosc: #{$left}."
+    }
+    position: relative;
+    top: $top;
+    left: $left;
+}
+
 @mixin absolute-bottom-left ($bottom, $left) {
     @if unitless($bottom) and $bottom!=0  {
         @warn "$bottom nie moze przyjmowac samej wartosci, nalezy podac jednostke, wpisana wartosc: #{$bottom}."
