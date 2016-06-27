@@ -110,7 +110,7 @@ module.exports = function (grunt) {
           "chroma-js": "chroma-js",
           "raphael": "raphael",
           "bootstrap": "bootstrap",
-          "numeraljs": "numeraljs",
+          "numbro": "numbro",
           "font-awesome": "font-awesome",
           "lodash": "lodash"
         }

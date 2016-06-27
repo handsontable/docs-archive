@@ -5,13 +5,34 @@
       Edit this page
     </a>
     <div class="example-container clearfix">
+      <h3>0.26.0</h3>
+      <p>Released on 27th of June, 2016</p>
+      <strong>Backward incompatible changes</strong>
+      <br>
+      <ul>
+        <li>Changed one of our core dependencies. We're using <a href="https://github.com/foretagsplatsen/numbro" target="_blank">Numbro</a> instead of <a href="https://github.com/adamwdraper/Numeral-js" target="_blank">Numeral.js</a>. If you're including our dependencies independently, please update your setup. (<a href="https://github.com/handsontable/handsontable/issues/3487" target="_blank">3487</a>)</li>
+      </ul>
+      <br>
+      <strong>Changes</strong>
+      <br>
+      <ul>
+        <li>Fixed a bug where using both <code>columnSorting</code> and <code> autoRowSize</code> crashed the table. (<a href="https://github.com/handsontable/handsontable/issues/3580" target="_blank">3580</a>)</li>
+        <li>Fixed problems with selection on cells containing a <code>TABLE</code> element. (<a href="https://github.com/handsontable/handsontable/issues/3565" target="_blank">3565</a>)</li>
+        <li>Fixed issues with setting the <code>readOnly</code> property on <code>checkbox</code>-typed columns. (<a href="https://github.com/handsontable/handsontable/issues/3562" target="_blank">3562</a>)</li>
+        <li>Fixed an issue with <code>propToCol</code> returning wrong values when the <code>manualColumnMove</code> plugin was enabled. (<a href="https://github.com/handsontable/handsontable/issues/3551" target="_blank">3551</a>)</li>
+        <li>Fixed an issue where the <code>Remove Row</code> option was disabled in the context menu when only one row was present. (<a href="https://github.com/handsontable/handsontable/issues/3541" target="_blank">3541</a>)</li>
+        <li>Fixed a bug where <code>columnSorting</code> wasn't working properly with large mixed data sets. (<a href="https://github.com/handsontable/handsontable/issues/2770" target="_blank">2770</a>)</li>
+        <li>Fixed a bug where hovering the cursor over <code>Context Menu</code> would scroll the page down. (<a href="https://github.com/handsontable/handsontable/issues/3135" target="_blank">3435</a>)</li>
+      </ul>
+    </div>
+    <div class="example-container clearfix">
       <h3>0.25.1</h3>
       <p>Released on 6th of June, 2016</p>
       <strong>Changes</strong>
       <br>
       <ul>
         <li>Fixed problem with the range selection after right-clicking the headers. (<a href="https://github.com/handsontable/handsontable/issues/3543" target="_blank">3543</a>)</li>
-        <li>Fixed alignment issues for `checkbox` and `numeric` cell types. (<a href="https://github.com/handsontable/handsontable/issues/3532" target="_blank">3532</a>)</li>
+        <li>Fixed alignment issues for <code>checkbox</code> and <code>numeric</code> cell types. (<a href="https://github.com/handsontable/handsontable/issues/3532" target="_blank">3532</a>)</li>
         <li>Fixed an error thrown when using jQuery. (<a href="https://github.com/handsontable/handsontable/issues/3403" target="_blank">3403</a>)</li>
       </ul>
     </div>

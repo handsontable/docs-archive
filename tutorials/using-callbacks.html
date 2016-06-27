@@ -98,7 +98,7 @@
 
           vals = [
             i,
-              "@" + numeral(diff / 1000).format('0.000'),
+              "@" + numbro(diff / 1000).format('0.000'),
               "[" + event + "]"
           ];
 
@@ -125,7 +125,7 @@
 
           if (window.console) {
             console.log(i,
-                "@" + numeral(diff / 1000).format('0.000'),
+                "@" + numbro(diff / 1000).format('0.000'),
                 "[" + event + "]",
               data);
           }

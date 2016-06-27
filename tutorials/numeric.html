@@ -1,6 +1,5 @@
 <div class="static-content">
-  <!--<script src="/<?js= version ?>/bower_components/numeraljs/numeral.js"></script>-->
-  <script src="/<?js= version ?>/bower_components/numeraljs/languages/de.js" data-jsfiddle="common"></script>
+  <script src="/<?js= version ?>/bower_components/numbro/dist/languages.min.js" data-jsfiddle="common"></script>
 
   <script data-jsfiddle="common">
     function getCarData() {
@@ -22,10 +21,10 @@
       returns a string as its value. In many cases you will prefer cell values to be treated as <code>number</code> type.
       This allows to format numbers nicely and sort them correctly.</p>
     <p>To trigger the Numeric cell type, use the option <code>type: 'numeric'</code> in <code>columns</code> array
-      or <code>cells</code> function. Make sure your cell values are numbers and not strings as Handsontable will not parse strings to numbers. Numeric cell type uses <a href="http://numeraljs.com/" target="_blank">Numeral.js</a> as the formatting library.
+      or <code>cells</code> function. Make sure your cell values are numbers and not strings as Handsontable will not parse strings to numbers. Numeric cell type uses <a href="http://numbrojs.com/" target="_blank">Numbro.js</a> as the formatting library.
       Head over to their website to learn about the formatting syntax.</p>
-    <p>To use number formatting style valid for your language (i18n), load language definition to Numeral.js. See
-      "Languages" section in <a href="http://numeraljs.com/" target="_blank">Numeral.js docs</a> for more info.</p>
+    <p>To use number formatting style valid for your language (i18n), load language definition to Numbro.js. See
+      "Languages" section in <a href="http://numbrojs.com/languages.html" target="_blank">Numbro.js docs</a> for more info.</p>
 
     <div  data-jsfiddle="example1">
       <div id="example1" class="hot"></div>
@@ -65,15 +64,15 @@
               data: 'price_usd',
               type: 'numeric',
               format: '$0,0.00',
-              language: 'en', // this is the default locale, set up for USD
+              language: 'en-US', // this is the default locale, set up for USD
               allowEmpty: false
             },
             {
               data: 'price_eur',
               type: 'numeric',
               format: '0,0.00 $',
-              language: 'de' // i18n: use this for EUR (German)
-              // more locales available on numeraljs.com
+              language: 'de-DE' // i18n: use this for EUR (German)
+              // more locales available on http://numbrojs.com/languages.html
             }
           ]
         });
