@@ -3,6 +3,7 @@
  */
 
 header {
+  width: 100%;
   background: #FFF;
   z-index: 10000;
 
@@ -139,8 +140,8 @@ header {
 
       /* [ styles only for desktop ] */
       @media only screen and (min-width: $largeWidth) {
-        max-height: auto;
         overflow: inherit;
+        background-color: #fff;
       }
 
       > li {

@@ -24,17 +24,23 @@ header .logotype {
         }
     }
 
-    .brand-logo svg {
+    .brand-logo {
+      @media only screen and (min-width: $largeWidth) {
+        margin-left: 15px;
+      }
+
+      svg {
         @include rectangle(151px, 38px);
         fill: #5d5d5d;
         display: inline-block;
         z-index: 100;
-        
+
         /* [ styles only for desktop ] */
         @media only screen and (min-width: $largeWidth) {
             @include rectangle(187px, 47px);
             float: left;
         }
+      }
     }
 
     .github-star {
