@@ -10,16 +10,16 @@
       <li>editor</li>
       <li>validator</li>
     </ul>
-    <p>Each of those functions is responsible for a different cell behavior. You can define them separately or use a <a
-      href="#cell-type">cell type</a> to define all three at once. We will now discuss the purpose of the aforementioned
-      functions in details. </p>
+    <p>Each of those functions are responsible for a different cell behavior. You can define them separately or use a
+      <a href="#cell-type">cell type</a> to define all three at once. We will now discuss the purpose of the aforementioned
+      functions in details.</p>
     <h2 id="renderer">Renderer</h2>
     <p>Handsontable does not display the values stored in the datasource directly. Instead, every time a value from data
-      source needs to be displayed in a table cell, it is passed to the cell <code>renderer</code> function together with
-      the table cell object of type <code>HTMLTableCellElement</code> (DOM node) and a few other useful information.</p>
-    <p><code>Renderer</code> is expected to format the passed value and place it as a content of the cell object. <code>Renderer</code>
-      can also alter the cell class list, i.e. it can add a <code>htInvalid</code> class to let the user know, that the
-      displayed value is invalid. </p>
+      source needs to be displayed in a table cell, it is passed to the cell <code>renderer</code> function, together with
+      the table cell object of type <code>HTMLTableCellElement</code> (DOM node), along with other useful information.</p>
+    <p><code>Renderer</code> is expected to format the passed value and place it as a content of the cell object.
+      <code>Renderer</code> can also alter the cell class list, i.e. it can add a <code>htInvalid</code> class to let
+      the user know, that the displayed value is invalid.</p>
     <h3 id="native-cell-renderers">Native cell renderers</h3>
     <p>Handsontable comes with 5 predefined renderers that you can extend, when writing your own renderers. </p>
     <ul>
@@ -51,14 +51,14 @@
       <em>Handsontable events</em> system is the safest way to respond to user actions.</p>
     <p>If you did&#39;t find a suitable <em>Handsontable event</em> put the cell content into a wrapping <code>
       &lt;div&gt;</code>, attach the event listener to the wrapper and then put it into the table cell.</p>
-    <p>//TODO: example </p>
+    <!--TODO: example-->
     <h3 id="performance">Performance</h3>
     <p>Cell renderers are called separately for every displayed cell, during every table render. Table can be rendered
       multiple times during its lifetime (after table scroll, after table sorting, after cell edit etc.), therefore you
       should keep your <code>renderer</code> functions as simple and fast as possible or you might experience a performance
       drop, especially when dealing with large sets of data.</p>
     <h3 id="renerer-templates">Renerer templates</h3>
-    <p>//TODO: write about cellProperty.rendererTemplate</p>
+    <!--TODO: write about cellProperty.rendererTemplate-->
     <h2 id="editor">Editor</h2>
     <p>Cell editors are the most complex cell functions. We have prepared a [[separate page|Custom-cell-editor]] explaining
       how cell edit works and how to write your own cell editor.</p>

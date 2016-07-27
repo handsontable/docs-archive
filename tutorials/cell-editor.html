@@ -234,33 +234,25 @@ CalendarEditor.prototype.setValue = function(newValue) {
     <h4 id="cellproperties-object-">cellProperties 'Object'</h4>
     <p>An object representing active cell properties. Updated on every <code>prepare()</code> method call.</p>
     <h2 id="how-to-create-a-custom-editor-">How to create a custom editor?</h2>
-    <p>Now you now all the philosophy behind Handsontable editors and you're ready to write your own editor.
+    <p>Now you now the philosophy behind the Handsontable editors and you're ready to write your own editor.
       Basically, you can build a new editor from scratch, by creating a new editor class, which inherits form <code>BaseEditor</code>,
-      or
-      if you just want to enhance an existing editor, you can extend its class and override only a few of its methods.</p>
-    <p>In this tutorial we will examine both approaches.
-      We will create a completely new <code>SelectEditor</code> which uses <code>&lt;select&gt;</code> list to alter the
-      value of cell.
-      We will also create a <code>PasswordEditor</code> which works exactly like regular <code>TextEditor</code> except that
-      it displays a password
-      input instead of textarea.</p>
+      or if you just want to enhance an existing editor, you can extend its class and override only a few of its methods.</p>
+    <p>In this tutorial we will examine both approaches. We will create a completely new <code>SelectEditor</code>
+      which uses <code>&lt;select&gt;</code> list to alter the value of cell.
+      We will also create a <code>PasswordEditor</code> which works exactly like regular <code>TextEditor</code>
+      except that it displays a password input instead of textarea.</p>
     <p>Let's begin with <code>PasswordEditor</code> as it is a bit easier.</p>
     <h3 id="-passwordeditor-extending-an-existing-editor"><code>PasswordEditor</code> - extending an existing editor</h3>
-    <p><code>TextEditor</code> is the most complex editor available in Handsontable by default. It displays a <code>&lt;textarea&gt;</code>
-      which automatically
-      change its size to accommodate to its content. We would like to create a <code>PasswordEditor</code> which preserves
-      all those capabilities
-      but displays <code>&lt;input type=&quot;password&quot; /&gt;</code> field instead of <code>&lt;textarea&gt;</code>.
-    </p>
+    <p><code>TextEditor</code> is the most complex editor available in Handsontable by default. It displays a
+      <code>&lt;textarea&gt;</code> which automatically changes its size to accommodate its content. We would like to
+      create a <code>PasswordEditor</code> which preserves all those capabilities but displays <code>&lt;input type=&quot;password&quot; /&gt;</code>
+      field instead of <code>&lt;textarea&gt;</code>.</p>
     <p>As you may have guessed, we need to create a new editor class, that inherits from <code>TextEditor</code> and then
-      override some of its
-      methods to replace <code>&lt;textarea&gt;</code> with <code>input:password</code>. Luckily, textarea and password
-      input have the same API, so all we
-      have to do is replace the code responsible for creating HTML elements. If you take a look at TextEditor
-      <code>init()</code> method,
-      you'll notice that it calls internal <code>createElements()</code> method, which creates <code>
-        &lt;textarea&gt;</code> node and append it to DOM during
-      editor initialization - BINGO!.</p>
+      override some of its methods to replace <code>&lt;textarea&gt;</code> with <code>input:password</code>.
+      Luckily, textarea and password input have the same API, so all we have to do is replace the code responsible for creating HTML elements.
+      If you take a look at <code>TextEditor</code> <code>init()</code> method, you'll notice that it calls internal
+      <code>createElements()</code> method, which creates <code>&lt;textarea&gt;</code> node and append it to DOM during
+      editor initialization - BINGO!</p>
     <p>Here is the code</p>
     <pre><code class="lang-js">var PasswordEditor = Handsontable.editors.TextEditor.prototype.extend();
 
@@ -297,15 +289,13 @@ PasswordEditor.prototype.createElements = function () {
       Let's try something more complex, let's build new editor from the ground up.</p>
     <h3 id="-selecteditor-creating-editor-from-scratch"><code>SelectEditor</code> - creating editor from scratch</h3>
     <p>We're going to build a full featured editor, that lets user choose a cell value from predefined list of options,
-      using
-      standard <code>&lt;select&gt;</code> input. As an extra feature, we'll add an ability to change currently selected
-      option with <kbd>ARROW_UP</kbd>
-      and <kbd>ARROW_DOWN</kbd> keys.</p>
+      using standard <code>&lt;select&gt;</code> input. As an extra feature, we'll add an ability to change currently selected
+      option with <kbd>ARROW_UP</kbd> and <kbd>ARROW_DOWN</kbd> keys.</p>
     <p>Things to do:</p>
     <ol>
       <li>Create a new class that inherits from <code>Handsontable.editors.BaseEditor</code>.</li>
       <li>Add function creating <code>&lt;select&gt;</code> input and attaching to DOM.</li>
-      <li>Add function that populate <code>&lt;select&gt;</code> with options array passed in cell properties.</li>
+      <li>Add function that populates <code>&lt;select&gt;</code> with options array passed in the cell properties.</li>
       <li>Implement methods:
         <ul>
           <li><code>getValue()</code></li>
@@ -316,15 +306,13 @@ PasswordEditor.prototype.createElements = function () {
         </ul>
       </li>
       <li>Override the default <code>EditorManager</code> behaviour, so that pressing <kbd>ARROW_UP</kbd> and
-        <kbd>ARROW_DOWN</kbd> keys
-        won't close the editor, but instead change the currently selected value.
+        <kbd>ARROW_DOWN</kbd> keys won't close the editor, but instead change the currently selected value.
       </li>
       <li>Register editor.</li>
     </ol>
     <h4 id="creating-new-editor">Creating new editor</h4>
     <p>That's probably the easiest part. All we have to do is call <code>BaseEditor.prototype.extend()</code> function
-      which will return
-      a new function class that inherits from <code>BaseEditor</code>.</p>
+      which will return a new function class that inherits from <code>BaseEditor</code>.</p>
     <pre><code class="lang-js">var SelectEditor = Handsontable.editors.BaseEditor.prototype.extend();</code></pre>
     <p>Task one: <strong>DONE</strong></p>
     <h4 id="creating-select-input-and-attaching-it-to-dom">Creating <code>&lt;select&gt;</code> input and attaching it to
@@ -341,29 +329,23 @@ PasswordEditor.prototype.createElements = function () {
       creation of editor class object. That happens at most one per table instance, because once the object is created it is
       reused every time <code>EditorManager</code> asks for this editor class instance (see <a
         href="http://en.wikipedia.org/wiki/Singleton_pattern">Singleton pattern</a> for details).</p>
-    <p><code>prepare()</code> method is called every time user selects a cell that has this particular editor class set as
-      <code>editor</code> property.
-      So, if we set <code>SelectEditor</code> as editor for an entire column, then selecting any cell in this column will
-      invoke <code>prepare()</code>
-      method of <code>SelectEditor</code>. In other words, this method can be called hundreds of times during table life,
-      especially when
-      working with large data. Another important aspect of <code>prepare()</code> is that it should not display the editor
-      (it's <code>open's</code> job).
-      Displaying editor is triggered by user event such as pressing <kbd>ENTER</kbd>, <kbd>F2</kbd>
-      or double clicking a cell,
-      so there is some time between calling <code>prepare()</code> and actually displaying the editor. Nevertheless,
-      operations performed
-      by <code>prepare()</code> should be as fast as possible, to provide the best user experience.</p>
-    <p><code>open()</code> method is called when editor needs to be displayed. In most cases this method should change CSS
-      <code>display</code> property
-      to <code>block</code> or perform something similar. User expects that editor will be displayed right after the event
-      (pressing appropriate key or double clicking a cell) has been triggered, so <code>open()</code> method should work as
-      fast as possible.</p>
+    <p><code>prepare()</code> method is called every time the user selects a cell that has this particular editor class
+      set as <code>editor</code> property. So, if we set <code>SelectEditor</code> as editor for an entire column,
+      then selecting any cell in this column will invoke <code>prepare()</code> method of <code>SelectEditor</code>.
+      In other words, this method can be called hundreds of times during table life, especially when working with large data.
+      Another important aspect of <code>prepare()</code> is that it should not display the editor (it's <code>open's</code> job).
+      Displaying editor is triggered by user event such as pressing <kbd>ENTER</kbd>, <kbd>F2</kbd> or double clicking a cell,
+      so there is some time between calling <code>prepare()</code> and actually displaying the editor.
+      Nevertheless, operations performed by <code>prepare()</code> should be completed as fast as possible,
+      to provide the best user experience.</p>
+    <p><code>open()</code> method is called when editor needs to be displayed. In most cases this method should change
+      the CSS <code>display</code> property to <code>block</code> or perform something similar. User expects that
+      editor will be displayed right after the event (pressing appropriate key or double clicking a cell) has been
+      triggered, so <code>open()</code> method should work as fast as possible.</p>
     <p>Knowing all this, the most reasonable place to put the code responsible for creating <code>&lt;select&gt;</code>
-      input is somewhere in
-      <code>init()</code> method. DOM manipulation is considered to be quite expensive (regarding the resource consumption)
-      operation, so
-      it's best to perform it once and reuse the produced HTML nodes throughout the life of editor.</p>
+      input is somewhere in <code>init()</code> method. DOM manipulation is considered to be quite expensive
+      (regarding the resource consumption) operation, so it's best to perform it once and reuse the produced HTML
+      nodes throughout the life of editor.</p>
     <pre><code class="lang-js">SelectEditor.prototype.init = function() {
   // Create detached node, add CSS class and make sure its not visible
   this.select = document.createElement('SELECT');
@@ -711,8 +693,7 @@ SelectEditor.prototype.checkEditorSection = function() {
       steps
       that will help you to organize your code.</p>
     <h3 id="enclose-in-iife">Enclose in IIFE</h3>
-    <p>Put your code in some kind of module, to avoid polluting global namespace. You can use AMD, CommonJS or any other
-      module
+    <p>Put your code in a module, to avoid polluting the global namespace. You can use AMD, CommonJS or any other module
       pattern, but the easiest way to isolate your code is to use plain immediately invoked function expression (IIFE).</p>
     <pre><code class="lang-javascript">(function(Handsontable){
   var CustomEditor = Handsontable.editors.BaseEditor.prototype.extend();
@@ -749,9 +730,8 @@ SelectEditor.prototype.checkEditorSection = function() {
 }); </code></pre>
     <p>Extending your <code>CustomEditor</code> is also easy.</p>
     <pre><code class="lang-javascript">var AnotherEditor = Handsontable.editors.CustomEditor.prototype.extend();</code></pre>
-    <p>Keep in mind, that there is no restrictions on the name you choose, but choose wisely and do not overwrite existing
-      editors. Try to keep the names unique.</p>
-    <p>//TODO: add link to section Registering editors</p>
+    <p>Keep in mind, that there are no restrictions to the name you choose, but choose wisely and do not overwrite
+      existing editors. Try to keep the names unique.</p>
     <h3 id="registering-an-alias">Registering an alias</h3>
     <p>The final touch is to register your editor under some alias, so that users can easily refer to it without the need
       to now the actual class name. See Registering editor for details.</p>
