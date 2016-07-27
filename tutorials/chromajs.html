@@ -79,7 +79,7 @@
         });
 
         function updateHeatmap(change, source) {
-          if (change) {
+          if (source) {
             heatmap[change[0][1]] = generateHeatmapData.call(this, change[0][1]);
           } else {
             heatmap = [];
