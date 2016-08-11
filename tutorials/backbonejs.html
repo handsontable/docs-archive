@@ -30,8 +30,8 @@
     </div>
 
     <p>
-      <strong>Please note</strong> that Backbone integration is a work in progress since Handsontable 0.8.14.
-      The code presented here has 2 known issues:
+      <strong>Please note</strong> that Backbone integration is a work in progress since Handsontable 0.8.14 and it's not fully supported yet.
+      The code presented here has 3 known issues:
     </p>
     <ul>
       <li>inserting and removing rows or columns triggers errors, both when using <code>alter</code> method and
@@ -39,6 +39,8 @@
       </li>
       <li><code>minSpareRows</code> does not have effect directly after row was added from Backbone (as a
         workaround, you would need to call <code>loadData</code> instead of <code>render</code>).
+      </li>
+      <li>Doesn't work with some plugins which manipulates data like Filtering and Sorting.
       </li>
     </ul>
 
