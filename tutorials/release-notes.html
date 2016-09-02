@@ -1,5 +1,27 @@
 <div class="static-content">
   <div class="example-container clearfix">
+    <h3>0.27.0</h3>
+    <p>Released on 2nd of September, 2016</p>
+    <strong>Breaking changes</strong>
+    <br>
+    <ul>
+      <li>We've refactored the Manual Row Move plugin to allow the user to move multiple rows at once. This made some backward-incompatible changes.
+        For example the <code>beforeRowMove</code> and <code>afterRowMove</code> hooks had their arguments changed. After updating to this version, please check if any changes need to made in your implementation.</li>
+      <li>We've added an additional default column/row header styling - now the column and row header corresponding to the selected cell will be rendered with a darker background. Please have that in mind when styling your Handsontable implementations.</li>
+    </ul>
+    <strong>Changes</strong>
+    <br>
+    <ul>
+      <li>Fixed a bug where column stretching wouldn't work properly in some specific cases. (<a href="https://github.com/handsontable/handsontable/issues/3732" target="_blank">#3732</a>)</li>
+      <li>Fixed a bug, where the user was unable to check/unckeck all checkboxes in a column. (<a href="https://github.com/handsontable/handsontable/issues/3616" target="_blank">#3616</a>)</li>
+      <li>Fixed a problem with closing the Context Menu by clicking under it. (<a href="https://github.com/handsontable/handsontable/issues/3469" target="_blank">#3469</a>)</li>
+      <li>Disabled the custom Context Menu for Handsontable editors. (<a href="https://github.com/handsontable/handsontable/issues/3440" target="_blank">#3440</a>)</li>
+      <li>Fixed a problem when the user was unable to close the menu by using the <code>ESC</code> key. (<a href="https://github.com/handsontable/handsontable/issues/3391" target="_blank">#3391</a>)</li>
+      <li>Fixed a bug where Handsontable threw an error when its autocomplete editor used a numeric-typed suggestion list. (<a href="https://github.com/handsontable/handsontable/issues/2879" target="_blank">#2879</a>)</li>
+      <li>Added the <code>beforeUndo</code>, <code>afterUndo</code>, <code>beforeRedo</code> and <code>afterRedo</code> plugin hooks. (<a href="https://github.com/handsontable/handsontable/issues/1587" target="_blank">#1587</a>)</li>
+    </ul>
+  </div>
+  <div class="example-container clearfix">
     <h3>0.26.1</h3>
     <p>Released on 27th of July, 2016</p>
     <strong>Changes</strong>
