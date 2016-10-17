@@ -82,19 +82,19 @@
         hot = new Handsontable(container, {
           data: carData,
           colHeaders: ['Car', 'Year', 'Chassis color', 'Bumper color'],
-          getValue: function() {
-          	var selection = this.getSelected();
-
-            // Get always manufacture name of clicked row
-            return this.getSourceDataAtRow(selection[0]).name;
-          },
           columns: [
             {
               type: 'handsontable',
               handsontable: {
                 colHeaders: ['Marque', 'Country', 'Parent company'],
                 autoColumnSize: true,
-                data: manufacturerData
+                data: manufacturerData,
+                getValue: function() {
+                	var selection = this.getSelected();
+
+                  // Get always manufacture name of clicked row
+                  return this.getSourceDataAtRow(selection[0]).name;
+                },
               }
             },
             {type: 'numeric'},
