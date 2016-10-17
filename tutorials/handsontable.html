@@ -87,7 +87,14 @@
               type: 'handsontable',
               handsontable: {
                 colHeaders: ['Marque', 'Country', 'Parent company'],
-                data: manufacturerData
+                autoColumnSize: true,
+                data: manufacturerData,
+                getValue: function() {
+                	var selection = this.getSelected();
+
+                  // Get always manufacture name of clicked row
+                  return this.getSourceDataAtRow(selection[0]).name;
+                },
               }
             },
             {type: 'numeric'},
@@ -111,4 +118,3 @@
     </div>
   </div>
 </div>
-
