@@ -13,13 +13,62 @@
     }
   </script>
 
+  <div class="index-list">
+    <p><strong>This page shows how to configure the <i>Comments</i> plugin:</strong></p>
+    <ul>
+      <li><a href="#enable">Enabling the plugin</a></li>
+      <li><a href="#context-menu">Adding the comments via the Context Menu</a></li>
+      <li><a href="#preset-comments">Setting up pre-set comments</a></li>
+      <li><a href="#api">API</a></li>
+      <li><a href="#example">Example implementation</a></li>
+    </ul>
+  </div>
+
   <div class="example-container clearfix">
-    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/comments.html" class="edit-doc" target="_blank">
+    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/comments.html" class="edit-doc"
+       target="_blank">
       Edit this page
     </a>
-    <p>With option <code>comments: true</code>, you can add and remove cell coments through the context menu.
-      To initialize Handsontable with predefined comments, provide <code>comment</code> cell property:
-      <code>{row: 1, col: 1, comment: "Test comment"}</code></p>
+
+    <p>The <i>Comments</i> plugin makes it possible to easily add, edit and remove comments in Handsontable.</p>
+
+    <h3 id="enable">Enabling the plugin</h3>
+    <p>To use the plugin, you'll need to set the <code>comments</code> property to <code>true</code>. It'll enable the
+      plugin and add
+      all the needed context menu items. For example:</p>
+    <pre><code class="javascript">let hot = new Handsontable(container, {
+  data: Handsontable.helper.createSpreadsheetData(10, 10),
+  comments: true
+});</code></pre>
+
+    <h3 id="context-menu">Adding the comments via the Context Menu</h3>
+    <p>
+      After you've enabled the plugin, the <a href="./demo-context-menu.html">Context Menu</a> gains a few new items:
+    </p>
+    <ul>
+      <li>Add/Edit comment</li>
+      <li>Delete comment</li>
+      <li>Read only comment</li>
+    </ul>
+    <p>I think all of them are pretty self-explanatory.</p>
+
+    <h3 id="preset-comments">Setting up pre-set comments</h3>
+    <p>You can also pre-define comments for your table. As comments are stored in the table's/column's/cell's meta data
+      object, you can declare it as any other property of that type.
+      <br>
+      For example:</p>
+    <pre><code class="javascript">cell: [
+  {row: 1, col: 1, comment: {value: 'Hello world!'}}
+]</code></pre>
+    <p>In this example we're adding a "Hello world!" comment to a cell at (1,1).</p>
+
+
+    <h3 id="api">API</h3>
+    <p>
+      You can add, remove and modify most of the comment-related information using the API. For More info, head to <a href="./Comments.html">our Comments documentation</a>.
+    </p>
+
+    <h3 id="example">Example implementation</h3>
 
     <div data-jsfiddle="example1">
       <div id="example1" class="hot"></div>
@@ -39,7 +88,7 @@
       </div>
       <script data-jsfiddle="example1">
         var container = document.getElementById('example1'),
-          hot1;
+                hot1;
 
         hot1 = new Handsontable(container, {
           data: getData(),
@@ -48,8 +97,8 @@
           contextMenu: true,
           comments: true,
           cell: [
-            {row: 1, col: 1, comment: 'Some comment'},
-            {row: 2, col: 2, comment: 'More comments'}
+            {row: 1, col: 1, comment: {value: 'Some comment'}},
+            {row: 2, col: 2, comment: {value: 'More comments'}}
           ]
         });
       </script>
