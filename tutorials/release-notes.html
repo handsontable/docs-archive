@@ -4,9 +4,9 @@
     <p>Released on 8th of November, 2016</p>
     <strong>Breaking changes</strong>
     <ul>
-      <li>We've added a new cell property: <code>allowHtml</code>. If you set it to <code>true</code>, the <code>autocomplete</code> and <code>dropdown</code> cells will be able to render HTML elements correctly (as it was before).</li>
-      However, if you set it to <code>false</code>, no HTML will be rendered. This change is meant to decrease Handsontable's XSS vulnerability. (<a href="https://github.com/handsontable/handsontable/issues/3761" target="_blank">#3761</a>)
-      The <code>allowHtml</code> property defaults to <i>false</i>, so please make sure if you have to specify it in your implementation!
+      <li>We've added a new cell property: <code>allowHtml</code>. If you set it to <code>true</code>, the <code>autocomplete</code> and <code>dropdown</code> cells will be able to render HTML elements correctly (as it was before).
+        However, if you set it to <code>false</code>, no HTML will be rendered. This change is meant to decrease Handsontable's XSS vulnerability. (<a href="https://github.com/handsontable/handsontable/issues/3761" target="_blank">#3761</a>)
+        The <code>allowHtml</code> property defaults to <i>false</i>, so please make sure if you have to specify it in your implementation!</li>
       <li>We've refactored the Comments plugin, which caused some API and visual changes. Please see our documentation and check if you need to make some changes in your implementation.</li>
     </ul>
 
