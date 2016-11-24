@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <?js= this.partial('analytics-pre.tmpl', this) ?>
   <meta charset="utf-8">
   <title><?js= title ?> | Handsontable - open source spreadsheet solution. Excel-like grid editing with HTML & JavaScript</title>
   <?js= this.partial('head.tmpl', this) ?>
@@ -8,7 +9,7 @@
 
 <body class="documentation subpage">
 
-  <?js= this.partial('analytics.tmpl', this) ?>
+  <?js= this.partial('analytics-post.tmpl', this) ?>
   <?js= this.partial('svg.tmpl', this) ?>
   <?js= this.partial('header.tmpl', this) ?>
 
