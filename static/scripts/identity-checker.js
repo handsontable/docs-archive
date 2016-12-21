@@ -13,7 +13,8 @@
 
   function init() {
     axios('https://my.handsontable.com/api/identity-checker', {withCredentials: true, method: 'get'})
-      .then(onIdentitySuccess);
+      .then(onIdentitySuccess)
+      .catch(function(error) {});
   }
 
   function onIdentitySuccess(response) {

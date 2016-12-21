@@ -30,6 +30,7 @@
     "pikaday": "^1.4.0",
     "raphael": "^2.1.4",
     "zeroclipboard": "^2.2.0",
-    "numbro": "^1.8.0"
+    "numbro": "^1.8.0",
+    "promise-polyfill": "^6.0.2"
   }
 }
