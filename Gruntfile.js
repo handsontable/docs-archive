@@ -112,7 +112,8 @@ module.exports = function (grunt) {
           "bootstrap": "bootstrap",
           "numbro": "numbro",
           "font-awesome": "font-awesome",
-          "lodash": "lodash"
+          "lodash": "lodash",
+          "promise-polyfill": "promise-polyfill",
         }
       }
     },
