@@ -1,5 +1,37 @@
 <div class="static-content">
   <div class="example-container clearfix">
+    <h3>0.30.0</h3>
+    <p>Released on 11th of January, 2017</p>
+    <strong>Breaking Changes</strong>
+    <br>
+    <ul>
+      <li>The <b>AutoFill</b> plugin was refactored, thus introducing some breaking changes into the API. If your implementation uses the previous <code>autoFill</code> structure, please check if it everything works as expected. (<a href="https://github.com/handsontable/handsontable/issues/3257" target="_blank">#3257</a>)</li>
+      <li>The <code>setCellMeta</code> method was changed to work on <i>visual</i> row and column indexes, analogously to the <code>getCellMeta</code> method. If your implementation utilizes it, please check if you need to tweak it (it may cause issues especially when using it with the <code>columnSorting</code>, <code>manualRowMove</code> and <code>manualColumnMove</code> plugins).</li>
+    </ul>
+    <strong>Changes</strong>
+    <br>
+    <ul>
+      <li>Fixed an issue with Handsontable throwing errors after its instance was destroyed and recreated. (<a href="https://github.com/handsontable/handsontable/issues/3974" target="_blank">#3974</a>)</li>
+      <li>Fixed a problem where the <code>autocomplete</code> editor validated text positively, regardless of the letter case. (<a href="https://github.com/handsontable/handsontable/issues/3962" target="_blank">#3962</a>)</li>
+      <li>Fixed a problem where <code>autocomplete</code> didn't work when the user dragged the <b>fill handle</b> to the table headers. (<a href="https://github.com/handsontable/handsontable/issues/3956" target="_blank">#3956</a>)</li>
+      <li>Fixed a bug where sorting a column made editing time-typed cells inconsistent. (<a href="https://github.com/handsontable/handsontable/issues/3953" target="_blank">#3953</a>)</li>
+      <li>Fixed a problem where changing the <code>readOnly</code> status of a cell via the <b>Context Menu</b> didn't trigger the <code>afterSetCellMeta</code> hook. (<a href="https://github.com/handsontable/handsontable/issues/3907" target="_blank">#3907</a>)</li>
+      <li>Fixed an issue where <code>afterSetCellMeta</code> was not triggered when using the <b>Comments</b> plugin. (<a href="https://github.com/handsontable/handsontable/issues/3899" target="_blank">#3899</a>)</li>
+      <li>Fixed a bug, where the <code>numeric</code>-typed cells would delete the input text, when it was negatively validated. (<a href="https://github.com/handsontable/handsontable/issues/3880" target="_blank">#3880</a>)</li>
+      <li>Fixed a bug where the <b>Autocomplete plugin's fill handle</b> was missing after editing <code>numeric</code>-typed cells. (<a href="https://github.com/handsontable/handsontable/issues/3877" target="_blank">#3877</a>)</li>
+      <li>Fixed a problem where sometimes the <code>dropdown</code> editor used a previously assigned value. (<a href="https://github.com/handsontable/handsontable/issues/3759" target="_blank">#3759</a>)</li>
+      <li>Fixed a bug where the <code>afterChange</code> hook used a wrong row number (<a href="https://github.com/handsontable/handsontable/issues/3573" target="_blank">#3573</a>)</li>
+      <li>Fixed a problem where the <b>Autofill</b> plugin did not work properly while being used on multiple Handsontable instances. (<a href="https://github.com/handsontable/handsontable/issues/3257" target="_blank">#3257</a>)</li>
+      <li>Added a helper with functionality corresponding to ES 2016's <code>Array.includes</code>. It's available at <code>Handsontable.helper.arrayIncludes</code>. (<a href="https://github.com/handsontable/handsontable/issues/3984" target="_blank">#3984</a>)</li>
+      <li>Updated a misleading documentation entry concerning the recently refactored <b>Comments</b> plugin. (<a href="https://github.com/handsontable/handsontable/issues/3944" target="_blank">#3944</a>)</li>
+    </ul>
+    <p>
+      The corresponding Handsontable Pro version is <a href="http://docs.handsontable.com/pro/1.9.0" target="_blank">1.9.0</a>.
+    </p>
+  </div>
+
+
+  <div class="example-container clearfix">
     <h3>0.29.2</h3>
     <p>Released on 21st of December, 2016</p>
     <strong>Changes</strong>
@@ -11,7 +43,6 @@
       The corresponding Handsontable Pro version is <a href="http://docs.handsontable.com/pro/1.8.2" target="_blank">1.8.2</a>.
     </p>
   </div>
-
 
   <div class="example-container clearfix">
     <h3>0.29.1</h3>
