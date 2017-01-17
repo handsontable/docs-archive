@@ -18,7 +18,7 @@
 <script src="/<?js= env.opts.query.version ?>/bower_components/modernizr/modernizr.js"></script>
 <script src="/<?js= env.opts.query.version ?>/bower_components/axios/axios.min.js"></script>
 <script>
-  if (typeof Promises === 'undefined') {
+  if (typeof Promise === 'undefined') {
       document.write('<scr'+'ipt src="/<?js= env.opts.query.version ?>/bower_components/promise-polyfill/promise.min.js"></scr'+'ipt>');
   }
 </script>
