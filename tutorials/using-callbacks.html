@@ -4,7 +4,8 @@
 
     <ul>
       <li><a href="#page-callbacks">Callbacks</a></li>
-      <li><a href="#page-beforeKeyDown">beforeKeyDown callback</a></li>
+      <li><a href="#page-source-definition">Definition for <code>source</code> argument</a></li>
+      <li><a href="#page-beforeKeyDown"><code>beforeKeyDown</code> use case</a></li>
     </ul>
   </div>
 
@@ -15,7 +16,7 @@
     <h3 id="page-callbacks">Callbacks</h3>
     <p>This page shows usage of some callbacks available in Handsontable. If you require a new callback to be added,
       please <a href="https://github.com/handsontable/handsontable/issues/new" target="_blank">open an issue</a>.
-      Note that some callbacks are unchecked on this page by default.
+      Note that some callbacks are checked on this page by default.
     </p>
 
     <div data-jsfiddle="example1" class="part-left-container callbacks-container clearfix">
@@ -74,10 +75,9 @@
       hooks.forEach(function(hook) {
         var checked = '';
 
-        if (hook !== 'modifyRowHeight' && hook !== 'modifyRow' && hook !== 'modifyCol' &&
-          hook !== 'afterRenderer' && hook !== 'beforeGetCellMeta' && hook !== 'afterGetCellMeta') {
+        if (hook === 'afterChange' || hook === 'afterSelection' || hook === 'afterCreateRow' || hook === 'afterRemoveRow' ||
+            hook === 'afterCreateCol' || hook === 'afterRemoveCol') {
           checked = 'checked';
-
         }
         $hooksList.append('<li><label><input type="checkbox" ' + checked + ' id="check_' + hook + '"> ' + hook + '</label></li>');
         config[hook] = function() {
@@ -167,8 +167,60 @@
     </script>
   </div>
 
+  <div class="example-container clearfix head-gap" name="source-definition">
+    <h3 id="page-source-definition">Definition for <code>source</code> argument</h3>
+    <p>It's worth to mension that some of the hooks are triggered from the inside of the Handsontable (Core) and some from the plugins.
+      In some situations it is helpful to know who trigger the callback (if it was done by Handsontable itself, triggered from external code or a user action). That's
+      why in crucial hooks Handsontable delivers <code>source</code> as an argument which informs you about who've triggered the action. Thanks to
+      <code>source</code> you can create additional conditions based on that information.
+    </p>
+    <p>
+      <code>source</code> argument is optional. It takes following values:
+      <ul>
+        <li><code>auto</code> - Action triggered by Handsontable and reason for it is releated directly with settings aplied to Handsontable.
+          For instance <code>afterCreateRow</code> will be fired with this when <code>minSpareRows</code> will be greater then 0;</li>
+        <li><code>edit</code> - Action triggered by Handsontable after the data has been changed (for example after an edit or using <code>setData*</code> methods)</li>
+        <li><code>loadData</code> - Action triggered by Handsontable after the <code>loadData</code> or <code>updateSettings({data: myData})</code>(with <code>data</code> property) method has been called.</li>
+        <li><code>populateFromArray</code> - Action triggered by Handsontable after requesting for populating data.</li>
+        <li><code>spliceCol</code> - Action triggered by Handsontable after the column data splicing has been done.</li>
+        <li><code>spliceRow</code> - Action triggered by Handsontable after the row data splicing has been done.</li>
+        <li><code>timeValidate</code> - Action triggered by Handsontable after the time validator has been called (for example after an edit).</li>
+        <li><code>dateValidate</code> - Action triggered by Handsontable after the date validator has been called (for example after an edit).</li>
+        <li><code>validateCells</code> - Action triggered by Handsontable after the validation process has been triggered.</li>
+        <li><code>Autofill.fill</code> - Action triggered by AutoFill plugin;</li>
+        <li><code>ContextMenu.clearColumns</code> - Action triggered by ContextMenu plugin after the "Clear column" has been clicked.</li>
+        <li><code>ContextMenu.columnLeft</code> - Action triggered by ContextMenu plugin after the "Insert column on the left" has been clicked.</li>
+        <li><code>ContextMenu.columnRight</code> - Action triggered by ContextMenu plugin after the "Insert column on the right" has been clicked.</li>
+        <li><code>ContextMenu.removeColumn</code> - Action triggered by ContextMenu plugin after the "Remove column" has been clicked.</li>
+        <li><code>ContextMenu.removeRow</code> - Action triggered by ContextMenu plugin after the "Remove Row" has been clicked.</li>
+        <li><code>ContextMenu.rowAbove</code> - Action triggered by ContextMenu plugin after the "Insert row above" has been clicked.</li>
+        <li><code>ContextMenu.rowBelow</code> - Action triggered by ContextMenu plugin after the "Insert row below" has been clicked.</li>
+        <li><code>CopyPaste.paste</code> - Action triggered by CopyPaste plugin after the value has been pasted.</li>
+        <li><code>ObserveChanges.change</code> - Action triggered by ObserveChanges plugin after the changes has been detected.</li>
+        <li><code>UndoRedo.redo</code> - Action triggered by UndoRedo plugin after the change has been redone.</li>
+        <li><code>UndoRedo.undo</code> - Action triggered by UndoRedo plugin after the change has been undone.</li>
+      </ul>
+    </p>
+    <p>
+      List of callback that operates on <code>source</code> parameter:
+      <ul>
+        <li><a href="/<?js= version ?>/Hooks.html#event:afterChange">afterChange</a></li>
+        <li><a href="/<?js= version ?>/Hooks.html#event:afterCreateCol">afterCreateCol</a></li>
+        <li><a href="/<?js= version ?>/Hooks.html#event:afterCreateRow">afterCreateRow<</a></li>
+        <li><a href="/<?js= version ?>/Hooks.html#event:afterSetDataAtCell">afterSetDataAtCell</a></li>
+        <li><a href="/<?js= version ?>/Hooks.html#event:afterSetDataAtRowProp">afterSetDataAtRowProp</a></li>
+        <li><a href="/<?js= version ?>/Hooks.html#event:afterValidate">afterValidate</a></li>
+        <li><a href="/<?js= version ?>/Hooks.html#event:beforeChange">beforeChange</a></li>
+        <li><a href="/<?js= version ?>/Hooks.html#event:beforeChangeRender">beforeChangeRender</a></li>
+        <li><a href="/<?js= version ?>/Hooks.html#event:beforeCreateCol">beforeCreateCol</a></li>
+        <li><a href="/<?js= version ?>/Hooks.html#event:beforeCreateRow">beforeCreateRow</a></li>
+        <li><a href="/<?js= version ?>/Hooks.html#event:beforeValidate">beforeValidate</a></li>
+      </ul>
+    </p>
+  </div>
+
   <div class="example-container clearfix head-gap" name="beforeKeyDown">
-    <h3 id="page-beforeKeyDown">beforeKeyDown callback</h3>
+    <h3 id="page-beforeKeyDown"><code>beforeKeyDown</code> use case</h3>
     <p>The following demo uses <code>beforeKeyDown</code> callback to modify some key bindings:</p>
     <ul>
       <li>Pressing <kbd>DELETE</kbd> or <kbd>BACKSPACE</kbd> on a cell deletes the cell and shifts all cells beneath it
