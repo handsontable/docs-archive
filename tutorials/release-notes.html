@@ -1,5 +1,34 @@
 <div class="static-content">
   <div class="example-container clearfix">
+    <h3>0.31.0</h3>
+    <p>Released on 14th of February, 2017</p>
+    <strong>Backward incompatible changes</strong>
+    <ul>
+      <li>Changed the possible values of the <code>source</code> property provided by plugin hooks. <a href="https://github.com/handsontable/handsontable/issues/4017#issuecomment-277200985" target="_blank">See the issue page for this problem for more information about the breaking change.</a> (<a href="https://github.com/handsontable/handsontable/issues/4017" target="_blank">#4017</a>)</li>
+    </ul>
+    <strong>Changes</strong>
+    <br>
+    <ul>
+      <li>Fixed a problem where the <code>manualRowMove</code> option performed the move action even when the user clicked once on a header. (<a href="https://github.com/handsontable/handsontable/issues/4060" target="_blank">#4060</a>)</li>
+      <li>Fixed a problem with improper behavior of compare functions passed to the <code>columnSorting</code> plugin. (<a href="https://github.com/handsontable/handsontable/issues/4042" target="_blank">#4042</a>)</li>
+      <li>Fixed a bug where the column header with wasn't adjusting properly to the text within. (<a href="https://github.com/handsontable/handsontable/issues/4034" target="_blank">#4034</a>)</li>
+      <li>Fixed a problem where calling <code>updateSettings</code> would misalign the table overlays. (<a href="https://github.com/handsontable/handsontable/issues/4015" target="_blank">#4015</a>)</li>
+      <li>Fixed a bug where the scrollbar height was not calculated properly when the rows had different heights. (<a href="https://github.com/handsontable/handsontable/issues/4000" target="_blank">#4000</a>)</li>
+      <li>Updated the <code>comments</code> plugin with the missing functions. (<a href="https://github.com/handsontable/handsontable/issues/3994" target="_blank">#3994</a>)</li>
+      <li>Fixed a bug where using the <code>checkbox</code>-typed cells caused a problem with performance. (<a href="https://github.com/handsontable/handsontable/issues/3881" target="_blank">#3881</a>)</li>
+      <li>Fixed a problem with the <code>persistentState</code> plugin which was broken since version <code>0.28.0</code>. (<a href="https://github.com/handsontable/handsontable/issues/3858" target="_blank">#3858</a>)</li>
+      <li>Fixed a problem with the <code>manualRowMove</code> inconsistencies when using the <code>loadData</code> method. (<a href="https://github.com/handsontable/handsontable/issues/3849" target="_blank">#3849</a>)</li>
+      <li>Added a <code>sortEmptyCells</code> option to the <code>columnSorting</code> plugin. (<a href="https://github.com/handsontable/handsontable/issues/3764" target="_blank">#3764</a>)</li>
+      <li>Fixed a memory leak in the Touch Scroll feature. (<a href="https://github.com/handsontable/handsontable/issues/3646" target="_blank">#3646</a>)</li>
+      <li>Changed the default sorting algorithm from <code>Array.sort</code> to <b>merge sort</b>, as the former was unstable. (<a href="https://github.com/handsontable/handsontable/issues/3606" target="_blank">#3606</a>)</li>
+      <li>Fixed a problem with removing the <code>htInvalid</code> css classname.</li>
+    </ul>
+    <p>
+      The corresponding Handsontable Pro version is <a href="http://docs.handsontable.com/pro/1.10.0" target="_blank">1.10.0</a>.
+    </p>
+  </div>
+
+  <div class="example-container clearfix">
     <h3>0.30.1</h3>
     <p>Released on 17th of January, 2017</p>
     <strong>Changes</strong>

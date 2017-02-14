@@ -73,6 +73,7 @@
     <ul>
       <li><code>column : Number</code> - this index of column, by which you want to sorter the table.</li>
       <li><code>sortOrder : Boolean</code>  - defines the order of sorting (<code>true</code> for ascending, <code>false</code> for descending). This arguments is optional. If it&#39;s not specified, the default order is ascending.</li>
+      <li><code>sortEmptyCells : Boolean</code>  - defines if the empty cells should be taking part in the sorting process. If set to <code>true</code>, they'll be considered as a valid empty string (or the lowest value). If set to <code>false</code>, they'll be moved to the end of the table. This arguments is optional. If it&#39;s not specified, it defaults to <code>false</code>.</li>
     </ul>
     <p>As all settings, <code>columnSorting</code> can be altered during the lifetime of a table, using <code>updateSettings()</code> method.</p>
     <p>Examples:</p>
