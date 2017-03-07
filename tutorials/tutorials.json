@@ -129,6 +129,10 @@
           "hot-table": {
             "title": "hot-table",
             "external": "https://github.com/handsontable/hot-table"
+          },
+          "react-handsontable": {
+            "title": "react-handsontable",
+            "external": "https://github.com/handsontable/react-handsontable"
           }
         }
       },
@@ -294,9 +298,6 @@
           },
           "bootstrap": {
             "title": "Bootstrap"
-          },
-          "backbonejs": {
-            "title": "Backbone.js"
           }
         }
       }
