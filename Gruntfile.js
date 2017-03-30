@@ -49,8 +49,9 @@ module.exports = function (grunt) {
         src: [
           HOT_SRC_PATH + '/src/**/*.js',
           '!' + HOT_SRC_PATH + '/src/**/*.spec.js',
-          '!' + HOT_SRC_PATH + '/src/3rdparty/walkontable/src/**/*.js',
-          '!' + HOT_SRC_PATH + '/src/3rdparty/walkontable/test/**/*.js',
+          '!' + HOT_SRC_PATH + '/src/**/*.e2e.js',
+          '!' + HOT_SRC_PATH + '/src/**/*.unit.js',
+          '!' + HOT_SRC_PATH + '/src/3rdparty/walkontable/**/*.js',
         ],
         jsdoc: 'node_modules/.bin/' + (/^win/.test(process.platform) ? 'jsdoc.cmd' : 'jsdoc'),
         options: {
@@ -229,6 +230,9 @@ module.exports = function (grunt) {
     var done = this.async();
 
     gitHelper.getDocsVersions().then(function(branches) {
+      branches = branches.filter(function(branch) {
+        return !/^draft\-/.test(branch);
+      });
       var content = 'docVersions && docVersions(' + JSON.stringify(branches.reverse()) + ')';
 
       grunt.log.write('The following versions found: ' + branches.join(', '));

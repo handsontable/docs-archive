@@ -85,17 +85,17 @@
       &quot;date&quot;</code>. Each string is internally mapped to functions associated with this type. For example <code>
       &quot;numeric&quot;</code> type is associated with functions:</p>
     <ul>
-      <li><code>Handsontable.NumericRenderer</code></li>
+      <li><code>Handsontable.renderers.NumericRenderer</code></li>
       <li><code>Handsontable.editors.TextEditor</code></li>
-      <li><code>Handsontable.NumericValidator</code></li>
+      <li><code>Handsontable.validators.NumericValidator</code></li>
     </ul>
     <p>so instead of writing</p>
     <pre><code class="lang-javascript">var hot = new Handsontable(document.getElementById('container'), {
   columns: [
     {
-      renderer: Handsontable.NumericRenderer,
+      renderer: Handsontable.renderers.NumericRenderer,
       editor: Handsontable.editors.TextEditor,
-      validator: Handsontable.NumericValidator
+      validator: Handsontable.validators.NumericValidator,
     }
   ]
 });</code></pre>
@@ -140,7 +140,7 @@
     <pre><code class="lang-javascript">var hot = new Handsontable(document.getElementById('container'), {
   columns: [
     {
-      renderer: Handsontable.NumericRenderer,
+      renderer: Handsontable.renderers.NumericRenderer,
       editor: Handsontable.editors.TextEditor,
       validator: customValidator
     }
@@ -161,7 +161,7 @@
       configuration</a> and define a table with two columns, with <code>validator</code> set to <code>customValidator</code>
       function. We also set <code>type</code> of the first column to <code>password</code>. <code>Password</code> cell type
       does not define a validator function:</p>
-    <pre><code class="lang-javascript">renderer: Handsontable.PasswordRenderer,
+    <pre><code class="lang-javascript">renderer: Handsontable.renderers.PasswordRenderer,
 editor: Handsontable.editors.PasswordEditor,
 validator: undefined</code></pre>
     <p>Because <code>type: &#39;password&#39;</code> is a more specific configuration for the cells in the first column,
@@ -171,12 +171,12 @@ validator: undefined</code></pre>
     <pre><code class="lang-javascript">var hot = new Handsontable(document.getElementById('container'), {
   columns: [
     {
-      renderer: Handsontable.PasswordRenderer,
+      renderer: Handsontable.renderers.PasswordRenderer,
       editor: Handsontable.editors.PasswordEditor,
       validator: undefined
     }
     {
-      renderer: Handsontable.TextRenderer, // text cell type is the default one
+      renderer: Handsontable.renderers.TextRenderer, // text cell type is the default one
       editor: Handsontable.editors.TextEditor, // text cell type is the default one
       validator: customValidator
     }

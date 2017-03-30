@@ -269,7 +269,7 @@ PasswordEditor.prototype.createElements = function () {
   this.textareaStyle.height = 0;
 
   // Replace textarea with password input
-  Handsontable.Dom.empty(this.TEXTAREA_PARENT);
+  Handsontable.dom.empty(this.TEXTAREA_PARENT);
   this.TEXTAREA_PARENT.appendChild(this.TEXTAREA);
 };</code></pre>
     <p>That's it! You can now use your new editor:</p>
@@ -349,7 +349,7 @@ PasswordEditor.prototype.createElements = function () {
     <pre><code class="lang-js">SelectEditor.prototype.init = function() {
   // Create detached node, add CSS class and make sure its not visible
   this.select = document.createElement('SELECT');
-  Handsontable.Dom.addClass(this.select, 'htSelectEditor');
+  Handsontable.dom.addClass(this.select, 'htSelectEditor');
   this.select.style.display = 'none';
 
   // Attach node to DOM, by appending it to the container holding the table
@@ -408,13 +408,13 @@ SelectEditor.prototype.prepare = function() {
   } else {
     options = this.prepareOptions(selectOptions);
   }
-  Handsontable.Dom.empty(this.select);
+  Handsontable.dom.empty(this.select);
 
   for (var option in options) {
     if (options.hasOwnProperty(option)) {
       var optionElement = document.createElement('OPTION');
       optionElement.value = option;
-      Handsontable.Dom.fastInnerHTML(optionElement, options[option]);
+      Handsontable.dom.fastInnerHTML(optionElement, options[option]);
       this.select.appendChild(optionElement);
     }
   }
@@ -447,10 +447,10 @@ SelectEditor.prototype.setValue = function(value) {
 };
 
 SelectEditor.prototype.open = function() {
-  var width = Handsontable.Dom.outerWidth(this.TD);
-  var height = Handsontable.Dom.outerHeight(this.TD);
-  var rootOffset = Handsontable.Dom.offset(this.instance.rootElement);
-  var tdOffset = Handsontable.Dom.offset(this.TD);
+  var width = Handsontable.dom.outerWidth(this.TD);
+  var height = Handsontable.dom.outerHeight(this.TD);
+  var rootOffset = Handsontable.dom.offset(this.instance.rootElement);
+  var tdOffset = Handsontable.dom.offset(this.TD);
 
   // sets select dimensions to match cell size
   this.select.style.height = height + 'px';
@@ -532,7 +532,7 @@ var hot = new Handsontable(document.getElementById('container'), {
   var editor = instance.getActiveEditor();
   var selectedIndex = editor.select.selectedIndex;
 
-  Handsontable.Dom.enableImmediatePropagation(event);
+  Handsontable.dom.enableImmediatePropagation(event);
 
   switch (event.keyCode) {
     case Handsontable.helper.keyCode.ARROW_UP:
@@ -570,10 +570,10 @@ var hot = new Handsontable(document.getElementById('container'), {
       <code>getActiveEditor()</code> will return an object of <code>DateEditor</code> class.</p>
     <p>The rest of the code should be quite clear. Now all we have to do is register our listener.</p>
     <pre><code class="lang-javascript">SelectEditor.prototype.open = function() {
-  var width = Handsontable.Dom.outerWidth(this.TD);
-  var height = Handsontable.Dom.outerHeight(this.TD);
-  var rootOffset = Handsontable.Dom.offset(this.instance.rootElement);
-  var tdOffset = Handsontable.Dom.offset(this.TD);
+  var width = Handsontable.dom.outerWidth(this.TD);
+  var height = Handsontable.dom.outerHeight(this.TD);
+  var rootOffset = Handsontable.dom.offset(this.instance.rootElement);
+  var tdOffset = Handsontable.dom.offset(this.TD);
 
   this.select.style.height = height + 'px';
   this.select.style.minWidth = width + 'px';
@@ -595,23 +595,23 @@ SelectEditor.prototype.close = function() {
       to set the css transform property. We'll use the <code>Handsontable.Dom</code>'s <code>getCssTransform</code>
       and <code>resetCssTransform</code> to get the correct values:</p>
     <pre><code class="lang-javascript">SelectEditor.prototype.open = function() {
-  var width = Handsontable.Dom.outerWidth(this.TD);
+  var width = Handsontable.dom.outerWidth(this.TD);
   // important - group layout reads together for better performance
-  var height = Handsontable.Dom.outerHeight(this.TD);
-  var rootOffset = Handsontable.Dom.offset(this.instance.rootElement);
-  var tdOffset = Handsontable.Dom.offset(this.TD);
+  var height = Handsontable.dom.outerHeight(this.TD);
+  var rootOffset = Handsontable.dom.offset(this.instance.rootElement);
+  var tdOffset = Handsontable.dom.offset(this.TD);
   var editorSection = this.checkEditorSection();
   var cssTransformOffset;
 
   switch(editorSection) {
     case 'top':
-      cssTransformOffset = Handsontable.Dom.getCssTransform(this.instance.view.wt.wtScrollbars.vertical.clone.wtTable.holder.parentNode);
+      cssTransformOffset = Handsontable.dom.getCssTransform(this.instance.view.wt.wtScrollbars.vertical.clone.wtTable.holder.parentNode);
       break;
     case 'left':
-      cssTransformOffset = Handsontable.Dom.getCssTransform(this.instance.view.wt.wtScrollbars.horizontal.clone.wtTable.holder.parentNode);
+      cssTransformOffset = Handsontable.dom.getCssTransform(this.instance.view.wt.wtScrollbars.horizontal.clone.wtTable.holder.parentNode);
       break;
     case 'corner':
-      cssTransformOffset = Handsontable.Dom.getCssTransform(this.instance.view.wt.wtScrollbars.corner.clone.wtTable.holder.parentNode);
+      cssTransformOffset = Handsontable.dom.getCssTransform(this.instance.view.wt.wtScrollbars.corner.clone.wtTable.holder.parentNode);
       break;
   }
   var selectStyle = this.select.style;
@@ -619,7 +619,7 @@ SelectEditor.prototype.close = function() {
   if (cssTransformOffset && cssTransformOffset !== -1) {
     selectStyle[cssTransformOffset[0]] = cssTransformOffset[1];
   } else {
-    Handsontable.Dom.resetCssTransform(this.select);
+    Handsontable.dom.resetCssTransform(this.select);
   }
 
   selectStyle.height = height + 'px';

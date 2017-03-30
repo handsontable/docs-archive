@@ -3,7 +3,7 @@
   <div class="index-list">
 
     <ul>
-      <li><a href="#page-tasks">Grunt tasks</a></li>
+      <li><a href="#page-tasks">NPM tasks</a></li>
       <li><a href="#page-running">Running your first build</a></li>
       <li><a href="#page-customizing">Creating a custom package</a></li>
     </ul>
@@ -14,9 +14,9 @@
       Edit this page
     </a>
 
-    <p>The build process is using <a href="http://gruntjs.com/" target="_blank">Grunt</a> and bunch of its
-      tasks defined in
-      <a href="https://github.com/handsontable/handsontable/blob/master/Gruntfile.js" target="_blank">Gruntfile.js</a>.
+    <p>The build process is using <a href="https://webpack.js.org/" target="_blank">Webpack</a>, <a href="https://babeljs.io/" target="_blank">Babel</a> and
+      bunch of NPM tasks defined in
+      <a href="https://github.com/handsontable/handsontable/blob/master/package.json" target="_blank">package.json</a>.
     During this process, the source files located in the <code>src/*</code> directory are transformed into output files:</p>
     <ul>
       <li><code>./dist/handsontable.js</code></li>
@@ -34,36 +34,46 @@
   </div>
 
   <div class="example-container clearfix" name="tasks">
-    <h3 id="page-tasks">Grunt tasks</h3>
+    <h3 id="page-tasks">NPM tasks</h3>
     <p>Currently, the following tasks are available for building Handsontable:</p>
     <ul>
-      <li><code>grunt</code> - runs a single build</li>
-      <li><code>grunt build</code> - runs a single build but without code quality checking</li>
-      <li><code>grunt jshint</code> - quality-checking</li>
-      <li><code>grunt watch</code> - watches for changes in source directory and runs a build when a change is observed. For faster rebuild when a change is observed watcher triggers task which builds files without minify.</li>
-      <li><code>grunt --force default watch</code> - runs a single build and then watches for changes</li>
-      <li><code>grunt test</code> - runs a single build followed by Jasmine test suite executed in PhantomJS.
+      <li>
+        <code>npm run test</code> - runs several tasks in this order:
+        <ul>
+          <li><code>npm run lint</code> - check if changes applied into source code are valid with our code style (mostly we follow
+            <a href="https://github.com/airbnb/javascript" target="_blank">Airbnb JavaScript</a> code style).</li>
+          <li><code>npm run test:unit</code> - runs test suite in node environment. It uses <a href="https://facebook.github.io/jest/" target="_blank">Jest</a> as a test runner.</li>
+          <li><code>npm run test:walkontable</code> - runs a single build followed by Jasmine test suite and executes in PhantomJS.</li>
+          <li><code>npm run test:e2e</code> - runs a single build followed by Jasmine test suite and by using generated bundle <code>/dist/handsontable.js</code> executes it in PhantomJS.</li>
+          <li><code>npm run test:production</code> - runs a single build followed by Jasmine test suite and by using generated minified bundle <code>/dist/handsontable.full.min.js</code> executes it in PhantomJS.</li>
+        </ul>
+      </li>
+      <li>
+        <code>npm run build</code> - runs a single build but without code quality checking. It internally executes this tasks:
+        <ul>
+          <li><code>npm run build:commonjs</code> - transpiles files into <code>CommonJS</code> format. These files are published into NPM repository later.</li>
+          <li><code>npm run build:es</code> - transpiles files into <code>import/export</code> format. These files are published into NPM repository later.</li>
+          <li><code>npm run build:umd</code> - creates bundles (<code>dist/handsontable.js</code>, <code>dist/handsontable.css</code>, <code>dist/handsontable.full.js</code> and <code>dist/handsontable.full.css</code>) which are compatible with UMD (Universal Module Definition).</li>
+          <li><code>npm run build:umd.min</code> - creates minified bundles (<code>dist/handsontable.min.js</code>, <code>dist/handsontable.min.css</code>, <code>dist/handsontable.min.full.js</code> and <code>dist/handsontable.min.full.css</code>) which are compatible with UMD (Universal Module Definition).</li>
+        </ul>
+      </li>
+      <li><code>npm run watch</code> - watches for changes in source directory and runs a build when a change is observed. For faster rebuild when a change is observed watcher triggers task which builds files without minify.</li>
       </li>
     </ul>
-    <p>You can create your own tasks by editing <code>Gruntfile.js</code></p>
   </div>
   <div class="example-container clearfix" name="running">
     <h3 id="page-running">Running your first build</h3>
     <p>To run your own build, follow the below steps:</p>
     <ol>
       <li>Install Node.js (available for Windows, Mac and Linux). This will also install NPM (Node Package Manager) that
-        handles all the dependencies. Handsontable was tested with Node.js >=0.12.* and npm >=2.*
+        handles all the dependencies. Handsontable for building and testing requires <strong>Node.js >=5.10.*</strong> and <strong>npm >=3</strong>.
       </li>
       <li>Clone the Handsontable repository on your local disk and go to the directory where you cloned it.</li>
-      <li>Install Grunt CLI as a global NPM module (<code>npm install -g grunt-cli</code>). More details can be found on
-        <a href="http://gruntjs.com/getting-started" target="_blank">Grunt - Getting Started</a>.</li>
       <li>Run <code>npm install</code> to download all the dependencies defined in <code>package.json</code>. The
         dependencies will be downloaded into a new directory <code>node_modules</code>, that is ignored by Git.
       </li>
-      <li><strong>Run <code>grunt</code> to make your first build!</strong></li>
+      <li><strong>Run <code>npm run build</code> to make your first build!</strong></li>
     </ol>
-    <p>If all is working correctly, you should see something like this:</p>
-    <img width="822" height="660" src="/images/grunt-build.png" alt="Running your first build" />
   </div>
   <div class="example-container clearfix head-gap" name="customizing">
     <h3 id="page-customizing">Creating a custom package</h3>

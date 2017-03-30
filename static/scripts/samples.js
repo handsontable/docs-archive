@@ -122,7 +122,7 @@ function ajax(url, method, params, callback) {
       return;
     }
 
-    Handsontable.Dom.addEvent(document.body, 'click', function (e) {
+    Handsontable.dom.addEvent(document.body, 'click', function (e) {
 
       var element = e.target || e.srcElement;
 
@@ -140,7 +140,7 @@ function ajax(url, method, params, callback) {
       return;
     }
 
-    Handsontable.Dom.addEvent(document.body, 'click', function (e) {
+    Handsontable.dom.addEvent(document.body, 'click', function (e) {
       var element = e.target || e.srcElement;
 
       if (element.className == "jsFiddleLink") {
@@ -353,4 +353,3 @@ function ajax(url, method, params, callback) {
   });
 
 })();
-

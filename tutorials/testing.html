@@ -4,7 +4,7 @@
 
     <ul>
       <li><a href="#testing-in-browser">Testing in browser</a></li>
-      <li><a href="#testing-with-grunt-cli">Testing with Grunt (CLI)</a></li>
+      <li><a href="#testing-with-npm-cli">Testing with NPM (CLI)</a></li>
     </ul>
   </div>
 
@@ -15,25 +15,35 @@
     <h3 id="testing-in-browser">Testing in browser</h3>
     <p>To run the Jasmine tests in your browser, go to the following pages:</p>
     <ul>
-      <li><strong>http://localhost/handsontable/test/jasmine/SpecRunner.html</strong>
-        - (Handsontable main test suite)
+      <li><strong>http://localhost/handsontable/test/E2ERunner.html</strong>
+        - (Handsontable end-to-end test suite)
       </li>
-      <li><strong>http://localhost/handsontable/src/3rdparty/walkontable/test/jasmine/SpecRunner.html</strong>
+      <li><strong>http://localhost/handsontable/test/UnitRunner.html</strong>
+        - (Handsontable unit test suite)
+      </li>
+      <li><strong>http://localhost/handsontable/src/3rdparty/walkontable/test/SpecRunner.html</strong>
         - (Walkontable test suite)
       </li>
     </ul>
   </div>
   <div class="example-container clearfix">
-    <h3 id="testing-with-grunt-cli">Testing with Grunt (CLI)</h3>
-    <p>To run Jasmine tests in your command line (using PhantomJS), first install Grunt (based on the instructions provided
-      on page <a href="/<?js= version ?>/tutorial-custom-build.html">Building</a>).</p>
+    <h3 id="testing-with-npm-cli">Testing with NPM (CLI)</h3>
+    <p>
+      To run Jasmine tests in your command line (using PhantomJS), first install all necessary dependencies by executing <code>npm install</code>.
+      After the <code>NPM</code> finishes fetching required modules your workspace is ready to test.
+    </p>
     <p>Useful commands:</p>
     <ul>
-      <li><code>grunt test</code> - runs all test cases (Handsotnable and Walkontable)</li>
-      <li><code>grunt test:handsontable</code> - runs only Handsontable tests</li>
-      <li><code>grunt test:walkontable</code> - runs only Walkontable tests</li>
-      <li><code>grunt test --filter autocomplete</code> - runs only tests and suites matching the name &quot;autocomplete&quot;
-      </li>
+      <li><code>npm test</code> - runs all test cases (Handsotnable and Walkontable).</li>
+      <li><code>npm test:e2e</code> - runs only Handsontable end-to-end tests.</li>
+      <li><code>npm test:unit</code> - runs only Handsontable unit tests.</li>
+      <li><code>npm test:walkontable</code> - runs only Walkontable tests.</li>
+      <li><code>npm run test:e2e --testPathPattern=selection</code> - runs only end-to-end tests and suites matching to filename &quot;selection&quot;.</li>
+      <li><code>npm run test:unit --testPathPattern=array</code> - runs only end-to-end tests and suites matching to filename &quot;array&quot;.</li>
+      <li><code>npm run test:e2e.dump</code> - generates <code>test/E2ERunner.html</code> file which can by executed in browser environment (Chrome, PhantomJS etc.) to check if tests passes.</li>
+      <li><code>npm run test:unit.dump</code> - generates <code>test/UnitRunner.html</code> file which can by executed in browser environment (Chrome, PhantomJS etc.) to check if tests passes.</li>
+      <li><code>npm run test:e2e.dump -- --watch</code> - generates <code>E2ERunner.html</code> file on every change detected in test files. It can be helpful for debugging proposes.</li>
+      <li><code>npm run test:unit.dump -- --watch</code> - generates <code>UnitRunner.html</code> file on every change detected in test files. It can be helpful for debugging proposes.</li>
     </ul>
   </div>
 </div>

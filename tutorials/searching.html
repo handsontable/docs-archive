@@ -21,7 +21,7 @@
       <code>isSearchResult</code> property is <code>true</code>. You can change this class using
       <code>searchResultClass</code> option.</p>
     <p>If you wish to change the result class globally (for all Handsontable instances on the page), you can use the
-      <code>Handsontable.Search.global.setDefaultSearchResultClass(className)</code> method.</p>
+      <code>Handsontable.plugins.Search.global.setDefaultSearchResultClass(className)</code> method.</p>
     <h3>Custom <code>queryMethod</code></h3>
     <p>The <code>queryMethod</code> is responsible for determining whether a <code>queryStr</code> matches the value
       stored in a cell. It takes 2 arguments: <code>queryStr</code> and <code>cellData</code>. The first is a string
@@ -29,7 +29,7 @@
       The <code>queryMethod</code> function should return <code>true</code> if there is a match.</p>
     <p>The default <code>queryMethod</code> is dead simple:</p>
     <pre>
-      <code class="lang-javascript">Handsontable.Search.DEFAULT_QUERY_METHOD = function (query, value) {
+      <code class="lang-javascript">Handsontable.plugins.Search.DEFAULT_QUERY_METHOD = function (query, value) {
   if (typeof query == 'undefined' || query == null || !query.toLowerCase || query.length === 0) {
     return false;
   }
@@ -41,19 +41,19 @@
     <p>If you want to change the <code>queryMethod</code>, use <code>queryMethod</code> option.
       You can also pass the <code>queryMethod</code> as the third argument of <code>query()</code> method.
       To change the <code>queryMethod</code> globally, use
-      <code>Handsontable.Search.global.setDefaultQueryMethod(queryMethod)</code>.</p>
+      <code>Handsontable.plugins.Search.global.setDefaultQueryMethod(queryMethod)</code>.</p>
     <h3>Custom result callback</h3>
     <p>After calling <code>queryMethod</code> <code>searchPlugin</code> calls <code>
       callback(instance, rowIndex, colIndex, cellData, testResult)</code> for every cell.</p>
     <p>Just as the <code>queryMethod</code>, you can override this callback globally, using
-      <code>Handsontable.Search.global.setDefaultCallback()</code>, you can set different callbacks
+      <code>Handsontable.plugins.Search.global.setDefaultCallback()</code>, you can set different callbacks
       particular Handsontable instances using <code>callback</code> option, or pass the <code>callback</code>
       as the second argument of <code>query()</code> method.</p>
     <p>The default <code>callback</code> is responsible for setting the <code>isSearchResult</code> property,
-      so if you want to preserve this functionality, be sure to invoke <code>Handsontable.Search.DEFAULT_CALLBACK</code>
+      so if you want to preserve this functionality, be sure to invoke <code>Handsontable.plugins.Search.DEFAULT_CALLBACK</code>
       inside your custom <code>callback</code>.</p>
     <pre>
-      <code class="lang-javascript">Handsontable.Search.DEFAULT_CALLBACK = function(instance, row, col, data, testResult) {
+      <code class="lang-javascript">Handsontable.plugins.Search.DEFAULT_CALLBACK = function(instance, row, col, data, testResult) {
   instance.getCellMeta(row, col).isSearchResult = testResult;
 };</code>
     </pre>
@@ -111,7 +111,7 @@
           return queryStr.toString() === value.toString();
         }
 
-        Handsontable.Dom.addEvent(searchFiled, 'keyup', function (event) {
+        Handsontable.dom.addEvent(searchFiled, 'keyup', function (event) {
           var queryResult = hot.search.query(this.value);
 
           console.log(queryResult);
@@ -161,7 +161,7 @@
         });
         searchFiled2 = document.getElementById('search_field2');
 
-        Handsontable.Dom.addEvent(searchFiled2,'keyup', function (event) {
+        Handsontable.dom.addEvent(searchFiled2,'keyup', function (event) {
           var queryResult = hot2.search.query(this.value);
 
           console.log(queryResult);
@@ -215,7 +215,7 @@
         });
         searchFiled3 = document.getElementById('search_field3');
 
-        Handsontable.Dom.addEvent(searchFiled3,'keyup', function(event) {
+        Handsontable.dom.addEvent(searchFiled3,'keyup', function(event) {
           var queryResult = hot3.search.query(this.value);
 
           console.log(queryResult);
@@ -259,7 +259,7 @@
           searchResultCount = 0;
 
         function searchResultCounter(instance, row, col, value, result) {
-          Handsontable.Search.DEFAULT_CALLBACK.apply(this, arguments);
+          Handsontable.plugins.Search.DEFAULT_CALLBACK.apply(this, arguments);
 
           if (result) {
             searchResultCount++;
@@ -276,7 +276,7 @@
         searchFiled4 = document.getElementById('search_field4');
         resultCount = document.getElementById('resultCount');
 
-        Handsontable.Dom.addEvent(searchFiled4, 'keyup', function(event) {
+        Handsontable.dom.addEvent(searchFiled4, 'keyup', function(event) {
           var queryResult;
 
           searchResultCount = 0;

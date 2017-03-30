@@ -106,11 +106,11 @@
             img = document.createElement('IMG');
             img.src = value;
 
-            Handsontable.Dom.addEvent(img, 'mousedown', function (e){
+            Handsontable.dom.addEvent(img, 'mousedown', function (e){
               e.preventDefault(); // prevent selection quirk
             });
 
-            Handsontable.Dom.empty(td);
+            Handsontable.dom.empty(td);
             td.appendChild(img);
           }
           else {
@@ -188,13 +188,13 @@
           return td;
         }
 
-        Handsontable.Dom.addEvent(container2, 'mousedown', function (event) {
+        Handsontable.dom.addEvent(container2, 'mousedown', function (event) {
           if (event.target.nodeName == 'INPUT' && event.target.className == 'checker') {
             event.stopPropagation();
           }
         });
 
-        Handsontable.Dom.addEvent(container2, 'mouseup', function (event) {
+        Handsontable.dom.addEvent(container2, 'mouseup', function (event) {
           if (event.target.nodeName == 'INPUT' && event.target.className == 'checker') {
             isChecked = !event.target.checked;
             hot2.render();

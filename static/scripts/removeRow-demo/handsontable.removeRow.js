@@ -92,10 +92,10 @@
 
       if (pluginEnabled) {
         bindMouseEvents.call(this);
-        Handsontable.Dom.addClass(instance.rootElement, 'htRemoveRow');
+        Handsontable.dom.addClass(instance.rootElement, 'htRemoveRow');
       } else {
         unbindMouseEvents.call(this);
-        Handsontable.Dom.removeClass(instance.rootElement, 'htRemoveRow');
+        Handsontable.dom.removeClass(instance.rootElement, 'htRemoveRow');
       }
     };
 
