@@ -229,6 +229,9 @@ module.exports = function (grunt) {
     var done = this.async();
 
     gitHelper.getDocsVersions().then(function(branches) {
+      branches = branches.filter(function(branch) {
+        return !/^draft\-/.test(branch);
+      });
       var content = 'docVersions && docVersions(' + JSON.stringify(branches.reverse()) + ')';
 
       grunt.log.write('The following versions found: ' + branches.join(', '));
