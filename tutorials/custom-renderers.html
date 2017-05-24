@@ -1,17 +1,89 @@
 <div class="static-content">
 
   <div class="index-list">
-
     <ul>
+      <li><a href="#page-registering-renderer">Registering a renderer</a></li>
       <li><a href="#page-cell">Rendering custom HTML in cells</a></li>
       <li><a href="#page-header">Rendering custom HTML in header</a></li>
     </ul>
   </div>
 
-  <div class="example-container clearfix" name="cell">
+  <div class="example-container head-gap clearfix" name="registering-renderer">
     <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/custom-renderers.html" class="edit-doc" target="_blank">
       Edit this page
     </a>
+    <h3 id="page-registering-renderer">Registering a renderer</h3>
+    <p>When you create a renderer, a good idea is to assign it as an alias that will refer to this particular renderer function.
+      Handsontable defines 10 aliases by default:</p>
+    <ul>
+      <li><code>autocomplete</code> for <code>Handsontable.renderers.AutocompleteRenderer</code></li>
+      <li><code>base</code> for <code>Handsontable.renderers.BaseRenderer</code></li>
+      <li><code>checkbox</code> for <code>Handsontable.renderers.CheckboxRenderer</code></li>
+      <li><code>date</code> for <code>Handsontable.renderers.DateRenderer</code></li>
+      <li><code>dropdown</code> for <code>Handsontable.renderers.DropdownRenderer</code></li>
+      <li><code>html</code> for <code>Handsontable.renderers.HtmlRenderer</code></li>
+      <li><code>numeric</code> for <code>Handsontable.renderers.NumericRenderer</code></li>
+      <li><code>password</code> for <code>Handsontable.renderers.PasswordRenderer</code></li>
+      <li><code>text</code> for <code>Handsontable.renderers.TextRenderer</code></li>
+      <li><code>time</code> for <code>Handsontable.renderers.TimeRenderer</code></li>
+    </ul>
+    <p>It gives users a convenient way for defining which renderer should
+      be used when table rendering was triggered. User doesn't need to
+      know which renderer function is responsible for displaying the cell value, he does
+      not even need to know that there is any function at all. What is
+      more, you can change the render function associated with an alias without a
+      need to change code that defines a table.</p>
+    <p>To register your own alias use <code>Handsontable.renderers.registerRenderer()</code> function. It takes two arguments:
+    </p>
+    <ul>
+      <li><code>rendererName</code> - a string representing a renderer function</li>
+      <li><code>renderer</code> - a renderer function that will be represented by <code>rendererName</code></li>
+    </ul>
+    <p>If you'd like to register <code>asterixDecoratorRenderer</code> under alias <code>asterix</code> you have to call:</p>
+    <pre><code class="lang-javascript">Handsontable.renderers.registerRenderer('asterix', asterixDecoratorRenderer);</code></pre>
+    <p>Choose aliases wisely. If you register your renderer under name that is already registered, the target function will be
+      overwritten:</p>
+    <pre><code class="lang-javascript">Handsontable.renderers.registerRenderer('text', asterixDecoratorRenderer);
+
+// Now 'text' alias points to `asterixDecoratorRenderer` function, not Handsontable.renderers.TextRenderer</code></pre>
+    <p>So, unless you intentionally want to overwrite an existing alias, try to choose a unique name. A good practice is
+      prefixing your aliases with some custom name (for example your GitHub username) to minimize the possibility of name
+      collisions.
+      This is especially important if you want to publish your renderer, because you never know aliases has been
+      registered by the user who uses your renderer.</p>
+    <pre><code class="lang-javascript">Handsontable.renderers.registerRenderer('asterix', asterixDecoratorRenderer);
+
+// Someone might already registered such alias</code></pre>
+    <pre><br><code class="lang-javascript">Handsontable.renderers.registerRenderer('my.asterix', asterixDecoratorRenderer);
+
+// That's better.</code></pre>
+  <h3 id="using-an-alias">Using an alias</h3>
+  <p>The final touch is to using the registered aliases, so that users can easily refer to it without the need
+    to now the actual renderer function is.</p>
+  <p>To sum up, a well prepared renderer function should look like this:</p>
+  <pre><code class="lang-javascript">(function(Handsontable){
+  function customRenderer(hotInstance, td, row, column, prop, value, cellProperties) {
+    // Optionally include `BaseRenderer` which is responsible for adding/removing CSS classes to/from the table cells.
+    Handsontable.renderers.BaseRenderer.apply(this, arguments);
+
+    // ...your custom logic of the renderer
+  }
+
+  // Register an alias
+  Handsontable.renderers.registerRenderer('my.custom', customRenderer);
+
+})(Handsontable);</code></pre>
+  <p>From now on, you can use <code>customRenderer</code> like so:</p>
+  <pre><code class="lang-javascript">var hot = new Handsontable(document.getElementById('container'), {
+  data: someData,
+  columns: [
+    {
+      renderer: 'my.custom'
+    }
+  ]
+}); </code></pre>
+  </div>
+  <div class="example-container clearfix" name="cell">
     <h3 id="page-cell">Rendering custom HTML in cells</h3>
     <p>This example shows how to use custom cell renderers to display HTML content in a cell.
       This is a very powerful feature. Just remember to escape any HTML code that could be used for XSS

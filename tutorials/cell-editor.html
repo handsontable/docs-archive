@@ -1,5 +1,13 @@
 <div class="static-content">
 
+  <div class="index-list">
+    <ul>
+      <li><a href="#page-editor-manager-responsibility">Responsibility of EditorManager class</a></li>
+      <li><a href="#page-inheritance-of-editors">Inheritance of editors</a></li>
+      <li><a href="#page-creating-custom-editor">How to create a custom editor</a></li>
+      <li><a href="#page-registering-an-editor">Registering an editor</a></li>
+    </ul>
+  </div>
 
   <div class="example-container clearfix">
     <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/cell-editor.html" class="edit-doc" target="_blank">
@@ -15,15 +23,15 @@
       predictable and easier to extend. This tutorial will give you a comprehensive understanding of how the whole process of cell
       editing works, how Handsontable Core manages editors, how editor life cycle looks like and finally - how to create your own
       editors.</p>
-    <h2 id="editormanager">EditorManager</h2>
-    <p><code>Handsontable.EditorManager</code> is a class responsible for handling all editors available in Handsontable. If
+    <h2 id="page-editor-manager-responsibility" name="editor-manager-responsibility">EditorManager</h2>
+    <p><code>EditorManager</code> is a class responsible for handling all editors available in Handsontable. If
       <code>Handsontable.Core</code> needs
-      to interact with editors it uses <code>Handsontable.EditorManager</code> object.
-      <code>Handsontable.EditorManager</code> object is instantiated
+      to interact with editors it uses <code>EditorManager</code> object.
+      <code>EditorManager</code> object is instantiated
       in <code>init()</code> method which is run, after you invoke <code>handsontable()</code> constructor for the first
-      time. The reference for <code>Handsontable.EditorManager</code>
+      time. The reference for <code>EditorManager</code>
       object is kept private in Handsontable instance and you cannot access it. However, there are ways to alter the default
-      behaviour of <code>Handsontable.EditorManager</code>, more on that later.</p>
+      behaviour of <code>EditorManager</code>, more on that later.</p>
     <h3 id="editormanager-tasks">EditorManager tasks</h3>
     <p><code>EditorManager</code> has 4 main tasks:</p>
     <ul>
@@ -98,7 +106,7 @@
     <p>You should now have a better understanding on how <code>EditorManager</code> works. Let's go a bit deeper and see
       what methods every
       editor class must implement and what those methods do.</p>
-    <h2 id="baseeditor">BaseEditor</h2>
+    <h2 id="page-inheritance-of-editors" name="inheritance-of-editors">BaseEditor</h2>
     <p><code>Handsontable.editors.BaseEditor</code> is an abstract class from which all editor classes should inherit.
       It implements some of the basic editor methods as well as declares some methods that should be implemented by each
       editor class.
@@ -233,7 +241,7 @@ CalendarEditor.prototype.setValue = function(newValue) {
     <p>Node object of active cell. Updated on every <code>prepare()</code> method call.</p>
     <h4 id="cellproperties-object-">cellProperties 'Object'</h4>
     <p>An object representing active cell properties. Updated on every <code>prepare()</code> method call.</p>
-    <h2 id="how-to-create-a-custom-editor-">How to create a custom editor?</h2>
+    <h2 id="page-creating-custom-editor" name="creating-custom-editor">How to create a custom editor?</h2>
     <p>Now you now the philosophy behind the Handsontable editors and you're ready to write your own editor.
       Basically, you can build a new editor from scratch, by creating a new editor class, which inherits form <code>BaseEditor</code>,
       or if you just want to enhance an existing editor, you can extend its class and override only a few of its methods.</p>
@@ -647,16 +655,21 @@ SelectEditor.prototype.checkEditorSection = function() {
 };
 </code></pre>
     <p>Go ahead and test it!</p>
-    <h2 id="registering-an-editor">Registering an editor</h2>
+    <h2 id="page-registering-an-editor" name="registering-an-editor">Registering an editor</h2>
     <p>When you create an editor, a good idea is to assign it an alias that will refer to this particular editor class.
-      Handsontable defines 6 aliases by default:</p>
+      Handsontable defines 11 aliases by default:</p>
     <ul>
-      <li><code>text</code> for <code>Handsontable.editors.TextEditor</code></li>
-      <li><code>numeric</code> for <code>Handsontable.editors.NumericEditor</code></li>
-      <li><code>date</code> for <code>Handsontable.editors.DateEditor</code></li>
       <li><code>autocomplete</code> for <code>Handsontable.editors.AutocompleteEditor</code></li>
+      <li><code>base</code> for <code>Handsontable.editors.BaseEditor</code></li>
       <li><code>checkbox</code> for <code>Handsontable.editors.CheckboxEditor</code></li>
+      <li><code>date</code> for <code>Handsontable.editors.DateEditor</code></li>
+      <li><code>dropdown</code> for <code>Handsontable.editors.DropdownEditor</code></li>
       <li><code>handsontable</code> for <code>Handsontable.editors.HandsontableEditor</code></li>
+      <li><code>numeric</code> for <code>Handsontable.editors.NumericEditor</code></li>
+      <li><code>password</code> for <code>Handsontable.editors.PasswordEditor</code></li>
+      <li><code>select</code> for <code>Handsontable.editors.SelectEditor</code></li>
+      <li><code>text</code> for <code>Handsontable.editors.TextEditor</code></li>
+      <li><code>time</code> for <code>Handsontable.editors.TimeEditor</code></li>
     </ul>
     <p>It gives users a convenient way for defining which editor should
       be use when changing value of certain cells. User doesn't need to
@@ -707,7 +720,7 @@ SelectEditor.prototype.checkEditorSection = function() {
     <h3 id="add-editor-to-dedicated-namespace">Add editor to dedicated namespace</h3>
     <p>Code enclosed in IIFE cannot be accessed from outside, unless it's intentionally exposed. To keep things well
       organized
-      add your editor to a special namespace called <code>Handsontable.editors</code>. This way you can use your editor
+      register your editor to the collection of editors using <code>Handsontable.editors.registerEditor</code> method. This way you can use your editor
       during table definition
       and other users will have an easy access to your editor, in case they would like to extend it.</p>
     <pre><code class="lang-javascript">(function(Handsontable){
@@ -716,7 +729,7 @@ SelectEditor.prototype.checkEditorSection = function() {
   // ...rest of the editor code
 
   // And at the end
-  Handsontable.editors.CustomEditor = CustomEditor;
+  Handsontable.editors.registerEditor('custom', CustomEditor);
 
 })(Handsontable);</code></pre>
     <p>From now on, you can use <code>CustomEditor</code> like so:</p>
@@ -729,7 +742,7 @@ SelectEditor.prototype.checkEditorSection = function() {
   ]
 }); </code></pre>
     <p>Extending your <code>CustomEditor</code> is also easy.</p>
-    <pre><code class="lang-javascript">var AnotherEditor = Handsontable.editors.CustomEditor.prototype.extend();</code></pre>
+    <pre><code class="lang-javascript">var AnotherEditor = Handsontable.editors.getEditor('custom').prototype.extend();</code></pre>
     <p>Keep in mind, that there are no restrictions to the name you choose, but choose wisely and do not overwrite
       existing editors. Try to keep the names unique.</p>
     <h3 id="registering-an-alias">Registering an alias</h3>
@@ -741,12 +754,18 @@ SelectEditor.prototype.checkEditorSection = function() {
 
   // ...rest of the editor code
 
-  // Put editor in dedicated namespace
-  Handsontable.editors.CustomEditor = CustomEditor;
-
   // Register alias
   Handsontable.editors.registerEditor('theBestEditor', CustomEditor);
 
 })(Handsontable);</code></pre>
+<p>From now on, you can use <code>CustomEditor</code> like so:</p>
+<pre><code class="lang-javascript">var hot = new Handsontable(document.getElementById('container'), {
+  data: someData,
+  columns: [
+    {
+      editor: 'theBestEditor'
+    }
+  ]
+}); </code></pre>
   </div>
 </div>
