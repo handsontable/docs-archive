@@ -1,17 +1,113 @@
 <div class="static-content">
 
   <div class="index-list">
-
     <ul>
+      <li><a href="#page-registering-cell-type">Registering a cell type</a></li>
       <li><a href="#page-preview">Preview of built-in and custom cell types</a></li>
       <li><a href="#page-anatomy">Anatomy of a cell type</a></li>
     </ul>
   </div>
 
-  <div class="example-container clearfix" name="preview">
-    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/cell-types.html" class="edit-doc" target="_blank">
+  <div class="example-container head-gap clearfix" name="registering-cell-type">
+    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/custom-renderers.html" class="edit-doc" target="_blank">
       Edit this page
     </a>
+    <h3 id="page-registering-cell-type">Registering a cell-type</h3>
+    <p>When you create a custom cell type, a good idea is to assign it as an alias that will refer to this particular type definition.
+      Handsontable defines 9 aliases by default:</p>
+    <ul>
+      <li><code>autocomplete</code> for <code>Handsontable.cellTypes.autocomplete</code></li>
+      <li><code>checkbox</code> for <code>Handsontable.cellTypes.checkbox</code></li>
+      <li><code>date</code> for <code>Handsontable.cellTypes.date</code></li>
+      <li><code>dropdown</code> for <code>Handsontable.cellTypes.dropdown</code></li>
+      <li><code>handsontable</code> for <code>Handsontable.cellTypes.handsontable</code></li>
+      <li><code>numeric</code> for <code>Handsontable.cellTypes.numeric</code></li>
+      <li><code>password</code> for <code>Handsontable.cellTypes.password</code></li>
+      <li><code>text</code> for <code>Handsontable.cellTypes.text</code></li>
+      <li><code>time</code> for <code>Handsontable.cellTypes.time</code></li>
+    </ul>
+    <p>It gives users a convenient way for defining which cell type should
+      be used for describing cell properties. User doesn't need to
+      know which part of code is responsible for rendering, validating or editing the cell value, he does
+      not even need to know that there is any functions at all. What is
+      more, you can change the cell behaviour associated with an alias without a
+      need to change the code that defines a cell properties.</p>
+    <p>To register your own alias use <code>Handsontable.cellTypes.registerCellType()</code> function. It takes two arguments:
+    </p>
+    <ul>
+      <li><code>cellTypeName</code> - a string representing of the cell type object</li>
+      <li><code>type</code> - an object with keys <code>editor</code>, <code>renderer</code> and <code>validator</code> that will be represented by <code>cellTypeName</code></li>
+    </ul>
+    <p>If you'd like to register <code>copyablePasswordType</code> under alias <code>copyable-password</code> you have to call:</p>
+    <pre><code class="lang-javascript">Handsontable.cellTypes.registerCellType('copyable-password', {
+  editor: copyablePasswordEditor,
+  renderer: copyablePasswordRenderer,
+});</code></pre>
+    <p>Choose aliases wisely. If you register your cell type under name that is already registered, the target function will be
+      overwritten:</p>
+    <pre><code class="lang-javascript">Handsontable.cellTypes.registerCellType('password', {
+  editor: copyablePasswordEditor,
+  renderer: copyablePasswordRenderer,
+});
+
+// Now 'password' alias points to the newly created object, not Handsontable.cellTypes.password</code></pre>
+    <p>So, unless you intentionally want to overwrite an existing alias, try to choose a unique name. A good practice is
+      prefixing your aliases with some custom name (for example your GitHub username) to minimize the possibility of name
+      collisions.
+      This is especially important if you want to publish your cell type, because you never know aliases has been
+      registered by the user who uses your cell type.</p>
+    <pre><code class="lang-javascript">Handsontable.cellTypes.registerCellType('copyable-password', {
+  editor: copyablePasswordEditor,
+  renderer: copyablePasswordRenderer,
+});
+
+// Someone might already registered such alias</code></pre>
+    <pre><br><code class="lang-javascript">Handsontable.cellTypes.registerCellType('my.copyable-password', {
+  editor: copyablePasswordEditor,
+  renderer: copyablePasswordRenderer,
+});
+
+// That's better.</code></pre>
+  <h3 id="using-an-alias">Using an alias</h3>
+  <p>The final touch is to using the registered aliases, so that users can easily refer to it without the need
+    to now the actual cell type object is.</p>
+  <p>To sum up, a well prepared cell type object should look like this:</p>
+  <pre><code class="lang-javascript">(function(Handsontable){
+  var MyEditor = Handsontable.editors.TextEditor.prototype.extend();
+
+  function customRenderer(hotInstance, td, row, column, prop, value, cellProperties) {
+    // ...renderer logic
+  }
+
+  function customValidator(query, callback) {
+    // ...validator logic
+    callback(/* Pass `true` or `false` */);
+  }
+
+  // Register an alias
+  Handsontable.cellTypes.registerCellType('my.custom', {
+    editor: MyEditor,
+    renderer: customRenderer,
+    validator: customValidator,
+    // You can add additional options to the cell type based on Handsontable settings
+    className: 'my-cell',
+    allowInvalid: true,
+    // Or you can add custom properties which will be accessible in `cellProperties`
+    myCustomCellState: 'complete',
+  });
+
+})(Handsontable);</code></pre>
+  <p>From now on, you can use your cell definition like so:</p>
+  <pre><code class="lang-javascript">var hot = new Handsontable(document.getElementById('container'), {
+  data: someData,
+  columns: [
+    {
+      type: 'my.custom'
+    }
+  ]
+}); </code></pre>
+  </div>
+  <div class="example-container clearfix" name="preview">
     <h3 id="page-preview">Preview of built-in and custom cell types</h3>
     <p>The below example shows some of the built-in cell types (in other words,
       combinations of cell renderers and editors) available in Handsontable:</p>
@@ -102,20 +198,40 @@
 
   <div class="example-container clearfix head-hap" name="anatomy">
   <h3 id="page-anatomy">Anatomy of a cell type</h3>
-  <p>A cell type is a predefined set of cell properties. Cell type defines what renderer and editor
+  <p>A cell type is a predefined set of cell properties. Cell type defines what renderer, editor or validator
     should be used for a cell. They can also define any different cell property that will be assumed for
     each matching cell.</p>
   <p>For example, writing:</p>
   <pre><code class="lang-js">columns: [{
-  type: &#x27;text&#x27;
+  type: &#x27;password&#x27;
 }]</code></pre>
   <p>Equals:</p>
   <pre><code class="lang-js">columns: [{
-  renderer: Handsontable.renderers.TextRenderer,
-  editor: Handsontable.editors.TextEditor
+  editor: Handsontable.editors.PasswordEditor
+  renderer: Handsontable.renderers.PasswordRenderer,
+  copyable: false,
 }]</code></pre>
-  <p>This mapping is defined in file
-  <a href="https://github.com/handsontable/handsontable/blob/master/src/cellTypes.js" target="_blank">src/cellTypes.js</a></p>
+  <p>Or using custom cell type definition:</p>
+  <pre><code class="lang-js">Handsontable.cellTypes.registerCellType('custom', {
+  renderer: Handsontable.renderers.TextRenderer,
+  className: 'my-cell',
+  readOnly: true,
+  myCustomProperty: 'foo'
+})</code></pre>
+  <p>In Handsontable settings:</p>
+  <pre><code class="lang-js">columns: [{
+  type: &#x27;custom&#x27;
+}]</code></pre>
+  <p>Equals:</p>
+  <pre><code class="lang-js">columns: [{
+  editor: false,
+  renderer: Handsontable.renderers.TextRenderer,
+  className: 'my-cell',
+  readOnly: true,
+  myCustomProperty: 'foo'
+}]</code></pre>
+    <p>This mapping is defined by files
+      <a href="https://github.com/handsontable/handsontable/blob/master/src/cellTypes" target="_blank">src/cellTypes/</a>
+    </p>
   </div>
 </div>
-
