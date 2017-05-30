@@ -1,6 +1,55 @@
 <div class="static-content">
 
   <div class="example-container clearfix">
+    <h3>0.32.0-beta2</h3>
+    <p>Released on 24th of May, 2017</p>
+    <strong>Breaking changes:</strong>
+    <ul>
+      <li>Changed the way in which custom cell types are being registered. (<a href="https://github.com/handsontable/handsontable/issues/4254" target="_blank">#4254</a>)</li>
+    </ul>
+    <p>
+      As you already know from beta1 release, we have migrated from Traceur to Babel. It required from us to standarize the code so we decided to
+      stop using a Handsontable global variable in our internal projects. As a result, we changed the way of creating custom editors, validators, renderers
+      and their combinations like 'cell types'. In this beta2 release we improve the public API to give developers an ability to register
+      cell behaviors and types separately. We strongly recommend to use a registered alias in Handsontable settings to increase the code maintainability.
+    </p>
+    <p>
+      An example on how to add a custom editor/renderer/validator:
+    </p>
+<pre><code class="lang-js">Handsontable.cellTypes.registerCellType('my-custom-select', {
+  editor: MyCustomSelectEditor,
+  renderer: MyCustomSelectRenderer,
+  validator: MyCustomSelectValidator,
+});
+
+Handsontable.validators.registerValidator('credit-card', function(query, callback) {
+  callback(/* passed `true` or `false` depending on a query value */);
+});
+
+new Handsontable(document.getElementById('element'), {
+  data: data,
+  columns: [{
+    data: 'id',
+    type: 'my-custom-select'
+  }, {
+    data: 'name',
+    renderer: 'my-custom-select'
+  }, {
+    data: 'cardNumber',
+    validator: 'credit-card'
+  }]
+})</code></pre>
+
+    <strong>Changes:</strong>
+    <ul>
+      <li>Fixed a wrong variable in a listener of the mouse wheel event. (<a href="https://github.com/handsontable/handsontable/issues/4255" target="_blank">#4255</a>)</li>
+      <li>Fixed an issue related to defining a cell metadata for non-existing cell. (<a href="https://github.com/handsontable/handsontable/issues/4024" target="_blank">#4024</a>)</li>
+    </ul>
+    <p>The corresponding Handsontable Pro version is <code>1.11.0-beta2</code>.</p>
+
+  </div>
+
+  <div class="example-container clearfix">
     <h3>0.32.0-beta1</h3>
     <p>Released on 17th of May, 2017</p>
     <strong>Breaking changes:</strong>
