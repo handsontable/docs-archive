@@ -1,6 +1,138 @@
 <div class="static-content">
 
   <div class="example-container clearfix">
+    <h3>0.32.0</h3>
+    <p>Released on 31th of May, 2017</p>
+    <strong>Breaking changes:</strong>
+    <ul>
+      <li>Migration from Traceur to Babel. (<a href="https://github.com/handsontable/handsontable/issues/4070" target="_blank">#4070</a>)</li>
+    </ul>
+    <p>
+      We're now using Babel to transpile our code. That means that we had to make breaking changes, please take a look if you have to make some adjustments in your implementation before moving to this version.
+    </p>
+    <ul>
+      <li>The Bootstrap CSS files were merged to Handsontable's default CSS.</li>
+      <li>The <code>/plugins</code> directory was deleted (with the "removeRow plugin" included)</li>
+      <li>Some global variables were reorganized and/or removed. Please take a look.</li>
+    </ul>
+    <br><br>
+    <strong>Validators</strong><br>
+    <table>
+      <tr style="font-weight: bold; background: #f7f7f7;"><td>Was</td><td>Is</td></tr>
+      <tr><td>Handsontable.AutocompleteValidator</td><td>Handsontable.validators.AutocompleteValidator</td></tr>
+      <tr><td>Handsontable.AutocompleteValidator</td><td>Handsontable.validators.AutocompleteValidator</td></tr>
+      <tr><td>Handsontable.DateValidator</td><td>Handsontable.validators.DateValidator</td></tr>
+      <tr><td>Handsontable.NumericValidator</td><td>Handsontable.validators.NumericValidator</td></tr>
+      <tr><td>Handsontable.TimeValidator</td><td>Handsontable.validators.TimeValidator</td></tr>
+    </table>
+
+    <strong>Renderers</strong><br>
+    <table>
+      <tr style="font-weight: bold; background: #f7f7f7;"><td>Was</td><td>Is</td></tr>
+      <tr><td>Handsontable.AutocompleteRenderer</td><td>Handsontable.renderers.AutocompleteRenderer</td></tr>
+      <tr><td>Handsontable.BaseRenderer</td><td>Handsontable.renderers.BaseRenderer</td></tr>
+      <tr><td>Handsontable.CheckboxRenderer</td><td>Handsontable.renderers.CheckboxRenderer</td></tr>
+      <tr><td>Handsontable.HtmlRenderer</td><td>Handsontable.renderers.HtmlRenderer</td></tr>
+      <tr><td>Handsontable.NumericRenderer</td><td>Handsontable.renderers.NumericRenderer</td></tr>
+      <tr><td>Handsontable.PasswordRenderer</td><td>Handsontable.renderers.PasswordRenderer</td></tr>
+      <tr><td>Handsontable.TextRenderer</td><td>Handsontable.renderers.TextRenderer</td></tr>
+    </table>
+
+    <strong>Cell types</strong><br>
+    <table>
+      <tr style="font-weight: bold; background: #f7f7f7;"><td>Was</td><td>Is</td></tr>
+      <tr><td>Handsontable.AutocompleteCell</td><td>Handsontable.cellTypes.autocomplete</td></tr>
+      <tr><td>Handsontable.CheckboxCell</td><td>Handsontable.cellTypes.checkbox</td></tr>
+      <tr><td>Handsontable.DateCell</td><td>Handsontable.cellTypes.date</td></tr>
+      <tr><td>Handsontable.DropdownCell</td><td>Handsontable.cellTypes.dropdown</td></tr>
+      <tr><td>Handsontable.HandsontableCell</td><td>Handsontable.cellTypes.handsontable</td></tr>
+      <tr><td>Handsontable.NumericCell</td><td>Handsontable.cellTypes.numeric</td></tr>
+      <tr><td>Handsontable.PasswordCell</td><td>Handsontable.cellTypes.password</td></tr>
+      <tr><td>Handsontable.TextCell</td><td>Handsontable.cellTypes.text</td></tr>
+      <tr><td>Handsontable.TimeCell</td><td>Handsontable.cellTypes.time</td></tr>
+    </table>
+
+    <strong>Plugins</strong><br>
+    <table>
+      <tr style="font-weight: bold; background: #f7f7f7;"><td>Was</td><td>Is</td></tr>
+      <tr><td>Handsontable.CustomBorders</td><td>Handsontable.plugins.CustomBorders</td></tr>
+      <tr><td>Handsontable.MergeCells</td><td>Handsontable.plugins.MergeCells</td></tr>
+      <tr><td>Handsontable.Search</td><td>Handsontable.plugins.Search</td></tr>
+      <tr><td>Handsontable.UndoRedo</td><td>Handsontable.plugins.UndoRedo</td></tr>
+    </table>
+
+
+    <strong>Helpers</strong><br>
+    <table>
+      <tr style="font-weight: bold; background: #f7f7f7;"><td>Was</td><td>Is</td></tr>
+      <tr><td>Handsontable.Dom</td><td>Handsontable.dom</td></tr>
+    </table>
+
+    <strong>Other</strong><br>
+    <table>
+      <tr style="font-weight: bold; background: #f7f7f7;"><td>Was</td><td>Is</td></tr>
+      <tr><td>Handsontable.EditorManager</td><td>(not available)</td></tr>
+      <tr><td>Handsontable.EditorState</td><td>(not available)</td></tr>
+      <tr><td>Handsontable.SearchCellDecorator</td><td>(not available)</td></tr>
+      <tr><td>Handsontable.TableView</td><td>(not available)</td></tr>
+      <tr><td>Handsontable.cellLookup</td><td>(not available)</td></tr>
+      <tr><td>Handsontable.eventManager</td><td>Handsontable.EventManager</td></tr>
+      <tr><td>Handsontable.utils</td><td>(not available)</td></tr>
+    </table>
+
+    <ul>
+      <li>Changed the way in which custom cell types are being registered. (<a href="https://github.com/handsontable/handsontable/issues/4254" target="_blank">#4254</a>)</li>
+    </ul>
+    <p>
+      We improved the public API to give developers an ability to register cell behaviors and types separately.
+      We strongly recommend to use a registered alias in Handsontable settings to increase the code maintainability.
+    </p>
+    <p>
+      An example on how to add a custom editor/renderer/validator:
+    </p>
+<pre><code class="lang-js">Handsontable.cellTypes.registerCellType('my-custom-select', {
+  editor: MyCustomSelectEditor,
+  renderer: MyCustomSelectRenderer,
+  validator: MyCustomSelectValidator,
+});
+
+Handsontable.validators.registerValidator('credit-card', function(query, callback) {
+  callback(/* passed `true` or `false` depending on a query value */);
+});
+
+new Handsontable(document.getElementById('element'), {
+  data: data,
+  columns: [{
+    data: 'id',
+    type: 'my-custom-select'
+  }, {
+    data: 'name',
+    renderer: 'my-custom-select'
+  }, {
+    data: 'cardNumber',
+    validator: 'credit-card'
+  }]
+})</code></pre>
+
+    <strong>Changes:</strong>
+    <ul>
+      <li>Fixed documentation for the <code>autoRowSize</code> config option. (<a href="https://github.com/handsontable/handsontable/issues/4267" target="_blank">#4267</a>)</li>
+      <li>Fixed documentation for the <code>cells</code> config option. (<a href="https://github.com/handsontable/handsontable/issues/4185" target="_blank">#4185</a>)</li>
+      <li>Fixed a problem with the <code>maxRows</code> functionality. (<a href="https://github.com/handsontable/handsontable/issues/4180" target="_blank">#4180</a>)</li>
+      <li>Fixed a problem with the <code>maxCols</code> functionality. (<a href="https://github.com/handsontable/handsontable/issues/4156" target="_blank">#4156</a>)</li>
+      <li>Fixed a bug, where passing integer values to a dropdown caused the cell to be marked as invalid. (<a href="https://github.com/handsontable/handsontable/issues/4143" target="_blank">#4143</a>)</li>
+      <li>Added the TypeScript definitions to the repository. (<a href="https://github.com/handsontable/handsontable/issues/4112" target="_blank">#4112</a>)</li>
+      <li>Fixed a bug with <code>getCoords</code> throwing an error when used on non-cell elements. (<a href="https://github.com/handsontable/handsontable/issues/4074" target="_blank">#4074</a>)</li>
+      <li>Data copied from the table will no longer have a <b>newline</b> at the end. (<a href="https://github.com/handsontable/handsontable/issues/3801" target="_blank">#3801</a>)</li>
+      <li>Fixed a problem with scrolling on IE9+. (<a href="https://github.com/handsontable/handsontable/issues/2350" target="_blank">#2350</a>)</li>
+      <li>Fixed a wrong variable in a listener of the mouse wheel event. (<a href="https://github.com/handsontable/handsontable/issues/4255" target="_blank">#4255</a>)</li>
+      <li>Fixed an issue related to defining a cell metadata for non-existing cells. (<a href="https://github.com/handsontable/handsontable/issues/4024" target="_blank">#4024</a>)</li>
+    </ul>
+    <p>The corresponding Handsontable Pro version is <code>1.11.0</code>.</p>
+
+  </div>
+
+  <div class="example-container clearfix">
     <h3>0.32.0-beta2</h3>
     <p>Released on 24th of May, 2017</p>
     <strong>Breaking changes:</strong>
