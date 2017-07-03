@@ -249,9 +249,6 @@ function ajax(url, method, params, callback) {
 
         css = css + '\n' + tags.join('\n');
 
-        js += trimCodeBlock(bindDumpButton.toString(), 2).join('\n') + '\n';
-        js += '  bindDumpButton();\n\n';
-
         if (onDomReady) {
           //js = '$(document).ready(function () {\n\n' + js + '});';
           js = 'document.addEventListener("DOMContentLoaded", function() {\n\n' + js + '});';

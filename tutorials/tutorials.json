@@ -262,6 +262,9 @@
           },
           "comments": {
             "title": "Comments"
+          },
+          "copy-paste": {
+            "title": "Copy & Paste"
           }
         }
       },
