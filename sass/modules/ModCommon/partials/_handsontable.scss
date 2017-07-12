@@ -118,6 +118,11 @@
   padding: 0.2rem 0.5rem;
 }
 
+.handsontable .htItemWrapper {
+  font-size: 12px;
+  font-family: Verdana, Helvetica, Arial, FreeSans, sans-serif;
+}
+
 .handsontable td[class*="column"]+[class*="column"]:last-child {
   float: none;
 }

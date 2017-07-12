@@ -29,7 +29,7 @@
        target="_blank">
       Edit this page
     </a>
-    <h3 id="intro">Overview</h3>
+    <h3 id="overview">Overview</h3>
     <p>The <i>CopyPaste</i> plugin allows you to easily copy, cut and paste data from and into Handsontable.
       You can initiate a copy/paste action on every type of cell such as text, number, checkbox and more.
       The copied values will be kept in the clipboard as a string. Note that the current implementation doesn’t
@@ -68,7 +68,7 @@
       </div>
       <script data-jsfiddle="example1">
         var container1 = document.getElementById('example1'),
-                hot1;
+            hot1;
 
         hot1 = new Handsontable(container1, {
           data: getData(),
@@ -116,10 +116,10 @@
         var hot2_1 = new Handsontable(container2_1, getConfiguration());
 
         var container3_2 = document.createElement('div');
-        container2_2.id = 'example2_2';
-        container2_2.className = 'hot';
-        container2.appendChild(container2_2);
-        var hot2_2 = new Handsontable(container2_2, getConfiguration());
+        container3_2.id = 'example2_2';
+        container3_2.className = 'hot';
+        container2.appendChild(container3_2);
+        var hot2_2 = new Handsontable(container3_2, getConfiguration());
 
         function getConfiguration() {
           return {
@@ -146,7 +146,8 @@
                   return clipboardCache.length === 0;
                 },
                 callback: function() {
-                  let plugin = this.getPlugin('copyPaste');
+                  var plugin = this.getPlugin('copyPaste');
+
                   this.listen();
                   plugin.paste(clipboardCache);
                 }
@@ -171,7 +172,7 @@
       <li>On IE, a user has to confirm (accept) access to the clipboard. You can read more about this
         subject <a href="https://github.com/zenorocha/clipboard.js/issues/77" rel="nofollow">here</a></li>
       <li>The data copied from Handsontable will always be kept as plain text.
-        For instance, if you copy a checked checkbox, the input will be kept as a value of &quote;true&quote;.</li>
+        For instance, if you copy a checked checkbox, the input will be kept as a value of <code>"true"</code>.</li>
     </ol>
   </div>
 </div>

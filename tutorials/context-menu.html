@@ -19,7 +19,6 @@
       <li><a href="#page-default">Context menu with default options</a></li>
       <li><a href="#page-specific">Context menu with specific options</a></li>
       <li><a href="#page-custom">Context menu with fully custom configuration</a></li>
-      <li><a href="#page-copy-paste">Context menu with copy-paste option</a></li>
     </ul>
   </div>
 
@@ -187,66 +186,6 @@
             }
           }
         })
-      </script>
-    </div>
-  </div>
-
-  <div class="example-container clearfix head-gap" name="copy-paste">
-    <h3 id="page-copy-paste">Copy-paste configuration</h3>
-    <p>Copy and Paste feature are available in Handsontable by default, but only as key shortcuts (<code>Ctrl (Cmd) + C</code> and <code>Ctrl (Cmd) + V</code> respectively).<br>
-      This plugin makes them available also as a clickable options in the context menu. Unfortunately, due to the browser's security restrictions,
-      Handsontable is forced to use a third-party flash-based library. We chose to use
-      <a rel="nofollow" title="Zero Clipboard library" href="https://github.com/zeroclipboard/zeroclipboard" target="_blank">
-        ZeroClipboard</a> - it adds a small invisible flash clip to your website, allowing the user to click on it, and thus save
-      data to the clipboard.</p>
-    <p>Please note, that our Copy/Paste Context Menu plugin requires some additional preparation:</p>
-    <ul>
-      <li><code>ZeroClipboard.js</code> must be present on your server and included in your website's <code>script</code> tag.</li>
-      <li><code>ZeroClipboard.swf</code> must also be present at your server</li>
-    </ul>
-    <p>To configure Handsontable to use this plugin you need to add a <code>contextMenuCopyPaste</code> config item to your Hansontable instance.</p>
-    <p><strong>It can be set to:</strong></p>
-    <ul>
-      <li><code>true</code> - if the <code>ZeroClipboard.swf</code> file is placed in the same directory as the <code>ZeroClipboard.js</code>, or</li>
-      <li>
-        <code>{swfPath: [path to the swf file]}</code>
-      </li>
-    </ul>
-
-    <div data-jsfiddle="example4">
-      <div id="example4" class="hot head-gap"></div>
-    </div>
-
-    <script src="/bower_components/zeroclipboard/dist/ZeroClipboard.min.js"></script>
-    <br/>
-    <pre><code class="html">&#x3C;script src=&#x22;/bower_components/zeroclipboard/dist/ZeroClipboard.min.js&#x22;&#x3E;&#x3C;/script&#x3E;</code></pre>
-
-    <div class="codeLayout">
-      <div class="buttons">
-        <button class="jsFiddleLink" data-runfiddle="example4">
-          <i class="fa fa-jsfiddle"></i>
-          Edit
-        </button>
-        <button class="dump" name="dump" data-dump="#example4" data-instance="hot3"
-                title="Print current data source to console">
-          <i class="fa fa-terminal"></i>
-          Dump data to console
-        </button>
-      </div>
-      <script data-jsfiddle="example4">
-        var
-          example4 = document.getElementById('example4'),
-          hot4;
-
-        hot4 = new Handsontable(example4, {
-          data: getData(),
-          rowHeaders: true,
-          colHeaders: true,
-          contextMenu: true,
-          contextMenuCopyPaste: {
-            swfPath: '/bower_components/zeroclipboard/dist/ZeroClipboard.swf'
-          }
-        });
       </script>
     </div>
   </div>
