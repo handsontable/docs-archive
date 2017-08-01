@@ -144,6 +144,7 @@ section .heading {
   .codeLayout {
     margin-top: 2rem;
     position: relative;
+    z-index: 0;
   }
   .buttons {
     margin-bottom: 0.3rem;
