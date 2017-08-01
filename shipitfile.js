@@ -60,7 +60,7 @@ module.exports = function (shipit) {
       return shipit.remote('cd ' + path + ' && grunt update-hot --hot-version=' + gitInfo.branch);
 
     }).then(function() {
-      return shipit.remote('cd ' + path + ' && grunt build --force');
+      return shipit.remote('cd ' + path + ' && grunt build');
 
     }).then(function() {
       return shipit.remote('cd ' + path + ' && grunt generate-doc-versions');
