@@ -1,6 +1,27 @@
 <div class="static-content">
 
   <div class="example-container clearfix">
+    <h3>0.34.0</h3>
+    <p>Released on 2nd of August, 2017</p>
+    <strong>Breaking changes:</strong>
+    <ul>
+      <li>We've unified the types of coordinates passed to these plugin hooks: <code>beforeGetCellMeta</code>, <code>afterGetCellMeta</code>, <code>afterSetCellMeta</code>. Now they'll be operating on <b>visual</b> table coordinates (so do the <code>getCellMeta</code> and <code>setCellMeta</code> methods). Please make sure you update your hook callbacks to use them properly. (<a href="https://github.com/handsontable/handsontable/issues/4409" target="_blank">#4409</a>)</li>
+    </ul>
+
+    <strong>Changes:</strong>
+    <ul>
+      <li>Updated the typescript definitions to match changes in the Filters plugin. (<a href="https://github.com/handsontable/handsontable/issues/4429" target="_blank">#4429</a>)</li>
+      <li>Added a parameter to the <code>afterUpdateSettings</code> hook, carrying information about the settings object passed to the <code>updateSettings</code> method. (<a href="https://github.com/handsontable/handsontable/issues/4413" target="_blank">#4413</a>)</li>
+      <li>Fixed the <code>removeCellMeta</code> method. Previously it did not work properly with row and column order modifications. (<a href="https://github.com/handsontable/handsontable/issues/4410" target="_blank">#4410</a>)</li>
+      <li>Fixed a problem where an error was thrown when using <code>setCopyableText</code> before selecting anything in the table. (<a href="https://github.com/handsontable/handsontable/issues/4390" target="_blank">#4390</a>)</li>
+      <li>Updated the documentation for the Comments plugin. (<a href="https://github.com/handsontable/handsontable/issues/4379" target="_blank">#4379</a>)</li>
+      <li>Fixed testing setup not working on Windows. (<a href="https://github.com/handsontable/handsontable/issues/4378" target="_blank">#4378</a>)</li>
+      <li>Updated the Travis config to run hot-builder tests along with Handsontable tests. (<a href="https://github.com/handsontable/handsontable/issues/4372" target="_blank">#4372</a>)</li>
+    </ul>
+    <p>The corresponding Handsontable Pro version is <code>1.13.0</code>.</p>
+  </div>
+
+  <div class="example-container clearfix">
     <h3>0.33.0</h3>
     <p>Released on 11th of July, 2017</p>
     <strong>Breaking changes:</strong>
