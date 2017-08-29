@@ -5,9 +5,13 @@
 header {
   @include fixed-top-left (0, 0);
   width: 100%;
-  padding: 34px 0 24px;
+  padding: 34px 0 14px;
   z-index: 300;
   background-color: #fff;
+
+  @media only screen and (min-width: $largeWidth) {
+    padding-bottom: 24px;
+  }
 
   .logo {
     @include relative-top-left (-3px, 0);
@@ -58,6 +62,10 @@ header {
       li {
         padding: 0 19px;
         display: inline-block;
+
+        &:last-child {
+          padding-right: 0;
+        }
 
         &.mobile-only {
           display: none;
