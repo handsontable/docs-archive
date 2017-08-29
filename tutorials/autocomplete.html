@@ -4,18 +4,15 @@
   <script data-jsfiddle="common">
     function getCarData() {
       return [
-        ["Nissan", 2013, "black", "black"],
-        ["Nissan", 2014, "blue", "blue"],
-        ["Chrysler", 2015, "yellow", "black"],
-        ["Volvo", 2016, "white", "gray"]
+        ["BMW", 2017, "black", "black"],
+        ["Nissan", 2018, "blue", "blue"],
+        ["Chrysler", 2019, "yellow", "black"],
+        ["Volvo", 2020, "white", "gray"]
       ];
     }
   </script>
 
   <div class="index-list">
-    <p>This page shows how to configure Handsontable with Autocomplete cell type, which expands the
-      <a href="/<?js= version ?>/demo-handsontable.html">Handsontable cell type</a> with features typical for a combo box that
-      updates its options based on user input. You will find here:</p>
     <ul>
       <li><a href="#lazy">Autocomplete lazy mode</a></li>
       <li><a href="#strict">Autocomplete strict mode</a></li>
@@ -24,9 +21,6 @@
   </div>
 
   <div class="example-container clearfix" name="lazy">
-    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/autocomplete.html" class="edit-doc" target="_blank">
-      Edit this page
-    </a>
     <h3 id="lazy">Autocomplete lazy mode</h3>
     <p>This example shows the usage of the Autocomplete feature in the default <strong>lazy&nbsp;mode</strong>. In this mode,
       user can choose one of the suggested options while typing or enter a custom value that is not included in the suggestions.</p>
@@ -101,7 +95,7 @@
       <li><code>allowInvalid: false</code> - does not allow manual input of value that does not exist in the
         <code>source</code>. In this case, the <kbd>ENTER</kbd> key is ignored and the editor field remains opened.</li>
     </ul>
-
+    <br/>
     <div data-jsfiddle="example2">
       <div id="example2" class="hot"></div>
     </div>
@@ -207,4 +201,9 @@
       </script>
    </div>
   </div>
+  <p class="gap-top-xsmall">
+    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/autocomplete.html" class="edit-doc" target="_blank">
+      Help us improve this page
+    </a>
+  </p>
 </div>

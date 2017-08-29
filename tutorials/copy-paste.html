@@ -2,18 +2,17 @@
   <script data-jsfiddle="common">
     function getData() {
       return [
-        ['', 'Kia', 'Nissan', 'Toyota', 'Honda', 'Mazda', 'Ford'],
-        ['2012', 10, 11, 12, 13, 15, 16],
-        ['2013', 10, 11, 12, 13, 15, 16],
-        ['2014', 10, 11, 12, 13, 15, 16],
-        ['2015', 10, 11, 12, 13, 15, 16],
-        ['2016', 10, 11, 12, 13, 15, 16]
+        ['', 'Tesla', 'Nissan', 'Toyota', 'Honda', 'Mazda', 'Ford'],
+        ['2017', 10, 11, 12, 13, 15, 16],
+        ['2018', 10, 11, 12, 13, 15, 16],
+        ['2019', 10, 11, 12, 13, 15, 16],
+        ['2020', 10, 11, 12, 13, 15, 16],
+        ['2021', 10, 11, 12, 13, 15, 16]
       ];
     }
   </script>
 
   <div class="index-list">
-    <p><strong>This page shows how to configure the <i>CopyPaste</i> plugin:</strong></p>
     <ul>
       <li><a href="#overview">Overview</a></li>
       <li><a href="#how-it-works">How it works</a></li>
@@ -25,14 +24,10 @@
   </div>
 
   <div class="example-container clearfix">
-    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/copy-paste.html" class="edit-doc"
-       target="_blank">
-      Edit this page
-    </a>
     <h3 id="overview">Overview</h3>
     <p>The <i>CopyPaste</i> plugin allows you to easily copy, cut and paste data from and into Handsontable.
       You can initiate a copy/paste action on every type of cell such as text, number, checkbox and more.
-      The copied values will be kept in the clipboard as a string. Note that the current implementation doesn’t
+      The copied values will be kept in the clipboard as a string. Note that the current implementation does not
       handle styling, validators and other cell properties.</p>
     <p>To handle clipboard operations this plugin utilizes <i>Clipboard API</i>.
       See the <a href="#how-it-works">How it works</a> section to learn more about how it works under the hood.</p>
@@ -88,6 +83,7 @@
     <p>We have prepared a demo in which the Paste option works properly, but only within a single page.
       If you want to copy data from another page, web application (like Google Sheets) or MS Excel,
       use a keyboard shortcut instead.</p>
+    <p><strong>Copy data in the first table and paste to the second (use context menu):</strong></p>
     <div data-jsfiddle="example2">
       <div id="example2"></div>
     </div>
@@ -169,10 +165,16 @@
     </ul>
     <h3 id="limitations">Limitations</h3>
     <ol>
-      <li>On IE, a user has to confirm (accept) access to the clipboard. You can read more about this
-        subject <a href="https://github.com/zenorocha/clipboard.js/issues/77" rel="nofollow">here</a></li>
-      <li>The data copied from Handsontable will always be kept as plain text.
+      <li>In Internet Explorer, a user has to confirm access to the clipboard. You can read more about this
+        behavior of the browser <a href="https://github.com/zenorocha/clipboard.js/issues/77" rel="nofollow">here</a></li>
+      <li>The data copied from Handsontable will always be kept as a plain text.
         For instance, if you copy a checked checkbox, the input will be kept as a value of <code>"true"</code>.</li>
     </ol>
   </div>
+  <p class="gap-top-xsmall">
+    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/copy-paste.html" class="edit-doc"
+       target="_blank">
+      Help us improve this page
+    </a>
+  </p>
 </div>

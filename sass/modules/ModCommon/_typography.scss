@@ -1,0 +1,118 @@
+/**
+ * @author: Handsoncode
+ */
+
+/* Begin: Workaround for TypeKit */
+.wf-loading {
+  visibility: hidden;
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $optionalFont;
+  }
+}
+
+.wf-active {
+  visibility: visible;
+}
+/* End */
+
+html, body {
+  font-family: $regularFont;
+  font-weight: 400;
+  color: $textColor;
+}
+
+p, span, a, ul li, ol li, label {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+h1,h2,h3,h4,h5 {
+  line-height: 1;
+  font-weight: 400;
+  font-family: $optionalFont;
+  font-size: 24px;
+  letter-spacing: -0.3px;
+
+  &.weight {
+    &-light {font-weight: 300}
+    &-normal {font-weight: 400}
+    &-bold {font-weight: 600}
+  }
+
+  &.text {
+    &-black {color: $baseGray}
+    &-blue {color: $brandBlue}
+    &-gray {color: $lightGray}
+    &-green {color: $brandGreen}
+    &-red {color: $brandRed}
+    &-white {color: #fff}
+  }
+
+  &.size {
+    &-small {
+      font-size: 16px;
+    }
+    &-medium {
+      font-size: 24px;
+    }
+    &-large {
+      font-size: 30px;
+    }
+  }
+
+  & > span {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.3;
+
+    a {
+      font-size: inherit;
+    }
+  }
+
+  & > hr {
+    width: 38px;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    top: -16px;
+    border: 2px solid $brandBlue;
+
+    &.centered {
+      left: 50%;
+      margin-left: -19px;
+
+    }
+  }
+}
+
+a, a:hover, a:active, a:visited {
+  text-decoration: none;
+  color: $linkColor;
+}
+
+a:hover {
+  color: $linkActiveColor;
+}
+pre {
+  code {
+    @include border($darkWhite);
+    font-family: $codeFont;
+    font-size: 12px;
+    word-break: break-all;
+    display: block;
+    line-height: 1.6;
+    text-align: left;
+    padding: 14px 18px;
+    margin: 16px 0 27px;
+    background: $tableBackground;
+
+    &.inline {
+      display: inline;
+      padding: 0 2px;
+    }
+  }
+}
+

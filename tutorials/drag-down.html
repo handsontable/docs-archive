@@ -1,7 +1,6 @@
 <div class="static-content">
 
   <div class="index-list">
-    <p><strong>This page shows ways to configure drag down behavior:</strong></p>
     <ul>
       <li><a href="#page-default">Drag down in all directions</a></li>
       <li><a href="#page-vertical-without-creating-rows">Drag down in vertical direction only without creating new rows</a></li>
@@ -9,13 +8,10 @@
   </div>
 
   <div class="example-container clearfix">
-    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/drag-down.html" class="edit-doc" target="_blank">
-      Edit this page
-    </a>
     <h3 id="page-default">Drag down in all directions</h3>
     <p>Notice the little square (<strong>fill handle</strong>) in the corner of the selected cell. You can drag it
       (drag-down) to repeat the values from the cell. Double click the fill handle in cell B4 (value "30")
-      to fill the selection down to the last value in neighbouring column, just like it would in LibreOffice or Google Docs.</p>
+      to fill the selection down to the last value in neighbouring column, just like it would in Excel or Google Sheets.</p>
 
     <div data-jsfiddle="example1">
       <div id="example1" class="hot"></div>
@@ -36,12 +32,12 @@
       <script data-jsfiddle="example1">
         var
           data = [
-            ['', 'Kia', 'Nissan', 'Toyota', 'Honda'],
-            ['2012', 10, 11, 12, 13],
-            ['2013', 20, 11, 14, 13],
-            ['2014', 30, 15, 12, 13],
-            ['2015', '', '', '', ''],
-            ['2016', '', '', '', '']
+            ['', 'Tesla', 'Nissan', 'Toyota', 'Honda'],
+            ['2017', 10, 11, 12, 13],
+            ['2018', 20, 11, 14, 13],
+            ['2019', 30, 15, 12, 13],
+            ['2020', '', '', '', ''],
+            ['2021', '', '', '', '']
           ],
           container = document.getElementById('example1'),
           hot1;
@@ -58,9 +54,6 @@
   </div>
 
   <div class="example-container clearfix head-gap">
-    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/drag-down.html" class="edit-doc" target="_blank">
-      Edit this page
-    </a>
     <h3 id="page-vertical-without-creating-rows">Drag down in vertical direction only without creating new rows</h3>
     <p>In this configuration fill handle is restricted to move only vertically. Additionally when it comes to the edge of
       the table bottom it preserves creating new rows.
@@ -85,12 +78,12 @@
       <script data-jsfiddle="example2">
         var
           data = [
-            ['', 'Kia', 'Nissan', 'Toyota', 'Honda'],
-            ['2012', 10, 11, 12, 13],
-            ['2013', 20, 11, 14, 13],
-            ['2014', 30, 15, 12, 13],
-            ['2015', '', '', '', ''],
-            ['2016', '', '', '', '']
+            ['', 'Tesla', 'Nissan', 'Toyota', 'Honda'],
+            ['2017', 10, 11, 12, 13],
+            ['2018', 20, 11, 14, 13],
+            ['2019', 30, 15, 12, 13],
+            ['2020', '', '', '', ''],
+            ['2021', '', '', '', '']
           ],
           container = document.getElementById('example2'),
           hot2;
@@ -108,5 +101,10 @@
 
     </div>
   </div>
+  <p class="gap-top-xsmall">
+    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/drag-down.html" class="edit-doc" target="_blank">
+      Help us improve this page
+    </a>
+  </p>
 </div>
 

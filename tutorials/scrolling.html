@@ -1,9 +1,6 @@
 <div class="static-content">
 
   <div class="example-container clearfix">
-    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/scrolling.html" class="edit-doc" target="_blank">
-      Edit this page
-    </a>
     <p>
       To make the grid scrollable, set constant width and height to the container holding Handsontable and set the
       <code>overflow</code> property to <code>hidden</code> in the container's stylesheet. Then, if the table contains
@@ -15,16 +12,16 @@
       config options, which define this behavior, to improve the performance of your app.
     </p>
     <p>
-      The overall scrolling performance depends mainly on these three factors:
+      The overall scrolling performance depends mainly on these four factors:
     </p>
     <ul>
       <li>the amount of cells,</li>
-      <li>the number of features in use,</li>
+      <li>the amount of custom renderers,</li>
+      <li>the number of features (options) in use,</li>
       <li>the end-user's machine and browser performance.</li>
     </ul>
     <p>
-      This demo below shows a table of 1 million cells (1000x1000). To turn off the virtual rendering and compare
-      the performance just set  <code>renderAllRows: true</code>.
+      This demo below shows a table of 1 million cells (1000 x 1000):
     </p>
 
     <div data-jsfiddle="example1" class="scroll-container">
@@ -52,7 +49,7 @@
           data: Handsontable.helper.createSpreadsheetData(1000, 1000),
           width: 584,
           height: 320,
-          colWidths: 47,
+          colWidths: 100,
           rowHeights: 23,
           rowHeaders: true,
           colHeaders: true
@@ -60,5 +57,10 @@
       </script>
     </div>
   </div>
+  <p class="gap-top-xsmall">
+    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/scrolling.html" class="edit-doc" target="_blank">
+      Help us improve this page
+    </a>
+  </p>
 </div>
 

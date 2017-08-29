@@ -1,286 +1,23 @@
-body {
-  /* prevent wrapper->body margin collapsing 11*/
-  padding-top: 0.1px;
-}
-
-.font-description {
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
-}
-#wrapper {
-  margin-top: 9rem;
-  z-index: 1;
-  .nav-fix {
-    width: 270px;
-    height: 1px;
-  }
-}
-.tag-since, .tag-default {
-  margin-left: 0;
-}
-.navigation {
-  @include viewport-height(190px);
-  width: 270px;
-  position: fixed;
-
-  .applicationName {
-    margin: 0;
-    margin-top: 15px;
-    padding: 10px 15px;
-    color: #4267B6;
-
-    a {
-      color: #4267B6;
-    }
-  }
-
-  .version {
-    font-size: 10px;
-    color: #454545;
-  }
-
-  .search {
-    font-size: 13px;
-    & > ul {
-      @include border ($middleGray);
-      width: 25%;
-      float: right;
-      background-color: #F5F5F5;
-      border-radius: 0 3px 3px 0;
-      font-weight: 600;
-      > li {
-        padding: 10px 7px 7px 10px;
-        @media only screen and (min-width: $largeWidth) {
-          padding-bottom: 9px;
-        }
-      }
-      ul {
-        @include border ($middleGray);
-        top: 35px;
-        right: 0;
-        box-shadow: none;
-        background: #fff;
-        a {
-          display: block;
-          padding: 0 31px 0 10px;
-          text-decoration: none;
-        }
-        &:before, &:after {
-          display: none;
-        }
-      }
-    }
-    svg {
-      @include rectangle (8px, 8px);
-      margin-left: 6px;
-    }
-    input {
-      @include border ($middleGray);
-      width: 75%;
-      padding: 8px 12px;
-      border-right: none;
-      margin-bottom: 10px;
-      border-radius: 3px 0 0 3px;
-    }
-  }
-  .app-name {
-    margin: 0;
-    padding: 0 12px 6px;
-    font-size: 12px;
-    text-align: left;
-    color: #838383;
-  }
-  .list {
-    margin: 0;
-    padding: 10px 0 0 10px;
-    position: relative;
-    overflow: auto;
-    height: 100%;
-    list-style: none;
-    background-color: $ultraLightGray;
-  }
-  li.item {
-    margin: 10px 12px 10px 18px;
-    a {
-      text-decoration: none;
-      &.active-link {
-        font-weight: 600;
-      }
-      &.external:after {
-        margin-top: -2px;
-        padding-left: 4px;
-        display: inline-block;
-        font: normal normal normal 10px/1 FontAwesome;
-        content: "\f08e";
-      }
-    }
-    &.multiple {
-      .extensible:not(.group-title) {
-        margin: 10px 0 10px 16px;
-        display: none;
-
-        &:before {
-          content: "-";
-          color: $middleGray;
-          font-size: 17px;
-          position: absolute;
-          top: -5px;
-          left: -11px;
-        }
-      }
-      .itemMembers {
-        margin-left: 1.4rem;
-      }
-    }
-    .title {
-      cursor: pointer;
-      position: relative;
-      display: block;
-      font-size: 0.8em;
-
-      &.extensible a:after {
-        content: "\f107";
-        font-family: FontAwesome;
-        color: #B5B5B5;
-        font-size: 17px;
-        position: absolute;
-        top: -3px;
-        right: 4px;
-      }
-      sup {
-        color: $brandRed;
-      }
-      a {
-        padding-bottom: 6px;
-        display: block;
-        font-size: 13px;
-        color: #393939;
-        cursor: default;
-        &:hover {
-          color: #454545;
-        }
-      }
-      .static {
-        display: block;
-        border-radius: 3px;
-        background-color: $brandGreen;
-        color: #000;
-        font-size: 0.7em;
-        padding: 2px 4px;
-        float: right;
-      }
-    }
-
-    .subtitle {
-      margin: 6px 0;
-      font-size: 14px;
-      display: block;
-    }
-
-
-    ul {
-      & > li {
-        margin-left: 20px;
-        font-size: 13px;
-        padding: 0.4rem 0;
-      }
-    }
-
-    .itemMembers {
-      margin-bottom: 0.7rem;
-      display: none;
-      list-style: square;
-    }
-  }
-  .sublist {
-    .li {
-      list-style: none;
-    }
-    p.header {
-      margin: 26px 12px 18px;
-      padding: 0;
-      font-size: 14px;
-      font-weight: 600;
-      color: $brandRed;
-    }
-    p.subheader {
-      margin: 16px 12px 6px;
-      font-size: 14px;
-      color: $brandGreen;
-      font-weight: 600;
-    }
-    .itemMembers {
-      margin: 0 0 0 0.5rem;
-      padding: 0;
-      list-style: none!important;
-      li {
-        margin-left: 0.4rem;
-      }
-      a:hover {
-        color: #118AE2;
-      }
-    }
-  }
-
-  .sublist.not-found {
-    display: none;
-    text-align: center;
-
-    .header {
-      margin: 16px 12px 12px;
-      color: $darkGray;
-      font-weight: 400;
-    }
-  }
-
-}
+/**
+ * @author: Handsoncode
+ */
 
 .main {
   width: 100%;
-  padding: 0 0 20px 20px;
+  padding: 70px 0 20px;
+  @media only screen and (min-width: $largeWidth) {
+    padding: 0 0 20px 60px;
+  }
   .page-title {
     display: none;
   }
-
-  h1 {
-    font-weight: 600;
-    font-size: 1.6em;
-    margin: 0;
-  }
-
-  h2 {
-    margin-bottom: 0.8rem;
-    font-weight: 400;
-    font-size: 1.5em;
-  }
-
-  h3 {
-    font-weight: bold;
-    font-size: 14px;
-    margin: 5px 0;
-  }
-
   h4 {
-    font-weight: bold;
     font-size: 1em;
+    font-weight: 500;
   }
-
-  h5 {
-    font-weight: bold;
-    font-size: 14px;
-  }
-
-  h3::before,
-  h4::before {
-    display: block;
-    content: " ";
-    margin-top: -6rem;
-    height: 6rem;
-    visibility: hidden;
-  }
-
   dd {
     font-size: 13px;
-    margin-left: 20px;
+    margin-left: 0;
 
   }
   kbd {
@@ -382,17 +119,17 @@ body {
   .description {
     margin-top: 10px;
     font-size: 14px;
-
-    p {
-      font-size: 13px;
-    }
   }
 
   .tag-source {
     position: absolute;
     top: 27px;
     right: 0;
-    font-size: 10px;
+    font-size: 11px;
+
+    a {
+      font-size: 11px;
+    }
   }
   dt {
     position: relative;
@@ -431,7 +168,7 @@ body {
     position: relative;
     margin-top: 20px;
     padding-top: 5px;
-    border-top: 1px solid #e1e1e1;
+    border-top: 1px dashed $lightGray;
     z-index: -1;
 
     .inherited {
@@ -488,13 +225,13 @@ body {
   table {
     width: 100%;
     margin-bottom: 15px;
+    background-color: #fff;
     &.params th,
     &.params td {
       border: 1px solid #e1e1e1;
     }
     th {
       padding: 4px;
-      font-size: 13px;
       background: $ultraLightGray;
     }
 
@@ -512,20 +249,17 @@ body {
     .type {
       width: 60px;
       color: #aaa;
-      font-size: 12px;
       vertical-align: middle;
       text-align: center;
     }
     .default {
       vertical-align: middle;
       text-align: center;
-      font-size: 13px;
     }
 
     .attributes {
       width: 80px;
       color: #aaa;
-      font-size: 11px;
     }
 
     .description {
@@ -594,11 +328,6 @@ body {
         text-decoration: line-through;
       }
     }
-    p, ul li, ol li {
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 1.8;
-    }
     .next-step {
       margin-top: 3rem;
       a {
@@ -654,7 +383,7 @@ body {
       tr td {
         padding: 0.8rem 1.2rem;
         vertical-align: middle;
-        font-size: 13px;
+        font-size: 15px;
         display: table-cell;
         line-height: 1rem; }
     }

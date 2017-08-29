@@ -1,0 +1,12 @@
+/**
+ * @author: Handsoncode
+ */
+
+.stripe {
+  &-black {background-color: $baseGray}
+  &-blue {background-color: $brandBlue}
+  &-gray {background-color: $darkWhite}
+  &-green {background-color: $brandGreen}
+  &-red {background-color: $brandRed}
+  &-white {background-color: #fff}
+}

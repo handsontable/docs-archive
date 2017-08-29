@@ -1,0 +1,41 @@
+/*
+  @author: Handsoncode
+ */
+
+[aria-hidden="true"] {
+    display: none;
+}
+
+.gap {
+    &-top-xxsmall {
+        padding-top: 20px;
+    }
+    &-top-xsmall {
+        padding-top: 40px;
+    }
+    &-top-small {
+        padding-top: 70px;
+    }
+    &-top-medium {
+        padding-top: 150px;
+    }
+    &-top-large {
+        padding-top: 200px;
+    }
+
+    &-bottom-xxsmall {
+        padding-bottom: 20px;
+    }
+    &-bottom-xsmall {
+        padding-bottom: 40px;
+    }
+    &-bottom-small {
+        padding-bottom: 70px;
+    }
+    &-bottom-medium {
+        padding-bottom: 150px;
+    }
+    &-bottom-large {
+        padding-bottom: 200px;
+    }
+}

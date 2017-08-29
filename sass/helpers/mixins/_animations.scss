@@ -4,20 +4,20 @@
 
 @mixin transition ($rule...) {
     -webkit-transition: $rule;
-       -moz-transition: $rule;
-            transition: $rule;
+    -moz-transition: $rule;
+    transition: $rule;
 }
 
 @mixin  animation ($rule) {
     -webkit-animation: $rule;
-      -moz-transition: $rule;
-            animation: $rule;
+    -moz-animation: $rule;
+    animation: $rule;
 }
 
 @mixin  animation-delay ($delay) {
     -webkit-animation-delay: $delay;
-             -moz-transition: $rule;
-            animation-delay: $delay;
+    -moz-animation-delay: $delay;
+    animation-delay: $delay;
 }
 
 @mixin keyframes ($name) {

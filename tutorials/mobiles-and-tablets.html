@@ -1,15 +1,7 @@
 <div class="static-content">
 
   <div class="example-container clearfix">
-    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/mobiles-and-tablets.html" class="edit-doc" target="_blank">
-      Edit this page
-    </a>
-    <div data-alert class="alert-box secondary">
-      <strong>This part of documentation is still in development. If you'd like to contribute to this page,
-        <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/mobiles-and-tablets.html" target="_blank">
-          enhance it on GitHub.</a></strong>
-    </div>
-    <p>Currently Handsontable supports only iPad 4 in a basic scope.
+    <p>Currently Handsontable supports only iPad 4 and other mobile devices in a basic scope.
       Mobile editor and selecting modes are enabled automatically if you're viewing Handsontable on a mobile device.</p>
     <p><strong>Open this page on iPad 4 and play with the demo below:</strong></p>
 
@@ -35,14 +27,18 @@
           hot;
 
         hot = new Handsontable(container, {
-          data: Handsontable.helper.createSpreadsheetData(100, 100),
+          data: Handsontable.helper.createSpreadsheetData(50, 26),
           rowHeaders: true,
           colHeaders: true,
-          fixedRowsTop: 2,
-          fixedColumnsLeft: 2
+          colWidths: 100
         });
       </script>
     </div>
   </div>
+  <p class="gap-top-xsmall">
+    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/mobiles-and-tablets.html" class="edit-doc" target="_blank">
+      Help us improve this page
+    </a>
+  </p>
 </div>
 

@@ -5,8 +5,19 @@
 /* [ component variables ] */
 $dropdownColor: #FFF;
 
+.dropdown-f {
+    @media only screen and (max-width: $largeWidth) {
+        background-color: $lightGray;
+    }
+
+    ul {
+        li {
+            color: $baseGray;
+        }
+    }
+}
+
 .dropdown {
-    white-space: nowrap;
 
     /* [ arrow down ] */
     svg {
@@ -21,7 +32,7 @@ $dropdownColor: #FFF;
         @include transition(all .3s ease);
         @include transform( translateY(0) scale(.95, .95));
         max-height: 0;
-        background: $dropdownColor;
+        background: $lightGray;
         opacity: 0;
         overflow: hidden;
 
@@ -45,7 +56,7 @@ $dropdownColor: #FFF;
                 padding: 0;
                 margin: 3px 0;
                 &:hover {
-                    background: $ultraLightGray;
+                    background: #fff;
                 }
             }
         }
@@ -92,11 +103,13 @@ $dropdownColor: #FFF;
     input {
         @include fixed-top-left(-10000px, 0);
 
-        &:checked + ul {
-            @include transform( translateY(0) scale(1, 1));
-            opacity: 1;
-            max-height: 10000px;
-            z-index: 100;
+        @media only screen and (max-width: $largeWidth) {
+            &:checked + ul {
+                @include transform(translateY(0) scale(1, 1));
+                opacity: 1;
+                max-height: 10000px;
+                z-index: 100;
+            }
         }
     }
 }

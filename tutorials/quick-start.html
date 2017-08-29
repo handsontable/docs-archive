@@ -1,7 +1,7 @@
 <div class="static-content">
 
   <div class="index-list">
-    <p>Follow these steps to install Handsontable:</p>
+    <p>Follow these steps to install Handsontable CE:</p>
     <ol>
       <li><a href="#page-install">Install</a></li>
       <li><a href="#page-create">Create</a></li>
@@ -11,22 +11,18 @@
   </div>
 
   <div class="example-container clearfix" name="install">
-    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/quick-start.html" class="edit-doc" target="_blank">
-      Edit this page
-    </a>
-
     <h3 id="page-install">Step 1: Install</h3>
     <p>
-      There are many ways to install Handsontable but we suggest using
-      <a href="http://bower.io" target="_blank">Bower</a>. It is a fast and simple dependency manager. Just type
-      in the following command:
-      <p><code>bower install handsontable --save</code></p>
-      <p>Bower manages all dependencies so just sit back and relax. After it's done, embed the code inside
-        your HTML file. Make sure that the paths are set correctly.
-      </p>
-      <p><code>&lt;script src="/dist/handsontable.full.js"&gt;&lt;/script&gt;</code></p>
-      <p><code>&lt;link rel="stylesheet" media="screen" href="/dist/handsontable.full.css"&gt;</code></p>
+      <a href="//handsontable.com/community-download.html">There are many ways</a> to install Handsontable CE but we suggest using
+      <a href="https://www.npmjs.com/package/handsontable" target="_blank">npm</a>.
+      Just type in the following command:
     </p>
+    <p><code>bower install handsontable --save</code></p>
+    <p><strong>npm</strong> manages all dependencies so just sit back and relax. After it's done, embed the code inside
+        your HTML file:
+    </p>
+    <p><code>&lt;script src="/dist/handsontable.full.js"&gt;&lt;/script&gt;</code></p>
+    <p><code>&lt;link rel="stylesheet" media="screen" href="/dist/handsontable.full.css"&gt;</code></p>
   </div>
 
   <div class="example-container clearfix" name="create">
@@ -42,12 +38,13 @@
 
   <div class="example-container clearfix" name="bind">
     <h3 id="page-bind">Step 3: Initialize</h3>
-    <p>In the next step, pass a reference to that <code>&lt;div&gt;</code> element and fill it with sample data:</p>
+    <p>In the next step, pass a reference to that <code>&lt;div class="example"&gt;</code> element and fill
+      it with sample data:</p>
     <pre><code class="lang-js">var data = [
-  ["", "Ford", "Volvo", "Toyota", "Honda"],
-  ["2016", 10, 11, 12, 13],
-  ["2017", 20, 11, 14, 13],
-  ["2018", 30, 15, 12, 13]
+  ["", "Ford", "Tesla", "Toyota", "Honda"],
+  ["2017", 10, 11, 12, 13],
+  ["2018", 20, 11, 14, 13],
+  ["2019", 30, 15, 12, 13]
 ];
 
 var container = document.getElementById('example');
@@ -60,7 +57,7 @@ var hot = new Handsontable(container, {
 
   <div class="example-container clearfix" name="result">
     <h3 id="page-result">Step 4: The result</h3>
-    <p>That's it, now your Handsontable is up and ready to use:</p>
+    <p>That's it, now your Handsontable CE is up and ready to use:</p>
 
     <div data-jsfiddle="example">
       <div id="example" class="hot"></div>
@@ -68,10 +65,10 @@ var hot = new Handsontable(container, {
 
     <script data-jsfiddle="example">
       var data = [
-        ["", "Ford", "Volvo", "Toyota", "Honda"],
-        ["2016", 10, 11, 12, 13],
-        ["2017", 20, 11, 14, 13],
-        ["2018", 30, 15, 12, 13]
+        ["", "Ford", "Tesla", "Toyota", "Honda"],
+        ["2017", 10, 11, 12, 13],
+        ["2018", 20, 11, 14, 13],
+        ["2019", 30, 15, 12, 13]
       ];
 
       var container = document.getElementById('example');
@@ -84,38 +81,17 @@ var hot = new Handsontable(container, {
 
     <p>
       You are probably wondering how to not only bind the data source but also save the changes made
-      in Handsontable? Lucky you, it's really simple, just head to the
+      in Handsontable CE? Head to
       <a href="/<?js= version ?>/tutorial-data-binding.html">Binding data</a> page to learn more about it.
     </p>
   </div>
 
   <div class="example-container clearfix" name="alternative">
     <h3 id="page-alternative">Alternative installation</h3>
-    <ul>
-      <li>
-        <p><a href="https://github.com/handsontable/handsontable/archive/master.zip">Download Handsontable</a> from GitHub
-          directly as a ZIP file. Note that by doing that you’ll need to manage all dependencies by yourself:</p>
-        <ul>
-          <li>
-            <a href="http://numbrojs.com" target="_blank">Numbro.js</a> and
-            <a href="http://momentjs.com" target="_blank">Moment.js</a> if you use a
-            <a href="/<?js= version ?>/demo-date.html">date picker</a> in your project
-          </li>
-          <li>
-            <a href="http://zeroclipboard.org/" target="_blank">ZeroClipboard</a> for a copy-paste functionality
-          </li>
-        </ul>
-      </li>
-      <li>
-        <p>Embed the latest (v<?js= latestVersion ?>), full distribution of the library that includes all dependencies
-          and is served from our directory. Note that requires our servers to be up and running.</p>
-        <p><code>&lt;script src="//handsontable.com/dist/handsontable.full.js"&gt;&lt;/script&gt;</code></p>
-        <p><code>&lt;link rel="stylesheet" media="screen" href="//handsontable.com/dist/handsontable.full.css"&gt;</code></p>
-      </li>
-      <li>To create a custom Handsontable build, head to
-        <a href="/<?js= version ?>/tutorial-custom-build.html">Custom Build</a> page.
-      </li>
-    </ul>
+    <p>Find all the available installation options on the <a href="//handsontable.com/community-download.html">
+      Download Handsontable CE
+      </a> page.
+    </p>
   </div>
 
   <div class="example-container clearfix" name="nextsteps">
@@ -127,4 +103,9 @@ var hot = new Handsontable(container, {
       <li><a href="/<?js= version ?>/demo-data-validation.html">How to validate data?</a></li>
     </ul>
   </div>
+  <p class="gap-top-xsmall">
+    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/quick-start.html" class="edit-doc" target="_blank">
+      Help us improve this page
+    </a>
+  </p>
 </div>

@@ -10,14 +10,11 @@
   </div>
 
   <div class="example-container clearfix" name="building">
-    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/custom-build.html" class="edit-doc" target="_blank">
-      Edit this page
-    </a>
 
     <p>The build process is using <a href="https://webpack.js.org/" target="_blank">Webpack</a>, <a href="https://babeljs.io/" target="_blank">Babel</a> and
-      bunch of NPM tasks defined in
+      as well as npm tasks listed in
       <a href="https://github.com/handsontable/handsontable/blob/master/package.json" target="_blank">package.json</a>.
-    During this process, the source files located in the <code>src/*</code> directory are transformed into output files:</p>
+    During this process, the source located in the <code>src/*</code> directory are transformed into output files:</p>
     <ul>
       <li><code>./dist/handsontable.js</code></li>
       <li><code>./dist/handsontable.css</code></li>
@@ -30,7 +27,7 @@
     </ul>
     <p>It is advised that you never modify the above-mentioned files but rather make changes in the <code>src/</code>
       directory and then run a proper build. This is especially important if you want to contribute
-      your changes back to Handsontable using a pull request.</p>
+      your changes back to Handsontable by making a pull request.</p>
   </div>
 
   <div class="example-container clearfix" name="tasks">
@@ -91,4 +88,9 @@
     <p><img width="822" height="532" src="/images/hot-builder-results.png" alt="Creating a custom package" /></p>
     <p>For further details, check out <a href="https://github.com/handsontable/hot-builder" target="_blank">the project page</a>.</p>
   </div>
+  <p class="gap-top-xsmall">
+    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/custom-build.html" class="edit-doc" target="_blank">
+      Help us improve this page
+    </a>
+  </p>
 </div>

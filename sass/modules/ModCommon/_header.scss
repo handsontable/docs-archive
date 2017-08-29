@@ -1,0 +1,201 @@
+/**
+ * @author: Handsoncode
+ */
+
+header {
+  @include fixed-top-left (0, 0);
+  width: 100%;
+  padding: 34px 0 24px;
+  z-index: 300;
+  background-color: #fff;
+
+  .logo {
+    @include relative-top-left (-3px, 0);
+
+    @media only screen and (min-width: $largeWidth) {
+      @include relative-top-left (10px, 0);
+    }
+
+    svg {
+
+      &.handsontable-logo {
+        @include rectangle (130px, 25px);
+        fill: $baseGray;
+      }
+    }
+  }
+
+  /* Begin: This allows to stretch the mobile menu to 100% of width of the viewport */
+  & > .row > .columns:last-child {
+    position: static;
+  }
+  /* End */
+
+  nav {
+
+    & > a {
+      @include absolute-top-right (24px, 25px);
+      display: block;
+      z-index: 11;
+
+      @media only screen and (min-width: $largeWidth) {
+        display: none;
+      }
+
+      svg {
+        @include square (28px);
+        fill: $baseGray;
+      }
+    }
+
+    ul {
+      display: none;
+
+      @media only screen and (min-width: $largeWidth) {
+        display: block;
+      }
+
+      li {
+        padding: 0 19px;
+        display: inline-block;
+
+        &.mobile-only {
+          display: none;
+        }
+
+        &.news {
+          padding-right: 32px;
+          position: relative;
+
+          svg {
+            @include square (18px);
+            @include relative-top-left (4px, 0);
+            fill: $baseGray;
+          }
+
+          #HW_badge_cont {
+            @include absolute-top-left (0, 13px);
+
+            #HW_badge {
+              @include square (12px);
+              @include relative-top-left (0, 0);
+              line-height: 13px;
+              background-color: $brandRedActive;
+
+              &.HW_softHidden {
+                opacity: .4;
+                background-color: $brandVibrantGreenActive;
+              }
+            }
+          }
+        }
+
+        a, a:hover, a:active, a:visited {
+          font-size: 13px;
+          color: $baseGray;
+        }
+
+        a:hover {
+          color: $darkGray;
+        }
+
+      }
+    }
+  }
+
+  /* Menu visible only on mobile devices */
+  nav.mobile-active {
+
+    @media only screen and (min-width: $largeWidth) {
+      display: none;
+    }
+
+    & > a {
+
+      svg {
+        fill: $darkGray;
+      }
+    }
+
+    ul {
+      @include absolute-top-left (12px, 2%);
+      width: 96%;
+      padding: 66px 0 8px;
+      display: block;
+      text-align: center;
+      border-radius: 4px;
+      z-index: 10;
+      box-shadow: 0 3px 18px rgba(0, 0, 0, 0.15), 0 3px 18px rgba(0, 0, 0, 0.15);
+      background: #fff;
+
+      li {
+        width: 49%;
+        padding: 10px 0;
+
+        &.mobile-only {
+          display: inline-block;
+        }
+
+        a, a:hover, a:active, a:visited {
+          font-size: 18px;
+          color: $brandBlue;
+
+          &.btn {
+            width: 100%;
+            color: #fff;
+            font-size: 18px;
+          }
+        }
+
+        &:last-child {
+          width: 90%;
+          padding-top: 40px;
+        }
+
+        &.news {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &.header-white {
+
+    .logo {
+
+      .github-star {
+        border: 1px solid $darkWhite;
+        color: $darkWhite;
+        font-weight: 600;
+
+        .triangle {
+          border-right-color: $darkWhite;
+        }
+      }
+
+      svg {
+        fill: $darkWhite;
+      }
+    }
+
+    a, a:hover, a:active, a:visited {
+      color: #fff;
+    }
+
+    a:hover:not(.btn) {
+      color: $brandFeatherBlue;
+    }
+
+    svg, .news svg {
+      fill: #fff;
+    }
+  }
+}
+
+/* Hack for Headwayapp */
+@media only screen and (max-width: $mediumWidth) {
+
+  #HW_frame_cont {
+    display: none;
+  }
+}

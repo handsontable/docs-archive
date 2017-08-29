@@ -1,9 +1,6 @@
 <div class="static-content">
 
   <div class="example-container clearfix">
-    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/fixing.html" class="edit-doc" target="_blank">
-      Edit this page
-    </a>
     <p>Specify two fixed rows with <code>fixedRowsTop: 2</code> and two fixed columns with <code>fixedColumnsLeft:
       2</code> option.</p>
     <p><strong>Note:</strong> You'll need horizontal scrollbars, so just set a container <code>width</code> and <code>overflow:
@@ -35,7 +32,7 @@
 
         hot = new Handsontable(container, {
           data: myData,
-          colWidths: [47, 47, 47, 47, 47, 47, 47, 47, 47, 47],
+          colWidths: 100,
           rowHeaders: true,
           colHeaders: true,
           fixedRowsTop: 2,
@@ -44,5 +41,10 @@
       </script>
     </div>
   </div>
+  <p class="gap-top-xsmall">
+    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/fixing.html" class="edit-doc" target="_blank">
+      Help us improve this page
+    </a>
+  </p>
 </div>
 

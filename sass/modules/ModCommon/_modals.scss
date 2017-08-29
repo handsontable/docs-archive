@@ -1,0 +1,85 @@
+/**
+ * @author: Handsoncode
+ */
+
+/* Remove the scroll on the body */
+body.modal-open {
+  overflow: hidden;
+}
+
+.modal {
+
+  .modal-container {
+    @include fixed-top-left (50%, 50%);
+    @include translate(-50%, -50%);
+    @include rectangle (480px, 440px);
+    padding: 40px 0 0;
+    z-index: 400;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 26px rgba(0, 0, 0, 0.1), 0 3px 26px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+
+    .modal-header, .modal-footer {
+      padding: 24px 10px 18px;
+    }
+
+    .modal-header {
+
+
+      a {
+
+        svg {
+          @include square (12px);
+          @include transition (fill 0.20s ease-in-out);
+          fill: $darkGray;
+        }
+
+        &:hover {
+
+          svg {
+            fill: $baseGray;
+          }
+        }
+      }
+    }
+
+    .modal-content {
+      backface-visibility: hidden;
+    }
+
+    .modal-footer {
+
+      a {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .modal-backdrop {
+    @include fixed-top-right (0, 0);
+    bottom: 0;
+    left: 0;
+    z-index: 300;
+    overflow: hidden;
+
+    &.bg {
+      &-light {
+        background: rgba(255, 255, 255, 1);
+      }
+      &-light-transparent {
+        background: rgba(255, 255, 255, 0.9);
+      }
+      &-dark {
+        background: rgba(0, 0, 0, 1);
+      }
+      &-dark-transparent {
+        background: rgba(0, 0, 0, 0.9);
+      }
+    }
+  }
+
+  &.hidden, .hidden {
+    display: none;
+  }
+}

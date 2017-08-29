@@ -1,0 +1,105 @@
+/**
+ * @author: Handsoncode
+ * Inspiration: http://ogom.github.io/css-tooltip/
+ */
+
+.tooltip-btn {
+  @include relative-top-left (-2px, 4px);
+  @include square (15px, false);
+
+  display: inline-block;
+  color: $gray;
+  line-height: 1.2;
+  text-align: center;
+  cursor: pointer;
+  font-size: 11px;
+  border-radius: 100%;
+  border: 1px solid $gray;
+
+  &:hover {
+    background-color: $brandBlue;
+    color: $darkWhite;
+    border: 1px solid transparent;
+  }
+
+  .tooltip-inner {
+    @include absolute-top-left (-25px, 25px);
+    @include rectangle (auto, auto);
+    @include transition (opacity .3s ease);
+
+    font-size: 13px;
+    line-height: 1.5;
+    text-align: left;
+    padding: 8px 15px;
+    cursor: default;
+    color: $darkWhite;
+    background-color: $brandBlue;
+    border: 1px solid $darkWhite;
+    border-radius: 4px;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 10;
+    box-shadow: 0 0 14px 0 rgba(160, 160, 160, 0.2);
+  }
+
+  &:hover .tooltip-inner {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .tooltip-angle, .tooltip-angle-inner {
+    position: absolute;
+    height: 0;
+    width: 0;
+    line-height: 0;
+  }
+
+  /* tooltip on top */
+  &.tooltip-top {
+    .tooltip-inner {
+
+      top: auto;
+      bottom: 100%;
+      margin-bottom: 10px;
+    }
+    .tooltip-angle {
+      top: 100%;
+      left: 90px;
+      border-width: 7px 6px 0 6px;
+      border-style: solid;
+      border-color: $brandBlue transparent;
+    }
+    .tooltip-angle-inner {
+      top: -8px;
+      left: -6px;
+      border-width: 7px 6px 0 6px;
+      border-style: solid;
+      border-color: #fff transparent;
+    }
+  }
+
+  /* tooltip on the right hand side */
+  &.tooltip-right {
+    .tooltip-angle {
+      top: 25px;
+      left: -6px;
+      border-width: 5px 6px 7px 0;
+      border-style: solid;
+      border-color: transparent $brandBlue;
+    }
+    .tooltip-angle-inner {
+      top: -5px;
+      left: 1px;
+      border-width: 5px 6px 7px 0;
+      border-style: solid;
+      border-color: transparent #fff;
+    }
+  }
+
+}
+
+
+
+
+
+

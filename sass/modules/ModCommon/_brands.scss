@@ -1,0 +1,48 @@
+/**
+ * @author: Handsoncode
+ */
+
+.brands {
+
+    img {
+        @include translateY(-25%);
+        @include filter(grayscale, 100%);
+        margin: 0 0 60px;
+        max-width: 110px;
+        max-height: 70px;
+        opacity: .7;
+        @media only screen and (min-width: $largeWidth) {
+            margin: 0;
+            padding: 11px;
+            max-height: 52px;
+        }
+    }
+
+    /* Workaround for IE */
+    @media screen and (-ms-high-contrast: none), (-ms-high-contrast: none) {
+        &:nth-child(1) img {
+            width: 115px;
+            height: 49px;
+        }
+        &:nth-child(2) img {
+            width: 115px;
+            height: 43px;
+        }
+        &:nth-child(3) img {
+            width: 115px;
+            height: 27px;
+        }
+        &:nth-child(4) img {
+            width: 87px;
+            height: 66px;
+        }
+        &:nth-child(5) img {
+            width: 115px;
+            height: 21px;
+        }
+        &:nth-child(6) img {
+            width: 55px;
+            height: 66px;
+        }
+    }
+}

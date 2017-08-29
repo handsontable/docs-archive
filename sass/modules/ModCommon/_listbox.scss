@@ -5,7 +5,7 @@
 
 [aria-role="menubox"] {
     @include vertical-align(42px);
-    @include border;
+    @include border($darkWhite);
     position: relative;
     font-size: 0.938em; /* 15px */
     min-height: 42px;

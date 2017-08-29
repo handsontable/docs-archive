@@ -5,7 +5,8 @@
 /* [ import global mixins] */
 @import "mixins/animations";
 @import "mixins/decorators";
+@import "mixins/filters";
 @import "mixins/positioning";
 @import "mixins/shapes";
 @import "mixins/transformation";
-@import "mixins/sizing";
+@import "mixins/flexbox";

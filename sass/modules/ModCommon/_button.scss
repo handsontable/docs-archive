@@ -1,0 +1,143 @@
+/**
+ * @author: Handsoncode
+ */
+
+.btn {
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 4px;
+  border: none;
+  background: transparent;
+
+  &:hover, &:focus, &:active {
+    text-decoration: none;
+  }
+
+  &.hover {
+
+    &-moveup {
+      @include transition (transform .3s ease-out);
+      &:hover {
+        @include translateY(-2px);
+      }
+    }
+
+    &-movedown {
+      @include transition (transform .3s ease-out);
+      &:hover {
+        @include translateY(2px);
+      }
+    }
+  }
+
+  &.size {
+    &-small {
+      padding: 6px 14px;
+      font-size: 13px;
+    }
+    &-medium {
+      padding: 7px 18px;
+      font-size: 14px;
+    }
+    &-large {
+      padding: 10px 24px;
+      font-size: 18px;
+    }
+  }
+
+  &.shadow {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0,0,0,0.10)
+  }
+
+  &.weight {
+    &-light {font-weight: 300}
+    &-normal {font-weight: 400}
+    &-bold {font-weight: 600}
+  }
+
+  &.text {
+    &-black {color: $baseGray}
+    &-blue {color: $brandBlue}
+    &-gray {color: $lightGray}
+    &-green {color: $brandGreen}
+    &-red {color: $brandRed}
+    &-white {color: #fff}
+  }
+
+  &.border {
+    &-blue {@include border($brandBlue)}
+    &-gray {@include border($lightGray)}
+    &-green {@include border($brandGreen)}
+    &-red {@include border($brandRed)}
+    &-white {border: 1px solid #fff}
+  }
+
+  &.bg {
+    &-blue {background-color: $brandBlue;
+      &.bg-lighten {
+        @include transition (background-color .3s ease-out, transform .3s ease-out);
+        &:hover {
+          background-color: $brandBlueActiveLight;
+        }
+      }
+    }
+    &-gray {background-color: $lightGray;
+      &.bg-lighten {
+        @include transition (background-color .3s ease-out, transform .3s ease-out);
+        &:hover {
+          background-color: $lightGrayActiveLight;
+        }
+      }
+    }
+    &-green {background-color: $brandGreen;
+      &.bg-lighten {
+        @include transition (background-color .3s ease-out, transform .3s ease-out);
+        &:hover {
+          background-color: $brandGreenActiveLight;
+        }
+      }
+    }
+    &-green-light {background-color: $brandVibrantGreenActive;
+      &.bg-lighten {
+        @include transition (background-color .3s ease-out, transform .3s ease-out);
+        &:hover {
+          background-color: $brandVibrantGreenActiveLight;
+        }
+      }
+    }
+    &-navy {background-color: $brandDarkNavy;
+      &.bg-lighten {
+        @include transition (background-color .3s ease-out, transform .3s ease-out);
+        &:hover {
+          background-color: $brandDarkNavyActiveLight;
+        }
+      }
+    }
+    &-red {background-color: $brandRed;
+      &.bg-lighten {
+        @include transition (background-color .3s ease-out, transform .3s ease-out);
+        &:hover {
+          background-color: $brandRedActiveLight;
+        }
+      }
+    }
+    &-yellow {background-color: $brandYellow;
+      &.bg-lighten {
+        @include transition (background-color .3s ease-out, transform .3s ease-out);
+        &:hover {
+          background-color: $brandYellowActiveLight;
+        }
+      }
+    }
+    &-purple {background-color: $brandPurple;
+      &.bg-lighten {
+        @include transition (background-color .3s ease-out, transform .3s ease-out);
+        &:hover {
+          background-color: $brandPurpleActiveLight;
+        }
+      }
+    }
+    &-white {background-color: #fff}
+  }
+}

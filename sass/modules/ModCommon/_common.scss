@@ -1,25 +1,29 @@
 /**
  * @author: Handsoncode
  */
-
- /* [ components ] */
-@import 'partials/fontface';
-@import 'partials/normalize';
-@import 'partials/grid';
-@import 'partials/typography';
-@import 'partials/button';
-@import 'partials/form';
-@import 'partials/table';
-@import 'partials/dropdown';
-@import 'partials/listbox';
-@import 'partials/headline';
-@import 'partials/notification';
+ 
+ /* [ components ]*/
+@import 'button';
+@import 'dropdown';
+@import 'fontface';
+@import 'form';
+@import 'grid';
+@import 'handsontable';
+@import 'headline';
+@import 'listbox';
+@import 'modals';
+@import 'normalize';
+@import 'notification';
+@import 'tooltip';
+@import 'typography';
+@import 'table';
+@import 'stripes';
+@import 'tab';
+@import 'user_menu';
+@import 'github-star';
 
 /* [ web partials ] */
-@import 'partials/template';
-@import 'partials/header';
-@import 'partials/logotype';
-@import 'partials/footer';
-
-/* [ handsontable] */
-@import 'partials/handsontable';
+@import 'brands';
+@import 'footer';
+@import 'header';
+@import 'template';

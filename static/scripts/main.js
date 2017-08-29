@@ -229,7 +229,7 @@ function buildBreadcrumbs() {
   // links
   docsLink = document.createElement('a');
   docsLink.href = '/';
-  docsLink.text = 'Docs';
+  docsLink.text = 'Handsontable CE';
 
   if ($('.source').size() > 0 || !$activeLink.length) {
     var filename = $('.page-title').data('filename').replace(/\.[a-z]+$/, '');

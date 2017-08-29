@@ -4,17 +4,10 @@
  */
 
  .headline {
-    @include border-bottom;
     position: relative;
-    line-height: 1;
-    padding-bottom: 50px;
 
     .red {
         color: $brandRed;
-    }
-
-    @media only screen and (min-width: $largeWidth) {
-        padding-bottom: 21px;
     }
 
     &.centered {
@@ -31,10 +24,8 @@
             background: #FFF;
             width: 85%;
 
-            
-
             @media only screen and (min-width: $largeWidth) {
-                padding: 0 46px;
+                padding: 0 0 50px 0;
                 width: auto;
             }
         }

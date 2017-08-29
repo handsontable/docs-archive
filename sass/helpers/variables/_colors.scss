@@ -3,41 +3,75 @@
  */
 
 /* [ brand colors ] */
-$brandBlue: #34A9DC;
+$brandBlue: #039be5;
+$brandDarkBlue: #3F7E9A;
 $brandRed: #E87677;
-$brandGreen: #7EC896;
+$brandPurple: #880e4f;
+$brandVibrantGreen: #59a500;
+$brandGreen: #43a047;
+$brandLightGreen: #7ec896;
+$brandDeepGreen: #598e6a;
 $brandDeepNavy: #404B5B;
+$brandDarkNavy: #15202f;
 $brandYellow: #FAD97F;
+$brandVibrantBlue: #00e5ff;
+$brandVibrantGreen: #2fd069;
+$brandLightBlue: #b5dafd;
+$brandFeatherBlue: #e7f3ff;
+
+/* [ occasional colors ] */
+$vividGreen: darken($brandVibrantGreen, 5%);
+
+/* [active colors from colors] */
+$brandVibrantGreenActive: #48cc4d;
+$vividGreenActive: darken($vividGreen, 20%);
+$errorColor: $brandRed;
+$infoColor: $brandBlue;
+$successColor: $brandGreen;
+$warningColor: $brandYellow;
 
 /* [ shades of grays] */
-$baseGray: #474747;
+$baseGray: #363636;
 $darkGray: #8D8D8D;
 $gray: #CFCFCF;
 $middleGray: #C5C5C5;
 $lightGray: #E3E3E3;
-$ultraLightGray: #F5F5F5;
+$ultraLightGray: #edeef0;
 $darkWhite: #f7f7f7;
+$snowWhite: #fbfbfb;
 
-/* [ active colors ] */
+/* [ active darker colors ] */
 $brandBlueActive: darken($brandBlue, 8%);
+$brandDarkBlueActive: darken($brandDarkBlue, 8%);
 $brandRedActive: darken($brandRed, 8%);
 $brandGreenActive: darken($brandGreen, 8%);
 $darkGrayActive: darken($darkGray, 8%);
 $lightGrayActive: darken($lightGray, 8%);
 $darkWhiteActive: darken($darkWhite, 8%);
+$brandYellowActive: darken($brandYellow, 8%);
+$brandPurpleActive: darken($brandPurple, 8%);
+
+/* [ active lighter colors ] */
+$brandBlueActiveLight: lighten($brandBlue, 2%);
+$brandRedActiveLight: lighten($brandRed, 2%);
+$brandGreenActiveLight: lighten($brandGreen, 2%);
+$brandVibrantGreenActiveLight: lighten($brandVibrantGreenActive, 4%);
+$darkGrayActiveLight: lighten($darkGray, 2%);
+$lightGrayActiveLight: lighten($lightGray, 2%);
+$darkWhiteActiveLight: lighten($darkWhite, 2%);
+$brandDarkNavyActiveLight: lighten($brandDarkNavy, 2%);
+$brandYellowActiveLight: lighten($brandYellow, 2%);
+$brandPurpleActiveLight: lighten($brandPurple, 2%);
 
 /* [ functional color ] */
 $textColor: $baseGray;
-$secondTextColor: $darkGray;
+$secondTextColor: $baseGray;
 $linkColor: $brandBlue;
 $linkActiveColor: $brandBlueActive;
-$borderColor: $lightGray;
+$borderColor: $darkWhite;
+$accentBorderColor: $ultraLightGray;
 $inputBorder: $gray;
-$inputFocusBorder: $darkGray;
-$tableBackground: $ultraLightGray;
+$inputFocusBorder: $brandBlue;
+$tableBackground: $darkWhite;
 $iconColor: $brandDeepNavy;
-
-$errorColor: $brandRed;
-$infoColor: $brandBlue;
-$successColor: $brandGreen;
-$warningColor: $brandYellow;
+$backgroundTextColor: $darkWhite;

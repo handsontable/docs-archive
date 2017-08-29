@@ -8,6 +8,18 @@
     border-bottom: $height solid $color;
 }
 
+@mixin arrow-down ($width, $height, $color){
+    border-left: $width/2 solid transparent;
+    border-right: $width/2 solid transparent;
+    border-top: $height solid $color;
+}
+
+@mixin arrow-left ($width, $height, $color){
+    border-top: $width/2 solid transparent;
+    border-bottom: $width/2 solid transparent;
+    border-right: $height solid $color;
+}
+
 @mixin rectangle ($width, $height, $block: false) {
     @if ($block == true) {
         display: block;

@@ -2,9 +2,6 @@
 
 
   <div class="example-container clearfix clearfix">
-    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/alignment.html" class="edit-doc" target="_blank">
-      Edit this page
-    </a>
     <p>To initialize Handsontable with predefined horizontal and vertical alignment, provide className cells
       details in form of a grid, <code>columns</code> or <code>cell</code> setting (see code sample below).
     </p>
@@ -39,7 +36,7 @@
 
         hot1 = new Handsontable(container, {
           data: Handsontable.helper.createSpreadsheetData(100, 18),
-          colWidths: [47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47],
+          colWidths: 100,
           rowHeaders: true,
           colHeaders: true,
           contextMenu: true,
@@ -60,5 +57,10 @@
       </script>
     </div>
   </div>
+  <p class="gap-top-xsmall">
+    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/alignment.html" class="edit-doc" target="_blank">
+      Help us improve this page
+    </a>
+  </p>
 </div>
 

@@ -1,0 +1,45 @@
+/**
+ * @author: Handsoncode
+ */
+
+.tabs {
+
+  .tab {
+    width: 100%;
+    overflow: auto;
+    white-space: nowrap;
+
+    ul li {
+      padding: 14px 16px 7px;
+      display: inline-block;
+      border-bottom: 3px solid transparent;
+      outline: none;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 14px;
+      background-color: inherit;
+
+      &:hover {
+        color: $darkGray;
+      }
+
+      &.active {
+        font-weight: 500;
+        cursor: default;
+        border-bottom: 3px solid $brandBlue;
+
+        &:hover {
+          color: inherit;
+        }
+      }
+    }
+  }
+
+ & > div:not(.tab) {
+    padding: 14px 20px 16px;
+    background-color: $darkWhite;
+  }
+}
+
+
+

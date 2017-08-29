@@ -1,0 +1,201 @@
+/**
+ * @author: Handsoncode
+ */
+
+.nav-holder {
+
+  @media only screen and (min-width: $largeWidth) {
+    width: 280px;
+    height: 1px;
+  }
+}
+
+.navigation {
+  height: 50vh;
+
+  @media only screen and (min-width: $largeWidth) {
+    width: 280px;
+    height: calc(100% - 170px);
+    position: fixed;
+  }
+
+  .search {
+
+    input {
+      margin-bottom: 6px;
+      border: 2px solid $darkWhite;
+
+      &:focus {
+        border: 2px solid $lightGrayActiveLight;
+      }
+    }
+  }
+
+  .applicationName {
+    margin: 0;
+    margin-top: 15px;
+    padding: 10px 15px;
+    color: #4267B6;
+
+    a {
+      color: #4267B6;
+    }
+  }
+
+  .version {
+    font-size: 10px;
+    color: #454545;
+  }
+  .app-name {
+    margin: 0;
+    padding: 0 12px 6px;
+    font-size: 12px;
+    text-align: left;
+    color: #838383;
+  }
+  .list {
+    margin: 0;
+    padding: 10px 0 20px 10px;
+    position: relative;
+    overflow: auto;
+    height: 100%;
+    list-style: none;
+    background-color: $ultraLightGray;
+
+    @media only screen and (min-width: $largeWidth) {
+      background-color: #fff;
+    }
+  }
+  li.item {
+    margin: 0 12px 0 18px;
+    a {
+      padding: 8px 0;
+      display: block;
+      text-decoration: none;
+      &.active-link {
+        font-weight: 500;
+      }
+      &.external:after {
+        margin-top: -2px;
+        padding-left: 4px;
+        display: inline-block;
+        font: normal normal normal 10px/1 FontAwesome;
+        content: "\f08e";
+      }
+    }
+    &.multiple {
+      .extensible:not(.group-title) {
+        margin: 10px 0 10px 16px;
+        display: none;
+
+        &:before {
+          content: "-";
+          color: $middleGray;
+          font-size: 17px;
+          position: absolute;
+          top: -5px;
+          left: -11px;
+        }
+      }
+      .itemMembers {
+        margin-left: 1.4rem;
+      }
+    }
+    .title {
+      cursor: pointer;
+      position: relative;
+      display: block;
+      font-size: 0.8em;
+
+      &.extensible a:after {
+        content: "\f107";
+        font-family: 'FontAwesome';
+        color: $lightGray;
+        font-size: 17px;
+        position: absolute;
+        top: 5px;
+        right: 4px;
+      }
+      sup {
+        color: $brandRed;
+      }
+      a {
+        padding-bottom: 6px;
+        display: block;
+        color: #393939;
+        &:hover {
+          color: #454545;
+        }
+      }
+      .static {
+        display: block;
+        border-radius: 3px;
+        background-color: $brandGreen;
+        color: #000;
+        font-size: 0.7em;
+        padding: 2px 4px;
+        float: right;
+      }
+    }
+
+    .subtitle {
+      margin: 6px 0;
+      font-size: 14px;
+      display: block;
+    }
+
+
+    ul {
+      & > li {
+        margin-left: 20px;
+      }
+    }
+
+    .itemMembers {
+      margin-bottom: 0.7rem;
+      display: none;
+      list-style: square;
+    }
+  }
+  .sublist {
+    .li {
+      list-style: none;
+    }
+    p.header {
+      margin: 26px 12px 18px;
+      padding: 0;
+      font-size: 14px;
+      font-weight: 600;
+      color: $brandRed;
+    }
+    p.subheader {
+      margin: 16px 12px 6px;
+      font-size: 14px;
+      color: $brandGreen;
+      font-weight: 600;
+    }
+    .itemMembers {
+      margin: 0 0 0 0.5rem;
+      padding: 0;
+      list-style: none!important;
+      li {
+        margin-left: 0.4rem;
+      }
+      a:hover {
+        color: #118AE2;
+      }
+    }
+  }
+
+  .sublist.not-found {
+    display: none;
+    text-align: center;
+
+    .header {
+      margin: 16px 12px 12px;
+      color: $darkGray;
+      font-weight: 400;
+    }
+  }
+
+}

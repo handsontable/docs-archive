@@ -1,12 +1,8 @@
 <div class="static-content">
 
   <div class="example-container clearfix">
-    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/pre-populating.html"
-       class="edit-doc" target="_blank">
-      Edit this page
-    </a>
     <p>Below example shows how cell renderers can be used to present the template values for empty rows.
-      When any cell in the empty row is edited, the <strong>onChange</strong> callback fills the row with the template values.</p>
+      When a cell in the empty row is edited, the <strong>onChange</strong> callback fills the row with the template values.</p>
 
     <div data-jsfiddle="example1">
       <div id="example1" class="hot"></div>
@@ -28,10 +24,10 @@
         var
           tpl = ['one', 'two', 'three'],
           data = [
-            ['', 'Kia', 'Nissan', 'Toyota', 'Honda'],
-            ['2014', 10, 11, 12, 13],
-            ['2015', 20, 11, 14, 13],
-            ['2016', 30, 15, 12, 13]
+            ['', 'Tesla', 'Nissan', 'Toyota', 'Honda'],
+            ['2017', 10, 11, 12, 13],
+            ['2018', 20, 11, 14, 13],
+            ['2019', 30, 15, 12, 13]
           ],
           container = document.getElementById('example1'),
           hot1;
@@ -109,5 +105,11 @@
       </script>
     </div>
   </div>
+  <p class="gap-top-xsmall">
+    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/pre-populating.html"
+       class="edit-doc" target="_blank">
+      Help us improve this page
+    </a>
+  </p>
 </div>
 

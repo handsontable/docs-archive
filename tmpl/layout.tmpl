@@ -3,11 +3,12 @@
 <head>
   <?js= this.partial('analytics-pre.tmpl', this) ?>
   <meta charset="utf-8">
-  <title><?js= title ?> | Handsontable - open source spreadsheet solution. Excel-like grid editing with HTML & JavaScript</title>
+  <meta name=viewport content="width=device-width, initial-scale=1">
+  <title>Handsontable - <?js= title ?></title>
   <?js= this.partial('head.tmpl', this) ?>
 </head>
 
-<body class="documentation subpage">
+<body>
 
   <?js= this.partial('analytics-post.tmpl', this) ?>
   <?js= this.partial('svg.tmpl', this) ?>
@@ -15,14 +16,12 @@
 
   <div id="wrapper">
     <div class="row">
-      <div class="large-3 medium-3 small-1 columns">
-        <div class="nav-fix">
+      <div class="small-12 medium-3 columns">
 
           <?js= this.partial('navigation.tmpl', this) ?>
 
-        </div>
       </div>
-      <div class="large-9 medium-8 small-1 columns">
+      <div class="small-12 medium-9 columns">
         <div class="main">
           <h1 class="page-title" data-filename="<?js= filename.replace('tutorial-','') ?>"><?js= title ?></h1>
           <div class="breadcrumbs"></div>

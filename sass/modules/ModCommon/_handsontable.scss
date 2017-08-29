@@ -1,3 +1,7 @@
+/**
+ * @author: Handsoncode
+ */
+
 /* overriding foundation for handsontable */
 
 .main .hot, .hot {
@@ -6,7 +10,11 @@
     padding: 0 4px;
     font-size: 13px;
     font-family: Verdana, Helvetica, Arial, FreeSans, sans-serif;
-   }
+
+    span {
+      font-size: inherit;
+    }
+  }
   .handsontable table {
     -webkit-box-shadow: none;
     box-shadow: none;

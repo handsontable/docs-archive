@@ -1,3 +1,7 @@
+/*
+  @author: Handsoncode
+*/
+
 meta.foundation-version {
   font-family: "/5.5.3/"; }
 
@@ -55,16 +59,16 @@ body {
   font-size: 100%; }
 
 body {
-  background: #fff;
-  color: #222222;
+  color: $baseGray;
   cursor: auto;
-  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-family: $regularFont;
   font-style: normal;
   font-weight: normal;
   line-height: 1.5;
   margin: 0;
-  padding: 0;
-  position: relative; }
+  padding: 120px 0 0;
+  position: relative;
+  background: $snowWhite; }
 
 a:hover {
   cursor: pointer; }
@@ -92,7 +96,12 @@ img {
 
 .right {
   float: right !important; }
-
+.text-center {
+  text-align: center; }
+.text-left {
+  text-align: left; }
+.text-right {
+  text-align: right; }
 .clearfix:before, .clearfix:after {
   content: " ";
   display: table; }
@@ -137,7 +146,7 @@ select {
     margin-left: 0;
     margin-right: 0; }
   .row .row {
-    margin: 0 -0.9375rem;
+    /*margin: 0 -0.9375rem;*/
     max-width: none;
     width: auto; }
     .row .row:before, .row .row:after {

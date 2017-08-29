@@ -1,0 +1,46 @@
+/**
+ * @author: Handsoncode
+ */
+
+
+.breadcrumbs {
+  height: 60px;
+  padding-top: 9px;
+  span {
+    color: $darkGray;
+
+    &.switcher {
+      margin-top: 3px;
+
+      &:before {
+        content: '';
+      }
+
+      a {
+        font-size: 13px;
+        color: $brandBlue;
+      }
+    }
+  }
+  & > * {
+    color: $brandBlue;
+    font-size: 13px;
+    text-transform: none;
+  }
+  & > *:before {
+    content: "/";
+    margin: 0 6px;
+    color: $gray;
+  }
+  & > *:first-child:before {
+    margin: 0;
+    content: "";
+  }
+  select.hot-chooser {
+    width: auto;
+    padding: 2px 0 2px 5px;
+    display: inline;
+    border: 1px solid $lightGrayActiveLight;
+    background: #fff;
+  }
+}

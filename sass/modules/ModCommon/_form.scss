@@ -1,0 +1,239 @@
+/**
+ * @author: Handsoncode
+ */
+
+form {
+  @include placeholder {
+    font-size: 0.938em; /* 13px */
+  }
+
+  fieldset {
+    margin: 2px 0;
+  }
+
+  label {
+    font-size: 0.938em; /* 15px */
+    font-weight: 100;
+    display: block;
+    margin-bottom: 7px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  input[type="password"],
+  input[type="tel"],
+  .selectbox,
+  textarea {
+    @include border($inputBorder);
+    font-size: 0.938em; /* 15px */
+    width: 100%;
+    padding: 11px 20px 12px;
+    margin-bottom: 16px;
+    border-radius: 2px;
+    background: #fff;
+    -webkit-appearance: none;
+
+    @media only screen and (min-width: $largeWidth) {
+      width: 100%;
+    }
+
+    &:focus {
+      border-color: $inputFocusBorder;
+    }
+  }
+
+  input[type="submit"] {
+    @include transition(background .3s ease);
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  .selectbox {
+    position: relative;
+    padding: 0;
+
+    &:hover {
+      border-color: $brandBlue;
+    }
+
+    select {
+      padding: 11px 20px 12px;
+      background-color: transparent;
+      border: none;
+      box-shadow: none;
+    }
+
+    select::-ms-expand{
+      display:none;
+    }
+
+    svg {
+      @include absolute-top-right (50%, 18px);
+      @include square (11px);
+
+      margin: -4px 0 0 0;
+      fill: #474747;
+      z-index: 10;
+    }
+  }
+
+}
+
+form.light {
+  padding: 10px 0 10px 0;
+
+  input[type="text"], textarea {
+    background: #fff;
+    border-color: $lightGray;
+  }
+}
+
+.subscribe-form {
+
+  span {
+    font-size: 0.7em;
+    float: right;
+    margin: 0;
+    padding: 5px 0 0;
+    color: $middleGray;
+
+    @media only screen and (min-width: $largeWidth) {
+      margin: 5px 200px 0 0;
+      padding: 0;
+    }
+  }
+
+  input[type="email"],
+  input[type="submit"] {
+    border-radius: 2px;
+  }
+
+  input[type="email"] {
+    margin: 0;
+    padding: 19px;
+    background: $darkWhite;
+    height: 38px;
+
+    @media only screen and (min-width: $largeWidth) {
+      float: left;
+      width: 65%;
+      margin-bottom: 5px;
+    }
+  }
+
+  input[type="submit"] {
+    width: 100%;
+    margin-top: 30px;
+
+    @media only screen and (min-width: $largeWidth) {
+      width: 25%;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      left: 20px;
+      float: left;
+      border-radius: 4px;
+    }
+  }
+
+  #mc_embed_signup_scroll {
+    position: relative;
+  }
+
+  #mce-responses {
+    position: absolute;
+    font-size: 13px;
+    min-height: 10px;
+    padding: 5px;
+    top: 69px;
+    background: #fff;
+    text-align: center;
+    @media only screen and (min-width: $largeWidth) {
+      text-align: left;
+      width: 65%;
+    }
+
+    #mce-error-response {
+      color: $brandRed;
+    }
+
+    #mce-success-response {
+      color: $brandGreen;
+    }
+  }
+}
+
+/* mailchimp overwrite styles */
+.mc-field-group {
+  position: relative;
+}
+
+input.mce_inline_error {
+  color: $errorColor !important;
+  border-color: $errorColor !important;
+}
+
+div.mce_inline_error {
+  position: absolute;
+  bottom: 0;
+  font-weight: 400 !important;
+  font-size: 11px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  color: $errorColor !important;
+  background-color: transparent !important;
+}
+
+.social-share {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid $gray;
+  border-radius: 6px;
+
+  p {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  p > p {
+    margin-top: 0;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  h3 {
+    margin-top: 10px;
+    font-size: 1.2em;
+
+    @media only screen and (min-width: $mediumWidth) {
+      margin-top: 0;
+    }
+  }
+
+  input[type="text"] {
+    margin: 0;
+    padding: 20px;
+    background: $lightGray;
+    height: 47px;
+
+    @media only screen and (min-width: $largeWidth) {
+      width: 100%;
+      margin: 20px 0 5px 0;
+    }
+  }
+
+  svg {
+    @include square(24px);
+    padding: 0;
+    margin: 10px 10px 0 0;
+
+    @media only screen and (min-width: $mediumWidth) {
+      margin: 5px 7px 5px 0;
+    }
+  }
+}
