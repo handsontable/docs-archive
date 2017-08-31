@@ -20,9 +20,17 @@ function find(spec) {
   return helper.find(data, spec);
 }
 
+function resolveCanonicalTags(str, path) {
+  if (typeof path === 'string') {
+    path = path.replace('generated', '');
+  }
+
+  return str.replace(/\{@canonical\}/, htmlsafe(path));
+};
+
 function tutoriallink(node) {
   if (node.external) {
-    return '<a class="external" href="' + node.external + '">' + node.title + '</a>';
+    return '<a class="external" target="_blank" href="' + node.external + '">' + node.title + '</a>';
 
   } else if(node.demo || (node.parent && node.parent.demo)) {
     return helper.toTutorial(node.name, null, { tag: 'em', classname: 'disabled', prefix: 'Demo: ' }).replace('tutorial-','demo-');
@@ -136,6 +144,7 @@ function generate(title, docs, filename, resolveLinks) {
   if (resolveLinks) {
     // turn {@link foo} into <a href="foodoc.html">foo</a>
     html = helper.resolveLinks(html);
+    html = resolveCanonicalTags(html, outpath);
   }
 
   fs.writeFileSync(outpath, html, 'utf8');
@@ -567,11 +576,15 @@ exports.publish = function(taffyData, opts, tutorials) {
       html = view.render('tutorial.tmpl', tutorialData);
 
     // turn {@link foo} into <a href="foodoc.html">foo</a>
+    // throw Error(html);
+
     html = helper.resolveLinks(html);
 
     if (tutorial.demo || (tutorial.parent && tutorial.parent.demo)) {
       tutorialPath = tutorialPath.replace('tutorial-', 'demo-');
     }
+    html = resolveCanonicalTags(html, tutorialPath);
+
     fs.writeFileSync(tutorialPath, html, 'utf8');
   }
 
