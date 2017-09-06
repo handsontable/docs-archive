@@ -26,7 +26,7 @@
     },
     "meta": {
       "title": "Handsontable",
-      "description": "JavaScript data grid editor. Excel-like grid editing with HTML & JavaScript",
+      "description": "Handsontable is a composite spreadsheet component for apps and websites written in JavaScript and HTML",
       "keyword": "data grid"
     },
     "linenums": true

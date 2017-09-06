@@ -38,7 +38,8 @@ header {
   nav {
 
     & > a {
-      @include absolute-top-right (24px, 25px);
+      @include absolute-top-right (4px, 5px);
+      padding: 20px;
       display: block;
       z-index: 11;
 
