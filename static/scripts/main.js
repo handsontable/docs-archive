@@ -1,4 +1,9 @@
+function isIE() { return ((navigator.appName == 'Microsoft Internet Explorer') || ((navigator.appName == 'Netscape') && (new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})").exec(navigator.userAgent) != null))); }
+
 (function() {
+  if (isIE()) {
+    return;
+  }
   var tracking = location.hash !== '' && location.hash !== '#';
   var block = false;
 
@@ -19,27 +24,29 @@ $(function () {
   jQuery.fx.off = true;
 
   // Anchor fix
-  $(window).on('popstate', function(event) {
-    var hash = (event.originalEvent.state || {}).previousHash;
+  if (!isIE()) {
+    $(window).on('popstate', function(event) {
+      var hash = (event.originalEvent.state || {}).previousHash;
 
-    if (hash) {
-      var rect = document.getElementById(hash.replace('#', '')).getBoundingClientRect();
+      if (hash) {
+        var rect = document.getElementById(hash.replace('#', '')).getBoundingClientRect();
 
-      window.scrollTo(0, window.scrollY + rect.top - 120);
-    }
-  });
+        window.scrollTo(0, window.scrollY + rect.top - 120);
+      }
+    });
 
-  $(document.body).on('click', 'a[href*="#"]', function(event) {
-    if (location.pathname === event.target.pathname) {
-      event.preventDefault();
+    $(document.body).on('click', 'a[href*="#"]', function(event) {
+      if (location.pathname === event.target.pathname) {
+        event.preventDefault();
 
-      var rect = document.getElementById(event.target.hash.replace('#', '')).getBoundingClientRect();
+        var rect = document.getElementById(event.target.hash.replace('#', '')).getBoundingClientRect();
 
-      history.pushState({previousHash: event.target.hash}, '', event.target.pathname + event.target.hash);
+        history.pushState({previousHash: event.target.hash}, '', event.target.pathname + event.target.hash);
 
-      window.scrollTo(0, window.scrollY + rect.top - 120);
-    }
-  });
+        window.scrollTo(0, window.scrollY + rect.top - 120);
+      }
+    });
+  }
   // END: Anchor fix
 
   // Search Items
