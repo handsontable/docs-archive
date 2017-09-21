@@ -150,21 +150,6 @@ module.exports = function (grunt) {
       }
     },
 
-    robotstxt: {
-      dist: {
-        dest: DOCS_PATH + '/',
-        policy: [
-          {
-            ua: '*',
-            allow: '/'
-          },
-          {
-            host: 'docs.handsontable.com'
-          }
-        ]
-      }
-    },
-
     sitemap: {
       dist: {
         pattern: ['generated/*.html', '!generated/tutorial-40*.html'],
@@ -213,6 +198,7 @@ module.exports = function (grunt) {
       }
       clearInterval(timer);
       grunt.task.run('generate-doc-versions');
+      grunt.task.run('generate-disallow-for-robots');
       grunt.task.run('build');
     }, 50);
   });
@@ -241,13 +227,29 @@ module.exports = function (grunt) {
     });
   });
 
+  grunt.registerTask('generate-disallow-for-robots', ['authenticate-git', 'generate-disallow-for-robots-internal']);
+  grunt.registerTask('generate-disallow-for-robots-internal', 'Generate disallowed paths for web crawler robots', function () {
+    var done = this.async();
+
+    gitHelper.getDocsVersions().then(function(branches) {
+      branches.pop(); // Remove the newest version of the docs
+
+      var content = branches.map(function(branch) {
+        return 'Disallow: /' + branch;
+      }).join('\n');
+
+      grunt.log.write('The following versions added to disallow: ' + branches.join(', '));
+      fs.writeFile(path.join(DOCS_PATH, 'robots_disallow'), content, done);
+    });
+  });
+
   grunt.registerTask('build', ['authenticate-git', 'build-internal']);
   grunt.registerTask('build-internal', 'Generate documentation for Handsontable', function () {
     var done = this.async();
     var hotPackage;
 
     gitHelper.getHotLatestRelease().then(function(info) {
-      grunt.task.run('sass', 'copy', 'bowercopy', 'robotstxt');
+      grunt.task.run('sass', 'copy', 'bowercopy');
 
       hotPackage = grunt.file.readJSON(HOT_SRC_PATH + '/package.json');
       grunt.config.set('jsdoc.docs.options.query', querystring.stringify({
@@ -271,7 +273,6 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-git');
   grunt.loadNpmTasks('grunt-jsdoc');
   grunt.loadNpmTasks('grunt-open');
-  grunt.loadNpmTasks('grunt-robots-txt');
   grunt.loadNpmTasks('grunt-sitemap');
   grunt.loadNpmTasks('grunt-env');
 };

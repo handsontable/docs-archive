@@ -26,7 +26,6 @@
     "grunt-exec": "~0.4.6",
     "grunt-git": "^0.3.4",
     "grunt-jsdoc": "^0.5.8",
-    "grunt-robots-txt": "~0.3.0",
     "grunt-sitemap": "1.2.1",
     "jsdoc": "3.4.0",
     "minimist": "^1.1.1",
