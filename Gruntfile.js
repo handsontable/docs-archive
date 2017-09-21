@@ -234,9 +234,9 @@ module.exports = function (grunt) {
     gitHelper.getDocsVersions().then(function(branches) {
       branches.pop(); // Remove the newest version of the docs
 
-      var content = branches.map(function(branch) {
+      var content = '\n' + branches.map(function(branch) {
         return 'Disallow: /' + branch;
-      }).join('\n');
+      }).join('\n') + '\n';
 
       grunt.log.write('The following versions added to disallow: ' + branches.join(', '));
       fs.writeFile(path.join(DOCS_PATH, 'robots_disallow'), content, done);
