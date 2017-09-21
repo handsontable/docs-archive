@@ -66,6 +66,9 @@ module.exports = function (shipit) {
       return shipit.remote('cd ' + path + ' && grunt generate-doc-versions');
 
     }).then(function() {
+      return shipit.remote('cd ' + path + ' && grunt generate-disallow-for-robots');
+
+    }).then(function() {
       gitHelper.setupGitApi(env.GITHUB_TOKEN);
 
       return gitHelper.getHotLatestRelease();
