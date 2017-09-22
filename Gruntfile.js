@@ -235,7 +235,7 @@ module.exports = function (grunt) {
       branches.pop(); // Remove the newest version of the docs
 
       var content = '\n' + branches.map(function(branch) {
-        return 'Disallow: /' + branch;
+        return 'Disallow: /' + branch + '/';
       }).join('\n') + '\n';
 
       grunt.log.write('The following versions added to disallow: ' + branches.join(', '));
