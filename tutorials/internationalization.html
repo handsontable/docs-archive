@@ -1,0 +1,341 @@
+<div class="static-content">
+
+  <script data-jsfiddle="common" src="/bower_components/handsontable/dist/languages/all.js"></script>
+
+  <script type="text/javascript" data-jsfiddle="common">
+    function getCarData() {
+      return [
+        {car: "Mercedes A 160", year: 2017, available: true, comesInBlack: 'yes'},
+        {car: "Citroen C4 Coupe", year: 2018, available: false, comesInBlack: 'yes'},
+        {car: "Audi A4 Avant", year: 2019, available: true, comesInBlack: 'no'},
+        {car: "Opel Astra", year: 2020, available: false, comesInBlack: 'yes'},
+        {car: "BMW 320i Coupe", year: 2021, available: false, comesInBlack: 'no'}
+      ];
+    }
+  </script>
+
+  <div class="index-list">
+    <ul>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#loading-language-files">Loading prepared language files</a></li>
+      <li><a href="#demo">Demo</a></li>
+      <li><a href="#internalization-for-features">Internationalization for features</a></li>
+      <li><a href="#languages-list">List of available languages</a></li>
+      <li><a href="#files-hierarchy">Hierarchy of all main files connected with internationalization</a></li>
+      <li><a href="#custom-languages">Creating custom languages</a></li>
+      <li><a href="#static-properties">Static Handsontable methods and properties</a></li>
+    </ul>
+  </div>
+
+  <div class="example-container clearfix">
+    <h3 id="overview">Overview</h3>
+    <p>Internationalization allows Handsontable to easily change the text of the UI for the purpose of translating it to specific languages.
+      We provide the developer with predefined languages (which can be applied with just one setting) and an ability to use his own language sets,
+      created based on templates of already existing language files.
+    </p>
+  </div>
+
+  <div data-alert class="alert-box info">
+    <strong>We are looking for contributors who would like to help us in adding new translations to Handsontable. <a href="#custom-languages">Learn more</a>.</strong>
+  </div>
+
+
+  <div class="example-container clearfix">
+    <h3 id="loading-language-files">Loading the prepared language files</h3>
+
+    <p>To properly use the internationalization feature, you’ll  need to load the language sets. It’s important,
+      that they’re included after the Handsontable files. You can do it by getting the necessary files:
+    </p>
+
+    <ol>
+      <li>
+        <p>from <code>/dist/languages</code> folder inside your HTML file</p>
+
+        <pre><code class="lang-js">&lt;script type="text/javascript" src="dist/handsontable.full.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="dist/languages/all.js"&gt;&lt;/script&gt;</code></pre>
+
+        <p>Note: Please keep in mind, that you can use the minified versions of the files from the  <code>/dist</code> folder.</p>
+      </li>
+
+      <li>
+        <p>from the <code>/languages</code> folder located in the root of the project, grouped by module systems (<code>CommonJS</code>, <code>ESM</code> and <code>AMD</code>);
+          the example below shows how to use it with ESM.</p>
+
+        <pre><code class="lang-js">import Handsontable from 'handsontable';
+import 'handsontable/languages/pl-PL';</code></pre>
+      </li>
+    </ol>
+
+    <p>Languages included this way are ready to use immediately after loading the file. More about other language-specific
+      files and language registration for Handsontable can be found in <a href="#files-hierarchy">this section</a>.
+    </p>
+  </div>
+
+  <div class="example-container clearfix">
+    <h3 id="demo">Demo</h3>
+
+    <p>Please right click on a cell to see the translated context menu. Language files were loaded after loading Handsontable.</p>
+
+    <div data-jsfiddle="example1">
+      <div id="example1" class="hot"></div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example2">
+          <i class="fa fa-jsfiddle"></i>
+          Edit
+        </button>
+        <button class="dump" name="dump" data-dump="#example2" data-instance="hot2"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example1" data-dont-display="true">
+        var dataObj = [
+          ['Lorem', 'ipsum', 'dolor', 'sit', '12/1/2015', 23],
+          ['adipiscing', 'elit', 'Ut', 'imperdiet', '5/12/2015', 6],
+          ['Pellentesque', 'vulputate', 'leo', 'semper', '10/23/2015', 26],
+          ['diam', 'et', 'malesuada', 'libero', '12/1/2014', 98],
+          ['orci', 'et', 'dignissim', 'hendrerit', '12/1/2016', 8.5]
+        ];
+      </script>
+      <script data-jsfiddle="example1">
+        var example1 = document.getElementById('example1');
+
+        var hot = new Handsontable(example1, {
+          data: dataObj,
+          contextMenu: true,
+          language: 'pl-PL'
+        });
+      </script>
+    </div>
+  </div>
+
+  <div class="example-container clearfix">
+    <h3 id="internalization-for-features">List of available languages</h3>
+    <p>Below you’ll  find a list of features which can be translated with the internationalization feature.</p>
+    <ul>
+      <li>Dropdown menu</li>
+      <li>Filtering</li>
+      <li>Hiding columns</li>
+      <li>Hiding rows</li>
+      <li>Nesting rows</li>
+
+      <li>Comments</li>
+      <li>Context menu</li>
+      <li>Custom borders</li>
+      <li>Freezing</li>
+      <li>Merge cells</li>
+      <li>Read-only</li>
+    </ul>
+  </div>
+
+
+  <div class="example-container clearfix">
+    <h3 id="languages-list">List of available languages</h3>
+    <p>
+      By default, Handsontable uses the <b>English - United States</b> language-country set (<code>en-US</code> code) for creating the text of UI elements.
+      However, it can be used like every extra, "non-standard" language file. You can find the <code>en-US.js</code> file in both <code>/dist/languages</code>
+      and <code>/languages</code> folders. Currently, we also distribute an extra <b>Polish - Poland</b> language-country file (<code>pl-PL</code> code).
+    </p>
+  </div>
+
+  <div class="example-container clearfix">
+    <h3 id="files-hierarchy">Hierarchy of all the main files connected with internationalization</h3>
+    <p>
+      Information within this paragraph may be useful mainly for people who would like to add new or edit already existing language.
+      The simple way of using the prepared languages is <a href="#loading-language-files">described here</a>.
+    </p>
+
+    <p>Currently, we have 3 folders with files that can be treated as languages files:</p>
+
+    <ul>
+      <li><code>/dist/languages</code>*</li>
+      <li><code>/languages</code>*</li>
+      <li><code>/src/i18n/languages</code></li>
+    </ul>
+
+    <p>Files from the two first folders are built as <a href="https://github.com/umdjs/umd">UMD</a> modules by <a href="https://webpack.js.org/">webpack</a>
+      (can be prepared by using the following npm scripts: <code>build:languages</code> and <code>build:languages.min</code>).
+      The last one, located in the <code>/src</code> folder, contains modules created in the <code>ES2015</code> standard.
+    </p>
+
+    <p>
+      To use the language dictionaries, you’ll  have to register the language sets.
+      Registration is a process of loading the dictionaries globally for Handsontable using the <code>Handsontable.languages.registerLanguageDictionary</code> method.
+    </p>
+
+    <p>The general purpose of these directories is summarized in the table below:</p>
+
+    <table class="static-data features-table">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Files in <code>/dist/languages</code> and <code>/languages</code> folders</th>
+        <th>Files in <code>/src/i18n/languages</code> folder</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Usage</td>
+        <td>Included as separate file</td>
+        <td>Used inside Handsontable as a part of library (default language)</td>
+      </tr>
+      <tr>
+        <td>File source</td>
+        <td>Created in process of building by webpack, transpiled by Babel</td>
+        <td>Created manually, <b>can be</b> tranpiled by Babel</td>
+      </tr>
+      <tr>
+        <td>Language registration</td>
+        <td>Applied in the process of building with webpack</td>
+        <td><b>Not</b> applied in process of building</td>
+      </tr>
+      <tr>
+        <td>Modifications</td>
+        <td>Should <b>not</b> be edited, as they're created automatically</td>
+        <td>Created and edited manually</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <p>
+      Please keep in mind that the files inside the <code>/dist/languages</code> folder are a copy of files located inside <code>/languages</code>, with two differences.
+      The first folder contains additional, minified versions of the files.
+      Also, it doesn’t contain the <code>index.js</code> file (<code>/languages</code> folder uses it to load multiple languages).
+    </p>
+    <p>
+      Both of these folders contain the <code>all.js</code> file, containing all of the language dictionaries.
+    </p>
+  </div>
+
+  <div class="example-container clearfix">
+    <h3 id="custom-languages">Creating custom languages</h3>
+
+    <p>You can create custom language sets for your implementations, or share them, as they’re easily appliable to any Handsontable implementation.</p>
+
+    <h4>Language file</h4>
+
+    <p>It’s really important for us, that the community is a important part of the growth of our library. We encourage you to create and share your translations!</p>
+    <p>Additional languages files should be placed in the <code>src/i18n/languages</code> folder. You can incorporate your translations to the Handsontable library
+      by sending us a <a href="tutorial-contributing.html">pull request</a>. It’s important, that your changes are not made to the  <code>/languages</code> and
+      <code>/dist/languages</code> directories! Our release master will generate these in the building process. You can see a full template of a sample language
+      at bottom of this paragraph. Parts of it are described below. We’re basing it on
+      our <a href="https://github.com/handsontable/handsontable/tree/master/src/i18n/languages/en-US.js">default language</a>.
+    </p>
+
+    <ol>
+      <li>
+        <p>The file should start with a comment containing the translation <b>authors</b> (separated by commas, for example: <i>Authors: Chris Wick, John Kyle</i>),
+          <b>"last updated" date</b> (in format: <i>mmm dd, yyyy</i>, for example: <i>Last updated: Jan 01, 2017</i>) and a <b>description.</b>
+        </p>
+
+        <pre><code class="lang-js">/**
+* @preserve
+* Authors: Handsoncode
+* Last updated: Nov 15, 2017
+*
+* Description: Definition file for English - United States language-country.
+*/</code></pre>
+      </li>
+
+      <li>
+        <p>After that, you’ll need to import the dictionary keys to be used in the translation.</p>
+        <pre><code>import * as C from '../constants';</code></pre>
+      </li>
+
+      <li>
+        <p>The language dictionary object should contain a <code>languageCode</code> key (in format: two lowercase letters, hyphen, two uppercase letters,
+          for example: <i>languageCode: 'es-PY'</i>) which will determine the language code to be used in the language property in the <code>Handsontable</code> settings.
+        </p>
+
+        <pre><code class="lang-js">const dictionary = {
+  languageCode: 'en-US',
+  [C.CONTEXTMENU_ITEMS_ROW_ABOVE]: 'Insert row above',
+  ...
+}</code></pre>
+      </li>
+
+      <li>
+        <p>Lastly, place a default export of the created dictionary.</p>
+
+        <pre><code class="lang-js">export default dictionary;</code></pre>
+      </li>
+
+      <li>
+        <p>
+          A simple, sample language dictionary can look like the snippet below. The <code>/languages</code> and <code>/dist/languages</code> folders will be generated by the build process.
+          Files from those localizations can be included as shown in <a href="#loading-language-files">this section</a>.
+          After loading them, you will be able to use the language. You can do it by changing the language setting of <code>Handsontable</code> to <code>de-DE</code>.
+        </p>
+
+        <pre><code class="lang-js">/**
+* @preserve
+* Authors: Handsoncode
+* Last updated: Nov 15, 2017
+*
+* Description: Definition file for English - United States language-country.
+*/
+import * as C from '../constants';
+
+const dictionary = {
+  languageCode: 'de-DE',
+  [C.CONTEXTMENU_ITEMS_ROW_ABOVE]: 'Insert row above translation in German - Germany',
+};
+
+export default dictionary;</code></pre>
+      </li>
+    </ol>
+
+    <h4>Local language</h4>
+
+    <p>
+      You can register a language dictionary which is not a part of the <code>Handsontable</code> package. To do so, use the static
+      <code>Handsontable.languages.registerLanguageDictionary</code> method and the static constant <code>Handsontable.languages.dictionaryKeys</code>
+      which are described briefly in the next section.
+    </p>
+
+    <pre><code class="lang-js">const C = Handsontable.languages.dictionaryKeys;
+
+Handsontable.languages.registerLanguageDictionary({
+  languageCode: 'de-DE',
+  [C.CONTEXTMENU_ITEMS_ROW_ABOVE]: 'Insert row above translation in German - Germany'
+});</code></pre>
+  </div>
+
+
+  <div class="example-container clearfix">
+    <h3 id="static-properties">Static Handsontable methods and properties</h3>
+
+    <p>Handsontable has a few static methods and properties connected with languages. They are stored in <code>language</code> key of the global <code>Handsontable</code> variable.
+      All of them are described below.</p>
+
+    <h4>Handsontable.languages.getLanguageDictionary(languageCode: <code>String</code>)</h4>
+    <p>Get language dictionary for specific language code.</p>
+    <p>Returns: <code>Object</code></p>
+
+    <h4>Handsontable.languages.getLanguagesDictionaries()</h4>
+    <p>Get the registered language dictionaries.</p>
+    <p>Returns: <code>Array</code></p>
+
+    <h4>Handsontable.languages.getTranslatedPhrase(dictionaryKey: <code>String</code>, extraArguments: <code>Mixed</code>)</h4>
+    <p>Get the phrase for specified dictionary key.</p>
+    <p>Returns: <code>Object</code></p>
+
+    <h4>Handsontable.languages.registerLanguageDictionary(languageCodeOrDictionary: <code>Mixed</code>, dictionary: <code>Object</code>)</h4>
+    <p>Register a language dictionary for a specific language code. After that, it will be possible to use it.</p>
+    <p>Returns: <code>Object</code></p>
+
+    <h4>Handsontable.languages.dictionaryKeys</h4>
+    <p>Dictionary constants.</p>
+    <p>Contains: <code>Object</code></p>
+  </div>
+
+  <p class="gap-top-xsmall">
+    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/checkbox.html" class="edit-doc" target="_blank">
+      Help us improve this page
+    </a>
+  </p>
+</div>

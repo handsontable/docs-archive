@@ -19,7 +19,12 @@
     padding: 1rem;
     font-size: 13px;
     background-color: #f5f5f5;
-    border-left: 4px solid $brandRed;
+    &.warn {
+      border-left: 4px solid $brandRed;
+    }
+    &.info {
+      border-left: 4px solid $brandBlue;
+    }
   }
   .codeLayout {
     margin-top: 2rem;
