@@ -20,7 +20,7 @@
       <li><a href="#loading-language-files">Loading prepared language files</a></li>
       <li><a href="#demo">Demo</a></li>
       <li><a href="#internalization-for-features">Internationalization for features</a></li>
-      <li><a href="#languages-list">List of available languages</a></li>
+      <li><a href="#available-languages">Available languages</a></li>
       <li><a href="#files-hierarchy">Hierarchy of all main files connected with internationalization</a></li>
       <li><a href="#custom-languages">Creating custom languages</a></li>
       <li><a href="#static-properties">Static Handsontable methods and properties</a></li>
@@ -30,8 +30,8 @@
   <div class="example-container clearfix">
     <h3 id="overview">Overview</h3>
     <p>Internationalization allows Handsontable to easily change the text of the UI for the purpose of translating it to specific languages.
-      We provide the developer with predefined languages (which can be applied with just one setting) and an ability to use his own language sets,
-      created based on templates of already existing language files.
+      We provide the developer with predefined languages (which can be applied by changing just one setting) and an ability to use their own language sets,
+      created using templates of existing language files.
     </p>
   </div>
 
@@ -58,7 +58,7 @@
       </li>
 
       <li>
-        <p>from the <code>/languages</code> folder located in the root of the project, grouped by module systems (<code>CommonJS</code>, <code>ESM</code> and <code>AMD</code>);
+        <p>from the <code>/languages</code> folder located in the root of the project, to be used by module systems (<code>CommonJS</code>, <code>ESM</code> and <code>AMD</code>);
           the example below shows how to use it with ESM.</p>
 
         <pre><code class="lang-js">import Handsontable from 'handsontable';
@@ -114,7 +114,7 @@ import 'handsontable/languages/pl-PL';</code></pre>
   </div>
 
   <div class="example-container clearfix">
-    <h3 id="internalization-for-features">List of available languages</h3>
+    <h3 id="internalization-for-features">Internationalization for features</h3>
     <p>Below you’ll  find a list of features which can be translated with the internationalization feature.</p>
     <ul>
       <li>Dropdown menu</li>
@@ -134,7 +134,7 @@ import 'handsontable/languages/pl-PL';</code></pre>
 
 
   <div class="example-container clearfix">
-    <h3 id="languages-list">List of available languages</h3>
+    <h3 id="available-languages">List of available languages</h3>
     <p>
       By default, Handsontable uses the <b>English - United States</b> language-country set (<code>en-US</code> code) for creating the text of UI elements.
       However, it can be used like every extra, "non-standard" language file. You can find the <code>en-US.js</code> file in both <code>/dist/languages</code>
@@ -159,7 +159,7 @@ import 'handsontable/languages/pl-PL';</code></pre>
 
     <p>Files from the two first folders are built as <a href="https://github.com/umdjs/umd">UMD</a> modules by <a href="https://webpack.js.org/">webpack</a>
       (can be prepared by using the following npm scripts: <code>build:languages</code> and <code>build:languages.min</code>).
-      The last one, located in the <code>/src</code> folder, contains modules created in the <code>ES2015</code> standard.
+      The last, <code>/src</code> directory contains modules created using the <code>ES2015</code> standard.
     </p>
 
     <p>
@@ -185,7 +185,7 @@ import 'handsontable/languages/pl-PL';</code></pre>
       </tr>
       <tr>
         <td>File source</td>
-        <td>Created in process of building by webpack, transpiled by Babel</td>
+        <td>Created by webpack during the build process, transpiled by Babel</td>
         <td>Created manually, <b>can be</b> tranpiled by Babel</td>
       </tr>
       <tr>
@@ -248,7 +248,8 @@ import 'handsontable/languages/pl-PL';</code></pre>
 
       <li>
         <p>The language dictionary object should contain a <code>languageCode</code> key (in format: two lowercase letters, hyphen, two uppercase letters,
-          for example: <i>languageCode: 'es-PY'</i>) which will determine the language code to be used in the language property in the <code>Handsontable</code> settings.
+          for example: <i>languageCode: 'es-PY'</i>) which will determine the language code to be used in the language property
+          in the <code>Handsontable</code> settings and dictionaries keys with their corresponding translations.
         </p>
 
         <pre><code class="lang-js">const dictionary = {
@@ -309,7 +310,7 @@ Handsontable.languages.registerLanguageDictionary({
   <div class="example-container clearfix">
     <h3 id="static-properties">Static Handsontable methods and properties</h3>
 
-    <p>Handsontable has a few static methods and properties connected with languages. They are stored in <code>language</code> key of the global <code>Handsontable</code> variable.
+    <p>Handsontable has a few static methods and properties connected with languages. They are stored in the <code>language</code> key of the global <code>Handsontable</code> variable.
       All of them are described below.</p>
 
     <h4>Handsontable.languages.getLanguageDictionary(languageCode: <code>String</code>)</h4>
