@@ -31,8 +31,8 @@
   <div class="example-container clearfix">
     <h3 id="loading-language-files">Loading the prepared language files</h3>
 
-    <p>To properly use the internationalization feature, you’ll  need to load the language sets. It’s important,
-      that they’re included after the Handsontable files. You can do it by getting the necessary files:
+    <p>To properly use the internationalization feature, you'll  need to load the language sets. It's important,
+      that they're included after the Handsontable files. You can do it by getting the necessary files:
     </p>
 
     <ol>
@@ -103,7 +103,7 @@ import 'handsontable/languages/pl-PL';</code></pre>
 
   <div class="example-container clearfix">
     <h3 id="internalization-for-features">Internationalization for features</h3>
-    <p>Below you’ll  find a list of features which can be translated with the internationalization feature.</p>
+    <p>Below you'll  find a list of features which can be translated with the internationalization feature.</p>
     <ul>
       <li>Dropdown menu</li>
       <li>Filtering</li>
@@ -151,7 +151,7 @@ import 'handsontable/languages/pl-PL';</code></pre>
     </p>
 
     <p>
-      To use the language dictionaries, you’ll  have to register the language sets.
+      To use the language dictionaries, you'll  have to register the language sets.
       Registration is a process of loading the dictionaries globally for Handsontable using the <code>Handsontable.languages.registerLanguageDictionary</code> method.
     </p>
 
@@ -192,7 +192,7 @@ import 'handsontable/languages/pl-PL';</code></pre>
     <p>
       Please keep in mind that the files inside the <code>/dist/languages</code> folder are a copy of files located inside <code>/languages</code>, with two differences.
       The first folder contains additional, minified versions of the files.
-      Also, it doesn’t contain the <code>index.js</code> file (<code>/languages</code> folder uses it to load multiple languages).
+      Also, it doesn't contain the <code>index.js</code> file (<code>/languages</code> folder uses it to load multiple languages).
     </p>
     <p>
       Both of these folders contain the <code>all.js</code> file, containing all of the language dictionaries.
@@ -202,15 +202,15 @@ import 'handsontable/languages/pl-PL';</code></pre>
   <div class="example-container clearfix">
     <h3 id="custom-languages">Creating custom languages</h3>
 
-    <p>You can create custom language sets for your implementations, or share them, as they’re easily appliable to any Handsontable implementation.</p>
+    <p>You can create custom language sets for your implementations, or share them, as they're easily appliable to any Handsontable implementation.</p>
 
     <h4>Language file</h4>
 
-    <p>It’s really important for us, that the community is a important part of the growth of our library. We encourage you to create and share your translations!</p>
+    <p>It's really important for us, that the community is a important part of the growth of our library. We encourage you to create and share your translations!</p>
     <p>Additional languages files should be placed in the <code>src/i18n/languages</code> folder. You can incorporate your translations to the Handsontable library
-      by sending us a <a href="tutorial-contributing.html">pull request</a>. It’s important, that your changes are not made to the  <code>/languages</code> and
+      by sending us a <a href="tutorial-contributing.html">pull request</a>. It's important, that your changes are not made to the <code>/languages</code> and
       <code>/dist/languages</code> directories! Our release master will generate these in the building process. You can see a full template of a sample language
-      at bottom of this paragraph. Parts of it are described below. We’re basing it on
+      at bottom of this paragraph. Parts of it are described below. We're basing it on
       our <a href="https://github.com/handsontable/handsontable/tree/master/src/i18n/languages/en-US.js">default language</a>.
     </p>
 
@@ -230,7 +230,7 @@ import 'handsontable/languages/pl-PL';</code></pre>
       </li>
 
       <li>
-        <p>After that, you’ll need to import the dictionary keys to be used in the translation.</p>
+        <p>After that, you'll need to import the dictionary keys to be used in the translation.</p>
         <pre><code>import * as C from '../constants';</code></pre>
       </li>
 
