@@ -1,6 +1,6 @@
 <div class="static-content">
 
-  <script data-jsfiddle="common" src="/bower_components/handsontable/dist/languages/all.js"></script>
+  <script data-jsfiddle="common" src="/<?js= version ?>/bower_components/handsontable/dist/languages/all.js"></script>
 
   <div class="index-list">
     <ul>
@@ -70,11 +70,11 @@ import 'handsontable/languages/pl-PL';</code></pre>
 
     <div class="codeLayout">
       <div class="buttons">
-        <button class="jsFiddleLink" data-runfiddle="example2">
+        <button class="jsFiddleLink" data-runfiddle="example1">
           <i class="fa fa-jsfiddle"></i>
           Edit
         </button>
-        <button class="dump" name="dump" data-dump="#example2" data-instance="hot2"
+        <button class="dump" name="dump" data-dump="#example1" data-instance="hot"
                 title="Print current data source to console">
           <i class="fa fa-terminal"></i>
           Dump data to console
@@ -192,7 +192,7 @@ import 'handsontable/languages/pl-PL';</code></pre>
     <p>
       Please keep in mind that the files inside the <code>/dist/languages</code> folder are a copy of files located inside <code>/languages</code>, with two differences.
       The first folder contains additional, minified versions of the files.
-      Also, it doesn't contain the <code>index.js</code> file (<code>/languages</code> folder uses it to load multiple languages).
+      Also, it doesn't contain the <code>index.js</code> file (<code>/languages</code> folder contains it for the purpose of easier loading of all the languages).
     </p>
     <p>
       Both of these folders contain the <code>all.js</code> file, containing all of the language dictionaries.
@@ -298,7 +298,7 @@ Handsontable.languages.registerLanguageDictionary({
   <div class="example-container clearfix">
     <h3 id="static-properties">Static Handsontable methods and properties</h3>
 
-    <p>Handsontable has a few static methods and properties connected with languages. They are stored in the <code>language</code> key of the global <code>Handsontable</code> variable.
+    <p>Handsontable has a few static methods and properties connected with languages. They are stored in the <code>languages</code> key of the global <code>Handsontable</code> variable.
       All of them are described below.</p>
 
     <h4>Handsontable.languages.getLanguageDictionary(languageCode: <code>String</code>)</h4>
