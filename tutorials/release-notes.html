@@ -1,6 +1,61 @@
 <div class="static-content">
 
   <div class="example-container clearfix">
+    <h3>0.35.0</h3>
+    <p>Released on 6th of December, 2017</p>
+
+    <strong>New feature:</strong>
+    <p>
+      From now on you will able to translate messages and elements of the UI to your specific language. <a href="https://docs.handsontable.com/tutorial-internationalization.html">Read more</a> about this new feature.
+    </p>
+
+    <strong>Breaking changes:</strong>
+    <ul>
+      <li>
+        We have renamed our locale and language-related configuration options to free the namespace required for multi-language support introduced within this release.
+      </li>
+    </ul>
+      <p>
+        What used to be defined as:
+        <pre><code class="lang-js">{
+  format: '0,0.00 $',
+  language: 'de-DE'
+}</code></pre>
+
+        will now look like this:
+
+        <pre><code class="lang-js">{
+  numericFormat: {
+    pattern: '0,0.00 $',
+    culture: 'de-DE'
+  }
+}</code></pre>
+    Take a look at our documentation for more insight:
+    <ul>
+      <li><a href="https://docs.handsontable.com/0.34.5/demo-numeric.html" target="_blank">to version 0.34.5</a></li>
+      <li><a href="https://docs.handsontable.com/0.35.0/demo-numeric.html" target="_blank">from version 0.35.0</a></li>
+    </ul>
+      </p>
+
+    <strong>Other changes:</strong>
+    <ul>
+      <li>Fixed a problem, where updating the <code>contextMenu</code> entries using <code>updateSettings</code> was not working properly. (<a href="https://github.com/handsontable/handsontable/issues/4614" target="_blank">#4614</a>)</li>
+      <li>Fixed a bug, where copied <code>checkbox</code>-typed cells were no longer functional. (<a href="https://github.com/handsontable/handsontable/issues/4580" target="_blank">#4580</a>)</li>
+      <li>Fixed a problem, where declaring a multi-leveled <code>contextMenu</code> with the <code>name</code> property declared as a function would crash. (<a href="https://github.com/handsontable/handsontable/issues/4550" target="_blank">#4550</a>)</li>
+      <li>Added multi-language support for the table. Please, take a look at https://docs.handsontable.com/tutorial-internationalization.html for more information. (<a href="https://github.com/handsontable/handsontable/issues/4457" target="_blank">#4457</a>)</li>
+      <li>Fixed a problem with scrolling the table using the keyboard, when `renderAllRows: true` was set. (<a href="https://github.com/handsontable/handsontable/issues/4205" target="_blank">#4205</a>)</li>
+      <li>Fixed a problem with autocomplete and dropdown editors with languages using IME API. (<a href="https://github.com/handsontable/handsontable/issues/839" target="_blank">#839</a>)</li>
+      <li>Fixed a bug where <code>afterScrollHorizontally</code> hook was triggered after scrolling vertically. (<a href="https://github.com/handsontable/handsontable/issues/4512" target="_blank">#4512</a>)</li>
+      <li>Fixed incorrect links in <code>README</code>. (<a href="https://github.com/handsontable/handsontable/issues/4636" target="_blank">#4636</a>)</li>
+      <li>Updated the Typescript Definitions. (<a href="https://github.com/handsontable/handsontable/issues/4519" target="_blank">#4519</a>)</li>
+      <li>Added <code>validateRows</code> and <code>validateColumns</code> functions. (<a href="https://github.com/handsontable/handsontable/issues/4583" target="_blank">#4583</a>)</li>
+      <li>Added the default exports for <code>UndoRedo</code> and <code>CustomBorders</code> plugins. (<a href="https://github.com/handsontable/handsontable/issues/4572" target="_blank">#4572</a>, <a href="https://github.com/handsontable/handsontable/issues/4571" target="_blank">#4571</a>)</li>
+    </ul>
+
+    <p>The corresponding Handsontable Pro version is <a href="https://github.com/handsontable/handsontable-pro/releases/tag/1.15.0">1.15.0</a>.</p>
+  </div>
+
+  <div class="example-container clearfix">
     <h3>0.34.5</h3>
     <p>Released on 12th of October, 2017</p>
 
