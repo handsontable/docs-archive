@@ -10,6 +10,7 @@
       <li><a href="#available-languages">Available languages</a></li>
       <li><a href="#files-hierarchy">Hierarchy of all main files connected with internationalization</a></li>
       <li><a href="#custom-languages">Creating custom languages</a></li>
+      <li><a href="#custom-keys">Using custom keys in the translation</a></li>
       <li><a href="#static-properties">Static Handsontable methods and properties</a></li>
     </ul>
   </div>
@@ -329,6 +330,17 @@ Handsontable.languages.registerLanguageDictionary({
 });</code></pre>
   </div>
 
+  <div class="example-container clearfix">
+    <h3 id="custom-keys">Using custom keys in the translation</h3>
+
+    <p>
+      You can register a language dictionary containing custom keys. These entries can be used like any other keys, so you're not
+      limited to using our pre-defined constants (the ones that are present within <code>src/i18n/constants.js</code> file and may
+      be accessed by <code>Handsontable.languages.dictionaryKeys</code> alias).
+      <pre><code class="lang-js">Handsontable.languages.registerLanguageDictionary('my-AA', { customKey: 'Hello world' });
+Handsontable.languages.getTranslatedPhrase('my-AA', 'customKey');</code></pre>
+    </p>
+  </div>
 
   <div class="example-container clearfix">
     <h3 id="static-properties">Static Handsontable methods and properties</h3>
@@ -344,7 +356,7 @@ Handsontable.languages.registerLanguageDictionary({
     <p>Get the registered language dictionaries.</p>
     <p>Returns: <code>Array</code></p>
 
-    <h4>Handsontable.languages.getTranslatedPhrase(dictionaryKey: <code>String</code>, extraArguments: <code>Mixed</code>)</h4>
+    <h4>Handsontable.languages.getTranslatedPhrase(languageCode: <code>String</code>, dictionaryKey: <code>String</code>, extraArguments: <code>Mixed</code>)</h4>
     <p>Get the phrase for specified dictionary key.</p>
     <p>Returns: <code>Object</code></p>
 
