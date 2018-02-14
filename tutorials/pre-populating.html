@@ -2,7 +2,7 @@
 
   <div class="example-container clearfix">
     <p>Below example shows how cell renderers can be used to present the template values for empty rows.
-      When a cell in the empty row is edited, the <strong>onChange</strong> callback fills the row with the template values.</p>
+      When a cell in the empty row is edited, the <strong>beforeChange</strong> callback fills the row with the template values.</p>
 
     <div data-jsfiddle="example1">
       <div id="example1" class="hot"></div>
@@ -33,7 +33,7 @@
           hot1;
 
         function isEmptyRow(instance, row) {
-          var rowData = instance.getData()[row];
+          var rowData = instance.countRows();
 
           for (var i = 0, ilen = rowData.length; i < ilen; i++) {
             if (rowData[i] !== null) {
@@ -72,7 +72,7 @@
           beforeChange: function (changes) {
             var instance = hot1,
               ilen = changes.length,
-              clen = instance.colCount,
+              clen = instance.countCols(),
               rowColumnSeen = {},
               rowsToFill = {},
               i,
@@ -112,4 +112,3 @@
     </a>
   </p>
 </div>
-
