@@ -10,8 +10,8 @@
     <ul>
       <li><code>hot.getSelectedLast()</code> Returns an array with coordinates of the last selected layer (`[row, col, rowEnd, colEnd]`). This method behaves as <code>hot.getSelected()</code> before the breaking change.</li>
       <li><code>hot.getSelectedRangeLast()</code> Returns a <code>CellRange</code> object containing the last selection coordinates applied to the table. This method behaves as <code>hot.getSelectedRange()</code> before the braking change.</li>
-      <li>`hot.alter('remove_row', [[1, 4], [10, 1]])` Supports removing non-contiguous rows. Instead of passing the row index, we can pass an array of arrays, where the first item is the index of the row and at the second item is the amount of rows to be removed;</li>
-      <li>`hot.alter('remove_col', [[1, 4], [10, 1]])` Same as above, but for the columns. Only "remove" actions support that new feature.</li>
+      <li><code>hot.alter('remove_row', [[1, 4], [10, 1]])</code> Supports removing non-contiguous rows. Instead of passing the row index, we can pass an array of arrays, where the first item is the index of the row and at the second item is the amount of rows to be removed;</li>
+      <li><code>hot.alter('remove_col', [[1, 4], [10, 1]])</code> Same as above, but for the columns. Only "remove" actions support that new feature.</li>
     </ul>
     <b>Backward-incompatible changes</b>
     <ul>
@@ -23,23 +23,23 @@
         - area background, was <code>#b5d1ff</code> -> is <code>#005eff</code><br>
         - current selection border, was <code>#5292f7</code> -> is <code>#4b89ff</code>
       </li>
-      <li>Removed the <code>multiSelect</code> setting and replaced it with `selectionMode: 'single'`;</li>
+      <li>Removed the <code>multiSelect</code> setting and replaced it with <code>selectionMode: 'single'</code>;</li>
       <li>Added a new <code>selectionMode</code> option, which can be set either as <code>'single'</code> (previously as `multiSelect: false`), <code>'range'</code> (previously as `multiSelect: true`) or <code>'multiple'</code> (new non-contiguous mode);</li>
     </ul>
     <b>Backward-compatible changes</b>
     <ul>
       <li><code>afterSelection</code><br>
-        - _previously_: `afterSelection(row, column, rowEnd, columnEnd, preventScrolling)`<br>
-        - _now_: `afterSelection(row, column, rowEnd, columnEnd, preventScrolling, selectionLayerLevel)`
+        - <i>previously</i>: <code>afterSelection(row, column, rowEnd, columnEnd, preventScrolling)</code><br>
+        - <i>now</i>: <code>afterSelection(row, column, rowEnd, columnEnd, preventScrolling, selectionLayerLevel)</code>
       </li><li><code>afterSelectionByProp</code><br>
-      - _previously_: `afterSelectionByProp(row, prop, rowEnd, propEnd, preventScrolling)`<br>
-      - _now_: `afterSelectionByProp(row, prop, rowEnd, propEnd, preventScrolling, selectionLayerLevel)`
+      - <i>previously</i>: <code>afterSelectionByProp(row, prop, rowEnd, propEnd, preventScrolling)</code><br>
+      - <i>now</i>: <code>afterSelectionByProp(row, prop, rowEnd, propEnd, preventScrolling, selectionLayerLevel)</code>
     </li><li><code>afterSelectionEnd</code><br>
-      - _previously_: `afterSelectionEnd(row, column, rowEnd, columnEnd)`<br>
-      - _now_: `afterSelectionEnd(row, column, rowEnd, columnEnd, selectionLayerLevel)`
+      - <i>previously</i>: <code>afterSelectionEnd(row, column, rowEnd, columnEnd)</code><br>
+      - <i>now</i>: <code>afterSelectionEnd(row, column, rowEnd, columnEnd, selectionLayerLevel)</code>
     </li><li><code>afterSelectionEndByProp</code><br>
-      - _previously_: `afterSelectionEndByProp(row, prop, rowEnd, propEnd)`<br>
-      - _now_: `afterSelectionEndByProp(row, prop, rowEnd, propEnd, selectionLayerLevel)`
+      - <i>previously</i>: <code>afterSelectionEndByProp(row, prop, rowEnd, propEnd)</code><br>
+      - <i>now</i>: <code>afterSelectionEndByProp(row, prop, rowEnd, propEnd, selectionLayerLevel)</code>
     </li>
     </ul>
     <p>
