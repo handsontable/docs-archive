@@ -1,6 +1,64 @@
 <div class="static-content">
 
   <div class="example-container clearfix">
+    <h3>0.36.0</h3>
+    <p>Released on 16th of February, 2018</p>
+
+    <strong>Breaking changes:</strong>
+    <p>Added support for selecting non-contiguous cells or ranges (<a href="https://github.com/handsontable/handsontable/issues/4708" target="_blank">#4708</a>). That required some changes - some of them are backward incompatible:</p>
+    <b>New API</b>
+    <ul>
+      <li><code>hot.getSelectedLast()</code> Returns an array with coordinates of the last selected layer (`[row, col, rowEnd, colEnd]`). This method behaves as <code>hot.getSelected()</code> before the breaking change.</li>
+      <li><code>hot.getSelectedRangeLast()</code> Returns a <code>CellRange</code> object containing the last selection coordinates applied to the table. This method behaves as <code>hot.getSelectedRange()</code> before the braking change.</li>
+      <li>`hot.alter('remove_row', [[1, 4], [10, 1]])` Supports removing non-contiguous rows. Instead of passing the row index, we can pass an array of arrays, where the first item is the index of the row and at the second item is the amount of rows to be removed;</li>
+      <li>`hot.alter('remove_col', [[1, 4], [10, 1]])` Same as above, but for the columns. Only "remove" actions support that new feature.</li>
+    </ul>
+    <b>Backward-incompatible changes</b>
+    <ul>
+      <li><code>hot.getSelected()</code> Returns an array of arrays with the coordinates of all layers (`[[row, col, rowEnd, colEnd], [row, col, rowEnd, colEnd] ...]`);</li>
+      <li><code>hot.getSelectedRange()</code> Returns an array of <code>CellRange</code> objects with the coordinates of all layers (`[{CellRange}, {CellRange} ...]`);</li>
+      <li>Previously <code>hot.selection.empty()</code>, now <code>hot.emptySelectedCells()</code>;</li>
+      <li>Changed selection colors:<br>
+        - area borders, was <code>#89aff9</code> -> is <code>#4b89ff</code><br>
+        - area background, was <code>#b5d1ff</code> -> is <code>#005eff</code><br>
+        - current selection border, was <code>#5292f7</code> -> is <code>#4b89ff</code>
+      </li>
+      <li>Removed the <code>multiSelect</code> setting and replaced it with `selectionMode: 'single'`;</li>
+      <li>Added a new <code>selectionMode</code> option, which can be set either as <code>'single'</code> (previously as `multiSelect: false`), <code>'range'</code> (previously as `multiSelect: true`) or <code>'multiple'</code> (new non-contiguous mode);</li>
+    </ul>
+    <b>Backward-compatible changes</b>
+    <ul>
+      <li><code>afterSelection</code><br>
+        - _previously_: `afterSelection(row, column, rowEnd, columnEnd, preventScrolling)`<br>
+        - _now_: `afterSelection(row, column, rowEnd, columnEnd, preventScrolling, selectionLayerLevel)`
+      </li><li><code>afterSelectionByProp</code><br>
+      - _previously_: `afterSelectionByProp(row, prop, rowEnd, propEnd, preventScrolling)`<br>
+      - _now_: `afterSelectionByProp(row, prop, rowEnd, propEnd, preventScrolling, selectionLayerLevel)`
+    </li><li><code>afterSelectionEnd</code><br>
+      - _previously_: `afterSelectionEnd(row, column, rowEnd, columnEnd)`<br>
+      - _now_: `afterSelectionEnd(row, column, rowEnd, columnEnd, selectionLayerLevel)`
+    </li><li><code>afterSelectionEndByProp</code><br>
+      - _previously_: `afterSelectionEndByProp(row, prop, rowEnd, propEnd)`<br>
+      - _now_: `afterSelectionEndByProp(row, prop, rowEnd, propEnd, selectionLayerLevel)`
+    </li>
+    </ul>
+    <p>
+      We've added a <code>selectionLayerLevel</code> argument for all the hooks listed above. The <code>selectionLayerLevel</code> is a number indicating which selection layer is currently being modified. For the first selection, this value is <code>0</code>, with the new added layers this number increases.
+    </p>
+
+    <strong>Changes</strong>
+    <ul>
+      <li>Rewritten the <code>PersistentState</code> plugin to ES6. (<a href="https://github.com/handsontable/handsontable/issues/4618" target="_blank">#4618</a>)</li>
+      <li>Fixed a problem, where the <code>afterRowMove</code> and <code>afterColumnMove</code> hooks carried an improper <code>target</code> argument. (<a href="https://github.com/handsontable/handsontable/issues/4501" target="_blank">#4501</a>)</li>
+      <li>Added an option to prevent row creation using the <code>beforeCreateRow</code> hook. (<a href="https://github.com/handsontable/handsontable/issues/4749" target="_blank">#4749</a>)</li>
+      <li>Fixed a bug, where freezing and unfreezing the last column crashed the browser. (<a href="https://github.com/handsontable/handsontable/issues/4642" target="_blank">#4642</a>)</li>
+      <li>Added tests for the translation feature. (<a href="https://github.com/handsontable/handsontable/issues/4723" target="_blank">#4723</a>)</li>
+    </ul>
+
+    <p>The corresponding Handsontable Pro version is <a href="https://github.com/handsontable/handsontable-pro/releases/tag/1.16.0">1.16.0</a>.</p>
+  </div>
+
+  <div class="example-container clearfix">
     <h3>0.35.1</h3>
     <p>Released on 25th of January, 2018</p>
 
