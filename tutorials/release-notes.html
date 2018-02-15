@@ -8,15 +8,15 @@
     <p>Added support for selecting non-contiguous cells or ranges (<a href="https://github.com/handsontable/handsontable/issues/4708" target="_blank">#4708</a>). That required some changes - some of them are backward incompatible:</p>
     <b>New API</b>
     <ul>
-      <li><code>hot.getSelectedLast()</code> Returns an array with coordinates of the last selected layer (`[row, col, rowEnd, colEnd]`). This method behaves as <code>hot.getSelected()</code> before the breaking change.</li>
+      <li><code>hot.getSelectedLast()</code> Returns an array with coordinates of the last selected layer (<code>[row, col, rowEnd, colEnd]</code>). This method behaves as <code>hot.getSelected()</code> before the breaking change.</li>
       <li><code>hot.getSelectedRangeLast()</code> Returns a <code>CellRange</code> object containing the last selection coordinates applied to the table. This method behaves as <code>hot.getSelectedRange()</code> before the braking change.</li>
       <li><code>hot.alter('remove_row', [[1, 4], [10, 1]])</code> Supports removing non-contiguous rows. Instead of passing the row index, we can pass an array of arrays, where the first item is the index of the row and at the second item is the amount of rows to be removed;</li>
       <li><code>hot.alter('remove_col', [[1, 4], [10, 1]])</code> Same as above, but for the columns. Only "remove" actions support that new feature.</li>
     </ul>
     <b>Backward-incompatible changes</b>
     <ul>
-      <li><code>hot.getSelected()</code> Returns an array of arrays with the coordinates of all layers (`[[row, col, rowEnd, colEnd], [row, col, rowEnd, colEnd] ...]`);</li>
-      <li><code>hot.getSelectedRange()</code> Returns an array of <code>CellRange</code> objects with the coordinates of all layers (`[{CellRange}, {CellRange} ...]`);</li>
+      <li><code>hot.getSelected()</code> Returns an array of arrays with the coordinates of all layers (<code>[[row, col, rowEnd, colEnd], [row, col, rowEnd, colEnd] ...]</code>);</li>
+      <li><code>hot.getSelectedRange()</code> Returns an array of <code>CellRange</code> objects with the coordinates of all layers (<code>[{CellRange}, {CellRange} ...]</code>);</li>
       <li>Previously <code>hot.selection.empty()</code>, now <code>hot.emptySelectedCells()</code>;</li>
       <li>Changed selection colors:<br>
         - area borders, was <code>#89aff9</code> -> is <code>#4b89ff</code><br>
@@ -24,7 +24,7 @@
         - current selection border, was <code>#5292f7</code> -> is <code>#4b89ff</code>
       </li>
       <li>Removed the <code>multiSelect</code> setting and replaced it with <code>selectionMode: 'single'</code>;</li>
-      <li>Added a new <code>selectionMode</code> option, which can be set either as <code>'single'</code> (previously as `multiSelect: false`), <code>'range'</code> (previously as `multiSelect: true`) or <code>'multiple'</code> (new non-contiguous mode);</li>
+      <li>Added a new <code>selectionMode</code> option, which can be set either as <code>'single'</code> (previously as <code>multiSelect: false</code>), <code>'range'</code> (previously as <code>multiSelect: true</code>) or <code>'multiple'</code> (new non-contiguous mode);</li>
     </ul>
     <b>Backward-compatible changes</b>
     <ul>
