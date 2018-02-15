@@ -12,12 +12,12 @@
 
   <div class="example-container clearfix" name="default">
     <h3 id="page-basic">Basic configuration</h3>
-    <p>With this plugin you can select single cells or ranges of cells across a spreadsheet.
-      Selected cells can be then cleaned from data or modified.
+    <p>
+      With this feature, you can select single cell or ranges of cells across a spreadsheet. The coordinates of the
+      selected cells can be easily retrieved to be able to clean or change cells' content.
     </p>
     <p>
-      This plugin is enabled by default. To disable an ability to select cells set
-      <code>disableVisualSelection</code> to <code>true</code>.
+      This functionality is a part of Handsontable Core.
     </p>
     <p>
       Use <kbd>CMD</kbd> on Mac or <kbd>CTRL</kbd> on Windows to select non-adjacent ranges of cells.
@@ -36,7 +36,7 @@
       <li><code>multiple</code> - Multiple non-contiguous ranges of cells can be selected.</li>
     </ul>
 
-    <div data-jsfiddle="example2">
+    <div data-jsfiddle="example1">
 
       <div>
         <select id="selectOption" style="width: auto; margin-top: 16px;">
@@ -46,7 +46,60 @@
         </select>
       </div>
 
+      <div id="example1" class="hot head-gap"></div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example1">
+          <i class="fa fa-jsfiddle"></i>
+          Edit
+        </button>
+        <button class="dump" name="dump" data-dump="#example1" data-instance="hot2"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+      <script data-jsfiddle="example1">
+var example1 = document.getElementById('example1');
+var selectOption = document.getElementById('selectOption');
+var settings1 = {
+  data: Handsontable.helper.createSpreadsheetData(10, 10),
+  width: 650,
+  height: 272,
+  colWidths: 100,
+  rowHeights: 23,
+  rowHeaders: true,
+  colHeaders: true,
+  selectionMode: 'multiple', // 'single', 'range' or 'multiple'
+};
+var hot1 = new Handsontable(example1, settings1);
+
+selectOption.addEventListener('change', function(event) {
+  var value = event.target.value;
+  var first = value.split(' ')[0].toLowerCase();
+
+  hot1.updateSettings({
+    selectionMode: first
+  });
+});</script>
+    </div>
+  </div>
+
+  <div class="example-container clearfix head-gap" name="getting">
+    <h3  id="page-getting">Getting data from the selected ranges</h3>
+    <p>
+      To retrieve the selected cells as an array of arrays, you should use <code>getSelected()</code> or
+      <code>getSelectedRange()</code> methods.
+    </p>
+
+    <div data-jsfiddle="example2">
       <div id="example2" class="hot head-gap"></div>
+      <textarea style="margin: 16px 0 7px; width: 350px; height: 87px;" id="output"></textarea>
+      <div>
+        <button class="intext-btn" id="getButton">Get data</button>
+      </div>
     </div>
 
     <div class="codeLayout">
@@ -55,52 +108,56 @@
           <i class="fa fa-jsfiddle"></i>
           Edit
         </button>
-        <button class="dump" name="dump" data-dump="#example2" data-instance="hot2"
+        <button class="dump" name="dump" data-dump="#example2" data-instance="hot3"
                 title="Print current data source to console">
           <i class="fa fa-terminal"></i>
           Dump data to console
         </button>
       </div>
       <script data-jsfiddle="example2">
-        var
-          example2 = document.getElementById('example2'),
-          selectOption = document.getElementById('selectOption'),
-          settings2,
-          hot2;
+var example2 = document.getElementById('example2');
+var output = document.getElementById('output');
+var getButton = document.getElementById('getButton');
+var settings2 = {
+  data: Handsontable.helper.createSpreadsheetData(10, 10),
+  width: 650,
+  height: 272,
+  colWidths: 100,
+  rowHeights: 23,
+  rowHeaders: true,
+  colHeaders: true,
+  outsideClickDeselects: false,
+  selectionMode: 'multiple', // 'single', 'range' or 'multiple'
+};
+var hot2 = new Handsontable(example2, settings2);
 
-        settings2 = {
-          data: Handsontable.helper.createSpreadsheetData(100, 100),
-          width: 650,
-          height: 418,
-          colWidths: 100,
-          rowHeights: 23,
-          rowHeaders: true,
-          colHeaders: true,
-          selectionMode: 'multiple', // single, range or multiple
-        };
-        hot2 = new Handsontable(example2, settings2);
+getButton.addEventListener('click', function(event) {
+  var selected = hot2.getSelected();
+  var data = [];
 
-        Handsontable.dom.addEvent(selectOption, 'change', (event) => {
-          var value = event.target.value;
-          var first = value.split(' ')[0].toLowerCase();
+  for (var i = 0; i < selected.length; i += 1) {
+    var item = selected[i];
 
-          hot2.updateSettings({
-            selectionMode: first
-          });
-        });
-      </script>
+    data.push(hot2.getData.apply(hot2, item));
+  }
+
+  output.value = JSON.stringify(data);
+});</script>
     </div>
   </div>
 
-  <div class="example-container clearfix head-gap" name="getting">
-    <h3  id="page-getting">Getting data from the selected ranges</h3>
-    <p>To retrieve the selected cells a an array of arrays, you should use ...</p>
+  <div class="example-container clearfix head-gap" name="modifying">
+    <h3  id="page-modifying">Modifying the selected cells</h3>
+    <p>
+      You may need to delete, format or otherwise change the selected cells.
+      For instance using the demo below you can change value or add CSS classes to the all selected cells.
+    </p>
 
     <div data-jsfiddle="example3">
       <div id="example3" class="hot head-gap"></div>
-      <textarea style="margin: 16px 0 7px; width: 350px; height: 87px;" id="output"></textarea>
-      <div>
-        <button class="intext-btn" id="getButton">Get data</button>
+      <div id="buttons" style="margin-top: 10px;">
+        <button class="intext-btn" id="setButton">Set data</button>
+        <button class="intext-btn" id="addButton">Add class</button>
       </div>
     </div>
 
@@ -110,131 +167,54 @@
           <i class="fa fa-jsfiddle"></i>
           Edit
         </button>
-        <button class="dump" name="dump" data-dump="#example3" data-instance="hot3"
+        <button class="dump" name="dump" data-dump="#example3" data-instance="hot4"
                 title="Print current data source to console">
           <i class="fa fa-terminal"></i>
           Dump data to console
         </button>
       </div>
       <script data-jsfiddle="example3">
-        var
-          example3 = document.getElementById('example3'),
-          output = document.getElementById('output'),
-          getButton = document.getElementById('getButton'),
-          settings3,
-          hot3;
+var example3 = document.getElementById('example3');
+var buttons = document.getElementById('buttons');
+var settings3 = {
+  data: Handsontable.helper.createSpreadsheetData(10, 10),
+  width: 650,
+  height: 272,
+  colWidths: 100,
+  rowHeights: 23,
+  rowHeaders: true,
+  colHeaders: true,
+  outsideClickDeselects: false,
+  selectionMode: 'multiple', // 'single', 'range' or 'multiple'
+};
+var hot3 = new Handsontable(example3, settings3);
 
-        settings3 = {
-          data: Handsontable.helper.createSpreadsheetData(100, 100),
-          width: 650,
-          height: 418,
-          colWidths: 100,
-          rowHeights: 23,
-          rowHeaders: true,
-          colHeaders: true,
-          outsideClickDeselects: false,
-          selectionMode: 'multiple', // single, range or multiple
-        };
-        hot3 = new Handsontable(example3, settings3);
+buttons.addEventListener('click', function(event) {
+  var selected = hot3.getSelected();
+  var target = event.target.id;
 
-        Handsontable.dom.addEvent(getButton, 'click', () => {
-          const selected = hot3.getSelected();
-          const data = [];
+  for (var index = 0; index < selected.length; index += 1) {
+    var item = selected[index];
+    var startRow = Math.min(item[0], item[2]);
+    var endRow = Math.max(item[0], item[2]);
+    var startCol = Math.min(item[1], item[3]);
+    var endCol = Math.max(item[1], item[3]);
 
-          for (let index = 0; index < selected.length; index += 1) {
-            let item = selected[index];
+    for (var rowIndex = startRow; rowIndex <= endRow; rowIndex += 1) {
+      for (var columnIndex = startCol; columnIndex <= endCol; columnIndex += 1) {
+        if (target === 'setButton') {
+          hot3.setDataAtCell(rowIndex, columnIndex, 'data changed');
+        }
 
-            data.push(hot3.getData(...item));
-          }
+        if (target === 'addButton') {
+          hot3.setCellMeta(rowIndex, columnIndex, 'className', 'c-deeporange');
+        }
+      }
+    }
+  }
 
-          output.value = data;
-        });
-      </script>
-    </div>
-  </div>
-
-  <div class="example-container clearfix head-gap" name="modifying">
-    <h3  id="page-modifying">Modifying the selected cells</h3>
-    <p>You may need to delete, format or otherwise change the selected cells.
-      This can be done by using ...
-    </p>
-
-    <div data-jsfiddle="example4">
-      <div id="example4" class="hot head-gap"></div>
-      <div id="buttons" style="margin-top: 10px;">
-        <button class="intext-btn" id="setButton">Set data</button>
-        <button class="intext-btn" id="addButton">Add class</button>
-      </div>
-    </div>
-
-    <div class="codeLayout">
-      <div class="buttons">
-        <button class="jsFiddleLink" data-runfiddle="example4">
-          <i class="fa fa-jsfiddle"></i>
-          Edit
-        </button>
-        <button class="dump" name="dump" data-dump="#example4" data-instance="hot4"
-                title="Print current data source to console">
-          <i class="fa fa-terminal"></i>
-          Dump data to console
-        </button>
-      </div>
-      <script data-jsfiddle="example4">
-        var
-          example4 = document.getElementById('example4'),
-          buttons = document.getElementById('buttons'),
-          settings4,
-          hot4;
-
-        settings4 = {
-          data: Handsontable.helper.createSpreadsheetData(100, 100),
-          width: 650,
-          height: 418,
-          colWidths: 100,
-          rowHeights: 23,
-          rowHeaders: true,
-          colHeaders: true,
-          outsideClickDeselects: false,
-          selectionMode: 'multiple', // single, range or multiple
-        };
-        hot4 = new Handsontable(example4, settings4);
-
-        buttons.addEventListener('click', (event) => {
-          const selected = hot4.getSelected();
-          const target = event.target.id;
-
-          for (let index = 0; index < selected.length; index += 1) {
-            let item = selected[index];
-            let [startRow, startCol, stopRow, stopCol] = item;
-
-            if (startRow !== stopRow || startCol !== stopCol) {
-              for (let rowIndex = startRow; rowIndex <= stopRow; rowIndex += 1) {
-                for (let columnIndex = startCol; columnIndex <= stopCol; columnIndex += 1) {
-
-                  if (target === 'setButton') {
-                    hot4.setDataAtCell(rowIndex, columnIndex, 'data changed');
-                  }
-
-                  if (target === 'addButton') {
-                    hot4.setCellMeta(rowIndex, columnIndex, 'className', 'c-deeporange');
-                    hot4.render();
-                  }
-                }
-              }
-
-            } else {
-              if (target === 'setButton') {
-                hot4.setDataAtCell(startRow, startCol, 'data changed');
-              }
-
-              if (target === 'addButton') {
-                hot4.setCellMeta(startRow, startCol, 'className', 'c-deeporange');
-                hot4.render();
-              }
-            }
-          }
-        });
-      </script>
+  hot3.render();
+});</script>
     </div>
   </div>
 

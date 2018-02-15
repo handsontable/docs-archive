@@ -249,16 +249,12 @@ function ajax(url, method, params, callback) {
 
         css = css + '\n' + tags.join('\n');
 
-        if (onDomReady) {
-          //js = '$(document).ready(function () {\n\n' + js + '});';
-          js = 'document.addEventListener("DOMContentLoaded", function() {\n\n' + js + '});';
-        }
-
         var form = document.createElement('FORM');
         form.action = 'http://jsfiddle.net/api/post/library/pure/';
         form.method = 'POST';
         form.target = '_blank';
         form.innerHTML = '<input type="text" name="title" value="Handsontable example">' +
+          '<input type="text" name="wrap" value="d">' +
           '<textarea name="html">' + html.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</textarea>' +
           '<textarea name="js">' + js.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</textarea>' +
           '<textarea name="css">' + css.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</textarea>';
