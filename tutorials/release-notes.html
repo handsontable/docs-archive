@@ -5,7 +5,9 @@
     <p>Released on 16th of February, 2018</p>
 
     <strong>Breaking changes:</strong>
-    <p>Added support for selecting non-contiguous cells or ranges (<a href="https://github.com/handsontable/handsontable/issues/4708" target="_blank">#4708</a>). That required some changes - some of them are backward incompatible:</p>
+    <p>- Rewritten the <code>PersistentState</code> plugin to ES6. (<a href="https://github.com/handsontable/handsontable/issues/4618" target="_blank">#4618</a>)
+      From this version onward you can access the plugin like all regular plugins (<code>hot.getPlugin('persistentState')</code>), not from the main instance (the <code>hot.storage</code> object is now accesible from <code>hot.getPlugin('persistentState').storage</code>)</p>
+    <p>- Added support for selecting non-contiguous cells or ranges (<a href="https://github.com/handsontable/handsontable/issues/4708" target="_blank">#4708</a>). That required some changes - some of them are backward incompatible:</p>
     <b>New API</b>
     <ul>
       <li><code>hot.getSelectedLast()</code> Returns an array with coordinates of the last selected layer (<code>[row, col, rowEnd, colEnd]</code>). This method behaves as <code>hot.getSelected()</code> before the breaking change.</li>
@@ -48,7 +50,6 @@
 
     <strong>Changes</strong>
     <ul>
-      <li>Rewritten the <code>PersistentState</code> plugin to ES6. (<a href="https://github.com/handsontable/handsontable/issues/4618" target="_blank">#4618</a>)</li>
       <li>Added an option to prevent row creation using the <code>beforeCreateRow</code> hook. (<a href="https://github.com/handsontable/handsontable/issues/4749" target="_blank">#4749</a>)</li>
       <li>Fixed a bug, where freezing and unfreezing the last column crashed the browser. (<a href="https://github.com/handsontable/handsontable/issues/4642" target="_blank">#4642</a>)</li>
       <li>Added tests for the translation feature. (<a href="https://github.com/handsontable/handsontable/issues/4723" target="_blank">#4723</a>)</li>
