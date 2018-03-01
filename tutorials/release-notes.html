@@ -1,6 +1,72 @@
 <div class="static-content">
 
   <div class="example-container clearfix">
+    <h3>0.37.0</h3>
+    <p>Released on 1st of March, 2018</p>
+
+    <strong>Breaking changes:</strong>
+    <ul>
+      <li><p>The Merge Cells plugin has been rewritten to ES6 and completely refactored. Before <code>0.37.0</code>
+        (<code>1.17.0</code> with Handsontable Pro) the plugin was accessible from the <code>mergeCells</code> property
+        in the main instance. After the refactor, you can access it just like every other plugin, which is with <code>hot.getPlugin(‘mergeCells’)</code>.
+        (<a href="https://github.com/handsontable/handsontable/issues/4214" target="_blank">#4214</a>, <a
+                href="https://github.com/handsontable/handsontable/issues/4858" target="_blank">#4858</a>, <a
+                href="https://github.com/handsontable/handsontable/issues/4870" target="_blank">#4870</a>)
+
+        <table>
+          <tr>
+            <td><b>Pre-<code>0.37.0</code></b></td>
+            <td><b>Post-<code>0.37.0</code></b></td>
+          </tr>
+          <tr>
+            <td><code>hot.mergeCells</code></td>
+            <td><code>hot.getPlugin('mergeCells')</code></td>
+          </tr>
+          <tr>
+            <td><code>hot.mergeCells.mergedCellInfoCollection</code></td>
+            <td><code>hot.getPlugin('mergeCells').mergedCellsCollection.mergedCells</code></td>
+          </tr>
+        </table>
+
+        This update introduces new API (more information in the documentation) and four new hooks:
+
+        <ul>
+          <li><b>beforeMergeCells</b></li>
+          <li><b>afterMergeCells</b></li>
+          <li><b>beforeUnmergeCells</b></li>
+          <li><b>afterUnmergeCells</b></li>
+        </ul>
+        </p>
+      </li>
+      <li>The merged cells are now cleared (filled with <code>null</code>s). The only value that remains, is the
+        top-left corner cell's value, which is the visible one. (<a
+                href="https://github.com/handsontable/handsontable/issues/2958" target="_blank">#2958</a>)
+      </li>
+    </ul>
+
+    <strong>Changes</strong>
+    <ul>
+      <li>Fixed a problem with opening the context menu on non-contiguous selections. (<a href="https://github.com/handsontable/handsontable/issues/4816" target="_blank">#4816</a>)</li>
+      <li>Fixed a problem with removing rows using the non-contiguous selection feature. (<a href="https://github.com/handsontable/handsontable/issues/4815" target="_blank">#4815</a>)</li>
+      <li>Fixed a problem with the cell background color being overwritten by the selection. (<a href="https://github.com/handsontable/handsontable/issues/4812" target="_blank">#4812</a>)</li>
+      <li>Fixed an issue, where selection did not color the cells properly on IE. (<a href="https://github.com/handsontable/handsontable/issues/4806" target="_blank">#4806</a>)</li>
+      <li>Added the Japanese (<b>ja-JP</b>) language pack. (<a href="https://github.com/handsontable/handsontable/issues/4756" target="_blank">#4756</a>)</li>
+      <li>Added the Portuguese (for Brazil, <b>pt-BR</b>) language pack. (<a href="https://github.com/handsontable/handsontable/issues/4763" target="_blank">#4763</a>)</li>
+      <li>Fixed a bug, where pressing the <kbd>ENTER</kbd> key inside the editor of a merged cell sometimes threw an error. (<a href="https://github.com/handsontable/handsontable/issues/3949" target="_blank">#3949</a>)</li>
+      <li>Added the autofill functionality for merged cells (used to crash the table). (<a href="https://github.com/handsontable/handsontable/issues/4035" target="_blank">#4035</a>)</li>
+      <li>Fixed a problem, where merging already merged cells was broken. (<a href="https://github.com/handsontable/handsontable/issues/4138" target="_blank">#4138</a>, <a href="https://github.com/handsontable/handsontable/issues/1722" target="_blank">#1722</a>)</li>
+      <li>Fixed a bug, where the fill handle was gone after merging cells. (<a href="https://github.com/handsontable/handsontable/issues/4040" target="_blank">#4040</a>)</li>
+      <li>Fixed a problem, where there was no way to enter multiline content into a merged cell. (<a href="https://github.com/handsontable/handsontable/issues/2898" target="_blank">#2898</a>)</li>
+      <li>Fixed a bug, where the validation was broken for merged cells. (#3903, #3342)</li>
+      <li>It is now possible to select an entire column, going "through" a merged cell. (<a href="https://github.com/handsontable/handsontable/issues/4022" target="_blank">#4022</a>)</li>
+      <li>Fixed a problem, there was a possibility to declare overlapping merged cells, which caused multiple issues. (<a href="https://github.com/handsontable/handsontable/issues/2590" target="_blank">#2590</a>)</li>
+      <li>Fixed multiple problems with keyboard selection of the merged cells. (<a href="https://github.com/handsontable/handsontable/issues/1635" target="_blank">#1635</a>)</li>
+    </ul>
+
+    <p>The corresponding Handsontable Pro version is <a href="https://github.com/handsontable/handsontable-pro/releases/1.17.0" target="_blank">1.17.0</a>.</p>
+  </div>
+
+  <div class="example-container clearfix">
     <h3>0.36.0</h3>
     <p>Released on 16th of February, 2018</p>
 
