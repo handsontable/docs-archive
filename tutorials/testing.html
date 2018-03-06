@@ -12,13 +12,13 @@
     <h3 id="testing-in-browser">Testing in browser</h3>
     <p>To run the Jasmine tests in your browser, go to the following pages:</p>
     <ul>
-      <li><strong>http://localhost/handsontable/test/E2ERunner.html</strong>
+      <li><strong>&#60;YOUR_LOCALHOST_ADDRESS&#62;/test/E2ERunner.html</strong>
         - (Handsontable end-to-end test suite)
       </li>
-      <li><strong>http://localhost/handsontable/test/UnitRunner.html</strong>
-        - (Handsontable unit test suite)
+      <li><strong>&#60;YOUR_LOCALHOST_ADDRESS&#62;/test/MobileRunner.html</strong>
+        - (Handsontable mobile test suite)
       </li>
-      <li><strong>http://localhost/handsontable/src/3rdparty/walkontable/test/SpecRunner.html</strong>
+      <li><strong>&#60;YOUR_LOCALHOST_ADDRESS&#62;/src/3rdparty/walkontable/test/SpecRunner.html</strong>
         - (Walkontable test suite)
       </li>
     </ul>
@@ -39,6 +39,7 @@
       <li><code>npm run test:unit --testPathPattern=array</code> - runs only end-to-end tests and suites matching to filename &quot;array&quot;.</li>
       <li><code>npm run test:e2e.dump</code> - generates <code>test/E2ERunner.html</code> file which can by executed in browser environment (Chrome, PhantomJS etc.) to check if tests passes.</li>
       <li><code>npm run test:e2e.dump -- --watch</code> - generates <code>E2ERunner.html</code> file on every change detected in test files. It can be helpful for debugging proposes.</li>
+      <li><code>npm run test:mobile.dump</code> - generates <code>MobileRunner.html</code> file which can by executed in browser environment of mobile device to check if tests passes.</li>
     </ul>
   </div>
   <p class="gap-top-xsmall">
