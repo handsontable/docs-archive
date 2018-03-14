@@ -1,6 +1,30 @@
 <div class="static-content">
 
   <div class="example-container clearfix">
+    <h3>0.38.0</h3>
+    <p>Released on 14th of March, 2018</p>
+
+    <strong>Breaking changes:</strong>
+    <ul>
+      <li>We removed the mobile editor from the repository. After this version, a standard editor will be used when using mobile devices. (<a href="https://github.com/handsontable/handsontable/issues/4911" target="_blank">#4911</a>)</li>
+    </ul>
+
+    <strong>Changes</strong>
+    <ul>
+      <li>Fixed a bug, where merged cells declared outside of the table were still partially rendered. (<a href="https://github.com/handsontable/handsontable/issues/4887" target="_blank">#4887</a>)</li>
+      <li>Added tests for mobile devices. (<a href="https://github.com/handsontable/handsontable/issues/4868" target="_blank">#4868</a>)</li>
+      <li>Fixed a bug, where rows were not being rendered, when scrolling the table on a mobile device. (<a href="https://github.com/handsontable/handsontable/issues/4856" target="_blank">#4856</a>)</li>
+      <li>Added some missing API for the non-contiguous selection feature. (<a href="https://github.com/handsontable/handsontable/issues/4811" target="_blank">#4811</a>)</li>
+      <li>Change the <code>isObjectEquals</code> function to <code>isObjectEqual</code>. (<a href="https://github.com/handsontable/handsontable/issues/4387" target="_blank">#4387</a>)</li>
+      <li>Fixed a problem with scrolling on Microsoft Edge. (<a href="https://github.com/handsontable/handsontable/issues/4320" target="_blank">#4320</a>)</li>
+      <li>Added a proper <code>source</code> argument value for removing data from the table using the <code>Backspace</code> and <code>Delete</code> keys. (<a href="https://github.com/handsontable/handsontable/issues/3916>#3916</a>, <a href="https://github.com/handsontable/handsontable/issues/3539>#3539</a>)</li>
+      <li>Added a <code>cellProperties</code> argument for the <code>beforeValueRender</code> hook. (<a href="https://github.com/handsontable/handsontable/issues/4543" target="_blank">#4543</a>)</li>
+    </ul>
+
+    <p>The corresponding Handsontable Pro version is <a href="https://github.com/handsontable/handsontable-pro/releases/1.18.0" target="_blank">1.18.0</a>.</p>
+  </div>
+
+  <div class="example-container clearfix">
     <h3>0.37.0</h3>
     <p>Released on 1st of March, 2018</p>
 
