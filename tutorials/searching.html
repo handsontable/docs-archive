@@ -55,8 +55,8 @@
     <p>The default <code>callback</code> is responsible for setting the <code>isSearchResult</code> property.</p>
     <pre>
       <code class="lang-javascript">const DEFAULT_CALLBACK = function(instance, row, col, data, testResult) {
-    instance.getCellMeta(row, col).isSearchResult = testResult;
-  };
+  instance.getCellMeta(row, col).isSearchResult = testResult;
+};
       </code>
     </pre>
     <p>Find the following examples below:</p>
@@ -160,8 +160,8 @@
         });
         searchFiled2 = document.getElementById('search_field2');
 
-        Handsontable.dom.addEvent(searchFiled2,'keyup', function (event) {
-          var search = hot.getPlugin('search');
+        Handsontable.dom.addEvent(searchFiled2, 'keyup', function (event) {
+          var search = hot2.getPlugin('search');
           var queryResult = search.query(this.value);
 
           console.log(queryResult);
@@ -215,8 +215,8 @@
         });
         searchFiled3 = document.getElementById('search_field3');
 
-        Handsontable.dom.addEvent(searchFiled3,'keyup', function(event) {
-          var search = hot.getPlugin('search');
+        Handsontable.dom.addEvent(searchFiled3, 'keyup', function(event) {
+          var search = hot3.getPlugin('search');
           var queryResult = search.query(this.value);
 
           console.log(queryResult);
@@ -260,6 +260,9 @@
           searchResultCount = 0;
 
         function searchResultCounter(instance, row, col, value, result) {
+          var searchPlugin = hot4.getPlugin('search');
+          searchPlugin.callback.apply(this, arguments);
+
           if (result) {
             searchResultCount++;
           }
@@ -278,7 +281,7 @@
         Handsontable.dom.addEvent(searchFiled4, 'keyup', function(event) {
           searchResultCount = 0;
 
-          var search = hot.getPlugin('search');
+          var search = hot4.getPlugin('search');
           var queryResult = search.query(this.value);
 
           console.log(queryResult);
