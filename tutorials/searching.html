@@ -140,6 +140,12 @@
           Dump data to console
         </button>
       </div>
+      <style data-jsfiddle="example2">
+        .htCore td.customClass {
+          color: #f8f8ff;
+          background: #1E90FF;
+        }
+      </style>
       <script data-jsfiddle="example2">
         var
           data = [
@@ -260,9 +266,6 @@
           searchResultCount = 0;
 
         function searchResultCounter(instance, row, col, value, result) {
-          var searchPlugin = hot4.getPlugin('search');
-          searchPlugin.callback.apply(this, arguments);
-
           if (result) {
             searchResultCount++;
           }
