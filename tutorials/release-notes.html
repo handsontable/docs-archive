@@ -1,6 +1,32 @@
 <div class="static-content">
 
   <div class="example-container clearfix">
+    <h3>3.0.0</h3>
+    <p>Released on 16th of May, 2018</p>
+    <strong>Breaking changes</strong>
+    <p>The Column Sorting plugin is over the first stage of refactoring. (<a href="https://github.com/handsontable/handsontable/issues/5014" target="_blank">#5014</a>) This resulted in the following breaking changes:</p>
+    <ul>
+      <li>The main instance's <code>sort</code> function was moved to the plugin</li>
+      <li>The <code>sortIndex</code> property was removed from Handsontable's main instance</li>
+      <li>Moved the <code>sortColumn</code> and <code>sortOrder</code> properties from the main instance to the plugin</li>
+      <li>The <code>sortOrder</code> property now accepts string values (<code>asc</code>, <code>desc</code>, <code>none</code>), instead of booleans (<code>true</code>, <code>false</code>, <code>undefined</code>)</li>
+    </ul>
+
+    <strong>Changes</strong>
+    <ul>
+      <li>Added missing type definitions for the Search Plugin. (<a href="https://github.com/handsontable/handsontable/issues/5039" target="_blank">#5039</a>)</li>
+      <li>Added the Chinese (CN, TW) translations. (<a href="https://github.com/handsontable/handsontable/issues/5007" target="_blank">#5007</a>, <a href="https://github.com/handsontable/handsontable/issues/4923" target="_blank">#4923</a>)</li>
+      <li>Added the French translation. (<a href="https://github.com/handsontable/handsontable/issues/4777" target="_blank">#4777</a>)</li>
+      <li>Fixed a problem, where an error was being thrown when using the <code>updateSettings</code> method. (<a href="https://github.com/handsontable/handsontable/issues/4988" target="_blank">#4988</a>)</li>
+      <li>Fixed a problem, where using the <code>TAB</code> key removed some data, when <code>minSpareCols</code> was set to <code>1</code>. (<a href="https://github.com/handsontable/handsontable/issues/4986" target="_blank">#4986</a>)</li>
+      <li>Fixed a bug, where an infinite hook loop was being created, when the table was initialized at the bottom of the page. (<a href="https://github.com/handsontable/handsontable/issues/4961" target="_blank">#4961</a>)</li>
+      <li>Fixed some issues with the CI stability. (<a href="https://github.com/handsontable/handsontable/issues/4925" target="_blank">#4925</a>)</li>
+    </ul>
+
+    <p>The corresponding Handsontable Pro version is <a href="https://github.com/handsontable/handsontable-pro/releases/3.0.0" target="_blank">3.0.0</a>.</p>
+  </div>
+
+  <div class="example-container clearfix">
     <h3>2.0.0</h3>
     <p>Released on 11th of April, 2018</p>
     <strong>Breaking changes</strong>
