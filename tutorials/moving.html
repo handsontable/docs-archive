@@ -1,7 +1,15 @@
 <div class="static-content">
+  <div class="index-list">
+    <p>This page shows how to move rows and columns in Handsontable.</p>
+    <ul>
+      <li><a href="#enablingPlugins">Enabling plugins</a></li>
+      <li><a href="#manualRowMove">Drag and move actions of <code>manualRowMove</code> plugin</a></li>
+    </ul>
+  </div>
 
   <div class="example-container clearfix">
-    <p>To enable these features, use settings <code>manualColumnMove: true</code> and <code>manualRowMove: true</code></p>
+    <h3 id="enablingPlugins">Enabling plugins</h3>
+    <p>To enable move features, use settings <code>manualColumnMove: true</code> and <code>manualRowMove: true</code></p>
     <p>The draggable move handle appears:</p>
     <ul>
       <li>in the right part of the column header,</li>
@@ -38,6 +46,35 @@
           manualRowMove: true
         });
       </script>
+    </div>
+
+    <div class="example-container clearfix" name="last">
+      <h3 id="manualRowMove">Drag and move actions of <code>manualRowMove</code> plugin</h3>
+      <p>There are significant differences between plugin's <code>dragRows</code> and <code>moveRows</code> API functions. Both of them change the order of rows,
+        but what is important, they are handling other kind of indexes. The method of operation is shown in the following figures. Please keep in mind that both of methods run
+        <code><a href="/Hooks.html#event:afterRowMove">afterRowMove</a></code> and <code><a href="/Hooks.html#event:beforeRowMove">beforeRowMove</a></code> hooks,
+        but only <code>dragRows</code>method pass to them defined <code>dropIndex</code> parameter.
+      </p>
+
+      <p id="dragRows">
+        1. The <code><a href="/ManualRowMove.html#dragRows">dragRows</a></code> method with parameter <code>dropIndex</code>.The argument says where we are going to slip moved elements.
+      </p>
+      <p>
+        <img width="633" src="/images/drag_index.png" alt="dragRows method" />
+      </p>
+
+      <p id="moveRows">
+        2. The <code><a href="/ManualRowMove.html#moveRows">moveRows</a></code> method with parameter <code>finalIndex</code>. The argument says where finally go first from moved elements,
+        the next ones are displaced on the following positions.
+      </p>
+      <p>
+        <img width="633" src="/images/final_index.png" alt="moveRows method" />
+      </p>
+      <p>
+        Some of actions performed by <code>moveRows</code> function aren't possible, i.e. we can't move more than one elements to the last position. This move will be cancelled.
+        Plugin's API function <code><a href="/ManualRowMove.html#isMovePossible">isMovePossible</a></code> and <code>movePossible</code> parameter of
+        <code>beforeRowMove</code> and <code>afterRowMove</code> hooks may be helpful in determining such situations.
+      </p>
     </div>
   </div>
   <p class="gap-top-xsmall">
