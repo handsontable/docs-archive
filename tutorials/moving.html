@@ -50,29 +50,29 @@
 
     <div class="example-container clearfix" name="last">
       <h3 id="manualRowMove">Drag and move actions of <code>manualRowMove</code> plugin</h3>
-      <p>There are significant differences between plugin's <code>dragRows</code> and <code>moveRows</code> API functions. Both of them change the order of rows,
-        but what is important, they are handling other kind of indexes. The method of operation is shown in the following figures. Please keep in mind that both of methods run
+      <p>There are significant differences between the plugin's <code>dragRows</code> and <code>moveRows</code> API functions. Both of them change the order of rows,
+        but what is important, they rely on other kind of indexes. The differences between them are shown in the diagrams below. Please keep in mind that both of these methods trigger the
         <code><a href="/Hooks.html#event:afterRowMove">afterRowMove</a></code> and <code><a href="/Hooks.html#event:beforeRowMove">beforeRowMove</a></code> hooks,
-        but only <code>dragRows</code>method pass to them defined <code>dropIndex</code> parameter.
+        but only <code>dragRows</code> passes the <code>dropIndex</code> argument to them.
       </p>
 
       <p id="dragRows">
-        1. The <code><a href="/ManualRowMove.html#dragRows">dragRows</a></code> method with parameter <code>dropIndex</code>.The argument says where we are going to slip moved elements.
+        1. The <code><a href="/ManualRowMove.html#dragRows">dragRows</a></code> method with the <code>dropIndex</code> parameter. This argument points to where we are going to drop the moved elements.
       </p>
       <p>
         <img width="633" src="/images/drag_index.png" alt="dragRows method" />
       </p>
 
       <p id="moveRows">
-        2. The <code><a href="/ManualRowMove.html#moveRows">moveRows</a></code> method with parameter <code>finalIndex</code>. The argument says where finally go first from moved elements,
-        the next ones are displaced on the following positions.
+        2. The <code><a href="/ManualRowMove.html#moveRows">moveRows</a></code> method with the <code>finalIndex</code> parameter.
+        The argument points to where the elements will be placed after the <i>moving</i> action (<code>finalIndex</code> being the index of the first moved element).
       </p>
       <p>
         <img width="633" src="/images/final_index.png" alt="moveRows method" />
       </p>
       <p>
-        Some of actions performed by <code>moveRows</code> function aren't possible, i.e. we can't move more than one elements to the last position. This move will be cancelled.
-        Plugin's API function <code><a href="/ManualRowMove.html#isMovePossible">isMovePossible</a></code> and <code>movePossible</code> parameter of
+        Some of actions to be performed by <code>moveRows</code> function aren't possible, i.e. we can't move more than one element to the last position. In this case, the move will be cancelled.
+        The Plugin's <code><a href="/ManualRowMove.html#isMovePossible">isMovePossible</a></code> API method and the <code>movePossible</code> parameter of
         <code>beforeRowMove</code> and <code>afterRowMove</code> hooks may be helpful in determining such situations.
       </p>
     </div>
