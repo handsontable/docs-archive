@@ -162,8 +162,8 @@
           "data-validation": {
             "title": "Data validation"
           },
-          "drag-down": {
-            "title": "Drag down"
+          "auto-fill": {
+            "title": "Auto fill"
           },
           "merged-cells": {
             "title": "Merged cells"
