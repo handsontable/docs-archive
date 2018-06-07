@@ -39,3 +39,13 @@
         padding-bottom: 200px;
     }
 }
+
+.mt {
+    &-0 {
+        margin-top: 0;
+    }
+}
+
+.hidden {
+    display: none !important;
+}
