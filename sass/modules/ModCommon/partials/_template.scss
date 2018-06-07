@@ -18,3 +18,13 @@ body {
 .element-center {
     text-align: center;
 }
+
+.mt {
+    &-0 {
+        margin-top: 0;
+    }
+}
+
+.hidden {
+    display: none !important;
+}
