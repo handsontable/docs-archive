@@ -45,6 +45,15 @@ $(function () {
   var breadcrumbs = buildBreadcrumbs();
   $('div.breadcrumbs').eq(0).html(breadcrumbs);
 
+  /**
+   * Outdated version notification
+   */
+  if (hotVersion !== _docVersions[0]) {
+    $('#outdated-version')
+      .html('<strong>Please note:</strong> You\'re viewing an older version of Handsontable. Switch to the latest version.')
+      .removeClass('hidden');
+  }
+
   // disqus code
   if (config.disqus) {
     $(window).on('load', function () {
