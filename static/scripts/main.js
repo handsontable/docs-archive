@@ -87,7 +87,7 @@ $(function () {
   $('div.breadcrumbs').eq(0).html(breadcrumbs);
 
   /**
-   * Outdated version notification
+   * Outdated version - notification
    */
   if (hotVersion !== _docVersions[0]) {
     $('#outdated-version')
