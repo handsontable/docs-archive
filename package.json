@@ -42,6 +42,7 @@
     "start": "grunt",
     "start:develop": "grunt --hot-version=develop",
     "build": "grunt build",
+    "build:next": "grunt build --hot-version=next",
     "deploy": "shipit production deploy"
   },
   "readmeFilename": "README.md"
