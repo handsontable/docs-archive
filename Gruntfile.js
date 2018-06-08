@@ -19,7 +19,7 @@ var argv = require('minimist')(process.argv.slice(2));
 var fs = require('fs');
 var gitHelper = require('./git-helper');
 var path = require('path');
-
+var semver = require('semver');
 
 module.exports = function (grunt) {
   var
