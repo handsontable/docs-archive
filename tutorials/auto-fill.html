@@ -55,8 +55,8 @@
 
   <div class="example-container clearfix head-gap">
     <h3 id="page-vertical-without-creating-rows">Auto fill in vertical direction only without creating new rows</h3>
-    <p>In this configuration fill handle is restricted to move only vertically. Additionally when it comes to the edge of
-      the table bottom it preserves creating new rows.
+    <p>In this configuration fill handle is restricted to move only vertically. Additionally, because the default for <strong>fillHandle</strong> is <strong>autoInsertRow: false</strong>, when it comes to the edge of
+      the table bottom it prevent creating new rows.
     </p>
 
     <div data-jsfiddle="example2">
@@ -93,8 +93,7 @@
           rowHeaders: true,
           colHeaders: true,
           fillHandle: {
-            direction: 'vertical',
-            autoInsertRow: false,
+            direction: 'vertical'
           }
         });
       </script>
@@ -107,4 +106,3 @@
     </a>
   </p>
 </div>
-
