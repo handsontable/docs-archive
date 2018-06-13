@@ -19,13 +19,13 @@
       <li><code>./dist/handsontable.js</code></li>
       <li><code>./dist/handsontable.css</code></li>
       <li><code>./dist/handsontable.full.js</code></li>
-      <li><code>./dist/handsontable.full.css</code> (more info about dist packages
-        <a href="https://github.com/handsontable/handsontable/tree/master/dist" target="_blank">here</a>)
-      </li>
+      <li><code>./dist/handsontable.full.css</code></li>
       <li><code>./dist/handsontable.full.min.js</code></li>
       <li><code>./dist/handsontable.full.min.css</code></li>
+      <li><code>./dist/languages/*</code></li>
     </ul>
-    <p>It is advised that you never modify the above-mentioned files but rather make changes in the <code>src/</code>
+    <p>More info about dist packages can be found <a href="https://github.com/handsontable/handsontable/blob/master/dist/README.md" target="_blank">here</a>.
+      It is advised that you never modify the above-mentioned files but rather make changes in the <code>src/</code>
       directory and then run a proper build. This is especially important if you want to contribute
       your changes back to Handsontable by making a pull request.</p>
   </div>
@@ -40,9 +40,9 @@
           <li><code>npm run lint</code> - check if changes applied into source code are valid with our code style (mostly we follow
             <a href="https://github.com/airbnb/javascript" target="_blank">Airbnb JavaScript</a> code style).</li>
           <li><code>npm run test:unit</code> - runs test suite in node environment. It uses <a href="https://facebook.github.io/jest/" target="_blank">Jest</a> as a test runner.</li>
-          <li><code>npm run test:walkontable</code> - runs a single build followed by Jasmine test suite and executes in PhantomJS.</li>
-          <li><code>npm run test:e2e</code> - runs a single build followed by Jasmine test suite and by using generated bundle <code>/dist/handsontable.js</code> executes it in PhantomJS.</li>
-          <li><code>npm run test:production</code> - runs a single build followed by Jasmine test suite and by using generated minified bundle <code>/dist/handsontable.full.min.js</code> executes it in PhantomJS.</li>
+          <li><code>npm run test:walkontable</code> - runs a single build followed by Jasmine test suite and executes in <a href="https://github.com/GoogleChrome/puppeteer" target="_blank">Puppeteer</a>.</li>
+          <li><code>npm run test:e2e</code> - runs a single build followed by Jasmine test suite and by using generated bundle <code>/dist/handsontable.js</code> executes it in Puppeteer.</li>
+          <li><code>npm run test:production</code> - runs a single build followed by Jasmine test suite and by using generated minified bundle <code>/dist/handsontable.full.min.js</code> executes it in Puppeteer.</li>
         </ul>
       </li>
       <li>
@@ -52,6 +52,8 @@
           <li><code>npm run build:es</code> - transpiles files into <code>import/export</code> format. These files are published into NPM repository later.</li>
           <li><code>npm run build:umd</code> - creates bundles (<code>dist/handsontable.js</code>, <code>dist/handsontable.css</code>, <code>dist/handsontable.full.js</code> and <code>dist/handsontable.full.css</code>) which are compatible with UMD (Universal Module Definition).</li>
           <li><code>npm run build:umd.min</code> - creates minified bundles (<code>dist/handsontable.min.js</code>, <code>dist/handsontable.min.css</code>, <code>dist/handsontable.min.full.js</code> and <code>dist/handsontable.min.full.css</code>) which are compatible with UMD (Universal Module Definition).</li>
+          <li><code>npm run build:languages</code> - creates the bundles containing language sets (i.e. <code>dist/languages/de-DE.js</code>, <code>dist/languages/all.js</code>) which are compatible with UMD (Universal Module Definition). More information about languages can be found <a href="/<?js= version ?>/tutorial-internationalization.html">here</a>.
+          <li><code>npm run build:languages.min</code> - creates the minified bundles containing language sets (i.e. <code>dist/languages/de-DE.min.js</code>, <code>dist/languages/all.min.js</code>) which are compatible with UMD (Universal Module Definition). More information about languages can be found <a href="/<?js= version ?>/tutorial-internationalization.html">here</a>.
         </ul>
       </li>
       <li><code>npm run watch</code> - watches for changes in source directory and runs a build when a change is observed. For faster rebuild when a change is observed watcher triggers task which builds files without minify.</li>
