@@ -1,6 +1,36 @@
 <div class="static-content">
 
   <div class="example-container clearfix">
+    <h3>4.0.0</h3>
+    <p>Released on 13th of June, 2018</p>
+    <strong>Breaking changes</strong>
+    <ul>
+      <li>Changed the default values for the following configuration options (<a href="https://github.com/handsontable/handsontable/issues/5135" target="_blank">#5135</a>)
+      <ul>
+        <li><code>autoInsertRow</code> (was: <code>true</code>, is: <code>false</code>)</li>
+        <li><code>autoWrapCol</code>  (was: <code>false</code>, is: <code>true</code>)</li>
+        <li><code>autoWrapRow</code>   (was: <code>false</code>, is: <code>true</code>)</li>
+      </ul>
+      </li>
+      <li>Updated our number-handling dependency, <i>Numbro</i> to the latest version. (<a href="https://github.com/handsontable/handsontable/issues/5081" target="_blank">#5081</a>)<br>
+        In order to keep your implementation working correctly, you'll need to update the <i>Numbro 2.x</i>-compatible language files.<br><br>
+        For more information on those, take a look at <a href="http://numbrojs.com/languages.html" target="_blank">the Numbro documentation</a>.
+      </li>
+    </ul>
+    <br>
+    <strong>Changes</strong>
+    <ul>
+      <li>Updated the API documentation for the language settings. (<a href="https://github.com/handsontable/handsontable/issues/5099" target="_blank">#5099</a>)</li>
+      <li>Added a Norwegian translation to Handsontable. (<a href="https://github.com/handsontable/handsontable/issues/4694" target="_blank">#4694</a>)</li>
+      <li>Fixed a problem with the IME API, where an unwanted first character remained in the editor. (<a href="https://github.com/handsontable/handsontable/issues/4662" target="_blank">#4662</a>)</li>
+      <li>Fixed a bug, where there was a way to break the <code>allowInvalid</code> option, by making two editors active. (<a href="https://github.com/handsontable/handsontable/issues/4551" target="_blank">#4551</a>)</li>
+      <li>Fixed a problem with incomplete table rendering after sorting columns. (<a href="https://github.com/handsontable/handsontable/issues/4062" target="_blank">#4062</a>)</li>
+    </ul>
+
+    <p>The corresponding Handsontable Pro version is <a href="https://github.com/handsontable/handsontable-pro/releases/4.0.0" target="_blank">4.0.0</a>.</p>
+  </div>
+
+  <div class="example-container clearfix">
     <h3>3.0.0</h3>
     <p>Released on 16th of May, 2018</p>
     <strong>Breaking changes</strong>
