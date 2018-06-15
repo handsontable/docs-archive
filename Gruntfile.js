@@ -17,8 +17,9 @@
 
 var argv = require('minimist')(process.argv.slice(2));
 var fs = require('fs');
-var gitHelper = require('./git-helper');
 var path = require('path');
+var semver = require('semver');
+var gitHelper = require('./git-helper');
 
 
 module.exports = function (grunt) {
@@ -217,7 +218,7 @@ module.exports = function (grunt) {
 
     gitHelper.getDocsVersions().then(function(branches) {
       branches = branches.filter(function(branch) {
-        return /^\d+\.\d+\.\d+$/.test(branch) && !/^draft\-/.test(branch);
+        return /^\d+\.\d+\.\d+$/.test(branch) && !/^draft\-/.test(branch) && semver.gte(branch, '0.32.0');
       });
 
       var content = 'docVersions && docVersions(' + JSON.stringify(branches.reverse()) + ')';
@@ -247,14 +248,19 @@ module.exports = function (grunt) {
   grunt.registerTask('build-internal', 'Generate documentation for Handsontable', function () {
     var done = this.async();
     var hotPackage;
+    var version;
+    var latestVersion;
 
     gitHelper.getHotLatestRelease().then(function(info) {
       grunt.task.run('sass', 'copy', 'bowercopy');
-
+      
       hotPackage = grunt.file.readJSON(HOT_SRC_PATH + '/package.json');
+      version = argv['hot-version'] || hotPackage.version;
+      latestVersion = argv['hot-version'] || info.tag_name;
+
       grunt.config.set('jsdoc.docs.options.query', querystring.stringify({
-        version: hotPackage.version,
-        latestVersion: info.tag_name
+        version: version,
+        latestVersion: latestVersion
       }));
 
       grunt.task.run('jsdoc');
