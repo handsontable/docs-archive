@@ -76,14 +76,22 @@ module.exports = function (grunt) {
 
     copy: {
       dist: {
-        files: [{
-          expand: true,
-          cwd: 'src',
-          dest: 'generated',
-          src: [
-            'static/**'
-          ]
-        }]
+        files: [
+          {
+            expand: true,
+            cwd: 'src',
+            dest: 'generated',
+            src: [
+              'static/**'
+            ]
+          },
+          {
+            expand: true,
+            cwd: 'node_modules/numbro',
+            dest: 'generated/bower_components/numbro',
+            src: ['**']
+          }
+        ]
       }
     },
 
@@ -112,7 +120,6 @@ module.exports = function (grunt) {
           "chroma-js": "chroma-js",
           "raphael": "raphael",
           "bootstrap": "bootstrap",
-          "numbro": "numbro",
           "font-awesome": "font-awesome",
           "lodash": "lodash",
           "promise-polyfill": "promise-polyfill",
@@ -253,7 +260,7 @@ module.exports = function (grunt) {
 
     gitHelper.getHotLatestRelease().then(function(info) {
       grunt.task.run('sass', 'copy', 'bowercopy');
-      
+
       hotPackage = grunt.file.readJSON(HOT_SRC_PATH + '/package.json');
       version = argv['hot-version'] || hotPackage.version;
       latestVersion = argv['hot-version'] || info.tag_name;
