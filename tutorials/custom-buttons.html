@@ -30,11 +30,11 @@
   </style>
 
   <div class="example-container clearfix">
-    <p>The <strong>alter</strong> method can be used if you want to insert or remove rows and columns using external
+    <p>The <strong><a href="/pro/<?js= version ?>/Core.html#alter">alter</a></strong> method can be used if you want to insert or remove rows and columns using external
       buttons.
       The below example uses the a custom made
-      <strong>handsontable.removeRow.js</strong> plugin for that matter. Move your mouse over a row to see it.</p>
-    <p>You can programmatically select a cell using the <strong>selectCell</strong> method. The below button implements it.</p>
+      <strong>removeRow</strong> plugin for that matter. Move your mouse over a row to see it.</p>
+    <p>You can programmatically select a cell using the <strong><a href="/pro/<?js= version ?>/Core.html#selectCell">selectCell</a></strong> method. The below button implements it.</p>
     <p>
       <button class="intext-btn" id="selectFirst">Select first cell</button>
     </p>
@@ -177,7 +177,7 @@
                   elem.appendChild(div);
 
                   eventManager.addEventListener(div, 'mouseup', function() {
-                      instance.alter('remove_row', row);
+                    instance.alter('remove_row', row);
                   });
                 }
               };
@@ -190,15 +190,15 @@
         var htRemoveRow = new removeRow();
 
         Handsontable.hooks.add('beforeInitWalkontable', function(walkontableConfig) {
-            htRemoveRow.beforeInitWalkontable.call(this, walkontableConfig);
+          htRemoveRow.beforeInitWalkontable.call(this, walkontableConfig);
         });
 
         Handsontable.hooks.add('beforeInit', function() {
-            htRemoveRow.init.call(this)
+          htRemoveRow.init.call(this)
         });
 
         Handsontable.hooks.add('afterUpdateSettings', function() {
-            htRemoveRow.init.call(this)
+          htRemoveRow.init.call(this)
         });
 
         var
@@ -236,8 +236,7 @@
           hot.updateSettings({
             colHeaders: this.checked
           });
-        });
-      </script>
+        });</script>
     </div>
   </div>
   <p class="gap-top-xsmall">
