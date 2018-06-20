@@ -1,0 +1,85 @@
+<div class="static-content">
+  <div class="example-container clearfix">
+      <p>
+        <strong>Handsontable for React</strong> is the official wrapper for Handsontable, a JavaScript data grid
+        component with a spreadsheet look & feel. It easily integrates with any data source and comes with lots of
+        useful features like data binding, validation, sorting or powerful context menu.
+      </p>
+
+      <h3>Installation</h3>
+      <p>
+        Use <a href="https://www.npmjs.com/">npm</a> to download the project.
+      </p>
+      <p>
+        <code>npm install handsontable @handsontable/react</code>
+      </p>
+
+      <h3>Basic usage</h3>
+      <p>
+        Import the Handsontable styles to your project
+        <pre>
+          <code>@import 'handsontable/dist/handsontable.full.css';</code>
+        </pre>
+      </p>
+      <p>
+        Then use Handsontable for React component in your codebase
+        <pre>
+        <code>// import React...
+import React from 'react';
+
+// ... and HotTable
+import {HotTable} from '@handsontable/react';
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.data = [
+      ["", "Ford", "Volvo", "Toyota", "Honda"],
+      ["2016", 10, 11, 12, 13],
+      ["2017", 20, 11, 14, 13],
+      ["2018", 30, 15, 12, 13]
+    ];
+  }
+
+  render() {
+    return (
+      &lt;div id="hot-app"&gt;
+        &lt;HotTable data={this.data} colHeaders={true} rowHeaders={true} width="600" height="300" stretchH="all" /&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+        </code>
+        </pre>
+      </p>
+
+      <h3>Getting help</h3>
+      <p>
+          In general, using Handsontable doesn't require high programming skills. However, if you need any
+          custom modifications and have just started with JavaScript you may need some assistance from an
+          experienced developer.
+      </p>
+      <p>
+          If you are new to Handsontable for React then head to the <a href="/<?js= version ?>/wrapper-react-examples.html">Examples</a>
+          page which will give you a good idea on how to start.
+      </p>
+      <p>
+        If you find a bug, please open a new issue on <a href="https://github.com/handsontable/react-handsontable">GitHub</a>. If
+        you get stuck with something, then the best way to ask (or answer) a question is <a href="http://stackoverflow.com/tags/handsontable">Stackoverflow</a>.
+        For further discussions head to our <a href="https://forum.handsontable.com">Forum</a> and don't hesitate to share your thoughts and opinions.
+      </p>
+
+      <h3>License</h3>
+
+      <p>
+          Handsontable for React is an open source library released free under the MIT license.
+      </p>
+      <p>
+          <a href="https://github.com/handsontable/react-handsontable/blob/master/LICENSE" target="_blank">The MIT license</a>
+      </p>
+  </div>
+    <p>
+      <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/react-overview.html"
+         class="edit-doc" target="_blank">Help us improve this page</a>
+    </p>
+</div>

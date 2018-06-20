@@ -17,7 +17,7 @@
       <!-- Tutorials -->
       <?js this.members.tutorials.forEach(function (tutorial) { ?>
         <?js tutorial.children.forEach(function (child) { ?>
-          <?js if (child.disabled || child.demo) { return; } ?>
+          <?js if (child.disabled || child.demo || child.wrapper) { return; } ?>
           <li class="item tutorial" data-name="<?js= child.name ?>">
             <span class="title extensible">
               <a class="link-header" href="#"><?js= child.title ?></a>
@@ -36,6 +36,25 @@
         <?js this.members.tutorials.forEach(function (tutorial) { ?>
           <?js tutorial.children.forEach(function (child) { ?>
             <?js if (child.disabled || !child.demo) { return; } ?>
+            <li class="item" data-name="<?js= child.name ?>">
+              <span class="title extensible">
+                <a class="link-header" href="#"><?js= child.title ?></a>
+              </span>
+              <ul class="members itemMembers" data-list-id="<?js= child.longname ?>">
+                <?js child.children.forEach(function (c) { ?>
+                  <?js if (c.disabled) { return; } ?>
+                  <li class="sub-item" data-name="<?js= c.name ?>"><?js= self.tutoriallink(c) ?></li>
+                <?js }); ?>
+              </ul>
+            </li>
+          <?js }); ?>
+        <?js }); ?>
+    </div>
+    <div class="sublist wrappers">
+      <p class="header">Wrappers</p>
+        <?js this.members.tutorials.forEach(function (tutorial) { ?>
+          <?js tutorial.children.forEach(function (child) { ?>
+            <?js if (child.disabled || !child.wrapper) { return; } ?>
             <li class="item" data-name="<?js= child.name ?>">
               <span class="title extensible">
                 <a class="link-header" href="#"><?js= child.title ?></a>

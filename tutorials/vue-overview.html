@@ -1,0 +1,92 @@
+<div class="static-content">
+  <div class="example-container clearfix">
+      <p>
+          <strong>Handsontable for Vue</strong> is the official wrapper for Handsontable, a JavaScript data grid
+          component with a spreadsheet look & feel. It easily integrates with any data source and comes with lots of
+          useful features like data binding, validation, sorting or powerful context menu.
+      </p>
+
+      <h3>Installation</h3>
+      <p>
+        Use <a href="https://www.npmjs.com/">npm</a> to download the project.
+      </p>
+      <p>
+        <code>npm install handsontable @handsontable/vue</code>
+      </p>
+
+      <h3>Basic usage</h3>
+      <p>
+        Vue Component
+        <pre>
+        <code>&lt;template&gt;
+  &lt;div id="hot-preview"&gt;
+    &lt;HotTable :settings="settings"&gt;&lt;/HotTable&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+  import HotTable from '@handsontable/vue';
+  import Vue from 'vue';
+
+  export default {
+    data: function() {
+      return {
+        settings: {
+          data: [
+            ["", "Ford", "Volvo", "Toyota", "Honda"],
+            ["2016", 10, 11, 12, 13],
+            ["2017", 20, 11, 14, 13],
+            ["2018", 30, 15, 12, 13]
+          ],
+          colHeaders: true,
+          rowHeaders: true,
+        }
+      };
+    },
+    components: {
+      HotTable
+    }
+  }
+&lt;/script&gt;
+
+&lt;style src="../node_modules/handsontable/dist/handsontable.full.css"&gt;&lt;/style&gt;
+&lt;style&gt;
+  #test-hot {
+    width: 600px;
+    height: 400px;
+    overflow: hidden;
+  }
+&lt;/style&gt;
+        </code>
+        </pre>
+      </p>
+
+      <h3>Getting help</h3>
+      <p>
+          In general, using Handsontable doesn't require high programming skills. However, if you need any
+          custom modifications and have just started with JavaScript you may need some assistance from an
+          experienced developer.
+      </p>
+      <p>
+          If you are new to Handsontable for Vue then head to the <a href="/<?js= version ?>/wrapper-vue-examples.html">Examples</a>
+          page which will give you a good idea on how to start.
+      </p>
+      <p>
+        If you find a bug, please open a new issue on <a href="https://github.com/handsontable/vue-handsontable">GitHub</a>. If
+        you get stuck with something, then the best way to ask (or answer) a question is <a href="http://stackoverflow.com/tags/handsontable">Stackoverflow</a>.
+        For further discussions head to our <a href="https://forum.handsontable.com">Forum</a> and don't hesitate to share your thoughts and opinions.
+      </p>
+
+      <h3>License</h3>
+      <p>
+          Handsontable for Vue is an open source library released free under the MIT license.
+      </p>
+      <p>
+          <a href="https://github.com/handsontable/vue-handsontable/blob/master/LICENSE" target="_blank">The MIT license</a>
+      </p>
+  </div>
+    <p>
+      <a href="https://github.com/handsontable/docs-pro/edit/<?js= version ?>/tutorials/vue-overview.html"
+         class="edit-doc" target="_blank">Help us improve this page</a>
+    </p>
+</div>
