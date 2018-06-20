@@ -84,10 +84,11 @@
               this.updateSettings({fillHandle: true});
             }
           },
-          cells: function (row, col, prop) {
+          cells: function (row, col) {
             var cellProperties = {};
+            var data = this.instance.getData();
 
-            if (row === 0 || this.instance.getData()[row][col] === 'readOnly') {
+            if (row === 0 || data[row] && data[row][col] === 'readOnly') {
               cellProperties.readOnly = true; // make cell read-only if it is first row or the text reads 'readOnly'
             }
             if (row === 0) {

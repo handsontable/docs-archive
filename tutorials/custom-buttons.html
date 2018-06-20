@@ -1,240 +1,56 @@
 <div class="static-content">
-  <style media="screen" data-jsfiddle="common">
-    /**
-     * Handsontable RemoveRow extension.
-     */
-    .handsontable.htRemoveRow th.htRemoveRow {
-      text-align: center;
-    }
-
-    .handsontable.htRemoveRow tr:first-child th.htRemoveRow {
-      border-top: 1px solid #CCC;
-    }
-
-    .handsontable.htRemoveRow th.htRemoveRow .removeRowBtn {
-      background-color: #BBB;
-      border-radius: 9px;
-      padding: 0 6px 0 6px;
-      color: #FFF;
-      cursor: pointer;
-      font-size: 11px;
-      font-weight: bold;
-      display: none;
-      margin: 0 auto;
-      width: 10px;
-    }
-
-    .handsontable.htRemoveRow th.htRemoveRow .removeRowBtn:hover {
-      background-color: #777;
-    }
-  </style>
-
   <div class="example-container clearfix">
-    <p>The <strong><a href="/pro/<?js= version ?>/Core.html#alter">alter</a></strong> method can be used if you want to insert or remove rows and columns using external
-      buttons.
-      The below example uses the a custom made
-      <strong>removeRow</strong> plugin for that matter. Move your mouse over a row to see it.</p>
-    <p>You can programmatically select a cell using the <strong><a href="/pro/<?js= version ?>/Core.html#selectCell">selectCell</a></strong> method. The below button implements it.</p>
+    <p>The <strong><a href="/<?js= version ?>/Core.html#alter">alter</a></strong> method can be used if you want to insert or remove rows and columns using external
+      buttons. You can programmatically select a cell using the <strong><a href="/<?js= version ?>/Core.html#selectCell">selectCell</a></strong>
+      and load new data by <strong><a href="<?js= version ?>/Core.html#loadData">loadData</a></strong> function. The below button implements it.
+    </p>
     <p>
       <button class="intext-btn" id="selectFirst">Select first cell</button>
+      <button class="intext-btn" id="removeFirstColumn">Remove first column</button>
+      <button class="intext-btn" id="removeFirstRow">Remove first row</button>
+      <button class="intext-btn" id="resetState">Reset state</button>
     </p>
-    <div class="checklist">
-      <label><input type="checkbox" id="rowHeaders" checked="checked" autocomplete="off"> Show row headers</label>
-      <label><input type="checkbox" id="colHeaders" checked="checked" autocomplete="off"> Show col headers</label>
-    </div>
 
     <div data-jsfiddle="example1">
       <div id="example1" class="hot"></div>
     </div>
 
     <div class="codeLayout">
-      <div class="buttons">
-        <button class="jsFiddleLink" data-runfiddle="example1">
-          <i class="fa fa-jsfiddle"></i>
-          Edit
-        </button>
-        <button class="dump" name="dump" data-dump="#example1" data-instance="hot"
-                title="Print current data source to console">
-          <i class="fa fa-terminal"></i>
-          Dump data to console
-        </button>
-      </div>
       <script data-jsfiddle="example1">
-        function removeRow() {
-          var eventManager = new Handsontable.EventManager(this);
-
-          function bindMouseEvents() {
-            var instance = this;
-
-            eventManager.addEventListener(instance.rootElement, 'mouseover', function(e) {
-              if (checkRowHeader(e.target)) {
-                var element = getElementFromTargetElement(e.target);
-
-                if (element) {
-                  var btn = getButton(element);
-
-                  if (btn) {
-                    btn.style.display = 'block';
-                  }
-                }
-              }
-            });
-
-            eventManager.addEventListener(instance.rootElement, 'mouseout', function(e) {
-              if (checkRowHeader(e.target)) {
-                var element = getElementFromTargetElement(e.target);
-
-                if (element) {
-                  var btn = getButton(element);
-
-                  if (btn) {
-                    btn.style.display = 'none';
-                  }
-                }
-              }
-            });
-          }
-
-          var getElementFromTargetElement = function(element) {
-            if (element.tagName != 'TABLE') {
-              if (element.tagName == 'TH' || element.tagName == 'TD') {
-                return element;
-              } else {
-                return getElementFromTargetElement(element.parentNode);
-              }
-            }
-
-            return null;
-          };
-
-          var checkRowHeader = function(element) {
-            if (element.tagName != 'BODY') {
-              if (element.parentNode.tagName == 'TBODY') {
-                return true;
-              } else {
-                element = element.parentNode;
-
-                return checkRowHeader(element);
-              }
-            }
-
-            return false;
-          };
-
-          function unbindMouseEvents() {
-            eventManager.clear();
-          }
-
-          function getButton(td) {
-            var btn = td.querySelector('.removeRowBtn');
-
-            if (!btn) {
-              var parent = td.parentNode.querySelector('th.htRemoveRow');
-
-              if (parent) {
-                btn = parent.querySelector('.removeRowBtn');
-              }
-            }
-
-            return btn;
-          }
-
-          this.init = function() {
-            var instance = this;
-            var pluginEnabled = !! (instance.getSettings().removeRowPlugin);
-
-            if (pluginEnabled) {
-              bindMouseEvents.call(this);
-              Handsontable.dom.addClass(instance.rootElement, 'htRemoveRow');
-            } else {
-              unbindMouseEvents.call(this);
-              Handsontable.dom.removeClass(instance.rootElement, 'htRemoveRow');
-            }
-          };
-
-          this.beforeInitWalkontable = function(walkontableConfig) {
-            var instance = this;
-
-            /**
-             * rowHeaders is a function, so to alter the actual value we need to alter the result returned by this function
-             */
-            var baseRowHeaders = walkontableConfig.rowHeaders;
-            walkontableConfig.rowHeaders = function() {
-              var pluginEnabled = !! (instance.getSettings().removeRowPlugin);
-
-              var newRowHeader = function(row, elem) {
-                var child, div;
-
-                while (child = elem.lastChild) {
-                  elem.removeChild(child);
-                }
-                elem.className = 'htNoFrame htRemoveRow';
-
-                if (row > -1) {
-                  div = document.createElement('div');
-                  div.className = 'removeRowBtn';
-                  div.appendChild(document.createTextNode('x'));
-                  elem.appendChild(div);
-
-                  eventManager.addEventListener(div, 'mouseup', function() {
-                    instance.alter('remove_row', row);
-                  });
-                }
-              };
-
-              return pluginEnabled ? Array.prototype.concat.call([], newRowHeader, baseRowHeaders()) : baseRowHeaders();
-            };
-          }
-        }
-
-        var htRemoveRow = new removeRow();
-
-        Handsontable.hooks.add('beforeInitWalkontable', function(walkontableConfig) {
-          htRemoveRow.beforeInitWalkontable.call(this, walkontableConfig);
-        });
-
-        Handsontable.hooks.add('beforeInit', function() {
-          htRemoveRow.init.call(this)
-        });
-
-        Handsontable.hooks.add('afterUpdateSettings', function() {
-          htRemoveRow.init.call(this)
-        });
-
-        var
-          data = [
+        document.addEventListener("DOMContentLoaded", function() {
+          var data = [
             ['', 'Tesla', 'Nissan', 'Toyota', 'Honda', 'Mazda', 'Ford'],
             ['2017', 10, 11, 12, 13, 15, 16],
             ['2018', 10, 11, 12, 13, 15, 16],
             ['2019', 10, 11, 12, 13, 15, 16],
             ['2020', 10, 11, 12, 13, 15, 16],
             ['2021', 10, 11, 12, 13, 15, 16]
-          ],
-          container = document.getElementById('example1'),
-          selectFirst = document.getElementById('selectFirst'),
-          rowHeaders = document.getElementById('rowHeaders'),
-          colHeaders = document.getElementById('colHeaders'),
-          hot;
-
-        hot = new Handsontable(container, {
-          rowHeaders: true,
-          colHeaders: true,
-          outsideClickDeselects: false,
-          removeRowPlugin: true
-        });
-        hot.loadData(data);
-
-        Handsontable.dom.addEvent(selectFirst, 'click', function () {
-          hot.selectCell(0,0);
-        });
-        Handsontable.dom.addEvent(rowHeaders, 'click', function () {
-          hot.updateSettings({
-            rowHeaders: this.checked
+          ];
+          var container = document.getElementById('example1');
+          var selectFirst = document.getElementById('selectFirst');
+          var removeFirstRow = document.getElementById('removeFirstRow');
+          var removeFirstColumn = document.getElementById('removeFirstColumn');
+          var resetState = document.getElementById('resetState');
+          var hot = new Handsontable(container, {
+            rowHeaders: true,
+            colHeaders: true,
+            data: JSON.parse(JSON.stringify(data))
           });
-        });
-        Handsontable.dom.addEvent(colHeaders, 'click', function () {
-          hot.updateSettings({
-            colHeaders: this.checked
+
+          Handsontable.dom.addEvent(selectFirst, 'click', function () {
+            hot.selectCell(0, 0);
+          });
+
+          Handsontable.dom.addEvent(removeFirstRow, 'click', function () {
+            hot.alter('remove_row', 0);
+          });
+
+          Handsontable.dom.addEvent(removeFirstColumn, 'click', function () {
+            hot.alter('remove_col', 0);
+          });
+
+          Handsontable.dom.addEvent(resetState, 'click', function () {
+            hot.loadData(JSON.parse(JSON.stringify(data)));
           });
         });</script>
     </div>
