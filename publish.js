@@ -35,8 +35,8 @@ function tutoriallink(node) {
   } else if(node.demo || (node.parent && node.parent.demo)) {
     return helper.toTutorial(node.name, null, { tag: 'em', classname: 'disabled', prefix: 'Demo: ' }).replace('tutorial-','demo-');
 
-  } else if(node.wrapper || (node.parent && node.parent.wrapper)) {
-    return helper.toTutorial(node.name, null, { tag: 'em', classname: 'disabled', prefix: 'Wrapper: ' }).replace('tutorial-','wrapper-');
+  } else if(node.framework || (node.parent && node.parent.framework)) {
+    return helper.toTutorial(node.name, null, { tag: 'em', classname: 'disabled', prefix: 'Framework: ' }).replace('tutorial-','frameworks-');
 
   } else {
     return helper.toTutorial(node.name, null, { tag: 'em', classname: 'disabled', prefix: 'Tutorial: ' });
@@ -344,7 +344,7 @@ exports.publish = function(taffyData, opts, tutorials) {
   extendTutorialsObj(tutorials, "external");
   extendTutorialsObj(tutorials, "pro");
   extendTutorialsObj(tutorials, "demo");
-  extendTutorialsObj(tutorials, "wrapper");
+  extendTutorialsObj(tutorials, "framework");
   extendTutorialsObj(tutorials, "since");
 
   // set up tutorials for helper
@@ -587,8 +587,8 @@ exports.publish = function(taffyData, opts, tutorials) {
     if (tutorial.demo || (tutorial.parent && tutorial.parent.demo)) {
       tutorialPath = tutorialPath.replace('tutorial-', 'demo-');
 
-    } else if (tutorial.wrapper || (tutorial.parent && tutorial.parent.wrapper)) {
-      tutorialPath = tutorialPath.replace('tutorial-', 'wrapper-');
+    } else if (tutorial.framework || (tutorial.parent && tutorial.parent.framework)) {
+      tutorialPath = tutorialPath.replace('tutorial-', 'frameworks-');
     }
     html = resolveCanonicalTags(html, tutorialPath);
 

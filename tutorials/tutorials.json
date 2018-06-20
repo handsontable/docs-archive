@@ -254,26 +254,26 @@
           }
         }
       },
-      "react-wrappers": {
-        "title": "React",
-        "wrapper": true,
+      "react-framework": {
+        "title": "Wrapper for React",
+        "framework": true,
         "children": {
-          "react-overview": {
-            "title": "Overview"
+          "wrapper-for-react-installation": {
+            "title": "Installation"
           },
-          "react-examples": {
+          "wrapper-for-react-examples": {
             "title": "Examples"
           }
         }
       },
-      "vue-wrappers": {
-        "title": "Vue",
-        "wrapper": true,
+      "vue-framework": {
+        "title": "Wrapper for Vue",
+        "framework": true,
         "children": {
-          "vue-overview": {
-            "title": "Overview"
+          "wrapper-for-vue-installation": {
+            "title": "Installation"
           },
-          "vue-examples": {
+          "wrapper-for-vue-examples": {
             "title": "Examples"
           }
         }
