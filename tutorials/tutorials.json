@@ -266,6 +266,18 @@
           }
         }
       },
+      "angular-framework": {
+        "title": "Wrapper for Angular",
+        "framework": true,
+        "children": {
+          "wrapper-for-angular-installation": {
+            "title": "Installation"
+          },
+          "wrapper-for-angular-examples": {
+            "title": "Examples"
+          }
+        }
+      },
       "vue-framework": {
         "title": "Wrapper for Vue",
         "framework": true,

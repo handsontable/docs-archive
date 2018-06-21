@@ -1,0 +1,71 @@
+<div class="static-content">
+  <div class="example-container clearfix">
+      <p>
+        <strong>Handsontable for Angular</strong> is the official wrapper for Handsontable, a JavaScript data grid
+        component with a spreadsheet look & feel. It easily integrates with any data source and comes with lots of
+        useful features like data binding, validation, sorting or powerful context menu.
+      </p>
+
+      <h3>Installation</h3>
+      <p>
+        This component needs the Handsontable library to work. We suggest using <a href="https://www.npmjs.com/">npm</a> to install the package.
+      </p>
+      <p>
+        <code>npm install handsontable @handsontable/angular</code>
+      </p>
+
+      <h3>Basic usage</h3>
+      <p>
+        Import the Handsontable styles to your project
+        <pre>
+          <code>@import '~handsontable/dist/handsontable.full.css';</code>
+        </pre>
+      </p>
+      <p>
+        Import the Handsontable component in your module
+        <pre>
+        <code>import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { AppComponent } from './app.component';
+import { HotTableModule } from '@handsontable/angular';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    HotTableModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+        </code>
+        </pre>
+      </p>
+      <p>
+        Now, you can use the Handsontable component in your HTML files
+        <pre>
+        <code>&lt;hot-table
+  [colHeaders]="true"
+  [rowHeaders]="true"
+  [data]="dataset"&gt;&lt;/hot-table&gt;
+        </code>
+        </pre>
+      </p>
+
+      <h3>License</h3>
+
+      <p>
+          Handsontable for Angular is an open source library released free under the MIT license.
+      </p>
+      <p>
+          <a href="https://github.com/handsontable/angular-handsontable/blob/master/LICENSE" target="_blank">The MIT license</a>
+      </p>
+  </div>
+    <p>
+      <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/wrapper-for-angular-installation.html"
+         class="edit-doc" target="_blank">Help us improve this page</a>
+    </p>
+</div>
