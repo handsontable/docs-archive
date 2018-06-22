@@ -263,6 +263,9 @@
           },
           "wrapper-for-react-examples": {
             "title": "Examples"
+          },
+          "wrapper-for-react-examples-redux": {
+            "title": "Redux implementation"
           }
         }
       },

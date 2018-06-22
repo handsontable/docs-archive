@@ -160,6 +160,8 @@ function ajax(url, method, params, callback) {
         var js = '';
         var html = '';
         var onDomReady = true;
+        var jsPanel = '';
+        var jsWrap = '';
 
         tags.push('</style><!-- Ugly Hack due to jsFiddle issue -->\n');
         //tags.push('<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>\n');
@@ -181,6 +183,8 @@ function ajax(url, method, params, callback) {
             }
             else if (dataFiddle[x].nodeName === 'SCRIPT') {
               js += trimCodeBlock(dataFiddle[x].innerHTML, 2).join('\n') + '\n';
+              jsPanel = dataFiddle[x].getAttribute('data-jsfiddle-panel_js');
+              jsWrap = dataFiddle[x].getAttribute('data-jsfiddle-js_wrap');
             }
             else if (dataFiddle[x].nodeName === 'STYLE') {
               css += trimCodeBlock(dataFiddle[x].innerHTML).join('\n') + '\n';
@@ -257,6 +261,8 @@ function ajax(url, method, params, callback) {
           '<input type="text" name="wrap" value="d">' +
           '<textarea name="html">' + html.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</textarea>' +
           '<textarea name="js">' + js.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</textarea>' +
+          (jsPanel ? '<input name="panel_js" value="' + jsPanel + '">' : '') +
+          (jsWrap ? '<input name="wrap" value="' + jsWrap + '">' : '') +
           '<textarea name="css">' + css.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</textarea>';
 
         form.style.visibility = 'hidden';
@@ -264,8 +270,6 @@ function ajax(url, method, params, callback) {
         document.body.appendChild(form);
         form.submit();
         form.parentNode.removeChild(form);
-
-
       }
     });
   }
