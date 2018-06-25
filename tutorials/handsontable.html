@@ -8,8 +8,7 @@
         ["Chrysler", 2019, "yellow", "black"],
         ["Volvo", 2020, "white", "gray"]
       ];
-    }
-  </script>
+    }</script>
 
   <div class="example-container clearfix">
     <p>This page shows using Handsontable as a cell editor in Handsontable (sometimes
@@ -87,7 +86,7 @@
                 autoColumnSize: true,
                 data: manufacturerData,
                 getValue: function() {
-                	var selection = this.getSelected();
+                	var selection = this.getSelectedLast();
 
                   // Get always manufacture name of clicked row
                   return this.getSourceDataAtRow(selection[0]).name;
@@ -110,8 +109,7 @@
               }
             }
           ]
-        });
-      </script>
+        });</script>
     </div>
   </div>
   <p class="gap-top-xsmall">

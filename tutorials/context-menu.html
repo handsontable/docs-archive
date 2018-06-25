@@ -10,8 +10,7 @@
         ['2020', 10, 11, 12, 13, 15, 16],
         ['2021', 10, 11, 12, 13, 15, 16]
       ];
-    }
-  </script>
+    }</script>
 
   <div class="index-list">
     <ul>
@@ -23,8 +22,8 @@
 
   <div class="example-container clearfix" name="default">
     <h3 id="page-default">Context menu with default options</h3>
-    <p>To run the basic configuration of the Context Menu, just set the contextMenu option to true.</p>
-    <p>From version 0.11, context menu also works for row and column headers. When the context menu for the row
+    <p>To run the basic configuration of the Context Menu, just set the contextMenu option to <code>true</code>.</p>
+    <p>From version <code>0.11</code>, context menu also works for row and column headers. When the context menu for the row
       header is opened, the column options are disabled. Likewise, when the context menu for the column header is opened,
       the row options are disabled</p>
 
@@ -45,42 +44,194 @@
         </button>
       </div>
       <script data-jsfiddle="example1">
-        var
-          example1 = document.getElementById('example1'),
-          settings1,
-          hot1;
-
-        settings1 = {
+        var example1 = document.getElementById('example1');
+        var settings1 = {
           data: getData(),
           rowHeaders: true,
           colHeaders: true,
           contextMenu: true
         };
-        hot1 = new Handsontable(example1, settings1);
-      </script>
+
+        var hot1 = new Handsontable(example1, settings1);</script>
     </div>
   </div>
 
   <div class="example-container clearfix head-gap" name="specific">
     <h3  id="page-specific">Context menu with specific options</h3>
-    <p>You can limit options available in the context menu using contextMenu option as an array of strings:</p>
-    <ul>
-      <li>row_above</li>
-      <li>row_below</li>
-      <li>hsep1</li>
-      <li>col_left</li>
-      <li>col_right</li>
-      <li>hsep2</li>
-      <li>remove_row</li>
-      <li>remove_col</li>
-      <li>hsep3</li>
-      <li>undo</li>
-      <li>redo</li>
-      <li>make_read_only</li>
-      <li>alignment</li>
-      <li>borders (with <a href="/<?js= version ?>/demo-custom-borders.html">Custom Borders</a> turned on)</li>
-      <li>commentsAddEdit, commentsRemove (with <a href="/<?js= version ?>/demo-comments_.html">Comments</a> turned on)</li>
-    </ul>
+    <p>You can limit options available in the context menu using contextMenu option as an array of keys which are strings:</p>
+
+    <table class="static-data features-table">
+      <thead>
+      <tr>
+        <th>Key</th>
+        <th>Purpose</th>
+        <th>Extra conditions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><code>row_above</code></td>
+        <td>Insert row above action</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><code>row_below</code></td>
+        <td>Insert row below action</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><code>col_left</code></td>
+        <td>Insert column left action</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><code>col_right</code></td>
+        <td>Insert column right action</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><code>---------</code></td>
+        <td>Separator</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><code>remove_row</code></td>
+        <td>Remove row(s) actions</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><code>remove_col</code></td>
+        <td>Remove column(s) action</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><code>clear_column</code></td>
+        <td>Clear column values action</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><code>undo</code></td>
+        <td>Undo action</td>
+        <td>Plugin <a href="/pro/<?js= version ?>/UndoRedo.html">UndoRedo</a> turned on</td>
+      </tr>
+      <tr>
+        <td><code>redo</code></td>
+        <td>Redo action</td>
+        <td>Plugin <a href="/pro/<?js= version ?>/UndoRedo.html">UndoRedo</a> turned on</td>
+      </tr>
+      <tr>
+        <td><code>make_read_only</code></td>
+        <td>Make read only action</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><code>alignment</code></td>
+        <td>Alignment actions</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><code>cut</code></td>
+        <td>Cut action</td>
+        <td>Plugin <a href="/pro/<?js= version ?>/demo-copy-paste.html">CopyPaste</a> turned on</td>
+      </tr>
+      <tr>
+        <td><code>copy</code></td>
+        <td>Copy action</td>
+        <td>Plugin <a href="/pro/<?js= version ?>/demo-copy-paste.html">CopyPaste</a> turned on</td>
+      </tr>
+      <tr>
+        <td><code>freeze_column</code></td>
+        <td>Freeze column action</td>
+        <td>Plugin <a href="/pro/<?js= version ?>/demo-freezing.html">ManualColumnFreeze</a> turned on</td>
+      </tr>
+      <tr>
+        <td><code>unfreeze_column</code></td>
+        <td>Unfreeze column action</td>
+        <td>Plugin <a href="/pro/<?js= version ?>/demo-freezing.html">ManualColumnFreeze</a> turned on</td>
+      </tr>
+      <tr>
+        <td><code>borders</code></td>
+        <td>Custom borders actions</td>
+        <td>Plugin <a href="/pro/<?js= version ?>/demo-customizing-borders.html">CustomBorders</a> turned on</td>
+      </tr>
+      <tr>
+        <td><code>commentsAddEdit</code></td>
+        <td>Add and edit comment actions</td>
+        <td>Plugin <a href="/pro/<?js= version ?>/demo-comments_.html">Comments</a> turned on</td>
+      </tr>
+      <tr>
+        <td><code>commentsRemove</code></td>
+        <td>Remove comment action</td>
+        <td>Plugin <a href="/pro/<?js= version ?>/demo-comments_.html">Comments</a> turned on</td>
+      </tr>
+      <tr>
+        <td><code>commentsReadOnly</code></td>
+        <td>Make comment read only action</td>
+        <td>Plugin <a href="/pro/<?js= version ?>/demo-comments_.html">Comments</a> turned on</td>
+      </tr>
+      <tr>
+        <td><code>mergeCells</code></td>
+        <td>Merge and unmerge cells actions</td>
+        <td>Plugin <a href="/pro/<?js= version ?>/demo-merged-cells.html">MergeCells</a> turned on</td>
+      </tr>
+      <tr>
+        <td><code>add_child</code></td>
+        <td>Insert child row action</td>
+        <td>Plugin <a href="/pro/<?js= version ?>/demo-nested-rows.html">NestedRows</a> turned on</td>
+      </tr>
+      <tr>
+        <td><code>detach_from_parent</code></td>
+        <td>Detach from parent row action</td>
+        <td>Plugin <a href="/pro/<?js= version ?>/demo-nested-rows.html">NestedRows</a> turned on</td>
+      </tr>
+      <tr>
+        <td><code>hidden_columns_hide</code></td>
+        <td>Hide column(s) action</td>
+        <td>Plugin <a href="/pro/<?js= version ?>/demo-hiding-columns.html">HiddenColumns</a> turned on</td>
+      </tr>
+      <tr>
+        <td><code>hidden_columns_show</code></td>
+        <td>Show hidden column(s) action</td>
+        <td>Plugin <a href="/pro/<?js= version ?>/demo-hiding-columns.html">HiddenColumns</a> turned on</td>
+      </tr>
+      <tr>
+        <td><code>hidden_rows_hide</code></td>
+        <td>Hide row(s) action</td>
+        <td>Plugin <a href="/pro/<?js= version ?>/demo-hiding-rows.html">HiddenRows</a> turned on</td>
+      </tr>
+      <tr>
+        <td><code>hidden_rows_show</code></td>
+        <td>Show hidden row(s) action</td>
+        <td>Plugin <a href="/pro/<?js= version ?>/demo-hiding-rows.html">HiddenRows</a> turned on</td>
+      </tr>
+
+      <tr>
+        <td><code>filter_by_condition</code></td>
+        <td>First conditions select element</td>
+        <td>Plugin <a href="/pro/<?js= version ?>/demo-filtering.html">Filters</a> turned on</td>
+      </tr>
+      <tr>
+        <td><code>filter_operators</code></td>
+        <td>Operation select element</td>
+        <td>Plugin <a href="/pro/<?js= version ?>/demo-filtering.html">Filters</a> turned on</td>
+      </tr>
+      <tr>
+        <td><code>filter_by_condition2</code></td>
+        <td>Second conditions select element</td>
+        <td>Plugin <a href="/pro/<?js= version ?>/demo-filtering.html">Filters</a> turned on</td>
+      </tr>
+      <tr>
+        <td><code>filter_by_value</code></td>
+        <td>Value select element</td>
+        <td>Plugin <a href="/pro/<?js= version ?>/demo-filtering.html">Filters</a> turned on</td>
+      </tr>
+      <tr>
+        <td><code>filter_by_value</code></td>
+        <td>Action bar element</td>
+        <td>Plugin <a href="/pro/<?js= version ?>/demo-filtering.html">Filters</a> turned on</td>
+      </tr>
+      </tbody>
+    </table>
 
     <div data-jsfiddle="example2">
       <div id="example2" class="hot head-gap"></div>
@@ -99,28 +250,30 @@
         </button>
       </div>
       <script data-jsfiddle="example2">
-        var
-          example2 = document.getElementById('example2'),
-          settings2,
-          hot2;
-
-        settings2 = {
+        var example2 = document.getElementById('example2');
+        var settings2 = {
           data: getData(),
           rowHeaders: true,
           colHeaders: true,
           contextMenu: ['row_above', 'row_below', 'remove_row']
         };
-        hot2 = new Handsontable(example2, settings2);
-      </script>
+
+        var hot2 = new Handsontable(example2, settings2);</script>
     </div>
   </div>
 
   <div class="example-container clearfix head-gap" name="custom">
     <h3 id="page-custom">Context menu with fully custom configuration</h3>
-    <p>For greatest configurability, you use contextMenu option as a configuration object as described in <a
-      href="http://medialize.github.com/jQuery-contextMenu/docs.html" target="_blank">jQuery contextMenu documentation</a>.</p>
-    <p>This example shows how to set <strong>custom text</strong>, how to <strong>disable</strong>
-      "Remove row" and "Insert row above" for the first row and how to add your <strong>own option</strong>.</p>
+    <p>This example shows how to:</p>
+    <p>
+    <ul>
+      <li>add common callback for all options</li>
+      <li>dynamically disable option</li>
+      <li>set custom text for predefined option</li>
+      <li>add own custom option</li>
+      <li>add callback for specific option</li>
+    </ul>
+    </p>
 
     <div data-jsfiddle="example3">
       <div id="example3" class="hot"></div>
@@ -139,50 +292,39 @@
         </button>
       </div>
       <script data-jsfiddle="example3">
-        var
-          example3 = document.getElementById('example3'),
-          settings3,
-          hot3;
-
-        settings3 = {
+        var example3 = document.getElementById('example3');
+        var settings3 = {
           data: getData(),
           rowHeaders: true,
-          colHeaders: true
-        };
-        hot3 = new Handsontable(example3, settings3);
-
-        hot3.updateSettings({
+          colHeaders: true,
           contextMenu: {
-            callback: function (key, options) {
-              if (key === 'about') {
-                setTimeout(function () {
-                  // timeout is used to make sure the menu collapsed before alert is shown
-                  alert("This is a context menu with default and custom options mixed");
-                }, 100);
-              }
+            callback: function (key, selection, clickEvent) {
+              // Common callback for all options
+              console.log(clickEvent);
             },
             items: {
               "row_above": {
                 disabled: function () {
-                  // if first row, disable this option
-                  return hot3.getSelected()[0] === 0;
+                  // Disable option when first row was clicked
+                  return this.getSelectedLast()[0] === 0; // `this` === hot3
                 }
               },
-              "row_below": {},
-              "hsep1": "---------",
-              "remove_row": {
-                name: 'Remove this row, ok?',
-                disabled: function () {
-                  // if first row, disable this option
-                  return hot3.getSelected()[0] === 0
-                }
+              "row_below": {
+                name: 'Click to add row below' // Set custom text for predefined option
               },
-              "hsep2": "---------",
-              "about": {name: 'About this menu'}
+              "about": { // Own custom option
+                name: 'Custom option',
+                callback: function() { // Callback for specific option
+                  setTimeout(function() {
+                    alert('Hello world!'); // Fire alert after menu close (with timeout)
+                  }, 0);
+                }
+              }
             }
           }
-        })
-      </script>
+        };
+
+        var hot3 = new Handsontable(example3, settings3);</script>
     </div>
   </div>
   <p class="gap-top-xsmall">

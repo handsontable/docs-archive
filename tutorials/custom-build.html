@@ -10,22 +10,21 @@
   </div>
 
   <div class="example-container clearfix" name="building">
-
     <p>The build process is using <a href="https://webpack.js.org/" target="_blank">Webpack</a>, <a href="https://babeljs.io/" target="_blank">Babel</a> and
       as well as npm tasks listed in
       <a href="https://github.com/handsontable/handsontable/blob/master/package.json" target="_blank">package.json</a>.
-    During this process, the source located in the <code>src/*</code> directory are transformed into output files:</p>
+    During this process, the source located in the <code>src/*</code> directory are transformed into the output files:</p>
     <ul>
       <li><code>./dist/handsontable.js</code></li>
       <li><code>./dist/handsontable.css</code></li>
       <li><code>./dist/handsontable.full.js</code></li>
-      <li><code>./dist/handsontable.full.css</code> (more info about dist packages
-        <a href="https://github.com/handsontable/handsontable/tree/master/dist" target="_blank">here</a>)
-      </li>
+      <li><code>./dist/handsontable.full.css</code></li>
       <li><code>./dist/handsontable.full.min.js</code></li>
       <li><code>./dist/handsontable.full.min.css</code></li>
+      <li><code>./dist/languages/*</code></li>
     </ul>
-    <p>It is advised that you never modify the above-mentioned files but rather make changes in the <code>src/</code>
+    <p>More info about dist packages can be found <a href="https://github.com/handsontable/handsontable/blob/master/dist/README.md" target="_blank">here</a>.
+      It is advised that you never modify the above-mentioned files but rather make changes in the <code>src/</code>
       directory and then run a proper build. This is especially important if you want to contribute
       your changes back to Handsontable by making a pull request.</p>
   </div>
@@ -37,24 +36,26 @@
       <li>
         <code>npm run test</code> - runs several tasks in this order:
         <ul>
-          <li><code>npm run lint</code> - check if changes applied into source code are valid with our code style (mostly we follow
-            <a href="https://github.com/airbnb/javascript" target="_blank">Airbnb JavaScript</a> code style).</li>
-          <li><code>npm run test:unit</code> - runs test suite in node environment. It uses <a href="https://facebook.github.io/jest/" target="_blank">Jest</a> as a test runner.</li>
-          <li><code>npm run test:walkontable</code> - runs a single build followed by Jasmine test suite and executes in PhantomJS.</li>
-          <li><code>npm run test:e2e</code> - runs a single build followed by Jasmine test suite and by using generated bundle <code>/dist/handsontable.js</code> executes it in PhantomJS.</li>
-          <li><code>npm run test:production</code> - runs a single build followed by Jasmine test suite and by using generated minified bundle <code>/dist/handsontable.full.min.js</code> executes it in PhantomJS.</li>
+          <li><code>npm run lint</code> - check if changes applied into source code are valid with <a href="https://github.com/handsontable/handsontable/blob/master/.eslintrc" target="_blank">our code style</a> (inspired by
+            <a href="https://github.com/airbnb/javascript" target="_blank">Airbnb JavaScript Style</a>).</li>
+          <li><code>npm run test:unit</code> - runs the test suite in node environment. It uses <a href="https://facebook.github.io/jest/" target="_blank">Jest</a> as a test runner.</li>
+          <li><code>npm run test:walkontable</code> - runs a single build followed by Jasmine test suite and executes in <a href="https://github.com/GoogleChrome/puppeteer" target="_blank">Puppeteer</a>.</li>
+          <li><code>npm run test:e2e</code> - runs a single build followed by Jasmine test suite and by using the generated bundle <code>/dist/handsontable.js</code> executes it in Puppeteer.</li>
+          <li><code>npm run test:production</code> - runs a single build followed by Jasmine test suite and by using generated minified bundle <code>/dist/handsontable.full.min.js</code> executes it in Puppeteer.</li>
         </ul>
       </li>
       <li>
-        <code>npm run build</code> - runs a single build but without code quality checking. It internally executes this tasks:
+        <code>npm run build</code> - runs a single build but without the code quality checking. It internally executes these tasks:
         <ul>
-          <li><code>npm run build:commonjs</code> - transpiles files into <code>CommonJS</code> format. These files are published into NPM repository later.</li>
-          <li><code>npm run build:es</code> - transpiles files into <code>import/export</code> format. These files are published into NPM repository later.</li>
-          <li><code>npm run build:umd</code> - creates bundles (<code>dist/handsontable.js</code>, <code>dist/handsontable.css</code>, <code>dist/handsontable.full.js</code> and <code>dist/handsontable.full.css</code>) which are compatible with UMD (Universal Module Definition).</li>
-          <li><code>npm run build:umd.min</code> - creates minified bundles (<code>dist/handsontable.min.js</code>, <code>dist/handsontable.min.css</code>, <code>dist/handsontable.min.full.js</code> and <code>dist/handsontable.min.full.css</code>) which are compatible with UMD (Universal Module Definition).</li>
+          <li><code>npm run build:commonjs</code> - transpiles files into the <code>CommonJS</code> format. These files are published into NPM repository later.</li>
+          <li><code>npm run build:es</code> - transpiles files into the <code>import/export</code> format. These files are published into NPM repository later.</li>
+          <li><code>npm run build:umd</code> - creates the bundles (<code>dist/handsontable.js</code>, <code>dist/handsontable.css</code>, <code>dist/handsontable.full.js</code> and <code>dist/handsontable.full.css</code>) which are compatible with UMD (Universal Module Definition).</li>
+          <li><code>npm run build:umd.min</code> - creates the minified bundles (<code>dist/handsontable.min.js</code>, <code>dist/handsontable.min.css</code>, <code>dist/handsontable.min.full.js</code> and <code>dist/handsontable.min.full.css</code>) which are compatible with UMD (Universal Module Definition).</li>
+          <li><code>npm run build:languages</code> - creates the bundles containing language sets (i.e. <code>dist/languages/de-DE.js</code>, <code>dist/languages/all.js</code>) which are compatible with UMD (Universal Module Definition). More information about languages can be found <a href="/<?js= version ?>/tutorial-internationalization.html">here</a>.
+          <li><code>npm run build:languages.min</code> - creates the minified bundles containing language sets (i.e. <code>dist/languages/de-DE.min.js</code>, <code>dist/languages/all.min.js</code>) which are compatible with UMD (Universal Module Definition). More information about languages can be found <a href="/<?js= version ?>/tutorial-internationalization.html">here</a>.
         </ul>
       </li>
-      <li><code>npm run watch</code> - watches for changes in source directory and runs a build when a change is observed. For faster rebuild when a change is observed watcher triggers task which builds files without minify.</li>
+      <li><code>npm run watch</code> - watches for changes in source directory and runs a build when a change is observed. For faster rebuild when a change is observed, the watcher triggers the file-building task without minify.</li>
       </li>
     </ul>
   </div>
@@ -63,7 +64,7 @@
     <p>To run your own build, follow the below steps:</p>
     <ol>
       <li>Install Node.js (available for Windows, Mac and Linux). This will also install NPM (Node Package Manager) that
-        handles all the dependencies. Handsontable for building and testing requires <strong>Node.js >=5.10.*</strong> and <strong>npm >=3</strong>.
+        handles all the dependencies. Handsontable requires <strong>Node.js >=8</strong> and <strong>npm >=5</strong> for building and testing.
       </li>
       <li>Clone the Handsontable repository on your local disk and go to the directory where you cloned it.</li>
       <li>Run <code>npm install</code> to download all the dependencies defined in <code>package.json</code>. The

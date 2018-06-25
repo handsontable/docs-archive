@@ -2,7 +2,7 @@
 
   <div class="index-list">
     <p>The search plugin provides an easy interface to search data across Handsontable.</p>
-    <p>You should first enable the plugin by setting the <code>search</code> option to <code>search</code>.
+    <p>You should first enable the plugin by setting the <code>search</code> option to <code>true</code>.
       When enabled, <code>searchPlugin</code> exposes a new method <code>query(queryStr)</code>, where <code>queryStr</code>
       is a string to find within the table. By default, the search is case insensitive.</p>
     <p><code>query(queryStr, [callback], [queryMethod])</code> method does 2 things. First of all, it returns an
@@ -115,9 +115,7 @@
 
           console.log(queryResult);
           hot.render();
-        });
-
-      </script>
+        });</script>
     </div>
   </div>
 
@@ -172,8 +170,7 @@
 
           console.log(queryResult);
           hot2.render();
-        });
-      </script>
+        });</script>
     </div>
   </div>
 
@@ -228,8 +225,7 @@
           console.log(queryResult);
 
           hot3.render();
-        });
-      </script>
+        });</script>
     </div>
   </div>
   <div class="example-container clearfix head-gap" name="custom-callback">
@@ -296,8 +292,7 @@
           console.log(queryResult);
           resultCount.innerText = searchResultCount.toString();
           hot4.render();
-        });
-      </script>
+        });</script>
     </div>
   </div>
   <p class="gap-top-xsmall">

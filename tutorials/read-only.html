@@ -8,8 +8,7 @@
         {car: 'Chrysler', year: 2019, chassis: 'yellow', bumper: 'black'},
         {car: 'Volvo', year: 2020, chassis: 'white', bumper: 'gray'}
       ];
-    }
-  </script>
+    }</script>
 
   <div class="index-list">
     <ul>
@@ -18,7 +17,6 @@
     </ul>
   </div>
 
-  <div class="example-container clearfix" name="columns">
     <h3 id="page-columns">Read-only columns</h3>
     <p>In many usage cases, you will need to configure a certain column to be read only. This column will be
       available for keyboard navigation and CTRL+C. Only editing and pasting data will be disabled.</p>
@@ -42,11 +40,8 @@
         </button>
       </div>
       <script data-jsfiddle="example1">
-        var
-          container1 = document.getElementById('example1'),
-          hot1;
-
-        hot1 = new Handsontable(container1, {
+        var container1 = document.getElementById('example1');
+        var hot1 = new Handsontable(container1, {
           data: getCarData(),
           colHeaders: ['Car', 'Year', 'Chassis color', 'Bumper color'],
           columns: [
@@ -64,16 +59,16 @@
               data: 'bumper'
             }
           ]
-        });
-      </script>
+        });</script>
     </div>
   </div>
 
   <div class="example-container clearfix head-gap" name="cells">
     <h3 id="page-cells">Read-only specific cells</h3>
-    <p>This example makes cells that contain the word "Nissan" read only.</p>
-    <p>It forces all cells to be rendered by <code>myReadonlyRenderer</code>, which will decide whether a cell is
-      really read only by checking its <code>readOnly</code> property.</p>
+    <p>This example makes cells that contain the word "Nissan" read only.
+      It forces all cells to be processed by the <code>cells</code>
+      function which will decide whether a cell meta should have set <code>readOnly</code> property.
+    </p>
 
     <div data-jsfiddle="example2">
       <div id="example2" class="hot"></div>
@@ -92,27 +87,24 @@
         </button>
       </div>
       <script data-jsfiddle="example2">
-        var
-          container2 = document.getElementById('example2'),
-          hot2;
-
-        hot2 = new Handsontable(container2, {
+        var container2 = document.getElementById('example2');
+        var hot2 = new Handsontable(container2, {
           data: getCarData(),
           colHeaders: ['Car', 'Year', 'Chassis color', 'Bumper color']
 
         });
+
         hot2.updateSettings({
-          cells: function (row, col, prop) {
+          cells: function (row, col) {
             var cellProperties = {};
 
-            if (hot2.getSourceData()[row][prop] === 'Nissan') {
+            if (hot2.getData()[row][col] === 'Nissan') {
               cellProperties.readOnly = true;
             }
 
             return cellProperties;
           }
-        })
-      </script>
+        });</script>
     </div>
   </div>
   <p class="gap-top-xsmall">
