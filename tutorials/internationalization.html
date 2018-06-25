@@ -32,7 +32,7 @@
     <h3 id="loading-language-files">Loading the prepared language files</h3>
 
     <p>To properly use the internationalization feature, you'll need to load the language sets. It's important,
-      that they're included after the Handsontable files. You can do it by getting the necessary files:
+      that they're included after the Handsontable files. You can do it by getting the necessary files (they were created using <a href="https://github.com/umdjs/umd">UMD standard</a>):
     </p>
 
     <ol>
@@ -46,8 +46,8 @@
       </li>
 
       <li>
-        <p>from the <code>/languages</code> folder located in the root of the project, to be used by module systems (<code>CommonJS</code>, <code>ESM</code> and <code>AMD</code>);
-          the example below shows how to use it with ESM.</p>
+        <p>from the <code>/languages</code> folder located in the root of the project, to be used by module systems;
+          the example below shows how to use it with ECMAScript 6 (you will need a bundler or TypeScript).</p>
 
         <pre><code class="lang-js">import Handsontable from 'handsontable';
 import 'handsontable/languages/pl-PL';</code></pre>
