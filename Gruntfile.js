@@ -88,44 +88,44 @@ module.exports = function (grunt) {
           {
             expand: true,
             cwd: 'node_modules/numbro',
-            dest: 'generated/bower_components/numbro',
+            dest: 'generated/components/numbro',
             src: ['**'],
           },
           {
             expand: true,
             cwd: 'node_modules/axios',
             src: ['dist/axios.min.js'],
-            dest: 'generated/bower_components/axios/',
+            dest: 'generated/components/axios/',
           },
           {
             expand: true,
             cwd: 'node_modules/fastclick',
             src: ['lib/fastclick.js'],
-            dest: 'generated/bower_components/fastclick/',
+            dest: 'generated/components/fastclick/',
           },
           {
             expand: true,
             cwd: 'node_modules/handsontable',
             src: ['dist/handsontable.*', 'dist/languages/*.js'],
-            dest: 'generated/bower_components/handsontable/',
+            dest: 'generated/components/handsontable/',
           },
           {
             expand: true,
             cwd: 'node_modules/font-awesome',
             src: ['css/**', 'fonts/**'],
-            dest: 'generated/bower_components/font-awesome/',
+            dest: 'generated/components/font-awesome/',
           },
           {
             expand: true,
             cwd: 'node_modules/highlightjs',
-            dest: 'generated/bower_components/highlightjs',
+            dest: 'generated/components/highlightjs',
             src: ['**'],
           },
           {
             expand: true,
             cwd: 'node_modules/promise-polyfill',
             src: ['dist/polyfill.min.js'],
-            dest: 'generated/bower_components/promise-polyfill/',
+            dest: 'generated/components/promise-polyfill/',
           },
         ]
       }
