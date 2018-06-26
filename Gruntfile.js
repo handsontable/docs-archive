@@ -106,7 +106,7 @@ module.exports = function (grunt) {
           {
             expand: true,
             cwd: 'node_modules/handsontable',
-            src: ['dist/handsontable.*', 'dist/handsontable/languages/*.js'],
+            src: ['dist/handsontable.*', 'dist/languages/*.js'],
             dest: 'generated/bower_components/handsontable/',
           },
           {
