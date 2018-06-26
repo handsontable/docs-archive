@@ -54,9 +54,6 @@ module.exports = function (shipit) {
       return shipit.remote('cd ' + path + ' && cp ../../../web.env .env.json');
 
     }).then(function() {
-      return shipit.remote('cd ' + path + ' && bower install --config.interactive=false -F');
-
-    }).then(function() {
       return shipit.remote('cd ' + path + ' && grunt update-hot --hot-version=' + gitInfo.branch);
 
     }).then(function() {

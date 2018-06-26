@@ -83,38 +83,51 @@ module.exports = function (grunt) {
             dest: 'generated',
             src: [
               'static/**'
-            ]
+            ],
           },
           {
             expand: true,
             cwd: 'node_modules/numbro',
             dest: 'generated/bower_components/numbro',
-            src: ['**']
-          }
+            src: ['**'],
+          },
+          {
+            expand: true,
+            cwd: 'node_modules/axios',
+            src: ['dist/axios.min.js'],
+            dest: 'generated/bower_components/axios/',
+          },
+          {
+            expand: true,
+            cwd: 'node_modules/fastclick',
+            src: ['lib/fastclick.js'],
+            dest: 'generated/bower_components/fastclick/',
+          },
+          {
+            expand: true,
+            cwd: 'node_modules/handsontable',
+            src: ['dist/handsontable.*'],
+            dest: 'generated/bower_components/handsontable/',
+          },
+          {
+            expand: true,
+            cwd: 'node_modules/font-awesome',
+            src: ['css/**', 'fonts/**'],
+            dest: 'generated/bower_components/font-awesome/',
+          },
+          {
+            expand: true,
+            cwd: 'node_modules/highlightjs',
+            dest: 'generated/bower_components/highlightjs',
+            src: ['**'],
+          },
+          {
+            expand: true,
+            cwd: 'node_modules/promise-polyfill',
+            src: ['dist/polyfill.min.js'],
+            dest: 'generated/bower_components/promise-polyfill/',
+          },
         ]
-      }
-    },
-
-    bowercopy: {
-      options: {
-        srcPrefix: 'bower_components'
-      },
-      scripts: {
-        options: {
-          destPrefix: 'generated/bower_components'
-        },
-        files: {
-          'axios': 'axios/dist/axios.min.js',
-          'fastclick': 'fastclick',
-          'handsontable': 'handsontable',
-          'jquery/jquery.min.js': 'jquery/dist/jquery.min.js',
-          'modernizr': 'modernizr',
-          'pikaday': 'pikaday',
-          "font-awesome": "font-awesome",
-          "highlightjs": "highlightjs",
-          "moment": "moment",
-          "promise-polyfill": "promise-polyfill",
-        }
       }
     },
 
@@ -250,7 +263,7 @@ module.exports = function (grunt) {
     var latestVersion;
 
     gitHelper.getHotLatestRelease().then(function(info) {
-      grunt.task.run('sass', 'copy', 'bowercopy');
+      grunt.task.run('sass', 'copy');
 
       hotPackage = grunt.file.readJSON(HOT_SRC_PATH + '/package.json');
       version = argv['hot-version'] || hotPackage.version;
@@ -267,7 +280,6 @@ module.exports = function (grunt) {
     });
   });
 
-  grunt.loadNpmTasks('grunt-bowercopy');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-copy');
