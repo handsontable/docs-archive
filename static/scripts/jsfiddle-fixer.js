@@ -44,6 +44,8 @@
       ns = 'ReactDOM';
     } else if (key === '@handsontable/react' || key === '@handsontable-pro/react') {
       ns = 'Handsontable.react.HotTable';
+    } else if (key === '@handsontable/vue' || key === '@handsontable-pro/vue') {
+      ns = 'HotTable';
     } else if (key === 'handsontable-pro') {
       ns = 'Handsontable';
     }
