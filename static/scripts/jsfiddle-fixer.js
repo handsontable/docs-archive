@@ -85,6 +85,14 @@
       moduleToReturn = moduleToReturn[n];
     });
 
+    if (typeof moduleToReturn === 'undefined') {
+      moduleToReturn = window.exports;
+
+      ns.split('.').forEach(function(n) {
+        moduleToReturn = moduleToReturn[n];
+      });
+    }
+
     return moduleToReturn;
   }
 }())
