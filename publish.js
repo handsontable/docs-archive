@@ -7,7 +7,19 @@ var template = require('jsdoc/template'),
   handle = require('jsdoc/util/error').handle,
   helper = require('jsdoc/util/templateHelper'),
   _ = require('underscore'),
-  htmlsafe = helper.htmlsafe,
+  // htmlsafe = helper.htmlsafe,
+  htmlsafe = function(text) {
+    if (typeof text !== 'string') {
+      return text;
+    }
+
+    return text
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  },
   linkto = helper.linkto,
   resolveAuthorLinks = helper.resolveAuthorLinks,
   scopeToPunc = helper.scopeToPunc,
@@ -90,6 +102,11 @@ function addSignatureReturns(f) {
   f.signature = '<span class="signature">'+(f.signature || '') + '</span>';
 
   if (returnTypes.length) {
+    // Fix unescaped last html entity in Array.<*> types
+    returnTypes = returnTypes.map(function(type) {
+      return /^Array.+\>$/.test(type) ? type.replace(/\>$/, '&gt;') : type;
+    });
+
     f.signature += '<span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">'
         + (returnTypes.length ? '{' + returnTypes.join('|') + '}' : '') + '</span>';
   }

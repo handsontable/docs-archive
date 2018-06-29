@@ -65,6 +65,20 @@
     }
   }
   h5 {
+    &.method-parameters {
+      padding-bottom: 0px;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+    &.method-returns, &.method-fires, &.method-example, &.member-example {
+      font-size: 16px;
+      font-weight: 500;
+    }
+    &.method-fires, &.method-example, &.member-example {
+      margin-bottom: 4px;
+    }
+
     span.returnType {
       margin-left: 3px;
       background-color: transparent!important;
@@ -126,6 +140,7 @@
     top: 27px;
     right: 0;
     font-size: 11px;
+    z-index: 10;
 
     a {
       font-size: 11px;

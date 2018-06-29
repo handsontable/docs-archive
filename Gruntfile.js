@@ -56,6 +56,7 @@ module.exports = function (grunt) {
           '!' + HOT_SRC_PATH + '/src/**/*.e2e.js',
           '!' + HOT_SRC_PATH + '/src/**/*.unit.js',
           '!' + HOT_SRC_PATH + '/src/3rdparty/walkontable/**/*.js',
+          HOT_SRC_PATH + '/src/3rdparty/walkontable/src/cell/*.js',
         ],
         jsdoc: 'node_modules/.bin/' + (/^win/.test(process.platform) ? 'jsdoc.cmd' : 'jsdoc'),
         options: {

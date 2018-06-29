@@ -84,7 +84,8 @@ returns.forEach(function (ret, i) {
   </table>
 <?js } else { ?>
   <?js if (returns[0].type) { ?>
-    <span class="type-signature returnType">{<?js= returns[0].type.names.join('|') ?>}</span>
+    <?js var self = this; ?>
+    <span class="type-signature returnType">{<?js= returns[0].type.names.map(function(name) { return self.htmlsafe(name) }).join('|') ?>}</span>
     <span class="return-description"><?js= returns[0].description ?></span>
   <?js } else { ?>
     <span class="type-signature returnType">{undefined}</span>

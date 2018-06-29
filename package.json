@@ -31,7 +31,7 @@
     "grunt-sitemap": "1.2.1",
     "handsontable": "4.0.0",
     "highlightjs": "^9.10.0",
-    "jsdoc": "3.4.0",
+    "jsdoc": "^3.5.5",
     "minimist": "^1.1.1",
     "numbro": "^2.1.0",
     "promise-polyfill": "^8.0.0",

@@ -16,8 +16,7 @@
   <?js } ?>
 
   <?js if (data.since) {?>
-    <dt class="tag-since">Since:</dt>
-    <dd class="tag-since"><ul class="dummy"><li><?js= since ?></dd>
+    <dt class="tag-since">Since: <?js= since ?></dt>
   <?js } ?>
 
   <?js if (data.deprecated) { ?>
@@ -51,8 +50,7 @@
   <?js } ?>
 
   <?js if (data.defaultvalue) {?>
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li><?js= data.defaultvalue ?></li></ul></dd>
+    <dt class="tag-default">Default Value: <?js= data.defaultvalue ?></dt>
   <?js } ?>
 
   <?js if (data.tutorials && tutorials.length) { ?>
@@ -72,17 +70,6 @@
       <ul>
         <?js see.forEach(function(s) { ?>
           <li><?js= self.linkto(s) ?></li>
-        <?js }); ?>
-      </ul>
-    </dd>
-  <?js } ?>
-
-  <?js if (data.todo && todo.length) { ?>
-    <dt class="tag-todo">TODO</dt>
-    <dd class="tag-todo">
-      <ul>
-        <?js todo.forEach(function(t) { ?>
-          <li><?js= t ?></li>
         <?js }); ?>
       </ul>
     </dd>
