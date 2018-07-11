@@ -1,6 +1,27 @@
 <div class="static-content">
 
   <div class="example-container clearfix">
+    <h3>5.0.0</h3>
+    <p>Released on 11th of July, 2018</p>
+    <strong>Breaking changes</strong>
+    <ul>
+      <li>Refactored the Custom Borders plugin. The API method was changed - added new methods such as <code>getBorders</code>, <code>setBorders</code> and <code>clearBorders</code>. The initial object configuration has been intact, it is still compatible with the previous releases. (<a href="https://github.com/handsontable/handsontable/issues/5017" target="_blank">#5017</a>)</li>
+      <li>Improved colors, cursor style and sizes of some parts of Handsontable. (<a href="https://github.com/handsontable/handsontable/issues/5170" target="_blank">#5170</a>)</li>
+    </ul>
+    <br>
+    <strong>Changes</strong>
+    <ul>
+      <li>Fixed an issue related with a lack of <code>afterSelectionEnd</code> hook being fired when <code>contextmenu</code> event is called for a cell. This fix additionally introduces two new hooks (<code>afterOnCellContextMenu</code>, <code>beforeOnCellContextMenu</code>). (<a href="https://github.com/handsontable/handsontable/issues/5201" target="_blank">#5201</a>, <a href="https://github.com/handsontable/handsontable/issues/5232" target="_blank">#5232</a>)</li>
+      <li>Fixed an issue related with minifying CSS files where the <code>z-index</code> property was incorrectly modified by <code>OptimizeCssAssetsPlugin</code> webpack plugin. (<a href="https://github.com/handsontable/handsontable/issues/5230" target="_blank">#5230</a>)</li>
+      <li>Cleaned up and improved the code readability of the <code>ColumnSorting</code> plugin. (<a href="https://github.com/handsontable/handsontable/issues/5228" target="_blank">#5228</a>) </li>
+      <li>Fixed sort indicator which didn't update after moving columns. (<a href="https://github.com/handsontable/handsontable/issues/3900" target="_blank">#3900</a>)</li>
+      <li>Updated TypeScript definition file. (<a href="https://github.com/handsontable/handsontable/issues/5211" target="_blank">#5211</a>)</li>
+    </ul>
+
+    <p>The corresponding Handsontable Pro version is <a href="https://github.com/handsontable/handsontable-pro/releases/5.0.0" target="_blank">5.0.0</a>.</p>
+  </div>
+
+  <div class="example-container clearfix">
     <h3>4.0.0</h3>
     <p>Released on 13th of June, 2018</p>
     <strong>Breaking changes</strong>
