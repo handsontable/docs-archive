@@ -2,8 +2,8 @@ $(function () {
   jQuery.fx.off = true;
 
   // Search Items
-  $('#search').on('keyup', onSearchKeyUp);
-  document.querySelector('#search').focus();
+  $('#search-form').on('keyup', onSearchKeyUp);
+  document.querySelector('#search-form').focus();
 
   // Toggle when click an item element
   $('.navigation').on('click', '.title', function (event) {
