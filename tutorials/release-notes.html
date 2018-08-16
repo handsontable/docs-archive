@@ -1,6 +1,38 @@
 <div class="static-content">
 
   <div class="example-container clearfix">
+    <h3>5.0.1</h3>
+    <p>Released on 16th of August, 2018</p>
+    <strong>Changes</strong>
+    <ul>
+      <li>Fixed a bug, where the <code>Cmd + F</code> / <code>Ctrl + F</code> key combination enabled the multiple selection mode. (<a href="https://github.com/handsontable/handsontable/issues/5302" target="_blank">#5302</a>)</li>
+      <li>Added the <code>getRegistered</code> method to the typescript definition file. (<a href="https://github.com/handsontable/handsontable/issues/5262" target="_blank">#5262</a>)</li>
+      <li>Fixed a bug, where hiding the custom border through the <code>setBorders</code> method did not work. (<a href="https://github.com/handsontable/handsontable/issues/5240" target="_blank">#5240</a>)</li>
+      <li>Fixed a problem with opening the <code>handsontable</code>-typed cell multiple times. (<a href="https://github.com/handsontable/handsontable/issues/5195" target="_blank">#5195</a>)</li>
+      <li>Fixed a problem with inconsistent row height in certain situations. (<a href="https://github.com/handsontable/handsontable/issues/4888" target="_blank">#4888</a>)</li>
+      <li>Fixed a bug with autofill border overlapping the selection border. (<a href="https://github.com/handsontable/handsontable/issues/4810" target="_blank">#4810</a>)</li>
+      <li>Fixed a bug, where pressing the down arrow would not scroll the table, when the row header was selected. (<a href="https://github.com/handsontable/handsontable/issues/3560" target="_blank">#3560</a>)</li>
+      <li>Fixed a problem with calculating the column with after selecting a in-cell checkbox. (<a href="https://github.com/handsontable/handsontable/issues/3437" target="_blank">#3437</a>)</li>
+      <li>Corrected all <i>ESLint</i> warnings regarding the following rules:
+        <ul>
+          <li><i>no-var</i> (<a href="https://github.com/handsontable/handsontable/issues/5317" target="_blank">#5317</a>)</li>
+          <li><i>prefer-rest-params</i> (<a href="https://github.com/handsontable/handsontable/issues/5316" target="_blank">#5316</a>)</li>
+          <li><i>no-shadow</i> (<a href="https://github.com/handsontable/handsontable/issues/5315" target="_blank">#5315</a>)</li>
+          <li><i>prefer-spread</i> (<a href="https://github.com/handsontable/handsontable/issues/5314" target="_blank">#5314</a>)</li>
+          <li><i>eqeqeq</i> (<a href="https://github.com/handsontable/handsontable/issues/5313" target="_blank">#5313</a>)</li>
+          <li><i>object-shorthand</i> (<a href="https://github.com/handsontable/handsontable/issues/5312" target="_blank">#5312</a>)</li>
+          <li><i>max-depth</i> (<a href="https://github.com/handsontable/handsontable/issues/5310" target="_blank">#5310</a>)</li>
+          <li><i>prefer-arrow-callback</i> (<a href="https://github.com/handsontable/handsontable/issues/5309" target="_blank">#5309</a>)</li>
+          <li><i>prefer-template</i> (<a href="https://github.com/handsontable/handsontable/issues/5306" target="_blank">#5306</a>)</li>
+          <li><i>no-unused-vars</i> (<a href="https://github.com/handsontable/handsontable/issues/5304" target="_blank">#5304</a>)</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p>The corresponding Handsontable Pro version is <a href="https://github.com/handsontable/handsontable-pro/releases/5.0.1" target="_blank">5.0.1</a>.</p>
+  </div>
+
+  <div class="example-container clearfix">
     <h3>5.0.0</h3>
     <p>Released on 11th of July, 2018</p>
     <strong>Breaking changes</strong>
@@ -15,6 +47,7 @@
       <li>Fixed an issue related with minifying CSS files where the <code>z-index</code> property was incorrectly modified by <code>OptimizeCssAssetsPlugin</code> webpack plugin. (<a href="https://github.com/handsontable/handsontable/issues/5230" target="_blank">#5230</a>)</li>
       <li>Cleaned up and improved the code readability of the <code>ColumnSorting</code> plugin. (<a href="https://github.com/handsontable/handsontable/issues/5228" target="_blank">#5228</a>) </li>
       <li>Fixed sort indicator which didn't update after moving columns. (<a href="https://github.com/handsontable/handsontable/issues/3900" target="_blank">#3900</a>)</li>
+      <li>Fixed a problem with Autocomplete's arrow button being rendered in a wrong position. (<a href="https://github.com/handsontable/handsontable/issues/5124" target="_blank">#5124</a>)</li>
       <li>Updated TypeScript definition file. (<a href="https://github.com/handsontable/handsontable/issues/5211" target="_blank">#5211</a>)</li>
     </ul>
 
