@@ -258,7 +258,7 @@ function ajax(url, method, params, callback) {
         css = css + '\n' + tags.join('\n');
 
         var form = document.createElement('FORM');
-        form.action = 'http://jsfiddle.net/api/post/library/pure/';
+        form.action = 'https://jsfiddle.net/api/post/library/pure/';
         form.method = 'POST';
         form.target = '_blank';
         form.innerHTML = '<input type="text" name="title" value="Handsontable example">' +
