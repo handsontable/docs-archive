@@ -153,8 +153,6 @@ function ajax(url, method, params, callback) {
         }
         keys.push(runfiddle);
 
-        var baseUrl = location.protocol + '//' + location.host;
-
         var tags = [];
         var css = '';
         var js = '';
@@ -228,8 +226,10 @@ function ajax(url, method, params, callback) {
               tag = tag.replace(' data-jsfiddle="' + keys[i] + '"', '');
 
               if (tag.indexOf('href="http') === -1 && tag.indexOf('href="//') && tag.indexOf('src="http') === -1 && tag.indexOf('src="//')) {
-                tag = tag.replace('href="', 'href="' + baseUrl);
-                tag = tag.replace('src="', 'src="' + baseUrl);
+                var url = buildURL(tag);
+
+                tag = tag.replace(/href="(.*?)"/, 'href="' + url + '"');
+                tag = tag.replace(/src="(.*?)"/, 'src="' + url + '"');
                 tag = tag.replace('demo/../', '');
 
                 if (this.nodeName === 'LINK' && this.rel === "import") {
@@ -276,6 +276,23 @@ function ajax(url, method, params, callback) {
         form.parentNode.removeChild(form);
       }
     });
+  }
+
+  function buildURL(string) {
+    var regex = /src="(.*?)"|href="(.*?)"/;
+    var link = regex.exec(string)[1] || regex.exec(string)[2];
+    var split = link.split('/');
+    var filtered = split.filter(Boolean);
+    var baseUrl = 'https://cdn.jsdelivr.net/npm/handsontable';
+
+    if (filtered.length === 6) {
+      baseUrl += `-${filtered[0]}@${filtered[1]}/${filtered[filtered.length - 2]}/${filtered[filtered.length - 1]}`;
+
+    } else {
+      baseUrl += `@${filtered[0]}/${filtered[filtered.length - 2]}/${filtered[filtered.length - 1]}`;
+    }
+
+    return baseUrl;
   }
 
   function addLineIndicators(code) {

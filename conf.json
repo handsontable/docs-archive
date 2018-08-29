@@ -8,6 +8,9 @@
     "plugins/utilTag",
     "plugins/proTag"
   ],
+  "source": {
+    "excludePattern": "helpers/data.js"
+  },
   "templates": {
     "cleverLinks": true,
     "monospaceLinks": true,
