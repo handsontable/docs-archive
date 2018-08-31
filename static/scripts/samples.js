@@ -285,8 +285,8 @@ function ajax(url, method, params, callback) {
 
     baseUrl += ((link.indexOf('pro') === -1) ? '@' : '-pro@') + hotVersion +
       ((link.indexOf('css') === -1) ?
-      ((link.indexOf('languages') === -1) ? '/dist/handsontable.full.js' : '/dist/languages/all.js')
-      : '/dist/handsontable.full.css');
+      ((link.indexOf('languages') === -1) ? '/dist/handsontable.full.min.js' : '/dist/languages/all.js')
+      : '/dist/handsontable.full.min.css');
 
     return baseUrl;
   }
