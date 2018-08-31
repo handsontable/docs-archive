@@ -82,6 +82,7 @@ $(function () {
   });
 
   updateNav(true);
+  hideJSFiddleButton();
 
   var breadcrumbs = buildBreadcrumbs();
   $('div.breadcrumbs').eq(0).html(breadcrumbs);
@@ -184,6 +185,14 @@ $(function () {
   }
   // end
 });
+
+function hideJSFiddleButton() {
+  var button = $('.jsFiddleLink');
+
+  if (isIE()) {
+    button.style.display = 'none';
+  }
+}
 
 function updateNav(scroll) {
   // Show an item related a current documentation automatically
