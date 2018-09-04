@@ -1,5 +1,7 @@
 function isIE() { return ((navigator.appName == 'Microsoft Internet Explorer') || ((navigator.appName == 'Netscape') && (new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})").exec(navigator.userAgent) != null))); }
 
+function isEdge() { return /Edge/.test(navigator.userAgent) }
+
 (function() {
   if (isIE()) {
     return;
@@ -187,10 +189,15 @@ $(function () {
 });
 
 function hideJSFiddleButton() {
-  var button = $('.jsFiddleLink');
+  var buttons = $('.jsFiddleLink');
 
-  if (isIE()) {
-    button.style.display = 'none';
+  for (var i = 0, len = buttons.length; i < len; i += 1) {
+    var button = buttons[i];
+
+    if (isIE() || isEdge()) {
+      console.log(button);
+      button.style.display = 'none';
+    }
   }
 }
 
