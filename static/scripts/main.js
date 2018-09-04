@@ -195,7 +195,6 @@ function hideJSFiddleButton() {
     var button = buttons[i];
 
     if (isIE() || isEdge()) {
-      console.log(button);
       button.style.display = 'none';
     }
   }
