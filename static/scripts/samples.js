@@ -278,17 +278,22 @@ function ajax(url, method, params, callback) {
     });
   }
 
-  function buildURL(string) {
-    var regex = /src="(.*?)"|href="(.*?)"/;
-    var link = regex.exec(string)[1] || regex.exec(string)[2];
-    var baseUrl = 'https://cdn.jsdelivr.net/npm/handsontable';
+  function buildURL(tag) {
+    var urlMatch = tag.match(/(href|src)="(.*)"/);
+    var hotPackageMatch = tag.match(/handsontable(-pro)?\/dist\/(.*)"/);
+    var url = '';
 
-    baseUrl += ((link.indexOf('pro') === -1) ? '@' : '-pro@') + hotVersion +
-      ((link.indexOf('css') === -1) ?
-      ((link.indexOf('languages') === -1) ? '/dist/handsontable.full.min.js' : '/dist/languages/all.js')
-      : '/dist/handsontable.full.min.css');
+    if (hotPackageMatch) {
+      var proPostfix = hotPackageMatch[1] || '';
+      var postDistUrl = hotPackageMatch[2];
 
-    return baseUrl;
+      url += 'https://cdn.jsdelivr.net/npm/handsontable' + proPostfix + '@' + hotVersion + '/dist/' + postDistUrl;
+
+    } else {
+      url += 'https://docs.handsontable.com' + urlMatch[2];
+    }
+
+    return url;
   }
 
   function addLineIndicators(code) {
