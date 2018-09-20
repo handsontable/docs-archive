@@ -1,0 +1,78 @@
+<div class="static-content">
+  <script data-jsfiddle="common" src="/<?js= version ?>/components/handsontable/dist/languages/all.js"></script>
+
+  <div class="example-container clearfix">
+    <div>
+      <p>An implementation of the <code>@handsontable/vue</code> component with an option to change the Context Menu language.<br>
+        Select a language from the selector above the table and open the Context Menu to see the result.<br><br>
+      Note, that the <code>language</code> property is bound to the component separately (by using <code>:language="language"</code>), but it could be
+      included in the <code>:settings</code> prop just as well.</p>
+    </div>
+    <div>
+      <div id="example1" class="hot">
+        <label for="languages">Select language: </label><select v-on:change="updateHotLanguage" id="languages"></select><br/><br/>
+        <HotTable :id="id" :language="language" :settings="hotSettings"></HotTable>
+      </div>
+    </div>
+    <script type="text/x-hot-html" data-jsfiddle="example1">
+      <div id="example1" class="hot">
+        <label for="languages">Select language: </label><select v-on:change="updateHotLanguage" id="languages"></select><br/><br/>
+        <HotTable :id="id" :language="language" :settings="hotSettings"></HotTable>
+      </div>
+    </script>
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example1">
+          <i class="fa fa-jsfiddle"></i>
+          Edit
+        </button>
+      </div>
+      <script type="text/babel" data-jsfiddle="example1" data-jsfiddle-panel_js="3">
+      import Vue from 'vue';
+      import { HotTable } from '@handsontable/vue';
+      import Handsontable from 'handsontable';
+
+      new Vue({
+        el: '#example1',
+        data: {
+          id: 'test-hot',
+          hotSettings: {
+            data: Handsontable.helper.createSpreadsheetData(5, 10),
+            colHeaders: true,
+            rowHeaders: true,
+            contextMenu: true
+          },
+          language: 'en-US'
+        },
+        mounted: function() {
+          this.getAllLanguageOptions();
+        },
+        methods: {
+          getAllLanguageOptions: function() {
+            const allDictionaries = Handsontable.languages.getLanguagesDictionaries();
+            const langSelect = document.querySelector('#languages');
+            langSelect.innerHTML = '';
+
+            for (let language of allDictionaries) {
+              langSelect.innerHTML += `<option value="${language.languageCode}">${language.languageCode}</option>`
+            }
+          },
+          updateHotLanguage: function(event) {
+            this.language = event.target.value;
+          }
+        },
+        components: {
+          'hottable': Handsontable.vue.HotTable
+        }
+      });</script>
+    </div>
+  </div>
+    <p>
+      <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/wrapper-for-vue-language-change-example.html"
+         class="edit-doc" target="_blank">Help us improve this page</a>
+    </p>
+</div>
+<script data-jsfiddle="common" src="/<?js= env.opts.query.version ?>/scripts/jsfiddle-fixer.js"></script>
+<script data-jsfiddle="common" src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+<script data-jsfiddle="common" src="https://cdn.jsdelivr.net/npm/@handsontable/vue@3.0.0/dist/vue-handsontable.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.0.0-beta.51/babel.min.js"></script>

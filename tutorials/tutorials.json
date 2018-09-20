@@ -282,8 +282,26 @@
           "wrapper-for-vue-installation": {
             "title": "Installation"
           },
-          "wrapper-for-vue-examples": {
-            "title": "Examples"
+          "wrapper-for-vue-simple-example": {
+            "title": "Basic example"
+          },
+          "wrapper-for-vue-custom-context-menu-example": {
+            "title": "Custom Context Menu example"
+          },
+          "wrapper-for-vue-custom-editor-example": {
+            "title": "Custom editor example"
+          },
+          "wrapper-for-vue-custom-renderer-example": {
+            "title": "Custom renderer example"
+          },
+          "wrapper-for-vue-language-change-example": {
+            "title": "Language change example"
+          },
+          "wrapper-for-vue-vuex-example": {
+            "title": "Vuex example"
+          },
+          "wrapper-for-vue-hot-reference": {
+            "title": "Referencing the Handsontable instance"
           }
         }
       }

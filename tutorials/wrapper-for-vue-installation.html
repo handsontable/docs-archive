@@ -25,7 +25,7 @@
 &lt;/template&gt;
 
 &lt;script&gt;
-  import HotTable from '@handsontable/vue';
+  import { HotTable } from '@handsontable/vue';
   import Vue from 'vue';
 
   export default {
@@ -42,7 +42,7 @@
       }
     },
     components: {
-      HotTable
+      'hottable': Handsontable.vue.HotTable
     }
   }
 &lt;/script&gt;
