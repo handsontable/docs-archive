@@ -13,7 +13,7 @@
           <li>The <code>sortFunction</code> config item was renamed to <code>compareFunctionFactory</code> and converted to a factory returning a compare function (and moved into the plugin configuration scope, as mentioned above).</li>
           <li>The <code>sortIndicator</code> config item was renamed to <code>indicator</code> (and moved into the plugin configuration scope, as mentioned above).</li>
           <li><div>Comparator function structure changed:
-            <code>
+            <code style="white-space: pre;">
               // Was:
               function numericSort(sortOrder, columnMeta) {
               return function ([, value], [, nextValue]) {
@@ -24,7 +24,7 @@
             </code>
           </div></li>
           <li><div>The <code>sort</code> method arguments were reorganized, so it accepts the sorting configuration as an object:
-            <code>
+            <code style="white-space: pre;">
               hot.getPlugin('columnSorting').sort({ column: 0, sortOrder: 'asc' });
             </code>
           </div></li>
