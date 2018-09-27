@@ -1,6 +1,56 @@
 <div class="static-content">
 
   <div class="example-container clearfix">
+    <h3>6.0.0</h3>
+    <p>Released on 27th of September, 2018</p>
+    <p>This release contains changes to the <code>ColumnSorting</code> plugin exclusively. Detailed information about the changes can be found in the description of pull request <a href="https://github.com/handsontable/handsontable/issues/5411" target="_blank">#5411</a> and in <a href="https://docs.handsontable.com/pro/6.0.0/demo-sorting.html" target="_blank">our documentation</a>.</p>
+    <strong>Breaking changes</strong>
+    <ul>
+      <li>We refactored and rewrote parts of the <code>ColumnSorting</code> plugin in order for it to work seamlessly with the new <code>MultiColumnSorting</code> plugin for Handsontable Pro. This allowed us to fix multiple problems that the previous version of the plugin had. <br>This introduced some backward-incompatible changes:
+        <ul>
+          <li>The configuration items (such as <code>sortIndicator</code>, <code>sortEmptyCells</code>, <code>sortFunction</code>) for the plugin were moved into the scope of the plugin config.</li>
+          <li>The initial plugin configuration is stored under the <code>initialConfig</code> property in the plugin configuration.</li>
+          <li>The <code>sortFunction</code> config item was renamed to <code>compareFunctionFactory</code> and converted to a factory returning a compare function (and moved into the plugin configuration scope, as mentioned above).</li>
+          <li>The <code>sortIndicator</code> config item was renamed to <code>indicator</code> (and moved into the plugin configuration scope, as mentioned above).</li>
+          <li><div>Comparator function structure changed:
+            <code>
+              // Was:
+              function numericSort(sortOrder, columnMeta) {
+              return function ([, value], [, nextValue]) {
+
+              // Is:
+              function numericSort(sortOrder, columnMeta) {
+              return function (value, nextValue) {
+            </code>
+          </div></li>
+          <li><div>The <code>sort</code> method arguments were reorganized, so it accepts the sorting configuration as an object:
+            <code>
+              hot.getPlugin('columnSorting').sort({ column: 0, sortOrder: 'asc' });
+            </code>
+          </div></li>
+          <li>Some public methods were rewritten, renamed and set as private, namely:
+            <ul>
+              <li><code>getNextOrderState</code></li>
+              <li><code>loadSortingState</code></li>
+              <li><code>saveSortingState</code></li>
+            </ul></li>
+          <li>The <code>beforeColumnSort</code> and <code>afterColumnSort</code> hooks receive a different set of arguments. For more information, check our <a href="https://docs.handsontable.com/pro/6.0.0/Hooks.html#event:beforeColumnSort" target="_blank">documentation</a>.</li>
+          <li>Calling the <code>updateSettings</code> method with <code>columnSorting</code> defined will set a fresh sort configuration.</li>
+        </ul>
+      </li>
+    </ul>
+    <strong>Changes</strong>
+    <p>Apart from the breaking changes above, this release introduces some additional changes to the sorting plugin:</p>
+    <ul>
+      <li>Replaced the current sorting indicators with new ones, in the form of arrows.</li>
+      <li>The sorting indicators will be displayed by default.</li>
+      <li>Added a possibility to disable the action of sorting by clicking on the headers, using the `headerAction` option.</li>
+    </ul>
+
+    <p>The corresponding Handsontable Pro version is <a href="https://github.com/handsontable/handsontable-pro/releases/6.0.0" target="_blank">6.0.0</a>.</p>
+  </div>
+
+  <div class="example-container clearfix">
     <h3>5.0.2</h3>
     <p>Released on 12th of September, 2018</p>
     <strong>Changes</strong>
