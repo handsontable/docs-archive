@@ -1,0 +1,93 @@
+<div class="static-content">
+  <div class="example-container clearfix">
+    <div>
+      <p>
+        An implementation of the <code>@handsontable/react</code> with a custom renderer added. It takes an image url as the input and renders
+        the image in the edited cell.
+      </p>
+    </div>
+    <div>
+      <div id="example1" class="hot">
+      </div>
+    </div>
+    <script type="text/x-hot-html" data-jsfiddle="example1">
+      <div id="example1" class="hot">
+      </div>
+    </script>
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example1">
+          <i class="fa fa-jsfiddle"></i>
+          Edit
+        </button>
+      </div>
+      <script type="text/babel" data-jsfiddle="example1" data-jsfiddle-panel_js="3">
+        import React from 'react';
+        import ReactDOM from 'react-dom';
+        import { HotTable } from '@handsontable/react';
+        import Handsontable from 'handsontable';
+
+        class App extends React.Component {
+          constructor(props) {
+            super(props);
+            this.hotSettings = {
+              data:
+                [['A1', 'http://ecx.images-amazon.com/images/I/51bRhyVTVGL._SL50_.jpg'],
+                  ['A2', 'http://ecx.images-amazon.com/images/I/51gdVAEfPUL._SL50_.jpg']],
+              columns: [
+                {},
+                {
+                  renderer: function(instance, td, row, col, prop, value, cellProperties) {
+                    const escaped = Handsontable.helper.stringify(value);
+                    let img = null;
+
+                    if (escaped.indexOf('http') === 0) {
+                      img = document.createElement('IMG');
+                      img.src = value;
+
+                      Handsontable.dom.addEvent(img, 'mousedown', function(event) {
+                        event.preventDefault();
+                      });
+
+                      Handsontable.dom.empty(td);
+                      td.appendChild(img);
+                    }
+                    else {
+                      Handsontable.renderers.TextRenderer.apply(this, arguments);
+                    }
+
+                    return td;
+                  }
+                }
+              ],
+              colHeaders: true,
+              rowHeights: 55
+            };
+          }
+
+          render() {
+            return (
+              <div>
+                <HotTable
+                  id="hot"
+                  settings={this.hotSettings}
+                />
+              </div>
+            );
+          }
+        }
+
+        ReactDOM.render(<App />, document.getElementById('example1'));
+      </script>
+    </div>
+  </div>
+    <p>
+      <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/wrapper-for-react-custom-renderer-example.html"
+         class="edit-doc" target="_blank">Help us improve this page</a>
+    </p>
+</div>
+<script data-jsfiddle="common" src="/<?js= env.opts.query.version ?>/scripts/jsfiddle-fixer.js"></script>
+<script data-jsfiddle="common" src="https://cdn.jsdelivr.net/npm/react@16.4.1/umd/react.development.js"></script>
+<script data-jsfiddle="common" src="https://cdn.jsdelivr.net/npm/react-dom@16.4.1/umd/react-dom.development.js"></script>
+<script data-jsfiddle="common" src="https://cdn.jsdelivr.net/npm/@handsontable/react@2.0.0/dist/react-handsontable.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.0.0-beta.51/babel.min.js"></script>

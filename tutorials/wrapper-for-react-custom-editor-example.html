@@ -1,0 +1,87 @@
+<div class="static-content">
+  <div class="example-container clearfix">
+    <div>
+      <p>
+        An implementation of the <code>@handsontable/react</code> component with a custom editor added. It utilizes the <code>placeholder</code> attribute in the editor's <code>input</code> element.
+      </p>
+    </div>
+    <div>
+      <div id="example1" class="hot">
+      </div>
+    </div>
+    <script type="text/x-hot-html" data-jsfiddle="example1">
+      <div id="example1" class="hot">
+      </div>
+    </script>
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example1">
+          <i class="fa fa-jsfiddle"></i>
+          Edit
+        </button>
+      </div>
+      <script type="text/babel" data-jsfiddle="example1" data-jsfiddle-panel_js="3">
+        import React from 'react';
+        import ReactDOM from 'react-dom';
+        import { HotTable } from '@handsontable/react';
+        import Handsontable from 'handsontable';
+
+        class CustomEditor extends Handsontable.editors.TextEditor {
+          constructor(props) {
+            super(props);
+          }
+
+          createElements() {
+            super.createElements();
+
+            this.TEXTAREA = document.createElement('input');
+            this.TEXTAREA.setAttribute('placeholder', 'Custom placeholder');
+            this.TEXTAREA.className = 'handsontableInput';
+            this.textareaStyle = this.TEXTAREA.style;
+            Handsontable.dom.empty(this.TEXTAREA_PARENT);
+            this.TEXTAREA_PARENT.appendChild(this.TEXTAREA);
+          }
+        }
+
+        class App extends React.Component {
+          constructor(props) {
+            super(props);
+            this.hotSettings = {
+              startRows: 5,
+              columns: [
+                {
+                  editor: CustomEditor
+                }
+              ],
+              colHeaders: true,
+              colWidths: 200
+            };
+          }
+
+          render() {
+            return (
+              <div>
+                <HotTable
+                  id="hot"
+                  settings={this.hotSettings}
+                />
+              </div>
+            );
+          }
+        }
+
+        ReactDOM.render(<App />, document.getElementById('example1'));
+      });</script>
+    </div>
+  </div>
+    <p>
+      <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/wrapper-for-react-custom-editor-example.html"
+         class="edit-doc" target="_blank">Help us improve this page</a>
+    </p>
+</div>
+<script data-jsfiddle="common" src="/<?js= env.opts.query.version ?>/scripts/jsfiddle-fixer.js"></script>
+<script data-jsfiddle="common" src="https://cdn.jsdelivr.net/npm/react@16.4.1/umd/react.development.js"></script>
+<script data-jsfiddle="common" src="https://cdn.jsdelivr.net/npm/react-dom@16.4.1/umd/react-dom.development.js"></script>
+<script data-jsfiddle="common" src="https://cdn.jsdelivr.net/npm/@handsontable/react@2.0.0/dist/react-handsontable.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.0.0-beta.51/babel.min.js"></script>
+

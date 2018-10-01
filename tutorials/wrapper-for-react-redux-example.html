@@ -1,0 +1,180 @@
+<div class="static-content">
+  <div class="example-container clearfix">
+    <div>
+      <p>
+        An implementation of the <code>@handsontable/react</code> component with a <code>readOnly</code> toggle switch
+        and the Redux state manager implemented.
+      </p>
+    </div>
+    <div>
+      <div>
+        <div id="example1">
+        </div>
+      </div>
+    </div>
+    <script type="text/x-hot-html" data-jsfiddle="example1">
+        <div id="example1">
+        </div>
+
+    </script>
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example1">
+          <i class="fa fa-jsfiddle"></i>
+          Edit
+        </button>
+      </div>
+      <script type="text/babel" data-jsfiddle="example1" data-jsfiddle-panel_js="3">
+        import React from 'react';
+        import ReactDOM from 'react-dom';
+        import {createStore, combineReducers} from 'redux';
+        import {HotTable} from '@handsontable/react';
+        import Handsontable from 'handsontable';
+
+        const initialReduxStoreState = {
+          hotData: [],
+          hotSettings: {
+            readOnly: false
+          }
+        };
+
+        // Action reducer for afterChange callbacks triggered by Handsontable
+        const updates = (state = initialReduxStoreState, action) => {
+          switch (action.type) {
+            case 'updateData':
+              return Object.assign({}, state, {
+                hotData: action.handsontableData,
+              });
+            case 'updateReadOnly':
+              return Object.assign({}, state, {
+                hotSettings: {
+                  readOnly: action.readOnly
+                }
+              });
+              break;
+            default:
+              return state;
+          }
+        };
+        const actionReducers = combineReducers({updates});
+        const reduxStore = createStore(actionReducers);
+
+        class MyComponent extends React.Component {
+          constructor(props) {
+            super(props);
+
+            this.toggleReadOnly = this.toggleReadOnly.bind(this);
+            this.hotTableComponent = React.createRef();
+
+            this.state = {
+              hotReadOnly: false,
+              hotSettings: {
+                data: Handsontable.helper.createSpreadsheetData(5, 3),
+                colHeaders: true,
+                rowHeaders: true,
+                afterChange: function(changes, source) {
+                  reduxStore.dispatch({
+                    type: 'updateData',
+                    handsontableData: this.getSourceData()
+                  });
+                }
+              }
+            };
+
+            reduxStore.subscribe(this.updateReduxPreview);
+          }
+
+          toggleReadOnly(event) {
+            this.setState({hotReadOnly: event.target.checked});
+
+            reduxStore.dispatch({
+              type: 'updateReadOnly',
+              readOnly: event.target.checked
+            });
+          }
+
+          updateReduxPreview() {
+            // This method serves only as a renderer for the Redux's state dump.
+            const previewTable = document.querySelector('#redux-preview table');
+            const currentState = reduxStore.getState().updates;
+            let newInnerHtml = '<tbody>';
+
+            for (const [key, value] of Object.entries(currentState)) {
+              newInnerHtml += `<tr><td class="table-container">`;
+
+              if (key === 'hotData' && Array.isArray(value)) {
+                newInnerHtml += `<strong>hotData:</strong> <br><table><tbody>`;
+
+                for (let row of value) {
+                  newInnerHtml += `<tr>`;
+
+                  for (let cell of row) {
+                    newInnerHtml += `<td>${cell}</td>`;
+                  }
+
+                  newInnerHtml += `</tr>`;
+                }
+                newInnerHtml += `</tbody></table>`;
+
+              } else if (key === 'hotSettings') {
+                newInnerHtml += `<strong>hotSettings:</strong> <ul>`;
+
+                for (let settingsKey of Object.keys(value)) {
+                  newInnerHtml += `<li>${settingsKey}: ${currentState.hotSettings[settingsKey]}</li>`;
+                }
+
+                newInnerHtml += `</ul>`;
+              }
+
+              newInnerHtml += `</td></tr>`;
+            }
+            newInnerHtml += `</tbody>`;
+
+            previewTable.innerHTML = newInnerHtml;
+          }
+
+          render() {
+            return (
+              <div className="redux-example-container">
+                <div id="example-container">
+                  <div id="example-preview" className="hot">
+                    <div id="toggle-boxes">
+                      <br/>
+                      <input onClick={this.toggleReadOnly} id="readOnlyCheck" type="checkbox"/><label
+                      htmlFor="readOnlyCheck"> Toggle <code>readOnly</code> for the entire table</label>
+                    </div>
+                    <br/>
+                    <HotTable ref={this.hotTableComponent} readOnly={this.state.hotReadOnly}
+                              settings={this.state.hotSettings}/>
+                  </div>
+                  <div id="redux-preview">
+                    <h4>Redux store dump:</h4>
+                    <table>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            );
+          }
+        }
+
+        const render = () => {
+          ReactDOM.render(<MyComponent/>, document.getElementById('example1'));
+        };
+        render();
+      </script>
+    </div>
+  </div>
+  <p>
+    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/wrapper-for-react-redux-example.html"
+       class="edit-doc" target="_blank">Help us improve this page</a>
+  </p>
+</div>
+<script data-jsfiddle="common" src="/<?js= env.opts.query.version ?>/scripts/jsfiddle-fixer.js"></script>
+<script data-jsfiddle="common" src="https://cdn.jsdelivr.net/npm/react@16.4.1/umd/react.development.js"></script>
+<script data-jsfiddle="common"
+        src="https://cdn.jsdelivr.net/npm/react-dom@16.4.1/umd/react-dom.development.js"></script>
+<script data-jsfiddle="common"
+        src="https://cdn.jsdelivr.net/npm/@handsontable/react@2.0.0/dist/react-handsontable.min.js"></script>
+<script data-jsfiddle="common" src="https://cdn.jsdelivr.net/npm/redux@4.0.0/dist/redux.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.0.0-beta.51/babel.min.js"></script>
