@@ -1,78 +1,56 @@
 <div class="static-content">
-
   <script data-jsfiddle="common">
-    function createBigData() {
-      return [
-        [1, "George Washington", "http://en.wikipedia.org/wiki/George_Washington", "30/04/1789", "4/03/1797", "Independent ", "Virginia"],
-        [2, "John Adams", "http://en.wikipedia.org/wiki/John_Adams", "4/03/1797", "4/03/1801", "Federalist ", "Massachusetts"],
-        [3, "Thomas Jefferson", "http://en.wikipedia.org/wiki/Thomas_Jefferson", "4/03/1801", "4/03/1809", "Democratic-Republican ", "Virginia"],
-        [4, "James Madison", "http://en.wikipedia.org/wiki/James_Madison", "4/03/1809", "4/03/1817", "Democratic-Republican ", "Virginia"],
-        [5, "James Monroe", "http://en.wikipedia.org/wiki/James_Monroe", "4/03/1817", "4/03/1825", "Democratic-Republican ", "Virginia"],
-        [6, "John Quincy Adams", "http://en.wikipedia.org/wiki/John_Quincy_Adams", "4/03/1825", "4/03/1829", "Democratic-Republican/National Republican ", "Massachusetts"],
-        [7, "Andrew Jackson", "http://en.wikipedia.org/wiki/Andrew_Jackson", "4/03/1829", "4/03/1837", "Democratic ", "Tennessee"],
-        [8, "Martin Van Buren", "http://en.wikipedia.org/wiki/Martin_Van_Buren", "4/03/1837", "4/03/1841", "Democratic ", "New York"],
-        [9, "William Henry Harrison", "http://en.wikipedia.org/wiki/William_Henry_Harrison", "4/03/1841", "4/04/1841", "Whig", "Ohio"],
-        [10, "John Tyler", "http://en.wikipedia.org/wiki/John_Tyler", "4/04/1841", "4/03/1845", "Whig", "Virginia"],
-        [11, "James K. Polk", "http://en.wikipedia.org/wiki/James_K._Polk", "4/03/1845", "4/03/1849", "Democratic ", "Tennessee"],
-        [12, "Zachary Taylor", "http://en.wikipedia.org/wiki/Zachary_Taylor", "4/03/1849", "9/07/1850", "Whig", "Louisiana"],
-        [13, "Millard Fillmore", "http://en.wikipedia.org/wiki/Millard_Fillmore", "9/07/1850", "4/03/1853", "Whig", "New York"],
-        [14, "Franklin Pierce", "http://en.wikipedia.org/wiki/Franklin_Pierce", "4/03/1853", "4/03/1857", "Democratic ", "New Hampshire"],
-        [15, "James Buchanan", "http://en.wikipedia.org/wiki/James_Buchanan", "4/03/1857", "4/03/1861", "Democratic ", "Pennsylvania"],
-        [16, "Abraham Lincoln", "http://en.wikipedia.org/wiki/Abraham_Lincoln", "4/03/1861", "15/04/1865", "Republican/National Union", "Illinois"],
-        [17, "Andrew Johnson", "http://en.wikipedia.org/wiki/Andrew_Johnson", "15/04/1865", "4/03/1869", "Democratic/National Union", "Tennessee"],
-        [18, "Ulysses S. Grant", "http://en.wikipedia.org/wiki/Ulysses_S._Grant", "4/03/1869", "4/03/1877", "Republican ", "Ohio"],
-        [19, "Rutherford B. Hayes", "http://en.wikipedia.org/wiki/Rutherford_B._Hayes", "4/03/1877", "4/03/1881", "Republican ", "Ohio"],
-        [20, "James A. Garfield", "http://en.wikipedia.org/wiki/James_A._Garfield", "4/03/1881", "19/09/1881", "Republican ", "Ohio"],
-        [21, "Chester A. Arthur", "http://en.wikipedia.org/wiki/Chester_A._Arthur", "19/09/1881", "4/03/1885", "Republican ", "New York"],
-        [22, "Grover Cleveland", "http://en.wikipedia.org/wiki/Grover_Cleveland", "4/03/1885", "4/03/1889", "Democratic ", "New York"],
-        [23, "Benjamin Harrison", "http://en.wikipedia.org/wiki/Benjamin_Harrison", "4/03/1889", "4/03/1893", "Republican ", "Indiana"],
-        [24, "Grover Cleveland (2nd term)", "http://en.wikipedia.org/wiki/Grover_Cleveland", "4/03/1893", "4/03/1897", "Democratic ", "New York"],
-        [25, "William McKinley", "http://en.wikipedia.org/wiki/William_McKinley", "4/03/1897", "14/9/1901", "Republican ", "Ohio"],
-        [26, "Theodore Roosevelt", "http://en.wikipedia.org/wiki/Theodore_Roosevelt", "14/9/1901", "04/03/09", "Republican ", "New York"],
-        [27, "William Howard Taft", "http://en.wikipedia.org/wiki/William_Howard_Taft", "04/03/09", "04/03/13", "Republican ", "Ohio"],
-        [28, "Woodrow Wilson", "http://en.wikipedia.org/wiki/Woodrow_Wilson", "04/03/13", "04/03/21", "Democratic ", "New Jersey"],
-        [29, "Warren G. Harding", "http://en.wikipedia.org/wiki/Warren_G._Harding", "04/03/21", "02/08/23", "Republican ", "Ohio"],
-        [30, "Calvin Coolidge", "http://en.wikipedia.org/wiki/Calvin_Coolidge", "02/08/23", "04/03/29", "Republican ", "Massachusetts"],
-        [31, "Herbert Hoover", "http://en.wikipedia.org/wiki/Herbert_Hoover", "04/03/29", "04/03/33", "Republican ", "Iowa"],
-        [32, "Franklin D. Roosevelt", "http://en.wikipedia.org/wiki/Franklin_D._Roosevelt", "04/03/33", "12/04/45", "Democratic", "New York"],
-        [33, "Harry S. Truman", "http://en.wikipedia.org/wiki/Harry_S._Truman", "12/04/45", "20/01/53", "Democratic", "Missouri"],
-        [34, "Dwight D. Eisenhower", "http://en.wikipedia.org/wiki/Dwight_D._Eisenhower", "20/01/53", "20/01/61", "Republican ", "Texas"],
-        [35, "John F. Kennedy", "http://en.wikipedia.org/wiki/John_F._Kennedy", "20/01/61", "22/11/63", "Democratic", "Massachusetts"],
-        [36, "Lyndon B. Johnson", "http://en.wikipedia.org/wiki/Lyndon_B._Johnson", "22/11/63", "20/01/69", "Democratic", "Texas"],
-        [37, "Richard Nixon", "http://en.wikipedia.org/wiki/Richard_Nixon", "20/01/69", "09/08/74", "Republican", "California"],
-        [38, "Gerald Ford", "http://en.wikipedia.org/wiki/Gerald_Ford", "09/08/74", "20/01/77", "Republican", "Michigan"],
-        [39, "Jimmy Carter", "http://en.wikipedia.org/wiki/Jimmy_Carter", "20/01/77", "20/01/81", "Democratic ", "Georgia"],
-        [40, "Ronald Reagan", "http://en.wikipedia.org/wiki/Ronald_Reagan", "20/01/81", "20/01/89", "Republican ", "California"],
-        [41, "George H. W. Bush", "http://en.wikipedia.org/wiki/George_H._W._Bush", "20/01/89", "20/01/93", "Republican ", "Texas"],
-        [42, "Bill Clinton", "http://en.wikipedia.org/wiki/Bill_Clinton", "20/01/93", "20/01/01", "Democratic ", "Arkansas"],
-        [43, "George W. Bush", "http://en.wikipedia.org/wiki/George_W._Bush", "20/01/01", "20/01/09", "Republican ", "Texas"],
-        [44, "Barack Obama", "http://en.wikipedia.org/wiki/Barack_Obama", "20/01/09", "Incumbent ", "  Democratic   ", "Illinois"]
-      ]
-    }</script>
+    var arrayOfArrays = [
+      ['Lorem', 'ipsum', 'dolor', null, 'amet', 'qui'],
+      ['consectetur', 'adipiscing', 'elit', 'sed', 'do', 'eiusmod', 'officia'],
+      ['tempor', 'incididunt', 'ut', 'labore', 'et', 'deserunt'],
+      ['diam', 'et', 'malesuada', null, 'enim', 'minim', 'mollit'],
+      ['orci', 'et', 'dignissim', null, 'exercitation', 'consequat', 'mollit']
+    ];
+  </script>
+
+  <div class="index-list">
+    <ul>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#basic-plugin-configuration">Basic plugin configuration</a></li>
+      <li><a href="#extended-plugin-configuration">Extended plugin configuration</a></li>
+      <li><a href="#default-compare-functions">Default compare functions (sorting different kinds of data)</a></li>
+      <li><a href="#custom-compare-functions">Custom compare functions</a></li>
+      <li><a href="#column-options">Plugin options for certain columns only</a></li>
+      <li><a href="#custom-sort-implementation">Custom sort implementation</a></li>
+      <li><a href="#hooks">Plugin hooks</a></li>
+      <li><a href="#api">Plugin API</a></li>
+    </ul>
+  </div>
 
   <div class="example-container clearfix">
-
-    <h3 id="how-the-sorting-works">How the sorting works</h3>
-    <p>If you want to sort data in your datasource array, you can simply invoke an <code>Array.prototype.sort()</code>
-      function and call the <code>render()</code> function to refresh the table. You don't need any plugin for this.
-      However, this operation alters the structure of the datasource, and in many cases you want to leave the datasource
-      intact, while displaying its content in a specified order. Here's where column sorting plugin comes in handy.</p>
-    <p>Column sorting plugin works as a proxy between the datasource and the Handsontable rendering module. It can map
-      indices of displayed rows (called visual indices) to the indices of corresponding rows in datasource (called
-      physical indices) and vice versa. This way you can alter the order of rows which are being presented to user,
-      without changing the datasource internal structure.</p>
-    <p>This simple mechanism gives you a lot of flexibility, but it also introduces a few pitfalls if the developer
-      is not full aware of the way plugin works.</p>
-
-    <h3 id="sorting-indicator">Sorting indicator</h3>
+    <h3 id="overview">Overview</h3>
     <p>
-      To enable a sorting indicator (an arrow down icon), you need to add a <code>sortIndicator</code> setting:</p>
-    <pre><code>sortIndicator: true</code></pre>
-    <p>Note, that you can enable this option for either the entire table (when setting it in the main config object) or for certain columns only (when using it in the <code>columns</code> array).
-      The following example has this feature enabled.<br>
+      The column sorting plugin works as a proxy between the datasource and the Handsontable rendering module. It can map indices of displayed rows (called “visual indices”) to the indices of corresponding rows in the datasource (called “physical indices”) and vice versa. This way you can alter the order of rows which are being presented to a user, without changing the datasource’s internal structure. The sort operation is performed using a <a href="https://en.wikipedia.org/wiki/Sorting_algorithm#Stability">stable sort alghoritm</a> regardless of the browser you use and the size of the data set which you sort.
     </p>
 
-    <div data-jsfiddle="example1" class="scroll-container">
+    <div data-alert class="alert-box info">
+      <strong>Please keep in mind that you shouldn't enable both the <code>columnSorting</code> and <code>multiColumnSorting</code> plugins simultaneously.</strong>
+    </div>
+  </div>
+
+
+  <div class="example-container clearfix">
+    <h3 id="basic-plugin-configuration">Basic plugin configuration</h3>
+    <p>
+      The simplest way to enable the plugin is to just set the <code>columnSorting</code> key to <code>true</code>. You will then be able to <b>use <a href="#api">the API methods</a></b> and <b>click on the header to sort</b>, as you can see in the example below. What's more, by default:
+    </p>
+
+    <p>
+    <ul>
+      <li>no column will be sorted initially,</li>
+      <li>a sorting indicator will be enabled,</li>
+      <li>empty cells won't be sorted,</li>
+      <li>the sort method will use default compare functions (read more about them <a href="#default-compare-functions">here</a>).</li>
+    </ul>
+    </p>
+
+    <div data-jsfiddle="example1">
       <div id="example1" class="hot"></div>
     </div>
 
@@ -88,90 +66,274 @@
           Dump data to console
         </button>
       </div>
-      <script data-jsfiddle="example1">
-        var
-          container = document.getElementById('example1'),
-          hot;
 
-        hot = new Handsontable(container, {
-          data: createBigData(),
-          rowHeaders: true,
+      <script data-jsfiddle="example1">
+        var exampleContainer1 = document.getElementById('example1');
+
+        new Handsontable(exampleContainer1, {
+          data: arrayOfArrays,
           colHeaders: true,
-          colWidths: [45, 220, 110, 280],
-          columnSorting: true,
-          manualColumnResize: true,
-          columns: [
-            {data: 0},
-            {data: 1},
-            {data: 6},
-            {data: 5}
-          ],
-          sortIndicator: true
+          columnSorting: true
         });</script>
     </div>
-
-    <h3 id="how-to-enable-the-plugin">How to enable the plugin</h3>
-    <p>The property which is responsible for enabling and configuring the column sorting is called <code>columnSorting</code> (pretty unexpected, huh :P). The value of this property can be either a <code>Boolean</code> or an <code>Object</code>. </p>
-    <p>If the <code>columnSorting</code> is of type <code>Boolean</code>, then <code>true</code> means the plugin is enabled and <code>false</code> means the plugin is disabled. The important thing to remember is that enabling the plugin using <code>true</code> does not sort the table content right away. The table has to be sorted either by a user or programmatically.</p>
-    <p>If the <code>columnSorting</code> is an <code>Object</code>, then it means that the plugin is enabled and configured according to the properties passed in the <code>configObject</code>. The <code>configObject</code> can be used to set the initial sorting parameters, which are: </p>
-    <ul>
-      <li><code>column : Number</code> - this index of column, by which you want to sorter the table.</li>
-      <li><code>sortOrder : String</code>  - defines the order of sorting (<code>'asc'</code> for ascending, <code>'desc'</code> for descending and <code>'none'</code> for the original). This arguments is optional. If it&#39;s not specified, the default order is ascending.</li>
-      <li><code>sortEmptyCells : Boolean</code>  - defines if the empty cells should be taking part in the sorting process. If set to <code>true</code>, they'll be considered as a valid empty string (or the lowest value). If set to <code>false</code>, they'll be moved to the end of the table. This arguments is optional. If it&#39;s not specified, it defaults to <code>false</code>.</li>
-    </ul>
-    <p>As all settings, <code>columnSorting</code> can be altered during the lifetime of a table, using <code>updateSettings()</code> method.</p>
-    <p>Examples:</p>
-    <pre><code class="lang-javascript">// enables the plugin, but does not sort the table
-var hot = new Handsontable(document.getElementById('example'), {
-  columnSorting: true
-});
-
-// enables the plugin and sort the table by the values from the first column in ascending order
-var hot = new Handsontable(document.getElementById('example'), {
-  columnSorting: {
-    column: 0
-  }
-});
-
-// enables the plugin and sort the table by the values from the first column in descending order
-var hot = new Handsontable(document.getElementById('example'), {
-  columnSorting: {
-    column: 0,
-    sortOrder: 'desc'
-  }
-});
-
-// disable plugin
-hot.updateSettings({
-  columnSorting: false
-});</code></pre>
-
-    <h3 id="how-to-determine-if-sorting-is-enabled">How to determine if sorting has been performed</h3>
-    <p>To check whether sorting has been performed for a particular Handsontable instance, use the plugin's<code>isSorted</code> method.</p>
-<pre><code class="lang-javascript">hot.getPlugin('columnSorting').isSorted() ? doSomething() : doSomethingElse();</code></pre>
-
-    <h3 id="how-to-sort-a-table">How to sort a table</h3>
-    <p>There are 3 ways you can sort a table:</p>
-    <ul>
-      <li>using <code>columnSorting</code> property</li>
-      <li>by clicking on the table header</li>
-      <li>invoking the plugin's <code>sort()</code> method</li>
-    </ul>
-    <p>The first possibility has been discussed in <a href="#how-to-enable-the-plugin">How to enable the plugin</a> section.</p>
-    <p>The second option is probably the most popular one. If the plugin is enabled, clicking on column header causes table to be sorted by the corresponding values in ascending order. As usual, if you click the header again, the order will switch to descending.</p>
-    <p>The last recommended way of sorting the table is using the plugin's <code>sort()</code> method. The method accepts 2 arguments: <code>column</code> and <code>order</code>. </p>
-    <ul>
-      <li><code>column : Number</code> - argument is the index of column, by which you want to sorter the table. This argument is required.</li>
-      <li><code>order : String</code>  - defines the order of sorting (<code>'asc'</code> for ascending, <code>'desc'</code> for descending and <code>'none'</code> for the original). This arguments is optional. If it&#39;s not specified, the default order is ascending.</li>
-    </ul>
-    <p>Example:</p>
-    <pre><code class="lang-javascript">// will sort table using values from the first column in descending order
-hot.getPlugin('columnSorting').sort(0, 'desc')
-</code></pre>
   </div>
-  <p class="gap-top-xsmall">
-    <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/sorting.html" class="edit-doc" target="_blank">
-      Help us improve this page
-    </a>
-  </p>
+
+
+  <div class="example-container clearfix">
+    <h3 id="extended-plugin-configuration">Extended plugin configuration</h3>
+    <p>
+      You can customize plugin options by providing configuration as an <code>object</code>. Here is the list of possible options to set:
+    </p>
+    <p>
+    <ul>
+      <li><code>initialConfig</code> (<code>Object</code>), which determines the initial sort status for some column; it contains the following keys:
+        <ul>
+          <li><code>column</code> (<code>Number</code>), which determines the visual index of the sorted column</li>
+          <li><code>sortOrder</code> (<code>String</code>), which determines the order that the column will be sorted in (possible values: <code>'asc'</code> and <code>'desc'</code>)</li>
+        </ul>
+      </li>
+      <li><code>indicator</code> (<code>Boolean</code>), which defines whether the sorting order indicator is displayed (an arrow icon in the column header specifying the sorting order),</li>
+      <li><code>sortEmptyCells</code> (<code>Boolean</code>), which defines whether empty cells should take part in the sorting process,</li>
+      <li><code>headerAction</code> (<code>Boolean</code>), which defines whether clicking the header should sort the table,</li>
+      <li><code>compareFunctionFactory</code> (<code>Function</code>), which defines the compare function factory (described in more detail in <a href="#custom-compare-functions">this section</a>).</li>
+    </ul>
+    </p>
+
+    <p>
+      Please take a look at the example plugin configuration below.
+    </p>
+
+    <div data-jsfiddle="example2">
+      <div id="example2" class="hot"></div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="buttons">
+        <button class="jsFiddleLink" data-runfiddle="example2">
+          <i class="fa fa-jsfiddle"></i>
+          Edit
+        </button>
+        <button class="dump" name="dump" data-dump="#example2" data-instance="hot"
+                title="Print current data source to console">
+          <i class="fa fa-terminal"></i>
+          Dump data to console
+        </button>
+      </div>
+
+      <script data-jsfiddle="example2">
+        var exampleContainer2 = document.getElementById('example2');
+
+        new Handsontable(exampleContainer2, {
+          data: arrayOfArrays,
+          colHeaders: true,
+          columnSorting: {
+            indicator: true,
+            sortEmptyCells: true,
+            initialConfig: {
+              column: 0,
+              sortOrder: 'asc'
+            }
+          }
+        });</script>
+
+      <p>Please keep in mind that options defined by the <code>columnSorting</code> key in the main Handsontable settings apply to the entire table. Most of them can also be set for a particular column, as described in <a href="#column-options">this section</a>.</p>
+    </div>
+
+    <div class="example-container clearfix">
+      <h3 id="default-compare-functions">Default compare functions (sorting different kinds of data)</h3>
+      <p>
+        As in the native <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort"><code>Array.sort</code></a> method, our internal sorting alghoritm uses the <b>compare function</b> (also known as <b>comparator</b>). Different kinds of cells (like <a href="/<?js= version ?>/tutorial-cell-types.html"><code>date, numeric, text</code></a>) are treated in a different way. Each of them have their own comparator for sorting a particular data type.
+      </p>
+      <p>As a result, you can see that different types of data are sorted properly. <code>Handsontable</code> simply needs the declared data type for the column, as you can see in the example below.</p>
+
+      <div data-jsfiddle="example3">
+        <div id="example3" class="hot"></div>
+      </div>
+
+      <div class="codeLayout">
+        <div class="buttons">
+          <button class="jsFiddleLink" data-runfiddle="example3">
+            <i class="fa fa-jsfiddle"></i>
+            Edit
+          </button>
+          <button class="dump" name="dump" data-dump="#example3" data-instance="hot"
+                  title="Print current data source to console">
+            <i class="fa fa-terminal"></i>
+            Dump data to console
+          </button>
+        </div>
+
+        <script data-jsfiddle="example3" data-dont-display="true">
+          var arrayOfObjects = [
+            {name: "Mary", surname: "Brown", dob: "01/14/2017", fee: 6999.95},
+            {name: "Henry", surname: "Jones", dob: "12/01/2018", fee: 8330},
+            {name: "Ann", surname: "Evans", dob: "07/24/2021", fee: 30500},
+            {name: "Suzan", surname: "Evans", dob: "07/24/2021", fee: 12464},
+            {name: "Ann", surname: "Williams", dob: "11/19/2019", fee: 33900},
+            {name: "David", surname: "Taylor", dob: "02/02/2020", fee: 7000},
+            {name: "John", surname: "Brown", dob: "07/24/2021", fee: 2984},
+            {name: "Mary", surname: "Brown", dob: null, fee: 30500},
+            {name: "Robert", surname: "Evans", dob: "07/24/2021", fee: 30500}
+          ];</script>
+        <script data-jsfiddle="example3">
+          var exampleContainer3 = document.getElementById('example3');
+
+          new Handsontable(exampleContainer3, {
+            data: arrayOfObjects,
+            colHeaders: ['First name', 'Surname', 'DOB', 'Fee'],
+            columns: [{
+              data: 'name' // 1st column is simple text, no special options here
+            }, {
+              data: 'surname'// 2nd column is simple text, no special options here
+            }, {
+              data: 'dob',
+              type: 'date',
+              dateFormat: 'MM/DD/YYYY',
+              correctFormat: true,
+              defaultDate: '01/01/1900'
+            }, {
+              data: 'fee',
+              type: 'numeric',
+              format: '$ 0,0.00'
+            }],
+            colWidths: 120,
+            columnSorting: true
+          });</script>
+      </div>
+
+      <div class="example-container clearfix">
+        <h3 id="custom-compare-functions">Custom compare functions</h3>
+        <p>
+          You can provide your own compare function to the sorting algorithm. This function should look the same as an argument in the native <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#Parameters">Array.sort</a></code> method (read the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#Description">description here</a>). It is handled by the plugin when <code>compareFunctionFactory</code> is defined in the configuration. Something which we call a <b>compare function factory</b> must be placed under this key. The factory takes as parameters <code>sortOrder</code> and <code>columnMeta</code> and returns the compare function.
+        </p>
+        <p>Please take a look at the example below which shows how the custom compare function factory should look.</p>
+
+        <pre><code class="lang-js">function compareFunctionFactory(sortOrder, columnMeta) {
+ return function comparator(value, nextValue) {
+   // Some value comparisons which will return -1, 0 or 1...
+ };
+};</code></pre>
+
+        <p>In the next section we’ll take a look how it may be used just for certain columns.</p>
+      </div>
+
+      <div class="example-container clearfix">
+        <h3 id="column-options">Plugin options for certain columns only</h3>
+        <p>
+          The plugin's options, such as <code>compareFunctionFactory</code>, <code>sortEmptyCells</code>, <code>headerAction</code>, <code>indicator</code> may be set just for a particular column. This can be done through the use of the <a href="<?js= version ?>/Options.html#columns">columns</a> option. The example below demonstrates how to disable the indicator and <b>completely block sorting action for the first column</b>.
+        </p>
+
+        <div data-jsfiddle="example4">
+          <div id="example4" class="hot"></div>
+        </div>
+
+        <div class="codeLayout">
+          <div class="buttons">
+            <button class="jsFiddleLink" data-runfiddle="example4">
+              <i class="fa fa-jsfiddle"></i>
+              Edit
+            </button>
+            <button class="dump" name="dump" data-dump="#example4" data-instance="hot"
+                    title="Print current data source to console">
+              <i class="fa fa-terminal"></i>
+              Dump data to console
+            </button>
+          </div>
+
+          <script data-jsfiddle="example4">
+            var exampleContainer4 = document.getElementById('example4');
+
+            new Handsontable(exampleContainer4, {
+              data: arrayOfArrays,
+              colHeaders: ["A (non-sortable)"],
+              columns: function(visualColumnIndex) {
+                if (visualColumnIndex === 0) {
+                  return {
+                    columnSorting: {
+                      indicator: false,
+                      headerAction: false,
+                      compareFunctionFactory: function compareFunctionFactory() {
+                        return function comparator() {
+                          return 0; // Don't sort the first visual column.
+                        };
+                      }
+                    }
+                  }
+                }
+
+                return {};
+              },
+              columnSorting: true
+            });</script>
+        </div>
+
+        <div class="example-container clearfix">
+          <h3 id="custom-sort-implementation">Custom sort implementation</h3>
+          <p>
+            The plugin exposes the <code>setSortConfig</code> method, which was designed for the purpose of setting the internal sort state. Please keep in mind that the data set <b>won't be sorted</b> just by using this method. However, the <code>isSorted</code> and <code>getSortConfig</code> methods will return results corresponding to the previously set configuration. To use a custom sort implementation you have to:
+          </p>
+          <ul>
+            <li>provide a callback for the <code>beforeColumnSort</code> hook which will return <code>false</code>,</li>
+            <li>sort data by yourself (for example, on the server side),</li>
+            <li>set the internal state of the sort by using the <code>setSortConfig</code> method.</li>
+          </ul>
+          <p>
+            Please take a look at the custom sort implementation in the snippet below.
+          </p>
+          <pre><code class="lang-js">beforeColumnSort: function(currentSortConfig, destinationSortConfigs) {
+  const columnSortPlugin = this.getPlugin('columnSorting');
+
+  columnSortPlugin.setSortConfig(destinationSortConfigs);
+
+  // const newData = ... // Calculated data set, ie. from an AJAX call.
+
+  // this.loadData(newData); // Load a new data set.
+
+  return false; // The blockade for the default sort action.
+}</code></pre>
+
+        </div>
+
+        <div class="example-container clearfix">
+          <h3 id="hooks">Plugin hooks</h3>
+          <p>
+            The plugin provides two hooks:
+          </p>
+          <p>
+          <ul>
+            <li>
+              <code><a href="/<?js= version ?>/Hooks.html#event:beforeColumnSort">beforeColumnSort</a></code>, which as the name suggests is run before the sort. This means that the actual sort configuration obtained by the&nbsp;<code>getSortConfig</code> method within the callback will be equal to the sort configuration preserved before the hook call. The callback for <code>beforeColumnSort</code>, which will return <code>false</code>, will stop the table from being sorted. As a result, the <code>afterColumnSort</code> hook will not be called.
+            </li>
+            <li>
+              <code><a href="/<?js= version ?>/Hooks.html#event:afterColumnSort">afterColumnSort</a></code>, which is run always after the sorting, unless the callback for <code>beforeColumnSort</code> hook returns <code>false</code>.
+            </li>
+          </ul>
+          </p>
+          <p>
+            Please keep in mind that hooks are also run when you use the <code>clearSort</code> method or provide a configuration that won't be processed (validation will fail).
+          </p>
+        </div>
+
+        <div class="example-container clearfix">
+          <h3 id="api">Plugin API</h3>
+          <p>List of methods exposed by the plugin:</p>
+          <p>
+          <ul>
+            <li><code><a href="/<?js= version ?>/ColumnSorting.html#clearSort">clearSort</a></code></li>
+            <li><code><a href="/<?js= version ?>/ColumnSorting.html#getSortConfig">getSortConfig</a></code></li>
+            <li><code><a href="/<?js= version ?>/ColumnSorting.html#isSorted">isSorted</a></code></li>
+            <li><code><a href="/<?js= version ?>/ColumnSorting.html#setSortConfig">setSortConfig</a></code></li>
+            <li><code><a href="/<?js= version ?>/ColumnSorting.html#sort">sort</a></code></li>
+          </ul>
+          </p>
+        </div>
+
+        <p class="gap-top-xsmall">
+          <a href="https://github.com/handsontable/docs/edit/<?js= version ?>/tutorials/sorting.html" class="edit-doc" target="_blank">
+            Help us improve this page
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
 </div>

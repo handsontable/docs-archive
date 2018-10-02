@@ -19,6 +19,13 @@
     -webkit-box-shadow: none;
     box-shadow: none;
   }
+
+  /* Arrow position */
+  .handsontable span.colHeader.columnSorting::before {
+    /* Changed margin size for purpose of proper positioning of sorting arrow, as `font-size` in docs was changed */
+    margin-top: -5px;
+  }
+
   thead .htGroupIndicatorContainer {
     padding: 0;
   }
