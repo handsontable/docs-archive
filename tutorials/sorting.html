@@ -1,14 +1,4 @@
 <div class="static-content">
-  <script data-jsfiddle="common">
-    var arrayOfArrays = [
-      ['Lorem', 'ipsum', 'dolor', null, 'amet', 'qui'],
-      ['consectetur', 'adipiscing', 'elit', 'sed', 'do', 'eiusmod', 'officia'],
-      ['tempor', 'incididunt', 'ut', 'labore', 'et', 'deserunt'],
-      ['diam', 'et', 'malesuada', null, 'enim', 'minim', 'mollit'],
-      ['orci', 'et', 'dignissim', null, 'exercitation', 'consequat', 'mollit']
-    ];
-  </script>
-
   <div class="index-list">
     <ul>
       <li><a href="#overview">Overview</a></li>
@@ -67,12 +57,29 @@
         </button>
       </div>
 
+      <script data-jsfiddle="example1" data-dont-display="true">
+        var arrayOfArrays = [
+          ["Tesla", "Model 3", "BlueStar", "USA", "★★★★"],
+          ["Tesla", "Model S", "WhiteStar", "USA", "★★★★★"],
+          ["Mitsubishi", "iMiEV", "", "Japan", "★★"],
+          ["Ford", "Focus EV", "", "USA", "★★"],
+          ["Mitsubishi", "iMiEV Sport", "", "Japan", "★★"],
+          ["Tesla", "Roadster", "DarkStar", "USA", "★★★★★"],
+          ["Volkswagen", "e-Golf","", "Germany", "★★"],
+          ["Volkswagen", "E-Up!", "", "Germany", "★★"],
+          ["Ford", "C-Max Energi", "", "USA", "★"],
+          ["BYD", "Denza", "", "China", "★★★"],
+          ["BYD", "e5", "", "China", "★★★"],
+          ["BYD", "e6", "", "China", "★★★★"]
+        ];
+      </script>
+
       <script data-jsfiddle="example1">
         var exampleContainer1 = document.getElementById('example1');
 
         new Handsontable(exampleContainer1, {
           data: arrayOfArrays,
-          colHeaders: true,
+          colHeaders: ["Brand", "Model", "Code name", "Country of origin", "Rank"],
           columnSorting: true
         });</script>
     </div>
@@ -120,17 +127,33 @@
         </button>
       </div>
 
+      <script data-jsfiddle="example2" data-dont-display="true">
+        var arrayOfArrays = [
+          ["Tesla", "Model 3", "BlueStar", "USA", "★★★★"],
+          ["Tesla", "Model S", "WhiteStar", "USA", "★★★★★"],
+          ["Mitsubishi", "iMiEV", "", "Japan", "★★"],
+          ["Ford", "Focus EV", "", "USA", "★★"],
+          ["Mitsubishi", "iMiEV Sport", "", "Japan", "★★"],
+          ["Tesla", "Roadster", "DarkStar", "USA", "★★★★★"],
+          ["Volkswagen", "e-Golf","", "Germany", "★★"],
+          ["Volkswagen", "E-Up!", "", "Germany", "★★"],
+          ["Ford", "C-Max Energi", "", "USA", "★"],
+          ["BYD", "Denza", "", "China", "★★★"],
+          ["BYD", "e5", "", "China", "★★★"],
+          ["BYD", "e6", "", "China", "★★★★"]
+        ];
+      </script>
+
       <script data-jsfiddle="example2">
         var exampleContainer2 = document.getElementById('example2');
 
         new Handsontable(exampleContainer2, {
           data: arrayOfArrays,
-          colHeaders: true,
+          colHeaders: ["Brand", "Model", "Code name", "Country of origin", "Rank"],
           columnSorting: {
-            indicator: true,
             sortEmptyCells: true,
             initialConfig: {
-              column: 0,
+              column: 2,
               sortOrder: 'asc'
             }
           }
@@ -165,40 +188,53 @@
 
         <script data-jsfiddle="example3" data-dont-display="true">
           var arrayOfObjects = [
-            {name: "Mary", surname: "Brown", dob: "01/14/2017", fee: 6999.95},
-            {name: "Henry", surname: "Jones", dob: "12/01/2018", fee: 8330},
-            {name: "Ann", surname: "Evans", dob: "07/24/2021", fee: 30500},
-            {name: "Suzan", surname: "Evans", dob: "07/24/2021", fee: 12464},
-            {name: "Ann", surname: "Williams", dob: "11/19/2019", fee: 33900},
-            {name: "David", surname: "Taylor", dob: "02/02/2020", fee: 7000},
-            {name: "John", surname: "Brown", dob: "07/24/2021", fee: 2984},
-            {name: "Mary", surname: "Brown", dob: null, fee: 30500},
-            {name: "Robert", surname: "Evans", dob: "07/24/2021", fee: 30500}
-          ];</script>
+            { brand: "Tesla", model: "Model 3", maxSpeed: 141, range: 215, seats: 5, price: 32750, productionDate: "06/29/2007" },
+            { brand: "Tesla", model: "Model S", maxSpeed: 139, range: 275, seats: 7, price: 71788, productionDate: "04/02/2012" },
+            { brand: "Mitsubishi", model: "iMiEV", maxSpeed: 81, range: 99, seats: 4, price: 31426.9, productionDate: "09/11/2009" },
+            { brand: "Ford", model: "Focus EV", maxSpeed: 85, range: 100, seats: 4, price: 12000, productionDate: "10/01/2011" },
+            { brand: "Mitsubishi", model: "iMiEV Sport", maxSpeed: 84, range: 124, seats: 4, price: 15000, productionDate: "05/11/2007" },
+            { brand: "Tesla", model: "Roadster", maxSpeed: 125, range: 244, seats: 2, price: 113904.5, productionDate: "02/17/2008" },
+            { brand: "Volkswagen", model: "e-Golf", maxSpeed: 87, range: 118, seats: 5, price: 33012, productionDate: "10/05/2011" },
+            { brand: "Volkswagen", model: "E-Up!", maxSpeed: 85, range: 80, seats: 3, price: 32258.75, productionDate: "11/09/2009" },
+            { brand: "Ford", model: "C-Max Energi", maxSpeed: 115, range: 18, seats: 5, price: 27120, productionDate: "11/25/2014" },
+            { brand: "BYD", model: "Denza", maxSpeed: 93, range: 157, seats: 5, price: 47600, productionDate: "10/01/2011" },
+            { brand: "BYD", model: "e5", maxSpeed: 93, range: 136, seats: 5, price: 22966.92, productionDate: "07/19/2015" },
+            { brand: "BYD", model: "e6", maxSpeed: 87, range: 199, seats: 5, price: 31440, productionDate: "06/22/2009" }
+          ];
+        </script>
+
         <script data-jsfiddle="example3">
           var exampleContainer3 = document.getElementById('example3');
-
           new Handsontable(exampleContainer3, {
             data: arrayOfObjects,
-            colHeaders: ['First name', 'Surname', 'DOB', 'Fee'],
+            colHeaders: ["Brand", "Model", "Max speed<br>(in miles per hour)", "Range<br>(in miles)", "Seats", "Price", "Start of<br>production"],
             columns: [{
-              data: 'name' // 1st column is simple text, no special options here
+              data: 'brand' // 1st column is simple text, no special options here
             }, {
-              data: 'surname'// 2nd column is simple text, no special options here
+              data: 'model'// 2nd column is simple text, no special options here
             }, {
-              data: 'dob',
+              data: 'maxSpeed',
+              type: 'numeric'
+            }, {
+              data: 'range',
+              type: 'numeric'
+            }, {
+              data: 'seats',
+              type: 'numeric'
+            }, {
+              data: 'price',
+              type: 'numeric',
+              numericFormat: {
+                pattern: '$ 0,0.00',
+                culture: 'en-US'
+              }
+            }, {
+              data: 'productionDate',
               type: 'date',
               dateFormat: 'MM/DD/YYYY',
               correctFormat: true,
               defaultDate: '01/01/1900'
-            }, {
-              data: 'fee',
-              type: 'numeric',
-              numericFormat: {
-                pattern: '$ 0,0.00'
-              }
             }],
-            colWidths: 120,
             columnSorting: true
           });</script>
       </div>
@@ -242,29 +278,64 @@
             </button>
           </div>
 
+          <script data-jsfiddle="example4" data-dont-display="true">
+            var arrayOfObjects = [
+              { brand: "Tesla", model: "Model 3", maxSpeed: 141, range: 215, seats: 5, price: 32750, productionDate: "06/29/2007" },
+              { brand: "Tesla", model: "Model S", maxSpeed: 139, range: 275, seats: 7, price: 71788, productionDate: "04/02/2012" },
+              { brand: "Mitsubishi", model: "iMiEV", maxSpeed: 81, range: 99, seats: 4, price: 31426.9, productionDate: "09/11/2009" },
+              { brand: "Ford", model: "Focus EV", maxSpeed: 85, range: 100, seats: 4, price: 12000, productionDate: "10/01/2011" },
+              { brand: "Mitsubishi", model: "iMiEV Sport", maxSpeed: 84, range: 124, seats: 4, price: 15000, productionDate: "05/11/2007" },
+              { brand: "Tesla", model: "Roadster", maxSpeed: 125, range: 244, seats: 2, price: 113904.5, productionDate: "02/17/2008" },
+              { brand: "Volkswagen", model: "e-Golf", maxSpeed: 87, range: 118, seats: 5, price: 33012, productionDate: "10/05/2011" },
+              { brand: "Volkswagen", model: "E-Up!", maxSpeed: 85, range: 80, seats: 3, price: 32258.75, productionDate: "11/09/2009" },
+              { brand: "Ford", model: "C-Max Energi", maxSpeed: 115, range: 18, seats: 5, price: 27120, productionDate: "11/25/2014" },
+              { brand: "BYD", model: "Denza", maxSpeed: 93, range: 157, seats: 5, price: 47600, productionDate: "10/01/2011" },
+              { brand: "BYD", model: "e5", maxSpeed: 93, range: 136, seats: 5, price: 22966.92, productionDate: "07/19/2015" },
+              { brand: "BYD", model: "e6", maxSpeed: 87, range: 199, seats: 5, price: 31440, productionDate: "06/22/2009" }
+            ];
+          </script>
+
           <script data-jsfiddle="example4">
             var exampleContainer4 = document.getElementById('example4');
-
             new Handsontable(exampleContainer4, {
-              data: arrayOfArrays,
-              colHeaders: ["A (non-sortable)"],
-              columns: function(visualColumnIndex) {
-                if (visualColumnIndex === 0) {
-                  return {
-                    columnSorting: {
-                      indicator: false,
-                      headerAction: false,
-                      compareFunctionFactory: function compareFunctionFactory() {
-                        return function comparator() {
-                          return 0; // Don't sort the first visual column.
-                        };
-                      }
-                    }
+              data: arrayOfObjects,
+              colHeaders: ["Brand<br><b>(non-sortable)</b>", "Model", "Max speed<br>(in miles per hour)", "Range<br>(in miles)", "Seats", "Price", "Start of<br>production"],
+              columns: [{
+                data: 'brand', // 1st column is simple text, no special options here
+                columnSorting: {
+                  indicator: false,
+                  headerAction: false,
+                  compareFunctionFactory: function compareFunctionFactory() {
+                    return function comparator() {
+                      return 0; // Don't sort the first visual column.
+                    };
                   }
                 }
-
-                return {};
-              },
+              }, {
+                data: 'model'// 2nd column is simple text, no special options here
+              }, {
+                data: 'maxSpeed',
+                type: 'numeric'
+              }, {
+                data: 'range',
+                type: 'numeric'
+              }, {
+                data: 'seats',
+                type: 'numeric'
+              }, {
+                data: 'price',
+                type: 'numeric',
+                numericFormat: {
+                  pattern: '$ 0,0.00',
+                  culture: 'en-US'
+                }
+              }, {
+                data: 'productionDate',
+                type: 'date',
+                dateFormat: 'MM/DD/YYYY',
+                correctFormat: true,
+                defaultDate: '01/01/1900'
+              }],
               columnSorting: true
             });</script>
         </div>
