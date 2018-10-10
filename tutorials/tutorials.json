@@ -255,11 +255,26 @@
           "wrapper-for-react-installation": {
             "title": "Installation"
           },
-          "wrapper-for-react-examples": {
-            "title": "Examples"
+          "wrapper-for-react-simple-examples": {
+            "title": "Basic examples"
           },
-          "wrapper-for-react-examples-redux": {
-            "title": "Redux implementation"
+          "wrapper-for-react-custom-context-menu-example": {
+            "title": "Custom Context Menu example"
+          },
+          "wrapper-for-react-custom-editor-example": {
+            "title": "Custom editor example"
+          },
+          "wrapper-for-react-custom-renderer-example": {
+            "title": "Custom renderer example"
+          },
+          "wrapper-for-react-language-change-example": {
+            "title": "Language change example"
+          },
+          "wrapper-for-react-redux-example": {
+            "title": "Redux example"
+          },
+          "wrapper-for-react-hot-reference": {
+            "title": "Referencing the Handsontable instance"
           }
         }
       },
